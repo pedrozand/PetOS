@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PetOS</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f0f2f5;
+      }
+
+      /* Barra superior */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #4267b2;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        z-index: 1000;
+      }
+
+      .navbar .left-icons,
+      .navbar .right-profile {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .navbar .left-icons a,
+      .navbar .right-profile a {
+        color: white;
+        text-decoration: none;
+        position: relative;
+      }
+
+      .navbar .left-icons a.active {
+        border-bottom: 3px solid white;
+        padding-bottom: 3px;
+      }
+
+      .navbar .left-icons a:hover,
+      .navbar .right-profile a:hover {
+        opacity: 0.8;
+      }
+
+      .navbar .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+      }
+
+      .online-indicator {
+        width: 10px;
+        height: 10px;
+        background-color: #4caf50;
+        border-radius: 50%;
+        border: 2px solid white;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+
+      /* Centraliza a barra de pesquisa */
+      .search-bar {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+
+      .search-bar input {
+        width: 600px;
+        max-width: 90%;
+        padding: 8px 15px;
+        border-radius: 20px;
+        border: none;
+        outline: none;
+      }
+
+      /* Conteúdo principal */
+      .container {
+        margin-top: 80px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Posts */
+      .post {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+        padding: 15px;
+      }
+
+      .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .post-header img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+      }
+
+      .post-content {
+        margin: 15px 0;
+        font-size: 15px;
+      }
+
+      .post-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .post-actions {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+      }
+
+      .post-actions button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #555;
+        font-weight: bold;
+      }
+
+      .post-actions button:hover {
+        color: #4267b2;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Barra superior -->
+    <div class="navbar">
+      <!-- Ícones da esquerda -->
+      <div class="left-icons">
+        <a href="home.html" class="active">🏠</a>
+        <!-- Página atual -->
+        <a href="adocao.html">
+          <img
+            src="https://i.pinimg.com/236x/e4/58/0f/e4580fce3a0d7dcb4e6396632a92ed06.jpg"
+            alt="Icone Home"
+            class="profile-pic"
+          />
+        </a>
+        <!-- Pagina adocao -->
+      </div>
+
+      <!-- Barra de pesquisa centralizada -->
+      <div class="search-bar">
+        <input type="text" placeholder="Pesquisar no PetOS" />
+      </div>
+
+      <!-- Ícone do perfil à direita -->
+      <div class="right-profile">
+        <a href="perfil.html">
+          <img
+            src="https://i.pinimg.com/236x/e4/58/0f/e4580fce3a0d7dcb4e6396632a92ed06.jpg"
+            alt="Perfil"
+            class="profile-pic"
+          />
+          <div class="online-indicator"></div>
+          <!-- Indicador de online -->
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Post 1 -->
+      <div class="post">
+        <div class="post-header">
+          <img
+            src="https://img.odcdn.com.br/cdn-cgi/image/width=1200,height=1200,fit=cover/wp-content/uploads/2021/05/Dragon-Ball-Goku-Moro-00-896x504-1.jpg"
+            alt="Perfil"
+          />
+          <div class="name">Goku</div>
+        </div>
+        <div class="post-content">
+          TESTETESTETESTESTESTETESTETESTETESTETESTESTESTETESTE
+        </div>
+        <img
+          class="post-image"
+          src="https://img.freepik.com/fotos-gratis/retrato-de-solo-adoravel-cachorro-pug_53876-64831.jpg"
+          alt="Imagem do post"
+        />
+        <div class="post-actions">
+          <button>👍 Curtir</button>
+          <button>💬 Comentar</button>
+          <button>↗️ Compartilhar</button>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post">
+        <div class="post-header">
+          <img
+            src="https://preview.redd.it/ock6i5drreq21.png?auto=webp&s=082307cdf45fd019142446d11f5396474d7b4ed3"
+            alt="Perfil"
+          />
+          <div class="name">Vegeta</div>
+        </div>
+        <div class="post-content">
+          TESTETESTETESTESTESTETESTETESTETESTETESTESTESTETESTE
+        </div>
+        <img
+          class="post-image"
+          src="https://media.tenor.com/Qc6czV9lIXUAAAAe/cachorro-desconfiado.png"
+          alt="Imagem do post"
+        />
+        <div class="post-actions">
+          <button>👍 Curtir</button>
+          <button>💬 Comentar</button>
+          <button>↗️ Compartilhar</button>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post">
+        <div class="post-header">
+          <img
+            src="https://i.pinimg.com/474x/d2/2d/96/d22d961b0ba588245cadf973c4d8bc50.jpg"
+            alt="Perfil"
+          />
+          <div class="name">Trunks</div>
+        </div>
+        <div class="post-content">
+          TESTETESTETESTESTESTETESTETESTETESTETESTESTESTETESTE
+        </div>
+        <img
+          class="post-image"
+          src="https://s3.glbimg.com/v1/AUTH_35862ca5c6ab48b992baf1f1b4f7062e/m-extra-globo-com/incoming/15974246-0a3-188/w488h275-PROP/caes-montagem.jpg"
+          alt="Imagem do post"
+        />
+        <div class="post-actions">
+          <button>👍 Curtir</button>
+          <button>💬 Comentar</button>
+          <button>↗️ Compartilhar</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
