@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>PetOS Teste</title>
     <link rel="stylesheet" href="/View/CSS/styly.css" />
+    <link rel="stylesheet" href="/View/CSS/filter.css" />
   </head>
   <body>
     <!-- Barra superior -->
@@ -12,21 +13,19 @@
 
       <!-- Ícones da esquerda -->
       <div class="left-icons">
-        <!-- Icone Pagina Adoção -->
         <a href="adocao.html">
           <img
             src="../Image/adocao_icon.png"
             alt="Icone Adoção"
             class="icon-adot"
           />
-          <!-- Icone Página Home -->
-          <a href="home.html" class="active">
-            <img
-              src="../Image/animal-shelter.png"
-              alt="Icone Home"
-              class="icon-home"
-            />
-          </a>
+        </a>
+        <a href="home.html" class="active">
+          <img
+            src="../Image/animal-shelter.png"
+            alt="Icone Home"
+            class="icon-home"
+          />
         </a>
       </div>
 
@@ -44,12 +43,84 @@
             class="profile-pic"
           />
           <div class="online-indicator"></div>
-          <!-- Indicador de online -->
         </a>
       </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Barra lateral de filtros -->
+    <div class="sidebar-filter">
+      <h2>Filtros</h2>
+
+      <div class="filter-group">
+        <label for="address">Endereço:</label>
+        <input type="text" id="address" placeholder="Digite o endereço" />
+      </div>
+
+      <div class="filter-group">
+        <label for="name-id">Nome ou ID:</label>
+        <input type="text" id="name-id" placeholder="Nome ou ID do pet" />
+      </div>
+
+      <div class="filter-group">
+        <label>Espécie:</label>
+        <span class="chip" data-value="cachorro">Cachorro</span>
+        <span class="chip" data-value="gato">Gato</span>
+      </div>
+
+      <div class="filter-group">
+        <label>Gênero:</label>
+        <span class="chip" data-value="macho">Macho</span>
+        <span class="chip" data-value="femea">Fêmea</span>
+      </div>
+
+      <div class="filter-group">
+        <label for="size">Porte:</label>
+        <select id="size">
+          <option value="">Todos</option>
+          <option value="pequeno">Pequeno</option>
+          <option value="medio">Médio</option>
+          <option value="grande">Grande</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="color">Cor:</label>
+        <select id="color">
+          <option value="">Qualquer</option>
+          <option value="preta">Preta</option>
+          <option value="branca">Branca</option>
+          <option value="cinza">Cinza</option>
+          <option value="marrom">Marrom</option>
+          <option value="caramelo">Dourada (Caramelo)</option>
+          <option value="vermelha">Vermelha</option>
+          <option value="outra">Outra</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="eye-color">Cor dos Olhos:</label>
+        <select id="eye-color">
+          <option value="">Qualquer</option>
+          <option value="escuros">Escuros</option>
+          <option value="azuis">Azuis</option>
+          <option value="verdes">Verdes</option>
+          <option value="amarelos">Amarelos</option>
+          <option value="heterocromia">Um de cada cor</option>
+          <option value="outra">Outra</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Idade:</label>
+        <span class="chip" data-value="filhote">Filhote</span>
+        <span class="chip" data-value="adulto">Adulto</span>
+        <span class="chip" data-value="senior">Sênior</span>
+      </div>
+
+      <button class="filter-btn" onclick="searchPets()">Buscar</button>
+    </div>
+
+    <!-- Conteúdo principal (Posts) -->
     <div class="container">
       <!-- Post 1 -->
       <div class="post">
