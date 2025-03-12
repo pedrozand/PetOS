@@ -14,7 +14,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #ffa07a;
+  background-color: #ffc125;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -32,19 +32,29 @@ body {
 .left-icons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   position: absolute;
-  left: calc(50% - 430px); /* 600px/2 + 20px de gap aproximado */
+  left: calc(50% - 445px); /* 600px/2 + 20px de gap aproximado */
+  margin-top: 10px;
 }
 
-.icon-small {
-  width: 30px; /* Tamanho fixo */
-  height: 30px;
+.icon-home {
+  width: 35px; /* Tamanho fixo */
+  height: 35px;
   object-fit: cover; /* Para não distorcer */
+  margin-top: -10px;
+}
+
+.icon-adot {
+  width: 45px; /* Tamanho fixo */
+  height: 45px;
+  object-fit: cover; /* Para não distorcer */
+  margin-top: -5px;
 }
 
 .left-icons a {
   text-decoration: none;
+  position: relative; /* Para barra de seleção */
 }
 
 .navbar .left-icons {
@@ -53,6 +63,19 @@ body {
   align-items: center;
   gap: 15px;
   justify-content: center;
+}
+
+/* ✅ Barra embaixo do ícone ativo */
+.left-icons a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; /* Altura da barra */
+  background-color: white;
+  transform: translateY(-3px); /* Sobe a barra sem mexer no ícone */
+  border-radius: 2px;
 }
 
 .navbar .right-profile {
@@ -64,7 +87,7 @@ body {
 }
 
 .navbar .right-profile img {
-  width: 40px; /* ou o tamanho que quiser */
+  width: 40px;
   height: 40px;
 }
 
@@ -76,7 +99,6 @@ body {
 }
 
 .navbar .left-icons a.active {
-  border-bottom: 3px solid white;
   padding-bottom: 3px;
 }
 
@@ -128,6 +150,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-top: 2px;
 }
 
 /* Conteúdo principal */
