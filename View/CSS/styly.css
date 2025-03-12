@@ -37,17 +37,35 @@ body {
   left: calc(50% - 430px); /* 600px/2 + 20px de gap aproximado */
 }
 
+.icon-small {
+  width: 30px; /* Tamanho fixo */
+  height: 30px;
+  object-fit: cover; /* Para não distorcer */
+}
+
 .left-icons a {
   text-decoration: none;
 }
 
-.navbar .left-icons,
-.navbar .right-profile {
+.navbar .left-icons {
   min-width: 150px;
   display: flex;
   align-items: center;
   gap: 15px;
   justify-content: center;
+}
+
+.navbar .right-profile {
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: right;
+}
+
+.navbar .right-profile img {
+  width: 40px; /* ou o tamanho que quiser */
+  height: 40px;
 }
 
 .navbar .left-icons a,
