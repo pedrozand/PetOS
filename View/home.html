@@ -52,31 +52,43 @@
       <h2>Filtros</h2>
 
       <div class="filter-group">
-        <label for="address">Endereço:</label>
-        <input type="text" id="address" placeholder="Digite o endereço" />
+        <label for="address">Endereço, cidade ou CEP</label>
+        <input type="text" id="address" />
       </div>
 
       <div class="filter-group">
-        <label for="name-id">Nome ou ID:</label>
-        <input type="text" id="name-id" placeholder="Nome ou ID do pet" />
+        <label for="name-id">Nome ou ID</label>
+        <input type="text" id="name-id" />
       </div>
 
       <div class="filter-group">
-        <label>Espécie:</label>
-        <span class="chip" data-value="cachorro">Cachorro</span>
-        <span class="chip" data-value="gato">Gato</span>
+        <label>Espécie</label>
+        <label class="switch">
+          <input type="checkbox" name="especie" value="cachorro" />
+          <span class="slider"></span> Cachorro
+        </label>
+        <label class="switch">
+          <input type="checkbox" name="especie" value="gato" />
+          <span class="slider"></span> Gato
+        </label>
       </div>
 
       <div class="filter-group">
-        <label>Gênero:</label>
-        <span class="chip" data-value="macho">Macho</span>
-        <span class="chip" data-value="femea">Fêmea</span>
+        <label>Gênero</label>
+        <label class="switch">
+          <input type="checkbox" name="genero" value="macho" />
+          <span class="slider"></span> Macho
+        </label>
+        <label class="switch">
+          <input type="checkbox" name="genero" value="femea" />
+          <span class="slider"></span> Fêmea
+        </label>
       </div>
 
       <div class="filter-group">
-        <label for="size">Porte:</label>
+        <label for="size">Porte</label>
         <select id="size">
-          <option value="">Todos</option>
+          <option value="">Qualquer</option>
           <option value="pequeno">Pequeno</option>
           <option value="medio">Médio</option>
           <option value="grande">Grande</option>
@@ -84,7 +96,7 @@
       </div>
 
       <div class="filter-group">
-        <label for="color">Cor:</label>
+        <label for="color">Cor</label>
         <select id="color">
           <option value="">Qualquer</option>
           <option value="preta">Preta</option>
@@ -98,7 +110,7 @@
       </div>
 
       <div class="filter-group">
-        <label for="eye-color">Cor dos Olhos:</label>
+        <label for="eye-color">Cor dos Olhos</label>
         <select id="eye-color">
           <option value="">Qualquer</option>
           <option value="escuros">Escuros</option>
@@ -111,10 +123,19 @@
       </div>
 
       <div class="filter-group">
-        <label>Idade:</label>
-        <span class="chip" data-value="filhote">Filhote</span>
-        <span class="chip" data-value="adulto">Adulto</span>
-        <span class="chip" data-value="senior">Sênior</span>
+        <label>Idade</label>
+        <label class="switch">
+          <input type="checkbox" name="idade" value="filhote" />
+          <span class="slider"></span> Filhote
+        </label>
+        <label class="switch">
+          <input type="checkbox" name="idade" value="adulto" />
+          <span class="slider"></span> Adulto
+        </label>
+        <label class="switch">
+          <input type="checkbox" name="idade" value="senior" />
+          <span class="slider"></span> Sênior
+        </label>
       </div>
 
       <button class="filter-btn">Buscar</button>
@@ -194,5 +215,6 @@
         </div>
       </div>
     </div>
+    <script src="/Controller/filter.js"></script>
   </body>
 </html>

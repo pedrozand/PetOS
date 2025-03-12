@@ -3,15 +3,18 @@
   position: fixed;
   top: 80px; /* Para não sobrepor a navbar */
   left: 0;
-  width: 260px;
+  margin-left: 10px; /* Afasta 10px da esquerda */
+  width: 320px; /* Aumenta a largura da barra lateral */
   height: calc(100vh - 80px); /* Altura total menos a navbar */
-  overflow-y: auto;
+  overflow-y: auto; /* Rolagem vertical caso necessário */
   background-color: white;
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-right: 1px solid #eee;
-  z-index: 10; /* Ficar sobre posts, mas abaixo da navbar se necessário */
+  z-index: 10; /* Sobre os posts, mas abaixo da navbar */
+  border-radius: 10px; /* Bordas arredondadas apenas do lado direito */
+  margin-right: 20px; /* Espaço entre sidebar e conteúdo */
 }
 
 /* Título do filtro */
@@ -24,7 +27,7 @@
 
 /* Grupos de filtro */
 .filter-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 /* Labels */
@@ -33,6 +36,14 @@
   margin-bottom: 6px;
   font-weight: bold;
   color: #444;
+}
+
+/* Rótulos dos filtros */
+.filter-group label:first-child {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
 }
 
 /* Inputs e selects */
@@ -84,4 +95,65 @@
 
 .filter-btn:hover {
   background-color: #ff8a60;
+}
+
+/* Estilo do container switch */
+.switch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 50px; /* Espaço para o botão */
+  font-weight: bold;
+  color: #444;
+  user-select: none;
+  font-size: 15px;
+}
+
+/* Esconde o checkbox real */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Estilo do botão "slider" */
+.slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 22px;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Círculo dentro do botão */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* Quando marcado */
+.switch input:checked + .slider {
+  background-color: #ffa07a;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Espaçamento do texto */
+.switch span {
+  margin-right: 10px;
 }
