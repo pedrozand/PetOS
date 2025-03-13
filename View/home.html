@@ -63,6 +63,7 @@
 
       <div class="filter-group">
         <label>Espécie</label>
+
         <label class="switch">
           <input type="checkbox" name="especie" value="cachorro" />
           <span class="slider"></span> Cachorro
@@ -70,6 +71,10 @@
         <label class="switch">
           <input type="checkbox" name="especie" value="gato" />
           <span class="slider"></span> Gato
+        </label>
+        <label class="switch">
+          <input type="checkbox" name="especie" value="passaro" />
+          <span class="slider"></span> Pássaro
         </label>
       </div>
 
@@ -123,19 +128,13 @@
       </div>
 
       <div class="filter-group">
-        <label>Idade</label>
-        <label class="switch">
-          <input type="checkbox" name="idade" value="filhote" />
-          <span class="slider"></span> Filhote
-        </label>
-        <label class="switch">
-          <input type="checkbox" name="idade" value="adulto" />
-          <span class="slider"></span> Adulto
-        </label>
-        <label class="switch">
-          <input type="checkbox" name="idade" value="senior" />
-          <span class="slider"></span> Sênior
-        </label>
+        <label for="color">Idade</label>
+        <select id="color">
+          <option value="">Qualquer</option>
+          <option value="filhote">Filhote</option>
+          <option value="adulto">Adulto</option>
+          <option value="senior">Sênior</option>
+        </select>
       </div>
 
       <button class="filter-btn">Buscar</button>
