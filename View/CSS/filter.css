@@ -30,9 +30,9 @@
   margin-bottom: 20px;
 }
 
-/* Remover negrito dos títulos diretamente relacionados ao switch */
-.filter-group .switch + label {
-  font-weight: normal !important; /* Forçar a remoção do negrito */
+/* Ajuste para os labels que não devem ter negrito */
+.no-bold {
+  font-weight: normal !important;
 }
 
 /* Labels */
