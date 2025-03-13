@@ -9,21 +9,19 @@
 
 /* Sidebar fixo */
 .sidebar-filter {
-  /*position: fixed;*/
-  top: 80px; /* Para não sobrepor a navbar 
+  position: absolute;
+  top: 80px;
   left: 0;
-  margin-left: 20px; /* Afasta 10px da esquerda */
-  width: 320px; /* Aumenta a largura da barra lateral */
-  height: calc(100vh - 80px); /* Altura total menos a navbar */
-  overflow-y: visible; /* Rolagem vertical caso necessário */
+  margin-left: 20px;
+  width: 320px;
+  min-height: auto;
   background-color: white;
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   border-right: 1px solid #eee;
-  z-index: 10; /* Sobre os posts, mas abaixo da navbar */
-  border-radius: 10px; /* Bordas arredondadas apenas do lado direito */
-  margin-right: 20px; /* Espaço entre sidebar e conteúdo */
+  z-index: 10;
+  border-radius: 10px;
 }
 
 /* Título do filtro */
