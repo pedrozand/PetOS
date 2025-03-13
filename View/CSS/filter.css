@@ -1,12 +1,21 @@
+.container-geral {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* Espaço entre filtros e posts */
+  margin-top: 80px; /* Para acompanhar navbar */
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
 /* Sidebar fixo */
 .sidebar-filter {
-  position: fixed;
-  top: 80px; /* Para não sobrepor a navbar */
+  /*position: fixed;*/
+  top: 80px; /* Para não sobrepor a navbar 
   left: 0;
   margin-left: 20px; /* Afasta 10px da esquerda */
   width: 320px; /* Aumenta a largura da barra lateral */
   height: calc(100vh - 80px); /* Altura total menos a navbar */
-  overflow-y: auto; /* Rolagem vertical caso necessário */
+  overflow-y: visible; /* Rolagem vertical caso necessário */
   background-color: white;
   padding: 20px;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);

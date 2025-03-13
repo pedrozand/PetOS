@@ -155,10 +155,15 @@ body {
 
 /* Conteúdo principal */
 .container {
-  margin-top: 80px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: -20px;
+  max-width: 600px; /* Igual à barra de pesquisa */
+  position: absolute;
+  left: 50%; /* Move o meio do container para o meio da tela */
+  transform: translateX(
+    -50%
+  ); /* Ajusta para alinhar o meio do container no meio da tela */
+  box-sizing: border-box;
+  width: 100%;
 }
 
 /* Posts */
