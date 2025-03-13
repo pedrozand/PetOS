@@ -28,8 +28,8 @@
 .sidebar-filter h2 {
   margin-bottom: 20px;
   font-size: 22px;
-  color: #ffa07a;
-  text-align: center;
+  color: #6e7b8b;
+  text-align: left;
 }
 
 /* Grupos de filtro */
@@ -86,7 +86,7 @@
 
 /* Botão de busca */
 .filter-btn {
-  background-color: #ffa07a;
+  background-color: #5da9c0;
   color: white;
   padding: 12px;
   width: 100%;
@@ -130,7 +130,7 @@
   top: 0;
   width: 40px;
   height: 20px;
-  background-color: #ccc;
+  background-color: #e2eff4;
   border-radius: 34px;
   transition: 0.4s;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
@@ -151,7 +151,7 @@
 
 /* Quando marcado */
 .switch input:checked + .slider {
-  background-color: #ffa07a;
+  background-color: #6cb1c6;
 }
 
 .switch input:checked + .slider:before {
