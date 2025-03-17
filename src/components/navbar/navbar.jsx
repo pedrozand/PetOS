@@ -4,8 +4,8 @@ import Logo from "../../assets/img/logo_petos.png";
 import imgAdocao from "../../assets/img/adocao_icon.png";
 
 export default function navBar() {
+  /* // <!-- Variavel e IF para transição de Navbar de acordo com login-- > */
   let login = false;
-
   if (login == true) {
     return (
       <>

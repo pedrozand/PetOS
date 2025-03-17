@@ -241,7 +241,7 @@ body {
 }
 
 .btn-anunciar:hover {
-  background-color: #ffb347; /* Tom mais escuro ao passar o mouse */
+  background-color: #ff7272;
 }
 
 /* Botão Perfil */
@@ -258,7 +258,7 @@ body {
 }
 
 .btn-entrar:hover {
-  background-color: #ffefd8; /* Tom mais escuro ao passar o mouse */
+  background-color: #ffefd8;
 }
 
 /* Alinhamento dos botões */

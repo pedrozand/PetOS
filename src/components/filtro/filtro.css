@@ -1,158 +1,155 @@
+/* Sidebar fixo */
+.sidebar-filter {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  margin-left: 20px;
+  width: 320px;
+  min-height: auto;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-right: 1px solid #eee;
+  z-index: 10;
+  border-radius: 10px;
+}
 
-  
-  /* Sidebar fixo */
-  .sidebar-filter {
-    position: absolute;
-    top: 90px;
-    left: 0;
-    margin-left: 20px;
-    width: 320px;
-    min-height: auto;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    border-right: 1px solid #eee;
-    z-index: 10;
-    border-radius: 10px;
-  }
-  
-  /* Título do filtro */
-  .sidebar-filter h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #ff3131;
-    text-align: left;
-  }
-  
-  /* Grupos de filtro */
-  .filter-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Ajuste para os labels que não devem ter negrito */
-  .no-bold {
-    font-weight: normal !important;
-  }
-  
-  /* Labels */
-  .filter-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: bold;
-    color: #444;
-  }
-  
-  /* Inputs e selects */
-  .filter-group input,
-  .filter-group select {
-    width: 100%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  /* Chips para opções rápidas */
-  .chip {
-    display: inline-block;
-    padding: 6px 12px;
-    margin: 5px 10px 0 0;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
-    user-select: none;
-    transition: background-color 0.2s;
-  }
-  
-  .chip:hover {
-    background-color: #ffa3a3;
-    color: white;
-  }
-  
-  .chip.active {
-    background-color: #ffa3a3;
-    color: white;
-  }
-  
-  /* Botão de busca */
-  .filter-btn {
-    background-color: #ff5f5f;
-    color: white;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  
-  .filter-btn:hover {
-    background-color: #ffa3a3;
-  }
-  
-  /* Estilo do container switch */
-  .switch {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    cursor: pointer;
-    position: relative;
-    padding-left: 45px; /* Espaço para o botão */
-    font-weight: normal;
-    color: #444;
-    user-select: none;
-    font-size: 14px;
-    line-height: 20px; /* Ajuste a altura da linha para alinhar o texto */
-  }
-  
-  /* Esconde o checkbox real */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* Estilo do botão "slider" */
-  .slider {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 40px;
-    height: 20px;
-    background-color: #ffa3a3;
-    border-radius: 34px;
-    transition: 0.4s;
-    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Círculo dentro do botão */
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 4px;
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: 0.4s;
-  }
-  
-  /* Quando marcado */
-  .switch input:checked + .slider {
-    background-color: #ff3131;
-  }
-  
-  .switch input:checked + .slider:before {
-    transform: translateX(18px);
-  }
-  
-  /* Espaçamento do texto */
-  .switch span {
-    margin-right: 10px;
-  }
-  
+/* Título do filtro */
+.sidebar-filter h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #ff3131;
+  text-align: left;
+}
+
+/* Grupos de filtro */
+.filter-group {
+  margin-bottom: 20px;
+}
+
+/* Ajuste para os labels que não devem ter negrito */
+.no-bold {
+  font-weight: normal !important;
+}
+
+/* Labels */
+.filter-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #444;
+}
+
+/* Inputs e selects */
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Chips para opções rápidas */
+.chip {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 5px 10px 0 0;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.chip:hover {
+  background-color: #ffa3a3;
+  color: white;
+}
+
+.chip.active {
+  background-color: #ffa3a3;
+  color: white;
+}
+
+/* Botão de busca */
+.filter-btn {
+  background-color: #ffb347;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.filter-btn:hover {
+  background-color: #facc8b;
+}
+
+/* Estilo do container switch */
+.switch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 45px; /* Espaço para o botão */
+  font-weight: normal;
+  color: #444;
+  user-select: none;
+  font-size: 14px;
+  line-height: 20px; /* Ajuste a altura da linha para alinhar o texto */
+}
+
+/* Esconde o checkbox real */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Estilo do botão "slider" */
+.slider {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 20px;
+  background-color: #ffa3a3;
+  border-radius: 34px;
+  transition: 0.4s;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Círculo dentro do botão */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* Quando marcado */
+.switch input:checked + .slider {
+  background-color: #ff3131;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+/* Espaçamento do texto */
+.switch span {
+  margin-right: 10px;
+}
