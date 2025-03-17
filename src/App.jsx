@@ -1,20 +1,19 @@
+import NavBar from "./components/navbar/navbar.jsx";
 
-import NavBar from "./components/navbar/navbar.jsx"
+import Post from "./components/post/post.jsx";
 
-import Post from "./components/post/post.jsx"
+import imgGoku from "./assets/img/Goku.jpg";
 
-import imgGoku from "./assets/img/Goku.jpg"
+import imgPet from "./assets/img/Bills.jpg";
 
-import imgPet from "./assets/img/Bills.png"
+import imgPet2 from "./assets/img/Bulma.jpg";
 
-import logoimg from "./assets/img/adocao_icon.png"
+import imgVegeta from "./assets/img/Vegeta.jpeg";
 
-import "./App.css"
-import Filtro from "./components/filtro/filtro.jsx"
+import "./App.css";
+import Filtro from "./components/filtro/filtro.jsx";
 
 function App() {
-
-
   return (
     <>
       <div>
@@ -29,18 +28,17 @@ function App() {
           />
 
           <Post
-            avatar={logoimg}
+            avatar={imgVegeta}
             nome={"Vegeta"}
             descricao={"Perdi a Bulma"}
-            imgPet={imgPet}
+            imgPet={imgPet2}
           />
 
           <Filtro />
         </div>
-
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

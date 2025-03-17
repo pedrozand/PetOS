@@ -244,7 +244,7 @@ body {
   background-color: #ff7272;
 }
 
-/* Botão Perfil */
+/* Botão Entrar */
 .btn-entrar {
   background-color: #ffffff; /* Azul */
   border: 0.5px solid #ff3131;
@@ -258,7 +258,7 @@ body {
 }
 
 .btn-entrar:hover {
-  background-color: #ffefd8;
+  background-color: #fae3e3;
 }
 
 /* Alinhamento dos botões */
