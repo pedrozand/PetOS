@@ -1,0 +1,83 @@
+/* Card do animal */
+.card-encontrado {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px; /* Ajuste conforme seu layout */
+  position: relative; /* Para o "Encontrado" respeitar */
+}
+
+/* Efeito ao passar o mouse */
+.card-encontrado:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Cabeçalho "Encontrado" */
+.card-header {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 14px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Wrapper da imagem */
+.card-img-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  margin-top: 30px; /* Espaço pro "Encontrado" */
+}
+
+/* Imagem do animal */
+.animal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Conteúdo */
+.card-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Nome do animal */
+.animal-nome {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Informações */
+.animal-local,
+.animal-hora,
+.animal-intervalo {
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  background: #f8f8f8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  width: 100%; /* Pra ficar uniforme */
+  box-sizing: border-box;
+}
