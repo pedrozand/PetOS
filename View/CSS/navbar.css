@@ -148,13 +148,13 @@ body {
 .right-icons-group {
   display: flex;
   align-items: center;
-  gap: 40px; /* Espaço entre o texto+ícone e o perfil */
+  gap: 20px; /* Espaço entre o texto+ícone e o perfil */
 }
 
 .right-icons {
   display: flex;
   align-items: center;
-  margin-right: -30px; /* Ajuste esse valor conforme o espaço desejado */
+  margin-right: -35px; /* Ajuste esse valor conforme o espaço desejado */
 }
 
 .right-icons h3 {
