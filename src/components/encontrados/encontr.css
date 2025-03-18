@@ -1,11 +1,14 @@
 /* Card do animal */
 .card-encontrado {
-  background-color: white;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  border-right: 1px solid #eee;
-  z-index: 10;
-  border-radius: 10px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
 }
 
 /* Efeito ao passar o mouse */
@@ -22,18 +25,14 @@
   padding: 8px 0;
   text-align: center;
   font-size: 14px;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 /* Wrapper da imagem */
 .card-img-wrapper {
-  width: 100%;
-  height: 180px;
+  position: relative;
+  aspect-ratio: 1 / 1; /* Mantém a imagem sempre quadrada */
+  width: auto;
+  height: auto;
   overflow: hidden;
 }
 
@@ -42,7 +41,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+}
+
+/* Texto "Encontrada após X tempo" sobreposto */
+.animal-intervalo {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  padding: 4px 0;
 }
 
 /* Conteúdo */
@@ -51,7 +61,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  align-items: center;
 }
 
 /* Nome do animal */
@@ -59,19 +68,36 @@
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  text-align: center;
+  text-align: left;
 }
 
-/* Informações */
-.animal-local,
-.animal-hora,
-.animal-intervalo {
+/* Container das infos (Local e Hora) */
+.container-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinha os itens verticalmente */
   font-size: 14px;
   color: #555;
-  text-align: center;
   background: #f8f8f8;
   padding: 4px 8px;
   border-radius: 6px;
-  width: 100%; /* Pra ficar uniforme */
+  width: 100%;
   box-sizing: border-box;
+  white-space: nowrap; /* Evita quebra de linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estiliza a descrição do local */
+.animal-local {
+  flex-grow: 1; /* Faz o local ocupar o máximo de espaço disponível */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Estiliza a hora para que fique fixa no final */
+.animal-hora {
+  flex-shrink: 0; /* Impede que a hora seja reduzida */
+  margin-left: 20px; /* Espaçamento entre local e hora */
 }

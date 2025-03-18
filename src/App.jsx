@@ -21,14 +21,14 @@ function App() {
             nome={"Bills"}
             local={"Avenida Lindóia, 204 - Jardim Recreio"}
             hora={"5 horas atrás"}
-            intervalo={"Encontrado após 2 dias"}
+            intervalo={"Encontrado após 2 dias do anúncio!"}
           />
           <Encontrados
             imgPet={imgPet}
             nome={"Bills"}
             local={"Avenida Lindóia, 204 - Jardim Recreio"}
             hora={"5 horas atrás"}
-            intervalo={"Encontrado após 2 dias"}
+            intervalo={"Encontrado após 2 dias do anúncio!"}
           />
         </div>
         <div className="posts-container">
