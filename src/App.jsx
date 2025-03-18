@@ -15,6 +15,7 @@ function App() {
     <>
       <NavBar />
       <div className="container-geral">
+        <h2>TESTE</h2>
         <div className="container-encontrados">
           <Encontrados
             imgPet={imgPet}
@@ -24,11 +25,11 @@ function App() {
             intervalo={"Encontrado 2 dias depois do anúncio!"}
           />
           <Encontrados
-            imgPet={imgPet}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
+            imgPet={imgPet2}
+            nome={"Bulma"}
+            local={"Rua Felicio Helito, 220 - Penha"}
+            hora={"12 horas atrás"}
+            intervalo={"Encontrado 8 horas depois do anúncio!"}
           />
           <Encontrados
             imgPet={imgPet}
