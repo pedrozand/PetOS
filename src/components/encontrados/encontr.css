@@ -1,21 +1,17 @@
 /* Card do animal */
 .card-encontrado {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  width: 100%;
-  max-width: 300px; /* Ajuste conforme seu layout */
-  position: relative; /* Para o "Encontrado" respeitar */
+  background-color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-right: 1px solid #eee;
+  z-index: 10;
+  border-radius: 10px;
 }
 
 /* Efeito ao passar o mouse */
 .card-encontrado:hover {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-  transform: translateY(-5px);
+  transform: translateY(-2px);
 }
 
 /* Cabeçalho "Encontrado" */
@@ -27,7 +23,6 @@
   text-align: center;
   font-size: 14px;
   width: 100%;
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 2;
@@ -40,7 +35,6 @@
   width: 100%;
   height: 180px;
   overflow: hidden;
-  margin-top: 30px; /* Espaço pro "Encontrado" */
 }
 
 /* Imagem do animal */

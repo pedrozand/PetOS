@@ -14,8 +14,23 @@ function App() {
   return (
     <>
       <NavBar />
-
       <div className="container-geral">
+        <div className="container-encontrados">
+          <Encontrados
+            imgPet={imgPet}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado após 2 dias"}
+          />
+          <Encontrados
+            imgPet={imgPet}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado após 2 dias"}
+          />
+        </div>
         <div className="posts-container">
           <Post
             avatar={imgGoku}
@@ -30,16 +45,6 @@ function App() {
             imgPet={imgPet2}
           />
           <Filtro />
-        </div>
-
-        <div className="coluna-posts">
-          <Encontrados
-            imgPet={imgPet}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado após 2 dias"}
-          />
         </div>
       </div>
     </>

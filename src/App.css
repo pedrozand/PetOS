@@ -9,3 +9,14 @@
   height: auto;
   padding: 90px 0;
 }
+
+.container-encontrados {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espaço entre os cards */
+  width: 320px; /* Largura fixa dos cards */
+  position: absolute;
+  top: 90px;
+  right: 0;
+  margin-right: 20px;
+}
