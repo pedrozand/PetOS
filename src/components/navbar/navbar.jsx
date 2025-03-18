@@ -47,6 +47,14 @@ export default function navBar() {
                     </a>
                   </li>
                   <li>
+                    <a href="me-acharam.html">
+                      Meu humano voltou
+                      <span>
+                        Veja os reencontros mais recente de pets e seus tutores!
+                      </span>
+                    </a>
+                  </li>
+                  <li>
                     <a href="como-funciona-busca.html">
                       Como funciona?
                       <span>
@@ -185,6 +193,14 @@ export default function navBar() {
                       Achados e Perdidos
                       <span>
                         Posts de pets perdidos e encontrados em sua região!
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="me-acharam.html">
+                      Meu humano voltou
+                      <span>
+                        Veja os reencontros mais recente de pets e seus tutores!
                       </span>
                     </a>
                   </li>

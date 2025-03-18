@@ -2,7 +2,7 @@
 .card-encontrado {
   background-color: #ffffff;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
@@ -100,4 +100,24 @@
 .animal-hora {
   flex-shrink: 0; /* Impede que a hora seja reduzida */
   margin-left: 20px; /* Espaçamento entre local e hora */
+}
+
+/* Estilo do botão */
+.btn-ver-mais {
+  background-color: #ff3131;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 5px; /* Espaçamento após o último card */
+  transition: 0.5s;
+  max-width: 300px; /* Limite a largura máxima para não ficar muito grande */
+}
+
+.btn-ver-mais:hover {
+  background-color: #ff8989;
+  transform: scale(1.02);
 }

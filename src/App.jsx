@@ -21,17 +21,43 @@ function App() {
             nome={"Bills"}
             local={"Avenida Lindóia, 204 - Jardim Recreio"}
             hora={"5 horas atrás"}
-            intervalo={"Encontrado após 2 dias do anúncio!"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
           />
           <Encontrados
             imgPet={imgPet}
             nome={"Bills"}
             local={"Avenida Lindóia, 204 - Jardim Recreio"}
             hora={"5 horas atrás"}
-            intervalo={"Encontrado após 2 dias do anúncio!"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
           />
+          <Encontrados
+            imgPet={imgPet}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
+          />
+          {/* Botão Ver Mais */}
+          <button
+            className="btn-ver-mais"
+            onClick={() => navigate("/pagina-destino")}
+          >
+            Ver Mais
+          </button>
         </div>
         <div className="posts-container">
+          <Post
+            avatar={imgGoku}
+            nome={"Goku"}
+            descricao={"Perdi o Bills"}
+            imgPet={imgPet}
+          />
+          <Post
+            avatar={imgVegeta}
+            nome={"Vegeta"}
+            descricao={"Perdi a Bulma"}
+            imgPet={imgPet2}
+          />
           <Post
             avatar={imgGoku}
             nome={"Goku"}
