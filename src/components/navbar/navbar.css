@@ -68,11 +68,10 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.2); /* Cor da borda com leve transparência */
 }
 
-/* Ajuste do ícone SVG */
-.dropdown svg {
-  width: 14px; /* Tamanho do ícone */
-  height: 14px; /* Tamanho do ícone */
-  vertical-align: -2px; /* Ajuste fino */
+.dropdown-arrow {
+  font-size: 10px; /* Reduz o tamanho */
+  margin-left: 1px; /* Dá um espaço do título */
+  vertical-align: middle; /* Alinha com o texto */
 }
 
 /* Mostrar ao passar o mouse */

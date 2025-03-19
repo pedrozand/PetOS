@@ -15,7 +15,6 @@ function App() {
     <>
       <NavBar />
       <div className="container-geral">
-        <h2>TESTE</h2>
         <div className="container-encontrados">
           <Encontrados
             imgPet={imgPet}
