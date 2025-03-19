@@ -1,12 +1,14 @@
 import "./navbar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import React from "react";
 
 import Logo from "../../assets/img/logo_petos.png";
 import imgAdocao from "../../assets/img/adocao_icon.png";
 
-export default function navBar() {
+export default function Navbar() {
   const [dropdownAberto, setDropdownAberto] = useState(null);
+  const [scrolled, setScrolled] = useState(false); // Estado para verificar se rolou a página
 
   // Função para abrir e fechar dropdown ao passar o mouse
   const handleMouseEnter = (menu) => {
@@ -17,19 +19,35 @@ export default function navBar() {
     setDropdownAberto(null);
   };
 
-  /* // <!-- Variavel e IF para transição de Navbar de acordo com login-- > */
+  // Função para verificar o scroll da página
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true); // Se rolar mais que 50px, muda para transparente
+      } else {
+        setScrolled(false); // Se estiver no topo, mantém branco
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll); // Detecta o scroll
+
+    // Cleanup ao desmontar o componente
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   let login = false;
-  if (login == true) {
+  if (login === true) {
     return (
       <>
-        <div className="navbar">
+        <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
+          {" "}
+          {/* Classe condicional */}
           <div className="logo">
             <a href="index.html">
               <img src={Logo} alt="Logo PetOS" className="logo-petos" />
             </a>
           </div>
-
-          {/* // <!-- Menu principal-- > */}
+          {/* Menu principal */}
           <div className="right-icons-group">
             <ul className="nav-menu">
               {/* Item - Busca */}
@@ -169,14 +187,15 @@ export default function navBar() {
   } else {
     return (
       <>
-        <div className="navbar">
+        <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
+          {" "}
+          {/* Classe condicional */}
           <div className="logo">
             <a href="index.html">
               <img src={Logo} alt="Logo PetOS" className="logo-petos" />
             </a>
           </div>
-
-          {/* // <!-- Menu principal-- > */}
+          {/* Menu principal */}
           <div className="right-icons-group">
             <ul className="nav-menu">
               {/* Item - Busca */}

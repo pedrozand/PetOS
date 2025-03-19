@@ -35,9 +35,10 @@
 }
 
 .filter-arrow {
-  font-size: 15px; /* Reduz o tamanho */
+  font-size: 25px; /* Reduz o tamanho */
   margin-left: 3px; /* Dá um espaço do título */
   vertical-align: middle; /* Alinha com o texto */
+  color: #ffb13a;
 }
 
 /* Título do filtro */

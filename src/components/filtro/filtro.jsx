@@ -1,6 +1,6 @@
 import "./filtro.css";
 import { useState } from "react";
-import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import { PiDogFill, PiDog } from "react-icons/pi";
 
 export default function Filtro() {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar visibilidade
@@ -12,9 +12,9 @@ export default function Filtro() {
       <h2 className="filter-title" onClick={() => setIsOpen(!isOpen)}>
         Filtros{" "}
         {isOpen ? (
-          <SlArrowUp className="filter-arrow" />
+          <PiDog className="filter-arrow" />
         ) : (
-          <SlArrowDown className="filter-arrow" />
+          <PiDogFill className="filter-arrow" />
         )}
       </h2>
 

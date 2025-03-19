@@ -133,6 +133,12 @@ body {
   z-index: 1000;
   height: 70px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  background-color: white; /* Inicialmente branca */
+  transition: background-color 0.3s ease; /* Transição suave */
+}
+
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.8); /* Opacidade ajustada para 80% */
 }
 
 .logo img {
