@@ -61,8 +61,9 @@ function App() {
             corPredominante={"Roxo"}
             corOlhos={"Amarelo"}
             sexo={"Macho"}
+            localDesap={"Bragança Paulista - São Paulo"}
+            dataDesap={"2025/03/15"}
           />
-
           <Filtro />
         </div>
       </div>

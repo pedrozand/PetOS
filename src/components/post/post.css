@@ -128,6 +128,7 @@
   align-items: left;
   gap: 20px;
   padding: 10px;
+  margin-bottom: -8px;
 }
 
 .caracteristicas-coluna {
@@ -206,4 +207,31 @@ strong {
 
 .animal-icon-passaro {
   color: #4caf50;
+}
+
+.info-desaparecimento {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 10px;
+  padding: 10px 0;
+}
+
+.info-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item strong {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  color: #616161; /* Cor semelhante ao template */
+}
+
+.info-item p {
+  font-size: 16px;
+  color: #4a4a4a;
 }

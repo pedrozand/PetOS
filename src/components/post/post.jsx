@@ -1,5 +1,5 @@
 import "./post.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaThumbsUp, FaCommentAlt, FaShare } from "react-icons/fa";
 import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
@@ -18,8 +18,41 @@ export default function Post({
   corPredominante,
   corOlhos,
   sexo,
+  localDesap,
+  dataDesap,
 }) {
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
+  const [tempoDecorrido, setTempoDecorrido] = useState("");
+
+  useEffect(() => {
+    if (dataDesap) {
+      const calcularTempoDecorrido = () => {
+        // Verifica se dataDesap é uma string válida
+        const dataDesaparecimento = new Date(dataDesap);
+        if (isNaN(dataDesaparecimento.getTime())) {
+          console.error("Data inválida:", dataDesap);
+          setTempoDecorrido("Data inválida");
+          return;
+        }
+
+        const dataAtual = new Date();
+        const diferencaEmMilissegundos = dataAtual - dataDesaparecimento;
+        const diasDecorridos = Math.floor(
+          diferencaEmMilissegundos / (1000 * 60 * 60 * 24)
+        );
+
+        if (diasDecorridos === 0) {
+          setTempoDecorrido("Hoje");
+        } else if (diasDecorridos === 1) {
+          setTempoDecorrido("1 dia atrás");
+        } else {
+          setTempoDecorrido(`${diasDecorridos} dias atrás`);
+        }
+      };
+
+      calcularTempoDecorrido();
+    }
+  }, [dataDesap]);
 
   return (
     <div className="container">
@@ -93,6 +126,20 @@ export default function Post({
         <div className="post-image-container">
           <span className="tag-perdido">Perdido</span>
           <img className="post-image" src={imgPet} alt="Imagem do post" />
+        </div>
+        <div className="info-desaparecimento">
+          <div className="info-item">
+            <strong>Local do Desaparecimento</strong>
+            <p>{localDesap}</p>
+          </div>
+          <div className="info-item">
+            <strong>Data do Desaparecimento</strong>
+            <p>
+              {dataDesap
+                ? `${dataDesap} - ${tempoDecorrido}`
+                : "Data não informada"}
+            </p>
+          </div>
         </div>
         <div className="post-actions">
           <button className="btn-action">
