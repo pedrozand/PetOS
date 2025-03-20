@@ -48,28 +48,21 @@ function App() {
         <div className="posts-container">
           <Post
             avatar={imgGoku}
-            nome={"Goku"}
-            descricao={"Perdi o Bills"}
+            nomeUser={"Goku de Oliveira Santana"}
+            nomeAnimal={"Bills"}
+            especie={"Gato"}
+            descricao={
+              "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+            }
             imgPet={imgPet}
+            raca={"Sphynx"}
+            idade={"Senior"}
+            porte={"Médio"}
+            corPredominante={"Roxo"}
+            corOlhos={"Amarelo"}
+            sexo={"Macho"}
           />
-          <Post
-            avatar={imgVegeta}
-            nome={"Vegeta"}
-            descricao={"Perdi a Bulma"}
-            imgPet={imgPet2}
-          />
-          <Post
-            avatar={imgGoku}
-            nome={"Goku"}
-            descricao={"Perdi o Bills"}
-            imgPet={imgPet}
-          />
-          <Post
-            avatar={imgVegeta}
-            nome={"Vegeta"}
-            descricao={"Perdi a Bulma"}
-            imgPet={imgPet2}
-          />
+
           <Filtro />
         </div>
       </div>

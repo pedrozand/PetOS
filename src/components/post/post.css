@@ -12,6 +12,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  position: relative; /* Necessário para o posicionamento absoluto dos ícones */
+  padding-right: 40px; /* Espaço para não sobrepor o nome */
 }
 
 .post-header img {
@@ -23,8 +25,9 @@
 }
 
 .post-content {
-  margin: px 0;
-  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaço entre os elementos */
 }
 
 .post-image {
@@ -33,6 +36,24 @@
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
+}
+
+.post-image-container {
+  position: relative; /* Permite posicionar elementos dentro deste contêiner */
+}
+
+.tag-perdido {
+  position: absolute;
+  margin-top: 10px;
+  top: 10px;
+  right: 10px;
+  background-color: #ff3131;
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .post-actions {
@@ -52,5 +73,137 @@
 }
 
 .post-actions button:hover {
-  color: #4267b2;
+  color: #ffb13a;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f5f5f5;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-action .icon {
+  font-size: 16px;
+}
+
+.btn-action:hover {
+  color: white;
+  transform: scale(1.05);
+}
+
+.btn-action:hover .icon {
+  transform: rotate(-10deg);
+}
+
+.btn-caracteristicas {
+  background: none;
+  border: none;
+  color: #ff3131;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
+  padding: 10px 16px;
+  gap: 10px;
+  margin-top: 10px;
+  transition: color 0.3s;
+}
+
+.btn-caracteristicas:hover {
+  color: #ff3131;
+}
+
+.caracteristicas {
+  margin-top: -8px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  gap: 20px;
+  padding: 10px;
+}
+
+.caracteristicas-coluna {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 00px;
+}
+
+.linha-divisoria {
+  width: 2px;
+  height: 100%;
+  background-color: #ccc; /* Cor da linha */
+  border-radius: 5px;
+}
+
+.caracteristicas p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+.caracteristicas p strong {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #616161; /* Cor semelhante à da imagem */
+  margin-bottom: 5px;
+}
+
+.nome-animal {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.especie,
+.comentario {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Pequeno espaço entre título e conteúdo */
+}
+
+strong {
+  font-size: 15px;
+  color: #ff3131; /* Cor levemente mais escura para destaque */
+}
+
+/* Ícones no canto superior esquerdo */
+.animal-post-icon {
+  position: absolute;
+  left: 85%; /* Ajustado para alinhar à esquerda */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre os ícones */
+  font-size: 35px; /* Ajuste do tamanho */
+}
+
+.animal-icon-macho {
+  color: #007bff;
+}
+
+.animal-icon-femea {
+  color: #ff1493;
+}
+
+.animal-icon-gato {
+  color: #ff9800;
+}
+
+.animal-icon-cachorro {
+  color: #795548;
+}
+
+.animal-icon-passaro {
+  color: #4caf50;
 }
