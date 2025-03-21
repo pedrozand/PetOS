@@ -17,7 +17,7 @@ export default function Post({
   nomeAnimal,
   especie,
   descricao,
-  imgPet, // Array de imagens
+  imgPet, // É um Array de imagens burro
   raca,
   idade,
   porte,
@@ -29,8 +29,19 @@ export default function Post({
 }) {
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
-  const [imagemExpandida, setImagemExpandida] = useState(false); // Estado do modal
+  const [imagemExpandida, setImagemExpandida] = useState(false);
   const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
+
+  // Funções para navegar entre as imagens no modal
+  const proximaImagemModal = (e) => {
+    e.stopPropagation(); // Impede que o clique feche o modal
+    setImagemAtual((prev) => (prev + 1) % imgPet.length);
+  };
+
+  const imagemAnteriorModal = (e) => {
+    e.stopPropagation(); // Impede que o clique feche o modal
+    setImagemAtual((prev) => (prev - 1 + imgPet.length) % imgPet.length);
+  };
 
   useEffect(() => {
     if (dataDesap) {
@@ -189,13 +200,31 @@ export default function Post({
       {/* Modal de imagem expandida */}
       {imagemExpandida && (
         <div className="modal" onClick={() => setImagemExpandida(false)}>
+          <div className="modal-content">
+            <button
+              className="nav-button-modal left"
+              onClick={imagemAnteriorModal}
+            >
+              <FaChevronLeft />
+            </button>
+            <img
+              src={imgPet[imagemAtual]}
+              alt="Imagem expandida"
+              className="modal-image"
+            />
+            <button
+              className="nav-button-modal right"
+              onClick={proximaImagemModal}
+            >
+              <FaChevronRight />
+            </button>
+          </div>
           <button
             className="close-modal"
             onClick={() => setImagemExpandida(false)}
           >
             ✖
           </button>
-          <img src={imgPet[imagemAtual]} alt="Imagem expandida" />
         </div>
       )}
     </div>
