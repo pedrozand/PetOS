@@ -23,6 +23,7 @@ export default function Post({
 }) {
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
+  const [imagemExpandida, setImagemExpandida] = useState(false); // Estado do modal
 
   useEffect(() => {
     if (dataDesap) {
@@ -125,8 +126,14 @@ export default function Post({
         )}
         <div className="post-image-container">
           <span className="tag-perdido">Perdido</span>
-          <img className="post-image" src={imgPet} alt="Imagem do post" />
+          <img
+            className="post-image"
+            src={imgPet}
+            alt="Imagem do post"
+            onClick={() => setImagemExpandida(true)} // Abre o modal ao clicar
+          />
         </div>
+
         <div className="info-desaparecimento">
           <div className="info-item">
             <strong>Local do Desaparecimento</strong>
@@ -153,6 +160,19 @@ export default function Post({
           </button>
         </div>
       </div>
+
+      {/* Modal da Imagem Expandida */}
+      {imagemExpandida && (
+        <div className="modal" onClick={() => setImagemExpandida(false)}>
+          <button
+            className="close-modal"
+            onClick={() => setImagemExpandida(false)}
+          >
+            ✖
+          </button>
+          <img src={imgPet} alt="Imagem expandida" />
+        </div>
+      )}
     </div>
   );
 }

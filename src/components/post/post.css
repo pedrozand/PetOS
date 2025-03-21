@@ -36,6 +36,13 @@
   object-fit: cover;
   border-radius: 10px;
   margin-top: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  height: auto;
+}
+
+.post-image:hover {
+  transform: scale(1.01);
 }
 
 .post-image-container {
@@ -54,6 +61,7 @@
   font-weight: bold;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .post-actions {
@@ -234,4 +242,69 @@ strong {
 .info-item p {
   font-size: 16px;
   color: #4a4a4a;
+}
+
+/* Estilização do modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Estilização da imagem dentro do modal */
+.modal img {
+  max-width: 90vw; /* 90% da largura da tela */
+  max-height: 90vh; /* 90% da altura da tela */
+  border-radius: 8px;
+  object-fit: contain; /* Garante que a imagem não estique */
+}
+
+/* Botão para fechar o modal */
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Modal - Fundo escuro */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal - Conteúdo (Imagem) */
+.modal-content {
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
 }
