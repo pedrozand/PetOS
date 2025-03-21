@@ -2,13 +2,14 @@
 .card-encontrado {
   background-color: #ffffff;
   border-radius: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
   width: 100%;
   max-width: 300px;
-  position: relative;
+  border-radius: 10px;
+  flex-direction: column;
 }
 
 /* Efeito ao passar o mouse */

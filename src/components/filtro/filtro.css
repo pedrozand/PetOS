@@ -1,9 +1,5 @@
-/* Sidebar fixo */
 .sidebar-filter {
-  position: absolute;
   top: 90px;
-  left: 0;
-  margin-left: 20px;
   width: 320px;
   min-height: auto;
   background-color: white;

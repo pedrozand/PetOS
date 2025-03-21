@@ -3,9 +3,12 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 600px;
+  width: 700px;
   margin-bottom: 20px;
   padding: 15px;
+  justify-content: flex-start;
+  align-items: flex-start; /* Garante que ambos fiquem alinhados no topo */
+  flex-wrap: nowrap;
 }
 
 .post-header {
@@ -34,7 +37,7 @@
 .post-image {
   object-fit: cover;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   height: 300px;
   border-radius: 10px;
   transition: transform 0.3s ease;

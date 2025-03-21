@@ -1,4 +1,4 @@
-import "./post.css";
+import "./CSS/post.css";
 import { useState, useEffect } from "react";
 import {
   FaThumbsUp,
@@ -154,6 +154,7 @@ export default function Post({
 
         {/* Carrossel de imagens */}
         <div className="post-image-container">
+          <span className="tag-perdido">Perdido</span>
           <button className="nav-button left" onClick={imagemAnterior}>
             <FaChevronLeft />
           </button>

@@ -19,7 +19,30 @@ function App() {
     <>
       <NavBar />
       <div className="container-geral">
-        <div className="container-encontrados">
+        <div>
+          <Filtro />
+        </div>
+        <div>
+          <Post
+            avatar={imgGoku}
+            nomeUser={"Goku de Oliveira Santana"}
+            nomeAnimal={"Bills"}
+            especie={"Gato"}
+            descricao={
+              "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+            }
+            imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
+            raca={"Sphynx"}
+            idade={"Senior"}
+            porte={"Médio"}
+            corPredominante={"Roxo"}
+            corOlhos={"Amarelo"}
+            sexo={"Macho"}
+            localDesap={"Bragança Paulista - São Paulo"}
+            dataDesap={"2025/03/15"}
+          />
+        </div>
+        <div>
           <Encontrados
             imgPet={imgPet1}
             nome={"Bills"}
@@ -48,27 +71,6 @@ function App() {
           >
             Ver Mais
           </button>
-        </div>
-        <div className="posts-container">
-          <Post
-            avatar={imgGoku}
-            nomeUser={"Goku de Oliveira Santana"}
-            nomeAnimal={"Bills"}
-            especie={"Gato"}
-            descricao={
-              "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
-            }
-            imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
-            raca={"Sphynx"}
-            idade={"Senior"}
-            porte={"Médio"}
-            corPredominante={"Roxo"}
-            corOlhos={"Amarelo"}
-            sexo={"Macho"}
-            localDesap={"Bragança Paulista - São Paulo"}
-            dataDesap={"2025/03/15"}
-          />
-          <Filtro />
         </div>
       </div>
     </>
