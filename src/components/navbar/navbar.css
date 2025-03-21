@@ -131,10 +131,13 @@ body {
   align-items: center;
   justify-content: space-between;
   z-index: 1000;
-  height: 70px;
+  height: 80px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
   background-color: white; /* Inicialmente branca */
   transition: background-color 0.3s ease; /* Transição suave */
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .navbar.scrolled {

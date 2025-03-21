@@ -10,12 +10,12 @@ export default function Filtro() {
     <div className={`sidebar-filter ${isOpen ? "open" : "closed"}`}>
       {/* Título clicável para expandir/recolher */}
       <h2 className="filter-title" onClick={() => setIsOpen(!isOpen)}>
-        Filtros{" "}
         {isOpen ? (
           <PiDog className="filter-arrow" />
         ) : (
           <PiDogFill className="filter-arrow" />
         )}
+        Filtros{" "}
       </h2>
 
       {isOpen && (

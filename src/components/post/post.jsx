@@ -137,7 +137,6 @@ export default function Post({
                 <strong>Porte</strong> {porte}
               </p>
             </div>
-            <div className="linha-divisoria"></div>
             <div className="caracteristicas caracteristicas-coluna">
               <p>
                 <strong>Cor predominante</strong> {corPredominante}

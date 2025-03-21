@@ -103,17 +103,16 @@
   margin-left: 20px; /* Espaçamento entre local e hora */
 }
 
-/* Estilo do botão */
 .btn-ver-mais {
   background-color: #ff3131;
   color: white;
+  width: 300px;
   font-size: 16px;
   font-weight: bold;
   padding: 15px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 5px; /* Espaçamento após o último card */
   transition: 0.5s;
   max-width: 300px; /* Limite a largura máxima para não ficar muito grande */
 }

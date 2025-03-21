@@ -17,8 +17,8 @@ import "./App.css";
 function App() {
   return (
     <>
-      <NavBar />
       <div className="container-geral">
+        <NavBar />
         <div>
           <Filtro />
         </div>

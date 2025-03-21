@@ -187,7 +187,7 @@ export default function Navbar() {
   } else {
     return (
       <>
-        <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
+        <div className={`navbar  ${scrolled ? "scrolled" : ""}`}>
           {" "}
           {/* Classe condicional */}
           <div className="logo">
