@@ -1,6 +1,12 @@
 import "./post.css";
 import { useState, useEffect } from "react";
-import { FaThumbsUp, FaCommentAlt, FaShare } from "react-icons/fa";
+import {
+  FaThumbsUp,
+  FaCommentAlt,
+  FaShare,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
@@ -11,7 +17,7 @@ export default function Post({
   nomeAnimal,
   especie,
   descricao,
-  imgPet,
+  imgPet, // Array de imagens
   raca,
   idade,
   porte,
@@ -24,6 +30,7 @@ export default function Post({
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
   const [imagemExpandida, setImagemExpandida] = useState(false); // Estado do modal
+  const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
 
   useEffect(() => {
     if (dataDesap) {
@@ -54,6 +61,15 @@ export default function Post({
       calcularTempoDecorrido();
     }
   }, [dataDesap]);
+
+  // Funções para navegar entre as imagens
+  const proximaImagem = () => {
+    setImagemAtual((prev) => (prev + 1) % imgPet.length);
+  };
+
+  const imagemAnterior = () => {
+    setImagemAtual((prev) => (prev - 1 + imgPet.length) % imgPet.length);
+  };
 
   return (
     <div className="container">
@@ -124,14 +140,23 @@ export default function Post({
             </div>
           </div>
         )}
+
+        {/* Carrossel de imagens */}
         <div className="post-image-container">
-          <span className="tag-perdido">Perdido</span>
+          <button className="nav-button left" onClick={imagemAnterior}>
+            <FaChevronLeft />
+          </button>
+
           <img
             className="post-image"
-            src={imgPet}
-            alt="Imagem do post"
+            src={imgPet[imagemAtual]}
+            alt="Imagem do animal"
             onClick={() => setImagemExpandida(true)} // Abre o modal ao clicar
           />
+
+          <button className="nav-button right" onClick={proximaImagem}>
+            <FaChevronRight />
+          </button>
         </div>
 
         <div className="info-desaparecimento">
@@ -161,7 +186,7 @@ export default function Post({
         </div>
       </div>
 
-      {/* Modal da Imagem Expandida */}
+      {/* Modal de imagem expandida */}
       {imagemExpandida && (
         <div className="modal" onClick={() => setImagemExpandida(false)}>
           <button
@@ -170,7 +195,7 @@ export default function Post({
           >
             ✖
           </button>
-          <img src={imgPet} alt="Imagem expandida" />
+          <img src={imgPet[imagemAtual]} alt="Imagem expandida" />
         </div>
       )}
     </div>
