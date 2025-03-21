@@ -39,6 +39,9 @@ export default function Navbar() {
   if (login === true) {
     return (
       <>
+        <div
+          className={`navbar-background ${scrolled ? "scrolled" : ""}`}
+        ></div>
         <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
           {" "}
           {/* Classe condicional */}
@@ -187,6 +190,9 @@ export default function Navbar() {
   } else {
     return (
       <>
+        <div
+          className={`navbar-background ${scrolled ? "scrolled" : ""}`}
+        ></div>
         <div className={`navbar  ${scrolled ? "scrolled" : ""}`}>
           {" "}
           {/* Classe condicional */}
