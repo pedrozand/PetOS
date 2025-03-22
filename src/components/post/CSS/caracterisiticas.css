@@ -1,0 +1,48 @@
+.btn-caracteristicas {
+  background: none;
+  border: none;
+  color: #ff3131;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
+  padding: 10px 16px;
+  gap: 10px;
+  margin-top: 10px;
+  transition: color 0.3s;
+}
+
+.btn-caracteristicas:hover {
+  color: #ff3131;
+}
+
+.caracteristicas {
+  margin-top: -8px;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  padding: 10px;
+  margin-bottom: -2px;
+}
+
+.caracteristicas-coluna {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 00px;
+}
+
+.caracteristicas p {
+  margin: 8px 0;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+
+.caracteristicas p strong {
+  display: block;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #616161; /* Cor semelhante à da imagem */
+  margin-bottom: 5px;
+}

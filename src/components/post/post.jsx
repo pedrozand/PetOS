@@ -1,4 +1,8 @@
 import "./CSS/post.css";
+import "./CSS/caracterisiticas.css";
+import "./CSS/botoes-intera.css";
+import "./CSS/img-modal.css";
+import "./CSS/animal-info.css";
 import { useState, useEffect } from "react";
 import {
   FaThumbsUp,
