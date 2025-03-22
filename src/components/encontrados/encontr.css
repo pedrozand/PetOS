@@ -2,13 +2,14 @@
 .card-encontrado {
   background-color: #ffffff;
   border-radius: 12px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
   width: 100%;
   max-width: 300px;
-  position: relative;
+  border-radius: 10px;
+  flex-direction: column;
 }
 
 /* Efeito ao passar o mouse */
@@ -78,7 +79,7 @@
   align-items: center; /* Alinha os itens verticalmente */
   font-size: 14px;
   color: #555;
-  background: #f8f8f8;
+  background: #f1f1f1;
   padding: 4px 8px;
   border-radius: 6px;
   width: 100%;
@@ -102,17 +103,16 @@
   margin-left: 20px; /* Espaçamento entre local e hora */
 }
 
-/* Estilo do botão */
 .btn-ver-mais {
   background-color: #ff3131;
   color: white;
+  width: 300px;
   font-size: 16px;
   font-weight: bold;
   padding: 15px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 5px; /* Espaçamento após o último card */
   transition: 0.5s;
   max-width: 300px; /* Limite a largura máxima para não ficar muito grande */
 }

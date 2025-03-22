@@ -1,97 +1,130 @@
 import "./navbar.css";
+import { useState, useEffect } from "react";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import React from "react";
 
 import Logo from "../../assets/img/logo_petos.png";
 import imgAdocao from "../../assets/img/adocao_icon.png";
 
-export default function navBar() {
-  /* // <!-- Variavel e IF para transição de Navbar de acordo com login-- > */
+export default function Navbar() {
+  const [dropdownAberto, setDropdownAberto] = useState(null);
+  const [scrolled, setScrolled] = useState(false); // Estado para verificar se rolou a página
+
+  // Função para abrir e fechar dropdown ao passar o mouse
+  const handleMouseEnter = (menu) => {
+    setDropdownAberto(menu);
+  };
+
+  const handleMouseLeave = () => {
+    setDropdownAberto(null);
+  };
+
+  // Função para verificar o scroll da página
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true); // Se rolar mais que 50px, muda para transparente
+      } else {
+        setScrolled(false); // Se estiver no topo, mantém branco
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll); // Detecta o scroll
+
+    // Cleanup ao desmontar o componente
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   let login = false;
-  if (login == true) {
+  if (login === true) {
     return (
       <>
-        <div className="navbar">
+        <div
+          className={`navbar-background ${scrolled ? "scrolled" : ""}`}
+        ></div>
+        <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
+          {" "}
+          {/* Classe condicional */}
           <div className="logo">
             <a href="index.html">
               <img src={Logo} alt="Logo PetOS" className="logo-petos" />
             </a>
           </div>
-
-          {/* // <!-- Menu principal-- > */}
+          {/* Menu principal */}
           <div className="right-icons-group">
             <ul className="nav-menu">
-              <li className="dropdown busca-menu">
+              {/* Item - Busca */}
+              <li
+                className="dropdown busca-menu"
+                onMouseEnter={() => handleMouseEnter("busca")}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
-                  Busca
-                  {/* <!-- Ícone SVG de seta para baixo (indicação de dropdown) --> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
+                  Busca{" "}
+                  {dropdownAberto === "busca" ? (
+                    <SlArrowUp className="dropdown-arrow" />
+                  ) : (
+                    <SlArrowDown className="dropdown-arrow" />
+                  )}
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="achados-perdidos.html">
-                      Achados e Perdidos
-                      <span>
-                        Posts de pets perdidos e encontrados em sua região!
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="me-acharam.html">
-                      Meu humano voltou
-                      <span>
-                        Veja os reencontros mais recente de pets e seus tutores!
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="como-funciona-busca.html">
-                      Como funciona?
-                      <span>
-                        Compreenda como o PetOS ajuda na busca de seu pet!
-                      </span>
-                    </a>
-                  </li>
-                </ul>
+                {dropdownAberto === "busca" && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="achados-perdidos.html">
+                        Achados e Perdidos
+                        <span>
+                          Posts de pets perdidos e encontrados em sua região!
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="me-acharam.html">
+                        Meu humano voltou
+                        <span>
+                          Veja os reencontros mais recentes de pets e seus
+                          tutores!
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="como-funciona-busca.html">
+                        Como funciona?
+                        <span>
+                          Compreenda como o PetOS ajuda na busca de seu pet!
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
-              <li className="dropdown">
+
+              {/* Item - Conheça */}
+              <li
+                className="dropdown"
+                onMouseEnter={() => handleMouseEnter("conheca")}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
-                  Conheça
-                  {/* <!-- Ícone SVG de seta para baixo (indicação de dropdown) --> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
+                  Conheça{" "}
+                  {dropdownAberto === "conheca" ? (
+                    <SlArrowUp className="dropdown-arrow" />
+                  ) : (
+                    <SlArrowDown className="dropdown-arrow" />
+                  )}
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="achados-perdidos.html">
-                      ONG Faros D'Ajuda
-                      <span>ONG em prol dos animais de rua.</span>
-                    </a>
-                  </li>
-                </ul>
+                {dropdownAberto === "conheca" && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="achados-perdidos.html">
+                        ONG Faros D'Ajuda
+                        <span>ONG em prol dos animais de rua.</span>
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
-              {/* <!-- Ícones da direita --> */}
+
+              {/* Ícone de adoção */}
               <div className="right-icons">
                 <a href="adocao.html">
                   <img
@@ -101,47 +134,45 @@ export default function navBar() {
                   />
                 </a>
               </div>
-              <li className="dropdown adocao-dropdown">
+
+              {/* Item - Adoção */}
+              <li
+                className="dropdown adocao-dropdown"
+                onMouseEnter={() => handleMouseEnter("adocao")}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
-                  Adoção
-                  {/* <!-- Ícone SVG de seta para baixo (indicação de dropdown) --> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
+                  Adoção{" "}
+                  {dropdownAberto === "adocao" ? (
+                    <SlArrowUp className="dropdown-arrow" />
+                  ) : (
+                    <SlArrowDown className="dropdown-arrow" />
+                  )}
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="/View/adocao.html">
-                      Pets para Adoção
-                      <span>
-                        Pets disponíveis para adoção em sua localidade.
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="como-funciona-adocao.html">
-                      Como funciona a adoção?
-                      <span>
-                        Compreenda como os pets podem encontrar um novo lar!
-                      </span>
-                    </a>
-                  </li>
-                </ul>
+                {dropdownAberto === "adocao" && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="/View/adocao.html">
+                        Pets para Adoção
+                        <span>
+                          Pets disponíveis para adoção em sua localidade.
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="como-funciona-adocao.html">
+                        Como funciona a adoção?
+                        <span>
+                          Compreenda como os pets podem encontrar um novo lar!
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
             </ul>
 
-            {/* <!-- Ícone do perfil à direita == Usuário Logado --> */}
-            {}
+            {/* Ícone de perfil */}
             <div className="right-profile">
               <a href="perfil.html">
                 <img
@@ -159,89 +190,92 @@ export default function navBar() {
   } else {
     return (
       <>
-        <div className="navbar">
+        <div
+          className={`navbar-background ${scrolled ? "scrolled" : ""}`}
+        ></div>
+        <div className={`navbar  ${scrolled ? "scrolled" : ""}`}>
+          {" "}
+          {/* Classe condicional */}
           <div className="logo">
             <a href="index.html">
               <img src={Logo} alt="Logo PetOS" className="logo-petos" />
             </a>
           </div>
-
-          {/* // <!-- Menu principal-- > */}
+          {/* Menu principal */}
           <div className="right-icons-group">
             <ul className="nav-menu">
-              <li className="dropdown busca-menu">
+              {/* Item - Busca */}
+              <li
+                className="dropdown busca-menu"
+                onMouseEnter={() => handleMouseEnter("busca")}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
-                  Busca
-                  {/* <!-- Ícone SVG de seta para baixo (indicação de dropdown) --> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
+                  Busca{" "}
+                  {dropdownAberto === "busca" ? (
+                    <SlArrowUp className="dropdown-arrow" />
+                  ) : (
+                    <SlArrowDown className="dropdown-arrow" />
+                  )}
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="achados-perdidos.html">
-                      Achados e Perdidos
-                      <span>
-                        Posts de pets perdidos e encontrados em sua região!
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="me-acharam.html">
-                      Meu humano voltou
-                      <span>
-                        Veja os reencontros mais recente de pets e seus tutores!
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="como-funciona-busca.html">
-                      Como funciona?
-                      <span>
-                        Compreenda como o PetOS ajuda na busca de seu pet!
-                      </span>
-                    </a>
-                  </li>
-                </ul>
+                {dropdownAberto === "busca" && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="achados-perdidos.html">
+                        Achados e Perdidos
+                        <span>
+                          Posts de pets perdidos e encontrados em sua região!
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="me-acharam.html">
+                        Meu humano voltou
+                        <span>
+                          Veja os reencontros mais recentes de pets e seus
+                          tutores!
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="como-funciona-busca.html">
+                        Como funciona?
+                        <span>
+                          Compreenda como o PetOS ajuda na busca de seu pet!
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
-              <li className="dropdown">
+
+              {/* Item - Conheça */}
+              <li
+                className="dropdown"
+                onMouseEnter={() => handleMouseEnter("conheca")}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
-                  Conheça
-                  {/* <!-- Ícone SVG de seta para baixo (indicação de dropdown) --> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
+                  Conheça{" "}
+                  {dropdownAberto === "conheca" ? (
+                    <SlArrowUp className="dropdown-arrow" />
+                  ) : (
+                    <SlArrowDown className="dropdown-arrow" />
+                  )}
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="achados-perdidos.html">
-                      ONG Faros D'Ajuda
-                      <span>ONG em prol dos animais de rua.</span>
-                    </a>
-                  </li>
-                </ul>
+                {dropdownAberto === "conheca" && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="achados-perdidos.html">
+                        ONG Faros D'Ajuda
+                        <span>ONG em prol dos animais de rua.</span>
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
-              {/* <!-- Ícones da direita --> */}
+
+              {/* Ícone de adoção */}
               <div className="right-icons">
                 <a href="adocao.html">
                   <img
@@ -251,42 +285,41 @@ export default function navBar() {
                   />
                 </a>
               </div>
-              <li className="dropdown adocao-dropdown">
+
+              {/* Item - Adoção */}
+              <li
+                className="dropdown adocao-dropdown"
+                onMouseEnter={() => handleMouseEnter("adocao")}
+                onMouseLeave={handleMouseLeave}
+              >
                 <a href="#">
-                  Adoção
-                  {/* <!-- Ícone SVG de seta para baixo (indicação de dropdown) --> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M6 9l6 6 6-6"></path>
-                  </svg>
+                  Adoção{" "}
+                  {dropdownAberto === "adocao" ? (
+                    <SlArrowUp className="dropdown-arrow" />
+                  ) : (
+                    <SlArrowDown className="dropdown-arrow" />
+                  )}
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a href="/View/adocao.html">
-                      Pets para Adoção
-                      <span>
-                        Pets disponíveis para adoção em sua localidade.
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="como-funciona-adocao.html">
-                      Como funciona a adoção?
-                      <span>
-                        Compreenda como os pets podem encontrar um novo lar!
-                      </span>
-                    </a>
-                  </li>
-                </ul>
+                {dropdownAberto === "adocao" && (
+                  <ul className="dropdown-menu">
+                    <li>
+                      <a href="/View/adocao.html">
+                        Pets para Adoção
+                        <span>
+                          Pets disponíveis para adoção em sua localidade.
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="como-funciona-adocao.html">
+                        Como funciona a adoção?
+                        <span>
+                          Compreenda como os pets podem encontrar um novo lar!
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
             </ul>
 

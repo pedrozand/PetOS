@@ -1,18 +1,41 @@
-/* Sidebar fixo */
 .sidebar-filter {
-  position: absolute;
   top: 90px;
-  left: 0;
-  margin-left: 20px;
-  width: 320px;
+  width: 350px;
   min-height: auto;
-  background-color: white;
+  background-color: transparent;
   padding: 20px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); */
   box-sizing: border-box;
   border-right: 1px solid #eee;
   z-index: 10;
   border-radius: 10px;
+  margin-right: -30px;
+}
+
+/* Estilo quando recolhido */
+.sidebar-filter.closed {
+  padding: 20px;
+  cursor: pointer;
+}
+
+/* Título clicável */
+.filter-title {
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  background: transparent;
+  color: transparent;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.filter-arrow {
+  font-size: 50px; /* Reduz o tamanho */
+  margin-right: 10px; /* Dá um espaço do título */
+  vertical-align: middle; /* Alinha com o texto */
+  color: #ffb13a;
+  margin-bottom: 20px;
 }
 
 /* Título do filtro */
@@ -47,8 +70,9 @@
   width: 100%;
   padding: 8px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   box-sizing: border-box;
+  background-color: transparent;
 }
 
 /* Chips para opções rápidas */
