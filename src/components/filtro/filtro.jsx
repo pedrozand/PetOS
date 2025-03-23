@@ -1,9 +1,46 @@
 import "./filtro.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PiDogFill, PiDog } from "react-icons/pi";
 
 export default function Filtro() {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar visibilidade
+  const [address, setAddress] = useState("");
+
+  // Função para obter a localização do usuário
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          await reverseGeocode(latitude, longitude);
+        },
+        (error) => {
+          console.error("Erro ao obter localização:", error);
+        }
+      );
+    } else {
+      console.error("Geolocalização não suportada no navegador.");
+    }
+  };
+
+  // Função para converter latitude/longitude em endereço real
+  const reverseGeocode = async (lat, lon) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+      );
+      const data = await response.json();
+      if (data.display_name) {
+        setAddress(data.display_name); // Define o endereço no input
+      }
+    } catch (error) {
+      console.error("Erro ao obter endereço:", error);
+    }
+  };
+
+  useEffect(() => {
+    getLocation(); // Busca o endereço assim que o componente carrega
+  }, []);
 
   return (
     // Barra lateral de filtros
@@ -21,8 +58,14 @@ export default function Filtro() {
       {isOpen && (
         <>
           <div className="filter-group">
-            <label for="address">Endereço, cidade ou CEP</label>
-            <input type="text" id="address" />
+            <label htmlFor="address">Endereço, cidade ou CEP</label>
+            <input
+              type="text"
+              id="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="Obtendo localização..."
+            />
           </div>
 
           <div className="filter-group">

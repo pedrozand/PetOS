@@ -1,5 +1,4 @@
 .sidebar-filter {
-  top: 90px;
   width: 350px;
   min-height: auto;
   background-color: transparent;
@@ -26,7 +25,7 @@
   text-align: center;
   background: transparent;
   color: transparent;
-  padding: 10px;
+  padding: 0px;
   border-radius: 5px;
 }
 
@@ -49,6 +48,7 @@
 /* Grupos de filtro */
 .filter-group {
   margin-bottom: 20px;
+  font-size: 16px;
 }
 
 /* Ajuste para os labels que não devem ter negrito */
@@ -73,6 +73,7 @@
   border: 2px solid #ccc;
   box-sizing: border-box;
   background-color: transparent;
+  font-size: 16px;
 }
 
 /* Chips para opções rápidas */
@@ -83,7 +84,7 @@
   background-color: #f0f0f0;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
   user-select: none;
   transition: background-color 0.2s;
@@ -127,7 +128,7 @@
   font-weight: normal;
   color: #444;
   user-select: none;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px; /* Ajuste a altura da linha para alinhar o texto */
 }
 
