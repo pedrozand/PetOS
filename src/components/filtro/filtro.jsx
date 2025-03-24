@@ -1,10 +1,47 @@
 import "./filtro.css";
-import { useState, useEffect } from "react";
-import { PiDogFill, PiDog } from "react-icons/pi";
+import { useState, useEffect, useRef } from "react";
+import { PiDogFill, PiDog, PiTrash } from "react-icons/pi";
 
 export default function Filtro() {
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar visibilidade
+  const [isOpen, setIsOpen] = useState(true); // Estado para controlar visibilidade
   const [address, setAddress] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); // Para armazenar a pesquisa do usuário
+  const [suggestions, setSuggestions] = useState([]); // Para armazenar as sugestões da API
+  const inputRef = useRef(null); // Referência para o campo editável
+  const debounceTimeout = useRef(null); // Para armazenar o timeout do debounce
+  const [showSuggestions, setShowSuggestions] = useState(false); // Controle de visibilidade das sugestões
+
+  // Função para formatar o endereço retornado pela API
+  const formatAddress = (data) => {
+    const { road, house_number, suburb, city, state, postcode, country } =
+      data.address;
+
+    // Filtra e retorna apenas os dados essenciais para exibir no formato desejado
+    return [road, house_number, suburb, city, state, postcode, country]
+      .filter(Boolean) // Filtra valores falsy, como undefined ou null
+      .join(", ");
+  };
+
+  // Função para formatar o endereço retornado pela API
+  const reverseGeocode = async (lat, lon) => {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
+      );
+      const data = await response.json();
+
+      if (data.display_name) {
+        const formattedAddress = formatAddress(data);
+        setAddress(formattedAddress);
+
+        if (inputRef.current) {
+          inputRef.current.innerText = formattedAddress;
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao obter endereço:", error);
+    }
+  };
 
   // Função para obter a localização do usuário
   const getLocation = () => {
@@ -23,23 +60,73 @@ export default function Filtro() {
     }
   };
 
-  // Função para converter latitude/longitude em endereço real
-  const reverseGeocode = async (lat, lon) => {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
-      );
-      const data = await response.json();
-      if (data.display_name) {
-        setAddress(data.display_name); // Define o endereço no input
-      }
-    } catch (error) {
-      console.error("Erro ao obter endereço:", error);
+  // Função para limpar o conteúdo do campo
+  const handleClear = () => {
+    setAddress("");
+    if (inputRef.current) {
+      inputRef.current.innerText = "";
+    }
+    setSuggestions([]); // Limpa as sugestões quando o campo é limpo
+    setShowSuggestions(false); // Fecha as sugestões
+  };
+
+  // Função para lidar com a mudança de texto na div
+  const handleInputChange = () => {
+    const query = inputRef.current ? inputRef.current.innerText : "";
+    setSearchQuery(query);
+
+    // Aplica o debounce para evitar múltiplas requisições
+    clearTimeout(debounceTimeout.current);
+    debounceTimeout.current = setTimeout(() => {
+      fetchSuggestions(query);
+    }, 500); // Espera 500ms após o último caractere digitado
+  };
+
+  // Função para pesquisa ao clicar no botão
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      fetchSuggestions(searchQuery); // Garante que as sugestões sejam atualizadas
     }
   };
 
+  // Função para buscar as sugestões de endereço da API
+  const fetchSuggestions = async (query) => {
+    if (!query) {
+      setSuggestions([]); // Se a busca estiver vazia, limpa as sugestões
+      return;
+    }
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1`
+      );
+      const data = await response.json();
+
+      // Formatar cada sugestão antes de atualizar o estado
+      const formattedSuggestions = data.map((suggestion) => {
+        return {
+          ...suggestion,
+          formatted_address: formatAddress(suggestion), // Adiciona o endereço formatado
+        };
+      });
+
+      setSuggestions(formattedSuggestions); // Atualiza as sugestões com as formatadas
+    } catch (error) {
+      console.error("Erro ao buscar sugestões:", error);
+    }
+  };
+
+  // Função para lidar com a seleção de uma sugestão
+  const handleSuggestionClick = (suggestion) => {
+    const formattedAddress = suggestion.formatted_address;
+    setAddress(formattedAddress);
+    if (inputRef.current) {
+      inputRef.current.innerText = formattedAddress;
+    }
+    setShowSuggestions(false); // Fecha as sugestões após a seleção
+  };
+
   useEffect(() => {
-    getLocation(); // Busca o endereço assim que o componente carrega
+    getLocation();
   }, []);
 
   return (
@@ -59,16 +146,42 @@ export default function Filtro() {
         <>
           <div className="filter-group">
             <label htmlFor="address">Endereço, cidade ou CEP</label>
-            <input
-              type="text"
-              id="address"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              placeholder="Obtendo localização..."
-            />
+
+            {/* Container para o campo de entrada e botão de limpeza */}
+            <div className="input-container">
+              <div
+                className="input-like"
+                contentEditable="true"
+                ref={inputRef}
+                suppressContentEditableWarning={true}
+                onInput={handleInputChange} // Atualiza o estado com o texto digitado
+              >
+                {address}
+              </div>
+              {address && (
+                <button className="clear-btn" onClick={handleClear}>
+                  <PiTrash />
+                </button>
+              )}
+            </div>
+
+            {/* Exibe as sugestões fora do balão de pesquisa */}
+            {suggestions.length > 0 && (
+              <div className="suggestions-container">
+                {suggestions.map((suggestion, index) => (
+                  <div
+                    key={index}
+                    className="suggestion-item"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion.display_name}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div className="filter-group">
+          <div className="filter-group filter-name">
             <label for="name-id">Nome ou ID</label>
             <input type="text" id="name-id" />
           </div>
@@ -174,7 +287,9 @@ export default function Filtro() {
             </select>
           </div>
 
-          <button className="filter-btn">Buscar</button>
+          <button className="filter-btn" onClick={handleSearch}>
+            Aplicar Filtros
+          </button>
         </>
       )}
     </div>

@@ -49,6 +49,8 @@
 .filter-group {
   margin-bottom: 20px;
   font-size: 16px;
+  display: flex;
+  flex-direction: column; /* Organiza os elementos verticalmente */
 }
 
 /* Ajuste para os labels que não devem ter negrito */
@@ -177,4 +179,145 @@
 /* Espaçamento do texto */
 .switch span {
   margin-right: 10px;
+}
+
+/* Container do input com o ícone */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Input de endereço */
+.input-address {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px; /* Garante espaço para o ícone */
+  font-size: 16px;
+  border: 2px solid #ffb13a; /* Contorno no input */
+  border-radius: 5px;
+  background-color: transparent;
+  color: #333;
+  outline: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: border-color 0.3s;
+}
+
+/* Efeito ao focar no input */
+.input-address:focus {
+  border-color: #ff3131;
+}
+
+/* Botão de limpar (ícone de lixeira) */
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ffb13a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover no botão de limpar */
+.clear-btn:hover {
+  color: #ff3131;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  border: 2px solid #ffb13a;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  flex-direction: column; /* Organiza os elementos em coluna */
+}
+
+/* Estilo quando o input estiver vazio */
+.input-container:has(.input-like:empty) {
+  background: transparent;
+  background-color: transparent;
+  border-color: #ccc;
+}
+
+.input-like {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  min-width: 100px;
+  min-height: 20px;
+  display: inline-block;
+  font-size: 16px;
+  color: #333;
+  background: transparent;
+  border: none;
+  outline: none;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+}
+
+/* Exibe o texto do placeholder quando o campo estiver vazio */
+.input-like:empty::before {
+  color: gray;
+  background: transparent;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+
+/* Garantindo o fundo quando o campo tem conteúdo */
+.input-like:not(:empty) {
+  background: #fff4e4; /* Alterando para o fundo que você deseja quando o campo não estiver vazio */
+}
+
+/* Ícone de lixeira */
+.clear-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.clear-btn:hover {
+  color: #ff3131;
+}
+
+.suggestions-container {
+  margin-top: 8px;
+  width: 100%;
+  background-color: transparent;
+  border-top: none;
+  max-height: auto;
+  box-sizing: border-box;
+  color: #888;
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Campo "Nome do Animal" */
+.filter-group .filter-name {
+  margin-top: 10px; /* Aumenta o espaçamento entre o campo de nome do animal e as sugestões */
+}
+
+.suggestions-container.active {
+  margin-top: 10px; /* Adiciona um espaçamento extra se as sugestões estiverem visíveis */
 }

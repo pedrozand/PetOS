@@ -90,7 +90,7 @@ export default function Post({
     <div className="container">
       <div class="post-title-header">
         <h1 class="post-title">Achados e Perdidos</h1>
-        <p class="post-title-address">Rua Exemplo, 123 - Bairro, Cidade</p>
+        <p class="post-title-address">Posts de Pets próximos ao endereço</p>
       </div>
       <div className="post">
         <div className="post-header">
