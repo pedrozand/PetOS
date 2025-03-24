@@ -80,6 +80,13 @@ export default function Filtro() {
     debounceTimeout.current = setTimeout(() => {
       fetchSuggestions(query);
     }, 500); // Espera 500ms após o último caractere digitado
+
+    // Exibe as sugestões se houver alguma
+    if (query && suggestions.length > 0) {
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false); // Esconde as sugestões caso o campo esteja vazio
+    }
   };
 
   // Função para pesquisa ao clicar no botão
@@ -166,7 +173,7 @@ export default function Filtro() {
             </div>
 
             {/* Exibe as sugestões fora do balão de pesquisa */}
-            {suggestions.length > 0 && (
+            {showSuggestions && suggestions.length > 0 && (
               <div className="suggestions-container">
                 {suggestions.map((suggestion, index) => (
                   <div
@@ -174,7 +181,8 @@ export default function Filtro() {
                     className="suggestion-item"
                     onClick={() => handleSuggestionClick(suggestion)}
                   >
-                    {suggestion.display_name}
+                    {suggestion.formatted_address}{" "}
+                    {/* Exibe o endereço formatado */}
                   </div>
                 ))}
               </div>
