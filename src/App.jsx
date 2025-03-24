@@ -22,7 +22,10 @@ function App() {
         <div>
           <Filtro />
         </div>
+
         <div>
+          <h1 className="page-title">Achados e Perdidos</h1>
+          <p className="page-adress">Posts de Pets próximos ao endereço</p>
           <Post
             avatar={imgGoku}
             nomeUser={"Goku de Oliveira Santana"}

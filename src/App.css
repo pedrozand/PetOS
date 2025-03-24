@@ -10,3 +10,15 @@
   border-radius: 10px;
   top: 10px;
 }
+
+.page-title {
+  font-size: 3rem; /* Título grande */
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.page-address {
+  font-size: 1.2rem; /* Texto menor */
+  color: #666;
+}

@@ -88,10 +88,7 @@ export default function Post({
 
   return (
     <div className="container">
-      <div class="post-title-header">
-        <h1 class="post-title">Achados e Perdidos</h1>
-        <p class="post-title-address">Posts de Pets próximos ao endereço</p>
-      </div>
+      <div class="post-title-header"></div>
       <div className="post">
         <div className="post-header">
           <img src={avatar} alt="Perfil" />
