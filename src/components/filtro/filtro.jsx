@@ -10,6 +10,7 @@ export default function Filtro() {
   const inputRef = useRef(null); // Referência para o campo editável
   const debounceTimeout = useRef(null); // Para armazenar o timeout do debounce
   const [showSuggestions, setShowSuggestions] = useState(false); // Controle de visibilidade das sugestões
+  const [isLoading, setIsLoading] = useState(false); // Estado de carregamento
 
   // Função para formatar o endereço retornado pela API
   const formatAddress = (data) => {
@@ -79,7 +80,7 @@ export default function Filtro() {
     clearTimeout(debounceTimeout.current);
     debounceTimeout.current = setTimeout(() => {
       fetchSuggestions(query);
-    }, 500); // Espera 500ms após o último caractere digitado
+    }, 300); // Espera 500ms após o último caractere digitado
 
     // Exibe as sugestões se houver alguma
     if (query && suggestions.length > 0) {
@@ -102,14 +103,27 @@ export default function Filtro() {
       setSuggestions([]); // Se a busca estiver vazia, limpa as sugestões
       return;
     }
+
+    const city = "Bragança Paulista"; // Substitua "SuaCidade" pelo nome da sua cidade
+    const state = "São Paulo"; // Substitua "SeuEstado" pelo nome do seu estado
+
     try {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1`
       );
       const data = await response.json();
 
+      // Filtra os resultados para incluir apenas aqueles que pertencem à cidade e estado especificados
+      const filteredSuggestions = data.filter((suggestion) => {
+        const address = suggestion.address || {};
+        return (
+          (address.city && address.city.toLowerCase() === city.toLowerCase()) ||
+          (address.state && address.state.toLowerCase() === state.toLowerCase())
+        );
+      });
+
       // Formatar cada sugestão antes de atualizar o estado
-      const formattedSuggestions = data.map((suggestion) => {
+      const formattedSuggestions = filteredSuggestions.map((suggestion) => {
         return {
           ...suggestion,
           formatted_address: formatAddress(suggestion), // Adiciona o endereço formatado
@@ -172,20 +186,25 @@ export default function Filtro() {
               )}
             </div>
 
-            {/* Exibe as sugestões fora do balão de pesquisa */}
-            {showSuggestions && suggestions.length > 0 && (
+            {isLoading ? (
+              <div>Carregando...</div> // Exibe mensagem de carregamento
+            ) : showSuggestions && suggestions.length > 0 ? (
               <div className="suggestions-container">
                 {suggestions.map((suggestion, index) => (
                   <div
                     key={index}
                     className="suggestion-item"
-                    onClick={() => handleSuggestionClick(suggestion)}
+                    onClick={() => {
+                      setAddress(suggestion.formatted_address);
+                      setShowSuggestions(false);
+                    }}
                   >
-                    {suggestion.formatted_address}{" "}
-                    {/* Exibe o endereço formatado */}
+                    {suggestion.formatted_address}
                   </div>
                 ))}
               </div>
+            ) : (
+              <div className="no-suggestions">Nenhuma sugestão encontrada</div>
             )}
           </div>
 

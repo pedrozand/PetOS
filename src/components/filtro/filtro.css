@@ -217,19 +217,15 @@
 
 .input-like {
   position: relative;
-  padding-right: 30px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 8px;
+  padding: 8px 35px 8px 8px;
   width: 100%;
   min-width: 100px;
   min-height: 20px;
   display: inline-block;
   font-size: 16px;
   color: #333;
-  background: transparent; /* Manter o fundo do input transparente */
   border: none;
-  outline: none;
   white-space: pre-wrap; /* Garante que o texto quebre corretamente */
 }
 
