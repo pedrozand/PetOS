@@ -10,7 +10,6 @@ export default function Filtro() {
   const inputRef = useRef(null); // Referência para o campo editável
   const debounceTimeout = useRef(null); // Para armazenar o timeout do debounce
   const [showSuggestions, setShowSuggestions] = useState(false); // Controle de visibilidade das sugestões
-  const [isLoading, setIsLoading] = useState(false); // Estado de carregamento
 
   // Função para formatar o endereço retornado pela API
   const formatAddress = (data) => {
@@ -80,7 +79,7 @@ export default function Filtro() {
     clearTimeout(debounceTimeout.current);
     debounceTimeout.current = setTimeout(() => {
       fetchSuggestions(query);
-    }, 300); // Espera 500ms após o último caractere digitado
+    }, 300); // Espera 300ms após o último caractere digitado
 
     // Exibe as sugestões se houver alguma
     if (query && suggestions.length > 0) {
@@ -186,25 +185,20 @@ export default function Filtro() {
               )}
             </div>
 
-            {isLoading ? (
-              <div>Carregando...</div> // Exibe mensagem de carregamento
-            ) : showSuggestions && suggestions.length > 0 ? (
+            {/* Exibe as sugestões fora do balão de pesquisa */}
+            {showSuggestions && suggestions.length > 0 && (
               <div className="suggestions-container">
                 {suggestions.map((suggestion, index) => (
                   <div
                     key={index}
                     className="suggestion-item"
-                    onClick={() => {
-                      setAddress(suggestion.formatted_address);
-                      setShowSuggestions(false);
-                    }}
+                    onClick={() => handleSuggestionClick(suggestion)}
                   >
-                    {suggestion.formatted_address}
+                    {suggestion.formatted_address}{" "}
+                    {/* Exibe o endereço formatado */}
                   </div>
                 ))}
               </div>
-            ) : (
-              <div className="no-suggestions">Nenhuma sugestão encontrada</div>
             )}
           </div>
 
