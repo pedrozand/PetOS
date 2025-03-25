@@ -5,9 +5,7 @@
   padding: 20px;
   /* box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); */
   box-sizing: border-box;
-  border-right: 1px solid #eee;
   z-index: 10;
-  border-radius: 10px;
   margin-right: -30px;
 }
 

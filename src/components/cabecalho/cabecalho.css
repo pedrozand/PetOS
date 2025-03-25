@@ -1,0 +1,31 @@
+.cabecalho-container {
+  border-radius: 10px;
+  text-align: left;
+  margin-bottom: -15px;
+  margin-top: 20px;
+}
+
+.cabecalho-titulo {
+  font-size: 45px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.cabecalho-subtitulo {
+  font-size: 20px;
+  color: #6c757d; /* Cor mais suave para o subtítulo */
+  margin-bottom: 10px;
+}
+
+.cabecalho-barra {
+  width: 100%;
+  height: 40px;
+  background-color: #fff4f4;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding: 15px;
+  font-size: 16px;
+  outline-color: #ccc;
+  caret-color: transparent;
+}
