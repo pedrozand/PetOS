@@ -2,7 +2,7 @@ import "./filtro.css";
 import { useState, useEffect, useRef } from "react";
 import { PiDogFill, PiDog, PiTrash } from "react-icons/pi";
 
-export default function Filtro() {
+export default function Filtro({ setEnderecoSelecionado }) {
   const [isOpen, setIsOpen] = useState(true); // Estado para controlar visibilidade
   const [address, setAddress] = useState("");
   const [searchQuery, setSearchQuery] = useState(""); // Para armazenar a pesquisa do usuário
@@ -63,11 +63,12 @@ export default function Filtro() {
   // Função para limpar o conteúdo do campo
   const handleClear = () => {
     setAddress("");
+    setEnderecoSelecionado(""); // 🔹 Garante que o input abaixo do título também seja limpo
     if (inputRef.current) {
       inputRef.current.innerText = "";
     }
-    setSuggestions([]); // Limpa as sugestões quando o campo é limpo
-    setShowSuggestions(false); // Fecha as sugestões
+    setSuggestions([]);
+    setShowSuggestions(false);
   };
 
   // Função para lidar com a mudança de texto na div
@@ -86,13 +87,6 @@ export default function Filtro() {
       setShowSuggestions(true);
     } else {
       setShowSuggestions(false); // Esconde as sugestões caso o campo esteja vazio
-    }
-  };
-
-  // Função para pesquisa ao clicar no botão
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      fetchSuggestions(searchQuery); // Garante que as sugestões sejam atualizadas
     }
   };
 
@@ -308,9 +302,7 @@ export default function Filtro() {
             </select>
           </div>
 
-          <button className="filter-btn" onClick={handleSearch}>
-            Aplicar Filtros
-          </button>
+          <button className="filter-btn">Aplicar Filtros</button>
         </>
       )}
     </div>

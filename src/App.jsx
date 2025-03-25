@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import NavBar from "./components/navbar/navbar.jsx";
 import Post from "./components/post/post.jsx";
 import Filtro from "./components/filtro/filtro.jsx";
@@ -16,16 +18,17 @@ import imgVegeta from "./assets/img/Vegeta.jpeg";
 import "./App.css";
 
 function App() {
+  const [enderecoSelecionado, setEnderecoSelecionado] = useState("");
   return (
     <>
       <div className="container-geral">
         <NavBar />
         <div>
-          <Filtro />
+          <Filtro setEnderecoSelecionado={setEnderecoSelecionado} />
         </div>
 
         <div>
-          <Cabecalho />
+          <Cabecalho endereco={enderecoSelecionado} />
           <Post
             avatar={imgGoku}
             nomeUser={"Goku de Oliveira Santana"}
