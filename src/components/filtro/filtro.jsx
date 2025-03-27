@@ -26,22 +26,34 @@ export default function Filtro() {
   // Função para buscar sugestões de endereço da API
   const fetchSuggestions = async (query) => {
     if (!query) {
-      setSuggestions([]);
+      setSuggestions([]); // Se a busca estiver vazia, limpa as sugestões
       return;
     }
 
+    const city = "Bragança Paulista"; // Definindo a cidade como Bragança Paulista
+    const state = "São Paulo"; // Definindo o estado como São Paulo
+
     try {
+      // Fazendo a busca na API sem os parâmetros city e state
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1`
       );
       const data = await response.json();
 
-      const formattedSuggestions = data.map((suggestion) => ({
+      // Filtrando os resultados para incluir apenas os que pertencem à cidade de Bragança Paulista e ao estado de São Paulo
+      const filteredData = data.filter((suggestion) => {
+        const { city: suggestionCity, state: suggestionState } =
+          suggestion.address || {};
+        return suggestionCity === city && suggestionState === state;
+      });
+
+      // Formatar cada sugestão antes de atualizar o estado
+      const formattedSuggestions = filteredData.map((suggestion) => ({
         ...suggestion,
-        formatted_address: formatAddress(suggestion),
+        formatted_address: formatAddress(suggestion), // Adiciona o endereço formatado
       }));
 
-      setSuggestions(formattedSuggestions);
+      setSuggestions(formattedSuggestions); // Atualiza as sugestões com as formatadas
     } catch (error) {
       console.error("Erro ao buscar sugestões:", error);
     }
@@ -75,13 +87,6 @@ export default function Filtro() {
     setSuggestions([]);
     setShowSuggestions(false);
   };
-
-  useEffect(() => {
-    // Simula obtenção da localização (pode ser substituído por uma API real)
-    setTimeout(() => {
-      setLocation("Rua Exemplo, 123 - São Paulo, SP");
-    }, 2000);
-  }, [setLocation]);
 
   return (
     <div className={`sidebar-filter ${isOpen ? "open" : "closed"}`}>

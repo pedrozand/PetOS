@@ -1,14 +1,21 @@
 import React, { useContext } from "react";
 import LocationContext from "../location/LocationContext";
+import "./cabecalho.css";
 
 const Cabecalho = () => {
   const { location } = useContext(LocationContext);
 
   return (
-    <header>
-      <h1>Posts de Pets próximos ao endereço:</h1>
-      {location ? <p>{location}</p> : <p>Carregando localização...</p>}
-    </header>
+    <div className="cabecalho-container">
+      <h1 className="cabecalho-titulo">Achados e Perdidos</h1>
+      <p className="cabecalho-subtitulo">Posts de Pets próximos ao endereço:</p>
+      <input
+        type="text"
+        value={location ? location : "Carregando localização..."}
+        readOnly
+        className="cabecalho-barra"
+      />
+    </div>
   );
 };
 

@@ -6,7 +6,8 @@
   /* box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); */
   box-sizing: border-box;
   z-index: 10;
-  margin-right: -30px;
+  margin-right: -25px;
+  margin-top: -15px;
 }
 
 /* Estilo quando recolhido */
@@ -37,7 +38,7 @@
 
 /* Título do filtro */
 .sidebar-filter h2 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 22px;
   color: #ff3131;
   text-align: left;
