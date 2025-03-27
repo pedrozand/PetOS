@@ -11,7 +11,7 @@ const Cabecalho = () => {
       <p className="cabecalho-subtitulo">Posts de Pets próximos ao endereço:</p>
       <input
         type="text"
-        value={location ? location : "Carregando localização..."}
+        value={location ? location : ""}
         readOnly
         className="cabecalho-barra"
       />

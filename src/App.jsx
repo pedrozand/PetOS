@@ -44,6 +44,78 @@ function App() {
               localDesap={"Bragança Paulista - São Paulo"}
               dataDesap={"2025/03/15"}
             />
+            <Post
+              avatar={imgGoku}
+              nomeUser={"Goku de Oliveira Santana"}
+              nomeAnimal={"Bills"}
+              especie={"Gato"}
+              descricao={
+                "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+              }
+              imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
+              raca={"Sphynx"}
+              idade={"Senior"}
+              porte={"Médio"}
+              corPredominante={"Roxo"}
+              corOlhos={"Amarelo"}
+              sexo={"Macho"}
+              localDesap={"Bragança Paulista - São Paulo"}
+              dataDesap={"2025/03/15"}
+            />
+            <Post
+              avatar={imgGoku}
+              nomeUser={"Goku de Oliveira Santana"}
+              nomeAnimal={"Bills"}
+              especie={"Gato"}
+              descricao={
+                "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+              }
+              imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
+              raca={"Sphynx"}
+              idade={"Senior"}
+              porte={"Médio"}
+              corPredominante={"Roxo"}
+              corOlhos={"Amarelo"}
+              sexo={"Macho"}
+              localDesap={"Bragança Paulista - São Paulo"}
+              dataDesap={"2025/03/15"}
+            />
+            <Post
+              avatar={imgGoku}
+              nomeUser={"Goku de Oliveira Santana"}
+              nomeAnimal={"Bills"}
+              especie={"Gato"}
+              descricao={
+                "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+              }
+              imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
+              raca={"Sphynx"}
+              idade={"Senior"}
+              porte={"Médio"}
+              corPredominante={"Roxo"}
+              corOlhos={"Amarelo"}
+              sexo={"Macho"}
+              localDesap={"Bragança Paulista - São Paulo"}
+              dataDesap={"2025/03/15"}
+            />
+            <Post
+              avatar={imgGoku}
+              nomeUser={"Goku de Oliveira Santana"}
+              nomeAnimal={"Bills"}
+              especie={"Gato"}
+              descricao={
+                "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+              }
+              imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
+              raca={"Sphynx"}
+              idade={"Senior"}
+              porte={"Médio"}
+              corPredominante={"Roxo"}
+              corOlhos={"Amarelo"}
+              sexo={"Macho"}
+              localDesap={"Bragança Paulista - São Paulo"}
+              dataDesap={"2025/03/15"}
+            />
           </div>
         </LocationProvider>
         <div>

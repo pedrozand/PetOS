@@ -24,7 +24,6 @@
   text-align: center;
   background: transparent;
   color: transparent;
-  padding: 0px;
   border-radius: 5px;
 }
 
@@ -33,7 +32,8 @@
   margin-right: 10px; /* Dá um espaço do título */
   vertical-align: middle; /* Alinha com o texto */
   color: #ffb13a;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
 }
 
 /* Título do filtro */
@@ -239,6 +239,8 @@
   margin-bottom: 7px;
   outline: none;
   caret-color: transparent;
+  pointer-events: none;
+  color: #7e3c3c;
 }
 
 .suggestions-container {

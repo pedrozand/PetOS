@@ -7,15 +7,15 @@
 .cabecalho-titulo {
   font-size: 45px;
   font-weight: bold;
-  color: #000;
+  color: #ff3131;
   margin-bottom: 5px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .cabecalho-subtitulo {
   font-size: 20px;
   color: #a1a1a1; /* Cor mais suave para o subtítulo */
   margin-bottom: 8px;
-  font-weight: bold;
 }
 
 .cabecalho-barra {
@@ -29,5 +29,5 @@
   outline: none;
   caret-color: transparent;
   font-weight: bold;
-  margin-bottom: -5px;
+  margin-bottom: -10px;
 }
