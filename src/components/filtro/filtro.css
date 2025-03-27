@@ -183,7 +183,7 @@
 /* Botão de limpar (ícone de lixeira) */
 .clear-btn {
   position: absolute;
-  right: 10px; /* Posiciona à direita */
+  right: 20px; /* Posiciona à direita */
   top: 50%; /* Coloca o ícone na metade da altura da div */
   transform: translateY(
     -50%
@@ -216,16 +216,29 @@
 
 .input-like {
   position: relative;
-  border: 1px solid #ccc;
-  padding: 8px 35px 8px 8px;
+  padding: 8px 40px 8px 8px;
   width: 100%;
   min-width: 100px;
   min-height: 20px;
-  display: inline-block;
   font-size: 16px;
   color: #333;
-  border: none;
-  white-space: pre-wrap; /* Garante que o texto quebre corretamente */
+}
+
+/* Estilo quando limpar o campo */
+.input-like.default {
+  background-color: transparent;
+}
+
+/* Estilo quando um endereço for selecionado */
+.input-like.selected {
+  width: 96%;
+  height: 60%;
+  background-color: #ffdfdf;
+  border-radius: 7px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  outline: none;
+  caret-color: transparent;
 }
 
 .suggestions-container {

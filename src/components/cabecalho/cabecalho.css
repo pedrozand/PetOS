@@ -2,7 +2,6 @@
   border-radius: 10px;
   text-align: left;
   margin-bottom: -15px;
-  margin-top: 5px;
 }
 
 .cabecalho-titulo {
@@ -14,19 +13,21 @@
 
 .cabecalho-subtitulo {
   font-size: 20px;
-  color: #6c757d; /* Cor mais suave para o subtítulo */
-  margin-bottom: 5px;
+  color: #a1a1a1; /* Cor mais suave para o subtítulo */
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
 .cabecalho-barra {
   width: 100%;
   height: 40px;
-  background-color: #fff4f4;
+  background-color: #fff2df;
   border-radius: 5px;
-  border: 2px solid #ccc;
+  border: 2px solid #fcce8a;
   padding: 15px;
   font-size: 16px;
-  outline-color: #ccc;
+  outline: none;
   caret-color: transparent;
   font-weight: bold;
+  margin-bottom: -5px;
 }

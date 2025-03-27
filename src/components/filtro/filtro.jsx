@@ -6,13 +6,28 @@ import LocationContext from "../location/LocationContext";
 // Importa o contexto de localização
 
 export default function Filtro() {
-  const { location, setLocation } = useContext(LocationContext); // Usa o contexto
+  const { location, setLocation, isLocationSet } = useContext(LocationContext); // Usa o contexto
   const [isOpen, setIsOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState(""); // Para armazenar a pesquisa do usuário
   const [suggestions, setSuggestions] = useState([]); // Para armazenar as sugestões da API
   const inputRef = useRef(null); // Referência para o campo editável
   const debounceTimeout = useRef(null); // Para armazenar o timeout do debounce
   const [showSuggestions, setShowSuggestions] = useState(false); // Controle de visibilidade das sugestões
+  const [inputStyle, setInputStyle] = useState("input-like default"); // Classe inicial
+
+  useEffect(() => {
+    if (isLocationSet) {
+      setInputStyle("input-like selected");
+    } else {
+      setInputStyle("input-like default");
+    }
+  }, [isLocationSet]);
+
+  // Função para quando clicar na lixeira
+  const handleClear = () => {
+    setLocation("");
+    setInputStyle("input-like default"); // Volta para o estilo padrão
+  };
 
   // Função para formatar o endereço retornado pela API
   const formatAddress = (data) => {
@@ -78,14 +93,7 @@ export default function Filtro() {
       inputRef.current.innerText = formattedAddress;
     }
     setShowSuggestions(false);
-  };
-
-  // Limpar o campo
-  const handleClear = () => {
-    setLocation("");
-    if (inputRef.current) inputRef.current.innerText = "";
-    setSuggestions([]);
-    setShowSuggestions(false);
+    setInputStyle("input-like selected"); // Aplica o estilo com fundo colorido
   };
 
   return (
@@ -105,11 +113,19 @@ export default function Filtro() {
             <label htmlFor="address">Endereço, cidade ou CEP</label>
             <div className="input-container">
               <div
-                className="input-like"
+                className={inputStyle}
                 contentEditable="true"
                 ref={inputRef}
                 suppressContentEditableWarning={true}
                 onInput={handleInputChange}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault(); // Impede a quebra de linha
+                  }
+                }}
+                spellCheck={false} // Desativa correção ortográfica
+                autoCorrect="off" // Desativa correção automática (iOS e Android)
+                autoCapitalize="off" // Desativa capitalização automática
               >
                 {location}
               </div>

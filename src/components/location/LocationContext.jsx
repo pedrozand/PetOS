@@ -1,13 +1,13 @@
 import React, { createContext, useState, useEffect } from "react";
+import "../filtro/filtro.css"; // Importação correta do CSS
 
-// Criando o contexto
 const LocationContext = createContext();
 
 export const LocationProvider = ({ children }) => {
-  const [location, setLocation] = useState(null); // Estado para armazenar a localização formatada
+  const [location, setLocation] = useState(""); // Agora o estado começa como string vazia
+  const [isLocationSet, setIsLocationSet] = useState(false); // Estado booleano para alterar a classe CSS
 
   useEffect(() => {
-    // Função para obter a localização do usuário e realizar geocodificação reversa
     const fetchLocation = async () => {
       try {
         if (navigator.geolocation) {
@@ -15,13 +15,11 @@ export const LocationProvider = ({ children }) => {
             async (position) => {
               const { latitude, longitude } = position.coords;
 
-              // Realizando a geocodificação reversa para obter o endereço completo
               const response = await fetch(
                 `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&addressdetails=1`
               );
               const data = await response.json();
 
-              // Formatar o endereço retornado pela geocodificação
               const {
                 road,
                 house_number,
@@ -31,6 +29,7 @@ export const LocationProvider = ({ children }) => {
                 postcode,
                 country,
               } = data.address;
+
               const formattedAddress = [
                 road,
                 house_number,
@@ -43,8 +42,8 @@ export const LocationProvider = ({ children }) => {
                 .filter(Boolean)
                 .join(", ");
 
-              // Atualizando o estado com o endereço formatado
               setLocation(formattedAddress);
+              setIsLocationSet(true);
             },
             (error) => {
               console.error("Erro ao obter localização:", error);
@@ -59,10 +58,10 @@ export const LocationProvider = ({ children }) => {
     };
 
     fetchLocation();
-  }, []); // O array vazio faz com que isso seja executado apenas uma vez quando o componente for montado
+  }, []);
 
   return (
-    <LocationContext.Provider value={{ location, setLocation }}>
+    <LocationContext.Provider value={{ location, setLocation, isLocationSet }}>
       {children}
     </LocationContext.Provider>
   );
