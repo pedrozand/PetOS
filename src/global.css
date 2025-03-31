@@ -1,0 +1,31 @@
+.container-geral {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 10px;
+  padding: 90px;
+  gap: 70px; /* Espaçamento entre os itens */
+  border-radius: 10px;
+  top: 10px;
+}
+
+html {
+  zoom: 0.85; /* Diminui o tamanho da página sem cortar elementos */
+}
+
+body {
+  width: 100vw; /* Garante que o body ocupe toda a tela */
+  overflow-x: hidden; /* Evita barra de rolagem horizontal */
+}
+
+@media (max-width: 768px) {
+  .container-principal {
+    padding: 5px;
+  }
+
+  .sidebar {
+    max-width: 100%;
+    display: block;
+  }
+}

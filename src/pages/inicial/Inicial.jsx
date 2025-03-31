@@ -1,8 +1,9 @@
+import "../../global.css";
 import NavBar from "../../components/navbar/navbar.jsx";
 
 function Inicial() {
   return (
-    <div>
+    <div className="container-geral">
       <NavBar />
       <h1>Sobre o PetOS</h1>
       <p>
