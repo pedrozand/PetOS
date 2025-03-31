@@ -14,19 +14,19 @@ datasource db {
 }
 
 model AnimalPerdido {
-  id          Int      @id @default(autoincrement())
-  nome        String
-  especie     String
-  descricao   String
-  raca        String
-  idade       String
-  porte       String
-  cor         String
-  corOlhos    String
-  sexo        String
-  localDesap  String
-  dataDesap   DateTime
-  fotos       String 
-  createdAt   DateTime @default(now())
+  id              Int     @id @default(autoincrement())
+  nomeUser        String
+  nomeAnimal      String
+  especie         String
+  descricao       String
+  imgPet          String
+  raca            String
+  idade           String
+  porte           String
+  corPredominante String
+  corOlhos        String
+  sexo            String
+  localDesap      String
+  dataDesap       DateTime
 }
 

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./navbar.css";
 import { useState, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
@@ -46,9 +48,9 @@ export default function Navbar() {
           {" "}
           {/* Classe condicional */}
           <div className="logo">
-            <a href="index.html">
+            <Link to="/">
               <img src={Logo} alt="Logo PetOS" className="logo-petos" />
-            </a>
+            </Link>
           </div>
           {/* Menu principal */}
           <div className="right-icons-group">
