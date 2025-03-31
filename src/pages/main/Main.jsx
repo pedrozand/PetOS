@@ -7,13 +7,14 @@ import Encontrados from "../../components/encontrados/encontr.jsx";
 import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
 import { LocationProvider } from "../../components/location/LocationContext.jsx";
 
-import imgGoku from "./assets/img/Goku.jpg";
-import imgPet1 from "./assets/img/Bills.jpg";
-import imgPet2 from "./assets/img/Bills2.jpg";
-import imgPet3 from "./assets/img/Bills3.jpeg";
-import imgPet4 from "./assets/img/Bills4.jpg";
-import imgPet5 from "./assets/img/Bills5.jpg";
-import imgBulma from "./assets/img/Bulma.jpg";
+import imgGoku from "../../assets/img/Goku.jpg";
+
+import imgPet1 from "../../assets/img/Bills.jpg";
+import imgPet2 from "../../assets/img/Bills2.jpg";
+import imgPet3 from "../../assets/img/Bills3.jpeg";
+import imgPet4 from "../../assets/img/Bills4.jpg";
+import imgPet5 from "../../assets/img/Bills5.jpg";
+import imgBulma from "../../assets/img/Bulma.jpg";
 
 import "./Main.css";
 

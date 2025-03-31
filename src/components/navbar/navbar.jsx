@@ -72,12 +72,12 @@ export default function Navbar() {
                 {dropdownAberto === "busca" && (
                   <ul className="dropdown-menu">
                     <li>
-                      <a href="achados-perdidos.html">
+                      <Link to="/main">
                         Achados e Perdidos
                         <span>
                           Posts de pets perdidos e encontrados em sua região!
                         </span>
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="me-acharam.html">
@@ -199,9 +199,9 @@ export default function Navbar() {
           {" "}
           {/* Classe condicional */}
           <div className="logo">
-            <a href="index.html">
+            <Link to="/">
               <img src={Logo} alt="Logo PetOS" className="logo-petos" />
-            </a>
+            </Link>
           </div>
           {/* Menu principal */}
           <div className="right-icons-group">
@@ -223,12 +223,12 @@ export default function Navbar() {
                 {dropdownAberto === "busca" && (
                   <ul className="dropdown-menu">
                     <li>
-                      <a href="achados-perdidos.html">
+                      <Link to="/main">
                         Achados e Perdidos
                         <span>
                           Posts de pets perdidos e encontrados em sua região!
                         </span>
-                      </a>
+                      </Link>
                     </li>
                     <li>
                       <a href="me-acharam.html">

@@ -1,3 +1,5 @@
+import NavBar from "../../components/navbar/navbar.jsx";
+
 function Inicial() {
   return (
     <div>

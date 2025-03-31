@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Inicial from "./pages/inicial/Inicial.jsx";
-import Main from "./pages/main/Main.jsx";
+import Inicial from "./pages/inicial/Inicial.jsx"; // Página inicial
+import Main from "./pages/main/Main.jsx"; // Outra página do sistema
 
 function App() {
   return (
