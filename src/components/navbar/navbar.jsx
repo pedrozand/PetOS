@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-import "./navbar.css";
+import "./CSS/navbar.css";
+import "./CSS/dropdown.css";
+
 import { useState, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import React from "react";
@@ -137,7 +139,6 @@ export default function Navbar() {
                 </a>
               </div>
 
-              {/* Item - Adoção */}
               <li
                 className="dropdown adocao-dropdown"
                 onMouseEnter={() => handleMouseEnter("adocao")}
