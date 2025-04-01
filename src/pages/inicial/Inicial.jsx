@@ -14,6 +14,25 @@ function Inicial() {
           perdidos com o PetOS. Cadastre seu post gratuitamente e faça a
           diferença!
         </p>
+
+        {/* Botões */}
+        <div className="botoes-container">
+          <button className="botao botao-perdi">
+            <img src="/icons/perdi-icon.png" alt="Ícone de pet perdido" />
+            <div>
+              <strong className="strong-achei">Perdi meu Pet</strong>
+              <span>Quero buscar meu pet</span>
+            </div>
+          </button>
+
+          <button className="botao botao-achei">
+            <img src="/icons/achei-icon.png" alt="Ícone de pet encontrado" />
+            <div>
+              <strong className="strong-perdi">Achei um Pet</strong>
+              <span>Quero buscar o tutor</span>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );
