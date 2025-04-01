@@ -8,10 +8,11 @@ function Inicial() {
     <div className="container-geral">
       <NavBar />
       <div>
-        <h1 className="inicial-titulo">Sobre o PetOS</h1>
-        <p>
-          O PetOS é um aplicativo dedicado a ajudar na busca e adoção de animais
-          perdidos.
+        <h1 className="inicial-titulo">Procure por seu pet perdido</h1>
+        <p className="inicial-sub-titulo">
+          O PetOS conecta você ao seu melhor amigo! Encontre e ajude pets
+          perdidos com o PetOS. Cadastre seu post gratuitamente e faça a
+          diferença!
         </p>
       </div>
     </div>

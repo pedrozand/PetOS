@@ -1,4 +1,17 @@
 .inicial-titulo {
-  font-size: 100px;
-  margin-left: -350px;
+  font-size: 90px;
+  margin-left: -120px;
+  width: 70%;
+  max-width: 1300px;
+  margin-top: -10px;
+  line-height: 1.2; /* Reduz o espaçamento entre as linhas */
+}
+
+.inicial-sub-titulo {
+  font-size: 25px;
+  margin-left: -120px;
+  width: 70%;
+  max-width: 1300px;
+  margin-top: 25px;
+  color: #727272;
 }
