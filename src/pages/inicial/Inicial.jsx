@@ -1,13 +1,15 @@
 import "../../global.css";
-import "./Inicial.css";
+import "./CSS/Inicial.css";
+import "./CSS/video.css";
 
 import NavBar from "../../components/navbar/navbar.jsx";
+import meuVideo from "../../assets/video/page-inicial.mp4";
 
 function Inicial() {
   return (
     <div className="container-geral">
       <NavBar />
-      <div>
+      <div className="conteudo">
         <h1 className="inicial-titulo">Procure por seu pet perdido</h1>
         <p className="inicial-sub-titulo">
           O PetOS conecta você ao seu melhor amigo! Encontre e ajude pets
@@ -33,6 +35,14 @@ function Inicial() {
             </div>
           </button>
         </div>
+      </div>
+
+      {/* Vídeo posicionado ao lado */}
+      <div className="video-container">
+        <video autoPlay loop muted playsInline className="video-fundo">
+          <source src={meuVideo} type="video/mp4" />
+          Seu navegador não suporta vídeos.
+        </video>
       </div>
     </div>
   );

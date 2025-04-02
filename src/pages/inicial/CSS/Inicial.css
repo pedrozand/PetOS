@@ -1,0 +1,89 @@
+.conteudo {
+  max-width: 600px;
+  z-index: 2;
+}
+
+.inicial-titulo {
+  font-size: 80px;
+  margin-left: 20px;
+  width: 800px;
+  line-height: 1.2;
+  margin-top: 0px;
+}
+
+.inicial-sub-titulo {
+  font-size: 25px;
+  margin-left: 20px;
+  width: 800px;
+  color: #727272;
+  margin-top: 25px;
+}
+
+.botoes-container {
+  display: flex;
+  gap: 15px; /* Espaço entre os botões */
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.botao {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.botao img {
+  width: 30px;
+  height: 30px;
+}
+
+.botao div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.strong-achei {
+  font-size: 18px;
+  color: white;
+}
+
+.strong-perdi {
+  font-size: 18px;
+  color: black;
+}
+
+.botao span {
+  font-size: 14px;
+}
+
+/* Estilizando os botões individualmente */
+.botao-perdi {
+  background-color: #ff3131;
+  color: white;
+  border: 2px solid #ff3131;
+}
+
+/* Estilizando os botões individualmente */
+.botao-perdi:hover {
+  background-color: #c72525;
+  color: white;
+  border: 2px solid #c72525;
+}
+
+.botao-achei {
+  background-color: white;
+  color: #ff3131;
+  border: 2px solid #ff3131;
+}
+
+.botao-achei:hover {
+  background-color: #ffeeee;
+  color: black;
+}

@@ -1,0 +1,19 @@
+.video-container {
+  margin-top: 210px;
+  right: 5%; /* Mantém fixo na lateral */
+  top: 100%;
+  transform: translateY(-50%) scale(1); /* Ajusta sem quebrar com o zoom */
+  width: 45vw; /* Continua responsivo */
+  max-width: 800px; /* Limita tamanho em telas grandes */
+  min-width: 800px; /* Garante que não encolha muito */
+  height: auto;
+  z-index: -1; /* Mantém o vídeo no fundo sem afetar o texto */
+  /*box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  Pequena sombra */
+}
+
+.video-fundo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
