@@ -16,7 +16,7 @@ import imgPet4 from "../../assets/img/Bills4.jpg";
 import imgPet5 from "../../assets/img/Bills5.jpg";
 import imgBulma from "../../assets/img/Bulma.jpg";
 
-import "../../global.css";
+import "./CSS/main.css";
 
 function Main() {
   return (

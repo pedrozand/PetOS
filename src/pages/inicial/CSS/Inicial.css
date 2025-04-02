@@ -1,3 +1,15 @@
+.container-inicial {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 10px;
+  padding: 90px;
+  gap: 70px; /* Espaçamento entre os itens */
+  border-radius: 10px;
+  top: 10px;
+}
+
 .conteudo {
   max-width: 600px;
   z-index: 2;
@@ -5,7 +17,7 @@
 
 .inicial-titulo {
   font-size: 80px;
-  margin-left: 20px;
+  margin-left: 15px;
   width: 800px;
   line-height: 1.2;
   margin-top: 0px;
@@ -13,7 +25,7 @@
 
 .inicial-sub-titulo {
   font-size: 25px;
-  margin-left: 20px;
+  margin-left: 15px;
   width: 800px;
   color: #727272;
   margin-top: 25px;
@@ -23,7 +35,7 @@
   display: flex;
   gap: 15px; /* Espaço entre os botões */
   margin-top: 30px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .botao {
@@ -36,11 +48,8 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: 0.3s;
-}
-
-.botao img {
-  width: 30px;
-  height: 30px;
+  width: 100%;
+  text-decoration: none;
 }
 
 .botao div {
@@ -86,4 +95,51 @@
 .botao-achei:hover {
   background-color: #ffeeee;
   color: black;
+}
+
+.icon-container {
+  position: relative;
+  width: 40px; /* Tamanho do container do ícone */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-search-perdi {
+  font-size: 40px;
+  color: #ffffff; /* Cor da lupa */
+}
+
+.icon-search-achei {
+  font-size: 40px;
+  color: #ff3131; /* Cor da lupa */
+}
+
+.icon-bone-perdi {
+  font-size: 25px;
+  color: #ff3131;
+  position: absolute;
+  top: 48%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-bone-achei {
+  font-size: 25px;
+  color: #ffffff;
+  position: absolute;
+  top: 48%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.linha-divisoria {
+  width: 100%; /* Ocupa toda a largura da tela */
+  max-width: 1435px; /* Mantém alinhado com os elementos principais */
+  margin: 20px auto 0 15px; /* Centraliza e adiciona espaçamento */
+  height: 3px; /* Espessura da linha */
+  background-color: #e0e0e0; /* Cor vermelha */
+  position: absolute;
+  bottom: 250px;
 }
