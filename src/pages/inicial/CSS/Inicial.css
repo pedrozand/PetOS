@@ -93,14 +93,13 @@
 }
 
 .botao-achei:hover {
-  background-color: #ffeeee;
+  background-color: #fdcfcf;
   color: black;
+  border: 2px solid #fdcfcf;
 }
 
 .icon-container {
   position: relative;
-  width: 40px; /* Tamanho do container do ícone */
-  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,8 +119,8 @@
   font-size: 25px;
   color: #ff3131;
   position: absolute;
-  top: 48%;
-  left: 45%;
+  top: 50%;
+  left: 47%;
   transform: translate(-50%, -50%);
 }
 
@@ -129,8 +128,8 @@
   font-size: 25px;
   color: #ffffff;
   position: absolute;
-  top: 48%;
-  left: 45%;
+  top: 50%;
+  left: 47%;
   transform: translate(-50%, -50%);
 }
 
@@ -141,5 +140,45 @@
   height: 3px; /* Espessura da linha */
   background-color: #e0e0e0; /* Cor vermelha */
   position: absolute;
-  bottom: 250px;
+  bottom: 470px;
+}
+
+.botao-extra {
+  padding: 35px;
+  max-width: 585px; /* Define um limite máximo */
+  height: 50px;
+  background-color: #ffd040; /* Cor de destaque */
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 30px; /* Espaçamento entre os botões */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  margin-left: 15px;
+}
+
+.botao-extra:hover {
+  background-color: #ffe8a2;
+}
+
+.strong-extra {
+  font-size: 20px;
+  color: black;
+}
+
+.icone-paw {
+  font-size: 50px;
+  color: #ff8989; /* Cor da lupa */
+}
+
+.icone-question {
+  font-size: 20px;
+  color: white;
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

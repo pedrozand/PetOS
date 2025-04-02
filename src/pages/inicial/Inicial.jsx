@@ -7,9 +7,11 @@ import "./CSS/video.css";
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";
 import { LiaBoneSolid } from "react-icons/lia";
+import { FaPaw } from "react-icons/fa";
+import { MdOutlineQuestionMark } from "react-icons/md";
 
 import NavBar from "../../components/navbar/navbar.jsx";
-import meuVideo from "../../assets/video/page-inicial.mp4";
+import meuVideo from "../../assets/video/page-inicial-og.mp4";
 
 function Inicial() {
   return (
@@ -49,6 +51,17 @@ function Inicial() {
               </div>
             </button>
           </div>
+          {/* Novo botão abaixo */}
+          <button className="botao botao-extra">
+            <div className="icon-container">
+              <FaPaw className="icone-paw" />
+              <MdOutlineQuestionMark className="icone-question" />
+            </div>
+            <div>
+              <strong className="strong-extra">Como o PetOS funciona?</strong>
+              <span>Sistema de busca e exibição</span>
+            </div>
+          </button>
         </div>
 
         {/* Vídeo posicionado ao lado */}

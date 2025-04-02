@@ -1,5 +1,5 @@
 .video-container {
-  margin-top: 200px;
+  margin-top: 250px;
   right: 5%; /* Mantém fixo na lateral */
   top: 100%;
   transform: translateY(-50%) scale(1); /* Ajusta sem quebrar com o zoom */
