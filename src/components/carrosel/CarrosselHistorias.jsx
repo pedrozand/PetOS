@@ -4,43 +4,127 @@ import { FaStar } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./CarrosselHistorias.css";
+import "./CSS/CarrosselHistorias.css";
+import "./CSS/swiper.css";
 
 const historias = [
   {
-    nome: "Midori",
-    pet: "Kiyuubi",
-    cidade: "Diadema - SP",
+    nome: "Carlos",
+    pet: "Goku",
+    cidade: "Bragança Paulista - SP",
     avaliacao: 5,
     descricao:
-      "Olá, agradecemos todos que compartilharam!!! Chegou até a pessoa que acolheu ele e ela pode devolver!! Ele voltou!!! 🙏💚🐾",
+      "Após muita busca, conseguimos encontrá-lo graças às postagens! 🥰",
     imagem: "src/assets/img/historias-destaque/cachorro-1.jpg",
   },
   {
-    nome: "Cláudio",
-    pet: "Luppy",
-    cidade: "Mogi Guaçu - SP",
+    nome: "Fernanda",
+    pet: "Vegeta",
+    cidade: "Bragança Paulista - SP",
     avaliacao: 5,
     descricao:
-      "Foi encontrado num bairro vizinho, por pessoas boas que cuidaram dele. Assim que viram o post no Facebook, já entraram em contato e prontamente entregaram o cachorro.",
+      "Uma pessoa viu o post e nos ajudou a reencontrá-la! Emoção pura! ❤️",
     imagem: "src/assets/img/historias-destaque/cachorro-2.jpg",
   },
   {
-    nome: "Ana",
-    pet: "Paçoca",
-    cidade: "Andradina - SP",
+    nome: "Rafael",
+    pet: "Trunks",
+    cidade: "Bragança Paulista - SP",
     avaliacao: 5,
     descricao:
-      "O vizinho viu a campanha e procurou, achou e nos devolveu ❤️❤️❤️",
+      "Depois de dias procurando, ele voltou para casa graças à divulgação! 🐶🙏",
     imagem: "src/assets/img/historias-destaque/cachorro-3.jpg",
   },
-  // Adicione mais histórias conforme necessário
+  {
+    nome: "Juliana",
+    pet: "Bulma",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao:
+      "Ficamos desesperados, mas com a ajuda de todos conseguimos achá-la! 😍",
+    imagem: "src/assets/img/historias-destaque/gato-1.jpg",
+  },
+  {
+    nome: "Rodrigo",
+    pet: "Bills",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao:
+      "A campanha foi essencial! Hoje ele está de volta e muito feliz! 🥲",
+    imagem: "src/assets/img/historias-destaque/gato-2.jpg",
+  },
+  {
+    nome: "Mariana",
+    pet: "Piccolo",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao: "As redes sociais ajudaram muito, reencontro emocionante! 🥹❤️",
+    imagem: "src/assets/img/historias-destaque/cachorro-4.jpg",
+  },
+  {
+    nome: "André",
+    pet: "Goten",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao:
+      "Ele estava a quilômetros de casa, mas conseguimos! Gratidão imensa! 🙏",
+    imagem: "src/assets/img/historias-destaque/cachorro-5.jpg",
+  },
+  {
+    nome: "Carla",
+    pet: "Gohan",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao: "Nosso pequeno voltou pra casa! Obrigada a todos pela ajuda! ❤️",
+    imagem: "src/assets/img/historias-destaque/gato-3.jpg",
+  },
+  {
+    nome: "Bruno",
+    pet: "Majin Boo",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao: "Depois de dias de angústia, ele finalmente está de volta! 🐕🥰",
+    imagem: "src/assets/img/historias-destaque/cachorro-6.jpg",
+  },
+  {
+    nome: "Tatiane",
+    pet: "Freeza",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao:
+      "Uma corrente do bem nos ajudou a encontrá-lo! Gratidão imensa! 🤗",
+    imagem: "src/assets/img/historias-destaque/gato-4.jpg",
+  },
+  {
+    nome: "Luiz",
+    pet: "Broly",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao: "Ele estava assustado, mas conseguimos trazê-lo para casa! 😍",
+    imagem: "src/assets/img/historias-destaque/gato-5.jpg",
+  },
+  {
+    nome: "Beatriz",
+    pet: "Kuririn",
+    cidade: "Bragança Paulista - SP",
+    avaliacao: 5,
+    descricao:
+      "Foi uma jornada difícil, mas o final foi feliz! Obrigada a todos! 🥹",
+    imagem: "src/assets/img/historias-destaque/gato-6.jpg",
+  },
 ];
 
 function CarrosselHistorias() {
   return (
     <div className="historias-container">
       <h2 className="titulo-historias">Histórias em destaque</h2>
+      {/* Botão "Ver mais" fixo no canto do carrossel */}
+      <button
+        className="ver-mais-fixo"
+        onClick={() => alert("Abrir página completa!")}
+      >
+        Ver mais
+      </button>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
