@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { FaStar } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -52,14 +53,19 @@ function CarrosselHistorias() {
         {historias.map((historia, index) => (
           <SwiperSlide key={index}>
             <div className="cartao-historia">
-              <div className="imagem-perfil">
+              <div className="imagem-perfil reencontro-container">
                 <img src={historia.imagem} alt={historia.pet} />
+                <p className="reencontro">
+                  Reencontro de{" "}
+                  <strong className="nome-cachorro">{historia.pet}</strong>
+                </p>
               </div>
-              <p className="reencontro">
-                Reencontro de <strong>{historia.pet}</strong>
-              </p>
+
               <h3 className="dono">
-                {historia.nome} {Array(historia.avaliacao).fill("⭐")}
+                {historia.nome}{" "}
+                {Array(historia.avaliacao).fill(
+                  <FaStar className="icon-star" />
+                )}
               </h3>
               <p className="cidade">{historia.cidade}</p>
               <p className="descricao">"{historia.descricao}"</p>

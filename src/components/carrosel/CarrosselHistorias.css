@@ -3,23 +3,20 @@
 }
 
 .titulo-historias {
-  font-size: 24px;
+  font-size: 40px;
   font-weight: bold;
-  margin-bottom: 20px;
-  text-align: center;
+  margin-bottom: 10px;
 }
 
 .cartao-historia {
   background: white;
   border-radius: 12px;
   box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
+  padding: 25px;
   transition: transform 0.3s ease-in-out;
-  height: 250px; /* Define uma altura fixa para os cartões */
+  height: 350px; /* Define uma altura fixa para os cartões */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribui os elementos dentro do cartão */
   margin-bottom: 30px; /* Garante espaço abaixo do cartão */
 }
 
@@ -28,30 +25,48 @@
 }
 
 .imagem-perfil img {
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  border: 3px solid #4caf50;
+  border: 5px solid #4caf50;
+  margin-bottom: 20px;
+}
+
+.reencontro-container {
+  display: flex; /* Ativa o Flexbox */
+  align-items: center; /* Centraliza verticalmente */
+  gap: 15px; /* Espaçamento entre a imagem e o texto */
 }
 
 .reencontro {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 5px;
+}
+
+.nome-cachorro {
+  font-size: 20px;
 }
 
 .dono {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 15px;
 }
 
 .cidade {
-  font-size: 14px;
+  font-size: 16px;
   color: gray;
+  margin-bottom: 5px;
 }
 
 .descricao {
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
+}
+
+.icon-star {
+  color: #ffd040;
+  margin-left: 5px;
 }
