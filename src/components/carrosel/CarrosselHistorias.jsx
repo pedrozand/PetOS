@@ -13,7 +13,7 @@ const historias = [
     avaliacao: 5,
     descricao:
       "Olá, agradecemos todos que compartilharam!!! Chegou até a pessoa que acolheu ele e ela pode devolver!! Ele voltou!!! 🙏💚🐾",
-    imagem: "/assets/historias/kiyuubi.jpg",
+    imagem: "src/assets/img/historias-destaque/cachorro-1.jpg",
   },
   {
     nome: "Cláudio",
@@ -22,7 +22,7 @@ const historias = [
     avaliacao: 5,
     descricao:
       "Foi encontrado num bairro vizinho, por pessoas boas que cuidaram dele. Assim que viram o post no Facebook, já entraram em contato e prontamente entregaram o cachorro.",
-    imagem: "/assets/historias/luppy.jpg",
+    imagem: "src/assets/img/historias-destaque/cachorro-2.jpg",
   },
   {
     nome: "Ana",
@@ -31,7 +31,7 @@ const historias = [
     avaliacao: 5,
     descricao:
       "O vizinho viu a campanha e procurou, achou e nos devolveu ❤️❤️❤️",
-    imagem: "/assets/historias/pacoca.jpg",
+    imagem: "src/assets/img/historias-destaque/cachorro-3.jpg",
   },
   // Adicione mais histórias conforme necessário
 ];
