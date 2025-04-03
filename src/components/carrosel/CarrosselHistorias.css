@@ -1,0 +1,56 @@
+.historias-container {
+  margin-top: 40px;
+}
+
+.titulo-historias {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.cartao-historia {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  height: 250px; /* Define uma altura fixa para os cartões */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distribui os elementos dentro do cartão */
+}
+
+.cartao-historia:hover {
+  transform: translateY(-5px);
+}
+
+.imagem-perfil img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #4caf50;
+}
+
+.reencontro {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.dono {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cidade {
+  font-size: 14px;
+  color: gray;
+}
+
+.descricao {
+  font-size: 14px;
+  margin-top: 10px;
+}

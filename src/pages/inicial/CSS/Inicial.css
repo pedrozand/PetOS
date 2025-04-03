@@ -138,9 +138,9 @@
   max-width: 1435px; /* Mantém alinhado com os elementos principais */
   margin: 20px auto 0 15px; /* Centraliza e adiciona espaçamento */
   height: 3px; /* Espessura da linha */
-  background-color: #e0e0e0; /* Cor vermelha */
+  background-color: #e0e0e0;
   position: absolute;
-  bottom: 470px;
+  bottom: 485px;
 }
 
 .botao-extra {
@@ -171,12 +171,12 @@
 
 .icone-paw {
   font-size: 50px;
-  color: #ff8989; /* Cor da lupa */
+  color: white; /* Cor da lupa */
 }
 
 .icone-question {
   font-size: 20px;
-  color: white;
+  color: black;
   position: absolute;
   top: 67%;
   left: 50%;

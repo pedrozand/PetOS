@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CarrosselHistorias from "../../components/carrosel/CarrosselHistorias.jsx";
 
 import "../../global.css";
 import "./CSS/Inicial.css";
@@ -73,6 +74,10 @@ function Inicial() {
         </div>
 
         <div className="linha-divisoria"></div>
+
+        <div className="linha-divisoria">
+          <CarrosselHistorias />
+        </div>
       </div>
     </>
   );
