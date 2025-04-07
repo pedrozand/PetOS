@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import Carrosel from "../../components/carrosel/carrosel.jsx";
+import Encontrados from "../../components/encontrados/encontr.jsx";
 
 import "../../global.css";
 import "./CSS/Inicial.css";
 import "./CSS/video.css";
+import "./CSS/encontr-inicial.css";
+
+import imgPet1 from "../../assets/img/Bills.jpg";
 
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";
@@ -77,6 +81,37 @@ function Inicial() {
 
         <div className="linha-divisoria">
           <Carrosel />
+        </div>
+
+        <div className="encontr-container-inicial">
+          <Encontrados
+            imgPet={imgPet1}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
+          />
+          <Encontrados
+            imgPet={imgPet1}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
+          />
+          <Encontrados
+            imgPet={imgPet1}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
+          />
+          <Encontrados
+            imgPet={imgPet1}
+            nome={"Bills"}
+            local={"Avenida Lindóia, 204 - Jardim Recreio"}
+            hora={"5 horas atrás"}
+            intervalo={"Encontrado 2 dias depois do anúncio!"}
+          />
         </div>
       </div>
     </>

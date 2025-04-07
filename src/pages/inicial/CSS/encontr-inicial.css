@@ -1,0 +1,8 @@
+.encontr-container-inicial {
+  width: 100%; /* Ocupa toda a largura da tela */
+  max-width: 1435px; /* Mantém alinhado com os elementos principais */
+  margin: 20px auto -500px 15px; /* Centraliza e adiciona espaçamento */
+  height: 3px; /* Espessura da linha */
+  position: absolute;
+  bottom: 485px;
+}
