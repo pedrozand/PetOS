@@ -9,3 +9,7 @@
   border-radius: 10px;
   top: 10px;
 }
+
+body {
+  background-color: #eef0f2; /* Cor de fundo desejada */
+}

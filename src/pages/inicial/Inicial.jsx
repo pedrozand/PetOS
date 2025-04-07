@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CarrosselHistorias from "../../components/carrosel/CarrosselHistorias.jsx";
+import Carrosel from "../../components/carrosel/carrosel.jsx";
 
 import "../../global.css";
 import "./CSS/Inicial.css";
@@ -12,7 +12,7 @@ import { FaPaw } from "react-icons/fa";
 import { MdOutlineQuestionMark } from "react-icons/md";
 
 import NavBar from "../../components/navbar/navbar.jsx";
-import meuVideo from "../../assets/video/page-inicial-og.mp4";
+import meuVideo from "../../assets/video/page-inicial-op.mp4";
 
 function Inicial() {
   return (
@@ -76,7 +76,7 @@ function Inicial() {
         <div className="linha-divisoria"></div>
 
         <div className="linha-divisoria">
-          <CarrosselHistorias />
+          <Carrosel />
         </div>
       </div>
     </>
