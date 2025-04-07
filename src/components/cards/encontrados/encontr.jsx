@@ -3,7 +3,7 @@ import "./encontr.css";
 export default function Encontrados({ nome, local, hora, intervalo, imgPet }) {
   return (
     <div className="card-encontrado">
-      <div className="card-header">Encontrado</div>
+      <div className="card-encontr-header">Encontrado</div>
 
       <div className="card-img-wrapper">
         <img src={imgPet} alt="Imagem do animal" className="animal-img" />

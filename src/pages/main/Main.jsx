@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../../components/navbar/navbar.jsx";
 import Post from "../../components/post/post.jsx";
 import Filtro from "../../components/filtro/filtro.jsx";
-import Encontrados from "../../components/encontrados/encontr.jsx";
+import Encontrados from "../../components/cards/encontrados/encontr.jsx";
 import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
 import { LocationProvider } from "../../components/location/LocationContext.jsx";
 

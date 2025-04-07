@@ -1,0 +1,41 @@
+.perdid-container {
+  background-color: #ffeeee;
+  border-radius: 15px;
+  padding: 40px 70px 40px;
+  max-width: 1440px;
+  margin: 1200px auto auto 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: absolute;
+}
+
+.perdid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.perdid-header h2 {
+  font-size: 35px;
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.perdid-header p {
+  margin: 15px 0 0px;
+  color: #777;
+  font-size: 20px;
+}
+
+.ver-mais {
+  font-size: 15px;
+  text-decoration: underline;
+  color: #4a4a4a;
+}
+
+.cartoes-perdid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}

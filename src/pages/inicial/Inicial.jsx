@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import Carrosel from "../../components/carrosel/carrosel.jsx";
-import Encontrados from "../../components/encontrados/encontr.jsx";
+import Perdidos from "../../components/cards/perdidos/perdid.jsx";
 
 import "../../global.css";
 import "./CSS/Inicial.css";
 import "./CSS/video.css";
-import "./CSS/encontr-inicial.css";
+import "./CSS/perdid-inicial.css";
 
 import imgPet1 from "../../assets/img/Bills.jpg";
 
@@ -83,35 +83,43 @@ function Inicial() {
           <Carrosel />
         </div>
 
-        <div className="encontr-container-inicial">
-          <Encontrados
-            imgPet={imgPet1}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
-          />
-          <Encontrados
-            imgPet={imgPet1}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
-          />
-          <Encontrados
-            imgPet={imgPet1}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
-          />
-          <Encontrados
-            imgPet={imgPet1}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
-          />
+        <div className="perdid-container">
+          <div className="perdid-header">
+            <div>
+              <h2>Achados e Perdidos</h2>
+              <p>Pets anunciados em Bragança Paulista - SP.</p>
+            </div>
+            <a href="/regiao" className="ver-mais">
+              Ver mais em Achados e Perdidos
+            </a>
+          </div>
+
+          <div className="cartoes-perdid-container">
+            <Perdidos
+              imgPet={imgPet1}
+              nome={"Antônia Tomtom"}
+              local={"Penha, São Paulo"}
+              hora={"9 horas atrás"}
+            />
+            <Perdidos
+              imgPet={imgPet1}
+              nome={"Dante"}
+              local={"City Bussocaba, Osasco"}
+              hora={"1 dia atrás"}
+            />
+            <Perdidos
+              imgPet={imgPet1}
+              nome={"Fiona"}
+              local={"Praça Londres/ Pão de Açúcar"}
+              hora={"2 dias atrás"}
+            />
+            <Perdidos
+              imgPet={imgPet1}
+              nome={"Sí"}
+              local={"Visto perto da Praça XYZ"}
+              hora={"3 dias atrás"}
+            />
+          </div>
         </div>
       </div>
     </>

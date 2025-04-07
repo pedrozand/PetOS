@@ -1,0 +1,104 @@
+/* Card do animal */
+.card-perdid {
+  background-color: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  flex-direction: column;
+}
+
+/* Efeito ao passar o mouse */
+.card-perdid:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Cabeçalho "Perdido" */
+.card-perdid-header {
+  background-color: #e22020;
+  color: white;
+  font-weight: bold;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Wrapper da imagem */
+.card-img-wrapper {
+  position: relative;
+  aspect-ratio: 1 / 1; /* Mantém a imagem sempre quadrada */
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Imagem do animal */
+.animal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Texto "Encontrada após X tempo" sobreposto */
+.animal-intervalo {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Fundo semitransparente */
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+/* Conteúdo */
+.card-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Nome do animal */
+.animal-nome {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+/* Container das infos (Local e Hora) */
+.container-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinha os itens verticalmente */
+  font-size: 14px;
+  color: #555;
+  background: #f1f1f1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap; /* Evita quebra de linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Estiliza a descrição do local */
+.animal-local {
+  flex-grow: 1; /* Faz o local ocupar o máximo de espaço disponível */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Estiliza a hora para que fique fixa no final */
+.animal-hora {
+  flex-shrink: 0; /* Impede que a hora seja reduzida */
+  margin-left: 20px; /* Espaçamento entre local e hora */
+}
