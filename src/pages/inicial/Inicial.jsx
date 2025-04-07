@@ -89,9 +89,11 @@ function Inicial() {
               <h2>Achados e Perdidos</h2>
               <p>Pets anunciados em Bragança Paulista - SP.</p>
             </div>
-            <a href="/regiao" className="ver-mais">
-              Ver mais em Achados e Perdidos
-            </a>
+            <Link to="/main">
+              <a href="/regiao" className="ver-mais">
+                Ver mais em Achados e Perdidos
+              </a>
+            </Link>
           </div>
 
           <div className="cartoes-perdid-container">
