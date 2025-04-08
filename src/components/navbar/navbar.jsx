@@ -10,6 +10,8 @@ import React from "react";
 import Logo from "../../assets/img/icon/logo_petos.png";
 import imgAdocao from "../../assets/img/icon/adocao_icon.png";
 
+import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg";
+
 export default function Navbar() {
   const [dropdownAberto, setDropdownAberto] = useState(null);
   const [scrolled, setScrolled] = useState(false); // Estado para verificar se rolou a página
@@ -179,7 +181,7 @@ export default function Navbar() {
             <div className="right-profile">
               <a href="perfil.html">
                 <img
-                  src="https://i.pinimg.com/236x/e4/58/0f/e4580fce3a0d7dcb4e6396632a92ed06.jpg"
+                  src={imgPerfilTeste}
                   alt="Perfil"
                   className="profile-pic"
                 />
