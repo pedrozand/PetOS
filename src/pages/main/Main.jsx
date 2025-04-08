@@ -15,11 +15,9 @@ import imgPostPet3 from "../../assets/img/post/corgi-4.jpg";
 import imgPostPet4 from "../../assets/img/post/corgi-3.jpg";
 import imgPostPet5 from "../../assets/img/post/corgi-1.jpg";
 
-import imgCardPet1 from "../../assets/img/card/card-econtrado-1";
-import imgCardPet2 from "../../assets/img/card/card-econtrado-2";
-import imgCardPet3 from "../../assets/img/card/card-econtrado-3";
-
-import imgBulma from "../../assets/img/Bulma.jpg";
+import imgCardPet1 from "../../assets/img/card/card-encontrado-1.jpg";
+import imgCardPet2 from "../../assets/img/card/card-encontrado-2.jpg";
+import imgCardPet3 from "../../assets/img/card/card-encontrado-3.jpg";
 
 import "./CSS/main.css";
 
