@@ -7,7 +7,7 @@ import "./CSS/Inicial.css";
 import "./CSS/video.css";
 import "./CSS/perdid-inicial.css";
 
-import imgPet1 from "../../assets/img/Bills.jpg";
+import imgPet1 from "../../assets/img/post/corgi-1.jpg";
 
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";

@@ -7,8 +7,8 @@ import { useState, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import React from "react";
 
-import Logo from "../../assets/img/logo_petos.png";
-import imgAdocao from "../../assets/img/adocao_icon.png";
+import Logo from "../../assets/img/icon/logo_petos.png";
+import imgAdocao from "../../assets/img/icon/adocao_icon.png";
 
 export default function Navbar() {
   const [dropdownAberto, setDropdownAberto] = useState(null);

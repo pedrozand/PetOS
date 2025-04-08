@@ -7,13 +7,13 @@ import Encontrados from "../../components/cards/encontrados/encontr.jsx";
 import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
 import { LocationProvider } from "../../components/location/LocationContext.jsx";
 
-import imgGoku from "../../assets/img/Goku.jpg";
+import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg";
 
-import imgPet1 from "../../assets/img/Bills.jpg";
-import imgPet2 from "../../assets/img/Bills2.jpg";
-import imgPet3 from "../../assets/img/Bills3.jpeg";
-import imgPet4 from "../../assets/img/Bills4.jpg";
-import imgPet5 from "../../assets/img/Bills5.jpg";
+import imgPet1 from "../../assets/img/post/corgi-2.jpg";
+import imgPet2 from "../../assets/img/post/corgi-5.jpg";
+import imgPet3 from "../../assets/img/post/corgi-4.jpg";
+import imgPet4 from "../../assets/img/post/corgi-3.jpg";
+import imgPet5 from "../../assets/img/post/corgi-1.jpg";
 import imgBulma from "../../assets/img/Bulma.jpg";
 
 import "./CSS/main.css";
@@ -30,19 +30,19 @@ function Main() {
           <div>
             <Cabecalho />
             <Post
-              avatar={imgGoku}
-              nomeUser={"Goku de Oliveira Santana"}
-              nomeAnimal={"Bills"}
-              especie={"Gato"}
+              avatar={imgPerfilTeste}
+              nomeUser={"Pedro Henrique de Oliveira"}
+              nomeAnimal={"Goku"}
+              especie={"Cachorro"}
               descricao={
-                "Poderoso, confiante, e um obsessivo cabeça-quente, ele é o Deus da Destruição do Sétimo Universo, e assim, sua ocupação é manter equilíbrio destruindo planetas."
+                "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
               }
               imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
-              raca={"Sphynx"}
+              raca={"Corgi"}
               idade={"Senior"}
               porte={"Médio"}
-              corPredominante={"Roxo"}
-              corOlhos={"Amarelo"}
+              corPredominante={"Preto e Laranja"}
+              corOlhos={"Castanhos"}
               sexo={"Macho"}
               localDesap={"Bragança Paulista - São Paulo"}
               dataDesap={"2025/03/15"}
