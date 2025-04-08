@@ -9,11 +9,16 @@ import { LocationProvider } from "../../components/location/LocationContext.jsx"
 
 import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg";
 
-import imgPet1 from "../../assets/img/post/corgi-2.jpg";
-import imgPet2 from "../../assets/img/post/corgi-5.jpg";
-import imgPet3 from "../../assets/img/post/corgi-4.jpg";
-import imgPet4 from "../../assets/img/post/corgi-3.jpg";
-import imgPet5 from "../../assets/img/post/corgi-1.jpg";
+import imgPostPet1 from "../../assets/img/post/corgi-2.jpg";
+import imgPostPet2 from "../../assets/img/post/corgi-5.jpg";
+import imgPostPet3 from "../../assets/img/post/corgi-4.jpg";
+import imgPostPet4 from "../../assets/img/post/corgi-3.jpg";
+import imgPostPet5 from "../../assets/img/post/corgi-1.jpg";
+
+import imgCardPet1 from "../../assets/img/card/card-econtrado-1";
+import imgCardPet2 from "../../assets/img/card/card-econtrado-2";
+import imgCardPet3 from "../../assets/img/card/card-econtrado-3";
+
 import imgBulma from "../../assets/img/Bulma.jpg";
 
 import "./CSS/main.css";
@@ -37,7 +42,13 @@ function Main() {
               descricao={
                 "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
               }
-              imgPet={[imgPet1, imgPet2, imgPet3, imgPet4, imgPet5]}
+              imgPet={[
+                imgPostPet1,
+                imgPostPet2,
+                imgPostPet3,
+                imgPostPet4,
+                imgPostPet5,
+              ]}
               raca={"Corgi"}
               idade={"Senior"}
               porte={"Médio"}
@@ -51,21 +62,21 @@ function Main() {
         </LocationProvider>
         <div>
           <Encontrados
-            imgPet={imgPet1}
+            imgPet={imgCardPet1}
             nome={"Bills"}
             local={"Avenida Lindóia, 204 - Jardim Recreio"}
             hora={"5 horas atrás"}
             intervalo={"Encontrado 2 dias depois do anúncio!"}
           />
           <Encontrados
-            imgPet={imgBulma}
+            imgPet={imgCardPet2}
             nome={"Bulma"}
             local={"Rua Felicio Helito, 220 - Penha"}
             hora={"12 horas atrás"}
             intervalo={"Encontrado 8 horas depois do anúncio!"}
           />
           <Encontrados
-            imgPet={imgPet1}
+            imgPet={imgCardPet3}
             nome={"Bills"}
             local={"Avenida Lindóia, 204 - Jardim Recreio"}
             hora={"5 horas atrás"}
