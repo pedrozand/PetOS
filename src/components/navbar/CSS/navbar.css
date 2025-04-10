@@ -195,7 +195,8 @@ body {
 }
 
 .btn-entrar:hover {
-  background-color: #fceded;
+  background-color: #fdcfcf;
+  border: 0.5px solid #fdcfcf;
 }
 
 /* Alinhamento dos botões */
