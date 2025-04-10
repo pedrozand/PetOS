@@ -6,6 +6,7 @@ import "../../global.css";
 import "./CSS/Inicial.css";
 import "./CSS/video.css";
 import "./CSS/perdid-inicial.css";
+import "./CSS/divulgacao.css";
 
 import imgPet1 from "../../assets/img/post/corgi-1.jpg";
 
@@ -121,6 +122,18 @@ function Inicial() {
               local={"Visto perto da Praça XYZ"}
               hora={"3 dias atrás"}
             />
+          </div>
+        </div>
+
+        <div className="templates-container">
+          <div className="templates-texto">
+            <h2>Alerte milhares de pessoas próximas em menos de 60 minutos!</h2>
+            <p>
+              Ative uma campanha de divulgação de alto impacto em redes sociais.
+              Seu anúncio aparece para pessoas ao redor da região do sumiço,
+              aumentando significativamente as chances de reencontro.
+            </p>
+            <button className="templates-botao">Saiba Mais</button>
           </div>
         </div>
       </div>
