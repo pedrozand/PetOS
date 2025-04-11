@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 50px 60px;
-  margin: 2100px 600px auto 10px;
+  margin: 2200px 600px auto 10px;
   gap: 60px;
   flex-wrap: wrap;
   position: absolute;
@@ -13,6 +13,7 @@
 
 .templates-texto {
   max-width: 600px;
+  z-index: 10;
 }
 
 .templates-texto h2 {
@@ -39,9 +40,14 @@
   cursor: pointer;
 }
 
-.templates-imagem img {
+.templates-imagem video {
   max-width: 1000px;
-  margin: -875px 600px auto 400px;
+  margin: -850px 600px auto 400px;
+}
+
+.templates-video2 {
+  max-width: 700px;
+  border-radius: 1rem;
 }
 
 .templates-segundo-container {
@@ -49,7 +55,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 50px 60px;
-  margin: 2500px 600px auto 10px;
+  margin: 2700px 600px auto 10px;
   gap: 60px;
   flex-wrap: wrap;
   position: absolute;

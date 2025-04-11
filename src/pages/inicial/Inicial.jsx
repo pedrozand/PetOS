@@ -20,6 +20,7 @@ import { MdOutlineQuestionMark } from "react-icons/md";
 import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
 import meuVideo2 from "../../assets/video/divulga-op.mp4";
+import meuVideo3 from "../../assets/video/divulga-2-op.mp4";
 
 function Inicial() {
   return (
@@ -143,7 +144,14 @@ function Inicial() {
           </div>
 
           <div className="templates-imagem">
-            <img src={divulga1} alt="Pet perdido" />
+            <video
+              src={meuVideo3} // ou outro vídeo que quiser
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="templates-video"
+            />
           </div>
         </div>
 
@@ -160,7 +168,7 @@ function Inicial() {
             </p>
             <button className="templates-segundo-botao">Saiba Mais</button>
           </div>
-          <div className="templates-imagem">
+          <div>
             <video
               src={meuVideo2} // ou outro vídeo que quiser
               autoPlay
