@@ -134,9 +134,10 @@ function Inicial() {
               amigo!
             </h2>
             <p>
-              Ative uma campanha de divulgação de alto impacto em redes sociais.
-              Seu anúncio aparece para pessoas ao redor da região do sumiço,
-              aumentando significativamente as chances de reencontro.
+              Com o PetOS, você pode criar anúncios detalhados com fotos,
+              localização e informações essenciais para engajar pessoas
+              próximas. Quanto mais visível o post, maiores as chances de trazer
+              seu pet de volta para casa rapidamente!
             </p>
             <button className="templates-botao">Saiba Mais</button>
           </div>
@@ -149,13 +150,13 @@ function Inicial() {
         <div className="templates-segundo-container">
           <div className="templates-segundo-texto">
             <h2>
-              Crie posts personalizados e acelere o reencontro com seu melhor
-              amigo!
+              Colabore com toda uma comunidade e faça com que a divulgação
+              chegue a todas as pessoas!
             </h2>
             <p>
-              Ative uma campanha de divulgação de alto impacto em redes sociais.
-              Seu anúncio aparece para pessoas ao redor da região do sumiço,
-              aumentando significativamente as chances de reencontro.
+              Com o PetOS, seus posts ganham destaque e impactam diretamente
+              pessoas próximas. Mobilize a comunidade em tempo real e ajude os
+              tutores encontrarem seus pets.
             </p>
             <button className="templates-segundo-botao">Saiba Mais</button>
           </div>

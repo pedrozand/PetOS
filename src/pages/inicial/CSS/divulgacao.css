@@ -26,6 +26,7 @@
   font-size: 16px;
   color: #555;
   margin-bottom: 25px;
+  width: 580px;
 }
 
 .templates-botao {
@@ -91,5 +92,5 @@
 .templates-video {
   max-width: 700px;
   border-radius: 1rem;
-  margin-top: -600px;
+  margin-top: -630px;
 }
