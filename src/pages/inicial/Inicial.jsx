@@ -9,6 +9,7 @@ import "./CSS/perdid-inicial.css";
 import "./CSS/divulgacao.css";
 
 import imgPet1 from "../../assets/img/post/corgi-1.jpg";
+import divulga1 from "../../assets/img/divulgacao/divulga-1.png";
 
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";
@@ -18,6 +19,7 @@ import { MdOutlineQuestionMark } from "react-icons/md";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
+import meuVideo2 from "../../assets/video/divulga-op.mp4";
 
 function Inicial() {
   return (
@@ -126,14 +128,48 @@ function Inicial() {
         </div>
 
         <div className="templates-container">
-          <div className="templates-texto">
-            <h2>Alerte milhares de pessoas próximas em menos de 60 minutos!</h2>
-            <p>
-              Ative uma campanha de divulgação de alto impacto em redes sociais.
-              Seu anúncio aparece para pessoas ao redor da região do sumiço,
-              aumentando significativamente as chances de reencontro.
-            </p>
-            <button className="templates-botao">Saiba Mais</button>
+          <div className="templates-conteudo">
+            <div className="templates-texto">
+              <h2>
+                Crie posts personalizados e acelere o reencontro com seu melhor
+                amigo!
+              </h2>
+              <p>
+                Ative uma campanha de divulgação de alto impacto em redes
+                sociais. Seu anúncio aparece para pessoas ao redor da região do
+                sumiço, aumentando significativamente as chances de reencontro.
+              </p>
+              <button className="templates-botao">Saiba Mais</button>
+            </div>
+
+            <div className="templates-imagem">
+              <img src={divulga1} alt="Pet perdido" />
+            </div>
+          </div>
+        </div>
+
+        <div className="templates-segundo-container">
+          <div className="templates-conteudo">
+            <div className="templates-imagem">
+              <video
+                src={meuVideo2} // ou outro vídeo que quiser
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="templates-video"
+              />
+            </div>
+
+            <div className="templates-texto">
+              <h2>Aumente o alcance e agilize o reencontro!</h2>
+              <p>
+                Com a PetOS, seus vídeos ganham destaque e impactam diretamente
+                pessoas próximas. Mobilize vizinhos em tempo real para trazer
+                seu pet de volta para casa com mais rapidez.
+              </p>
+              <button className="templates-botao">Entenda como funciona</button>
+            </div>
           </div>
         </div>
       </div>

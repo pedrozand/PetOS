@@ -3,15 +3,27 @@
   justify-content: space-between;
   align-items: center;
   padding: 50px 60px;
-  margin: 1900px 800px auto 10px;
+  margin: 2100px 600px auto 10px;
   gap: 60px;
   flex-wrap: wrap;
   position: absolute;
-  background-color: #c18bff;
+  width: 800px;
+}
+
+.templates-segundo-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 60px;
+  margin: 2800px 600px auto 10px;
+  gap: 60px;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 800px;
 }
 
 .templates-texto {
-  max-width: 1000px;
+  max-width: 600px;
 }
 
 .templates-texto h2 {
@@ -28,11 +40,28 @@
 }
 
 .templates-botao {
-  background: #8000d4;
+  background: #ff9689;
   color: white;
   padding: 10px 25px;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
+}
+
+.templates-imagem img {
+  max-width: 1000px;
+  margin: -810px 600px auto 400px;
+}
+
+.templates-video {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Para inverter lado da imagem/vídeo */
+.video-direita .templates-conteudo {
+  flex-direction: row-reverse;
 }
