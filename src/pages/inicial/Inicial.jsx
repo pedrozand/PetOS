@@ -50,7 +50,10 @@ function Inicial() {
               </div>
             </Link>
 
-            <button className="botao botao-achei">
+            <button
+              className="botao botao-achei"
+              onClick={() => alert("Abrir página completa!")}
+            >
               <div className="icon-container">
                 <RiSearch2Fill className="icon-search-achei" />
                 <LiaBoneSolid className="icon-bone-achei" />
@@ -62,7 +65,10 @@ function Inicial() {
             </button>
           </div>
           {/* Novo botão abaixo */}
-          <button className="botao botao-extra">
+          <button
+            className="botao botao-extra"
+            onClick={() => alert("Abrir página completa!")}
+          >
             <div className="icon-container">
               <FaPaw className="icone-paw" />
               <MdOutlineQuestionMark className="icone-question" />
@@ -141,7 +147,9 @@ function Inicial() {
               próximas. Quanto mais visível o post, maiores as chances de trazer
               seu pet de volta para casa rapidamente!
             </p>
-            <button className="templates-botao">Saiba Mais</button>
+            <Link to="/main">
+              <button className="templates-botao">Saiba Mais</button>
+            </Link>
           </div>
 
           <div className="templates-imagem">
@@ -167,7 +175,9 @@ function Inicial() {
               pessoas próximas. Mobilize a comunidade em tempo real e ajude os
               tutores encontrarem seus pets.
             </p>
-            <button className="templates-segundo-botao">Saiba Mais</button>
+            <Link to="/main">
+              <button className="templates-segundo-botao">Saiba Mais</button>
+            </Link>
           </div>
           <div>
             <video
@@ -194,7 +204,12 @@ function Inicial() {
               quer carinho e cuidado. Adotar é um gesto de amor — transforme
               duas vidas com um só ato. 🧡
             </p>
-            <button className="templates-botao">Ir para Adoção</button>
+            <button
+              className="templates-botao"
+              onClick={() => alert("Abrir página completa!")}
+            >
+              Ir para Adoção
+            </button>
           </div>
 
           <div className="templates-terceiro-imagem">
