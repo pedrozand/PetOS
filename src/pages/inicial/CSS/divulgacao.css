@@ -45,6 +45,8 @@
   margin: -850px 600px auto 400px;
 }
 
+/*SEGUNDO*/
+
 .templates-video2 {
   max-width: 700px;
   border-radius: 1rem;
@@ -99,4 +101,43 @@
   max-width: 700px;
   border-radius: 1rem;
   margin-top: -630px;
+}
+
+/*TERCEIRO*/
+
+.templates-terceiro-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 60px;
+  margin: 3600px 600px auto 10px;
+  gap: 60px;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 800px;
+  z-index: -20;
+}
+
+.templates-terceiro-imagem video {
+  max-width: 1000px;
+  margin: -1000px 600px auto 400px;
+}
+
+.templates-terceiro-texto {
+  max-width: 490px;
+  z-index: 10;
+}
+
+.templates-terceiro-texto h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 20px;
+}
+
+.templates-terceiro-texto p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 25px;
+  width: 560px;
 }

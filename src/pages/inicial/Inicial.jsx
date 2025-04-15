@@ -21,6 +21,7 @@ import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
 import meuVideo2 from "../../assets/video/divulga-op.mp4";
 import meuVideo3 from "../../assets/video/divulga-2-op.mp4";
+import meuVideo4 from "../../assets/video/divulga-3-op.mp4";
 
 function Inicial() {
   return (
@@ -171,6 +172,34 @@ function Inicial() {
           <div>
             <video
               src={meuVideo2} // ou outro vídeo que quiser
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="templates-video"
+            />
+          </div>
+        </div>
+
+        <div className="templates-terceiro-container">
+          <div className="templates-terceiro-texto">
+            <h2>
+              Adote um amigo, mude o mundo dele e o seu. Muito mais que um pet,
+              um companheiro para a vida!
+            </h2>
+            <p></p>
+            <p>
+              Na aba de Adoção, você pode conhecer diversos animais que estão
+              esperando por um lar cheio de amor. Dê uma nova chance a quem só
+              quer carinho e cuidado. Adotar é um gesto de amor — transforme
+              duas vidas com um só ato. 🧡
+            </p>
+            <button className="templates-botao">Ir para Adoção</button>
+          </div>
+
+          <div className="templates-terceiro-imagem">
+            <video
+              src={meuVideo4} // ou outro vídeo que quiser
               autoPlay
               loop
               muted
