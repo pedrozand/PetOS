@@ -7,6 +7,7 @@ import "./CSS/Inicial.css";
 import "./CSS/video.css";
 import "./CSS/perdid-inicial.css";
 import "./CSS/divulgacao.css";
+import "./CSS/beneficios.css";
 
 import imgPet1 from "../../assets/img/post/corgi-1.jpg";
 import divulga1 from "../../assets/img/divulgacao/divulga-1.png";
@@ -221,6 +222,44 @@ function Inicial() {
               playsInline
               className="templates-video"
             />
+          </div>
+        </div>
+
+        <div className="petos-beneficios-container">
+          <div className="beneficio-card">
+            <div className="beneficio-icon">🤝</div>
+            <h3>Rede Colaborativa</h3>
+            <p>
+              Uma comunidade unida por um objetivo: reunir pets e tutores.
+              Quanto mais pessoas envolvidas, maiores as chances de reencontro!
+            </p>
+          </div>
+
+          <div className="beneficio-card">
+            <div className="beneficio-icon">📍</div>
+            <h3>Localização Inteligente</h3>
+            <p>
+              Publicações com base na localização facilitam a busca, mostrando
+              apenas casos próximos de você.
+            </p>
+          </div>
+
+          <div className="beneficio-card">
+            <div className="beneficio-icon">🔔</div>
+            <h3>Sistema de Alerta Rápido</h3>
+            <p>
+              Novos posts? Você será notificado em tempo real sobre novos casos
+              na sua região!
+            </p>
+          </div>
+
+          <div className="beneficio-card">
+            <div className="beneficio-icon">🏠</div>
+            <h3>Adote com Facilidade</h3>
+            <p>
+              Além de reencontros, o PetOS conecta animais a novos lares com
+              segurança e empatia.
+            </p>
           </div>
         </div>
       </div>
