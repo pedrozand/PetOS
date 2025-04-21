@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Carrosel from "../../components/carrosel/carrosel.jsx";
 import Perdidos from "../../components/cards/perdidos/perdid.jsx";
+import PerguntasRespostas from "../../components/faqInicial/faqInicial.jsx";
 
 import "../../global.css";
 import "./CSS/Inicial.css";
@@ -10,7 +11,6 @@ import "./CSS/divulgacao.css";
 import "./CSS/beneficios.css";
 
 import imgPet1 from "../../assets/img/post/corgi-1.jpg";
-import divulga1 from "../../assets/img/divulgacao/divulga-1.png";
 
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";
@@ -274,6 +274,7 @@ function Inicial() {
             </p>
           </div>
         </div>
+        <PerguntasRespostas />
       </div>
     </>
   );
