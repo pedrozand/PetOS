@@ -10,13 +10,6 @@
   flex-wrap: wrap;
 }
 
-.faq-titulo {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  text-align: center;
-  color: #ff9689;
-}
-
 .faq-item {
   padding: 15px;
   cursor: pointer;
@@ -34,7 +27,7 @@
   align-items: center;
   font-weight: bold;
   font-size: 1.1rem;
-  color: #ff3131;
+  color: #ff6969;
 }
 
 .faq-resposta {

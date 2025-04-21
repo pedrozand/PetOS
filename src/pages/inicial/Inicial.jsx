@@ -16,13 +16,20 @@ import imgPet1 from "../../assets/img/post/corgi-1.jpg";
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";
 import { LiaBoneSolid } from "react-icons/lia";
-import { FaPaw } from "react-icons/fa";
 import { MdOutlineQuestionMark } from "react-icons/md";
 import { TbHeartHandshake } from "react-icons/tb";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { HiBellAlert } from "react-icons/hi2";
 import { GiDogHouse } from "react-icons/gi";
-import { FaChevronDown } from "react-icons/fa";
+import {
+  FaSearchLocation,
+  FaBullhorn,
+  FaHandshake,
+  FaMapMarkerAlt,
+  FaCheckCircle,
+  FaPaw,
+  FaChevronDown,
+} from "react-icons/fa";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
@@ -33,32 +40,74 @@ import meuVideo4 from "../../assets/video/divulga-3-op.mp4";
 function Inicial() {
   const dadosFAQ = [
     {
-      pergunta: "Como faço um anúncio de pet perdido?",
+      pergunta: (
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaSearchLocation style={{ marginRight: "15px" }} />
+            Como faço um anúncio de pet perdido?
+          </div>
+        </>
+      ),
       resposta:
-        "No PetOS, basta acessar a aba 'Perdi meu Pet', preencher as informações essenciais e publicar gratuitamente. Adicione fotos e localização para aumentar as chances de reencontro!",
+        "No PetOS, basta acessar a aba 'Achados e Perdidos', preencher as informações essenciais e publicar gratuitamente. Adicione fotos e localização para aumentar as chances de reencontro!",
     },
     {
-      pergunta: "O anúncio no PetOS é gratuito?",
+      pergunta: (
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaBullhorn style={{ marginRight: "15px" }} />O anúncio no PetOS é
+            gratuito?
+          </div>
+        </>
+      ),
       resposta:
         "Sim! Todos os usuários podem publicar gratuitamente seus anúncios de pets perdidos ou encontrados.",
     },
     {
-      pergunta: "Quais ferramentas posso usar sem pagar?",
+      pergunta: (
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaHandshake style={{ marginRight: "15px" }} />O PetOS se conecta
+            com ONGs e abrigos?
+          </div>
+        </>
+      ),
       resposta:
-        "Você pode adicionar fotos, localização, descrição, receber alertas e visualizar casos na sua região sem nenhum custo.",
+        "Sim! O PetOS permite parcerias com ONGs e abrigos, facilitando o cadastro de animais disponíveis para adoção e ajudando a aumentar as chances de encontrar um novo lar.",
     },
     {
-      pergunta: "Como funciona uma campanha patrocinada?",
+      pergunta: (
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaMapMarkerAlt style={{ marginRight: "15px" }} />
+            Como posso acompanhar os casos próximos da minha região?
+          </div>
+        </>
+      ),
       resposta:
-        "A campanha patrocinada destaca o seu anúncio na página inicial e o impulsiona para mais pessoas próximas, aumentando a visibilidade.",
+        "Você pode ativar alertas de localização para receber notificações sobre pets perdidos ou encontrados perto de você em tempo real.",
     },
     {
-      pergunta: "Vocês garantem que o pet será encontrado?",
+      pergunta: (
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaCheckCircle style={{ marginRight: "15px" }} />É possível
+            registrar quando um pet foi encontrado?
+          </div>
+        </>
+      ),
       resposta:
-        "Infelizmente não podemos garantir, mas com a visibilidade local, alertas e colaboração da comunidade, suas chances aumentam significativamente!",
+        "Sim! Ao reencontrar seu pet, você pode atualizar o status do anúncio para 'Encontrado', ajudando a manter a plataforma atualizada e a comunidade informada.",
     },
     {
-      pergunta: "Como funciona a área de achados e perdidos?",
+      pergunta: (
+        <>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FaPaw style={{ marginRight: "15px" }} />
+            Como funciona a área de achados e perdidos?
+          </div>
+        </>
+      ),
       resposta:
         "Você pode visualizar pets perdidos ou encontrados na sua região e ajudar compartilhando ou tentando contato direto com o anunciante.",
     },
@@ -317,7 +366,6 @@ function Inicial() {
         </div>
 
         <div className="faq-container">
-          <h2 className="faq-titulo">Dúvidas sobre o PetOS?</h2>
           {dadosFAQ.map((item, index) => (
             <div
               key={index}
