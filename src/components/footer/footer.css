@@ -1,0 +1,42 @@
+.containerFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #333;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.auxFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoPetOS {
+  height: 40px;
+}
+
+.iconMidias {
+  display: flex;
+  gap: 20px;
+}
+
+.copyRight {
+  margin-top: 10px;
+  font-size: 12px;
+}

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Carrosel from "../../components/carrosel/carrosel.jsx";
 import Perdidos from "../../components/cards/perdidos/perdid.jsx";
+import NavBar from "../../components/navbar/navbar.jsx";
+import Footer from "../../components/footer/footer.jsx"; //
 
 import "../../global.css";
 import "./CSS/Inicial.css";
@@ -32,7 +34,6 @@ import {
   FaChevronDown,
 } from "react-icons/fa";
 
-import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
 import meuVideo2 from "../../assets/video/divulga-op.mp4";
 import meuVideo3 from "../../assets/video/divulga-2-op.mp4";
@@ -389,6 +390,8 @@ function Inicial() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
