@@ -11,7 +11,7 @@
 .beneficio-card {
   background-color: #ff3131;
   color: white;
-  padding: 1.5rem;
+  padding: 40px 10px 10px 10px;
   border-radius: 20px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   width: 300px;
@@ -27,4 +27,5 @@
 .beneficio-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
