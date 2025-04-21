@@ -12,6 +12,7 @@ import "./CSS/beneficios.css";
 import "./CSS/faqInicial.css";
 
 import imgPet1 from "../../assets/img/post/corgi-1.jpg";
+import faqImage from "../../assets/img/divulgacao/faqInicial.png";
 
 // Importação dos ícones do React Icons
 import { RiSearch2Fill } from "react-icons/ri";
@@ -44,7 +45,7 @@ function Inicial() {
         <>
           <div style={{ display: "flex", alignItems: "center" }}>
             <FaSearchLocation style={{ marginRight: "15px" }} />
-            Como faço um anúncio de pet perdido?
+            Como faço um post de pet perdido?
           </div>
         </>
       ),
@@ -383,6 +384,9 @@ function Inicial() {
               )}
             </div>
           ))}
+          <div className="faq-imagem">
+            <img src={faqImage} />
+          </div>
         </div>
       </div>
     </>
