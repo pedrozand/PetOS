@@ -17,6 +17,10 @@ import { RiSearch2Fill } from "react-icons/ri";
 import { LiaBoneSolid } from "react-icons/lia";
 import { FaPaw } from "react-icons/fa";
 import { MdOutlineQuestionMark } from "react-icons/md";
+import { TbHeartHandshake } from "react-icons/tb";
+import { FaLocationCrosshairs } from "react-icons/fa6";
+import { HiBellAlert } from "react-icons/hi2";
+import { GiDogHouse } from "react-icons/gi";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
@@ -227,8 +231,10 @@ function Inicial() {
 
         <div className="petos-beneficios-container">
           <div className="beneficio-card">
-            <div className="beneficio-icon">🤝</div>
             <h3>Rede Colaborativa</h3>
+            <div className="beneficio-icon">
+              <TbHeartHandshake />
+            </div>
             <p>
               Uma comunidade unida por um objetivo: reunir pets e tutores.
               Quanto mais pessoas envolvidas, maiores as chances de reencontro!
@@ -236,8 +242,10 @@ function Inicial() {
           </div>
 
           <div className="beneficio-card">
-            <div className="beneficio-icon">📍</div>
             <h3>Localização Inteligente</h3>
+            <div className="beneficio-icon">
+              <FaLocationCrosshairs />
+            </div>
             <p>
               Publicações com base na localização facilitam a busca, mostrando
               apenas casos próximos de você.
@@ -245,17 +253,21 @@ function Inicial() {
           </div>
 
           <div className="beneficio-card">
-            <div className="beneficio-icon">🔔</div>
-            <h3>Sistema de Alerta Rápido</h3>
+            <h3>Divulgação Instantânea</h3>
+            <div className="beneficio-icon">
+              <HiBellAlert />
+            </div>
             <p>
-              Novos posts? Você será notificado em tempo real sobre novos casos
-              na sua região!
+              Seu anúncio é divulgado rapidamente para usuários da região,
+              aumentando as chances de reencontro em tempo recorde.
             </p>
           </div>
 
           <div className="beneficio-card">
-            <div className="beneficio-icon">🏠</div>
             <h3>Adote com Facilidade</h3>
+            <div className="beneficio-icon">
+              <GiDogHouse />
+            </div>
             <p>
               Além de reencontros, o PetOS conecta animais a novos lares com
               segurança e empatia.
