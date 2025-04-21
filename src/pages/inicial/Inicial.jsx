@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Carrosel from "../../components/carrosel/carrosel.jsx";
 import Perdidos from "../../components/cards/perdidos/perdid.jsx";
-import PerguntasRespostas from "../../components/faqInicial/faqInicial.jsx";
 
 import "../../global.css";
 import "./CSS/Inicial.css";
@@ -9,6 +9,7 @@ import "./CSS/video.css";
 import "./CSS/perdid-inicial.css";
 import "./CSS/divulgacao.css";
 import "./CSS/beneficios.css";
+import "./CSS/faqInicial.css";
 
 import imgPet1 from "../../assets/img/post/corgi-1.jpg";
 
@@ -21,6 +22,7 @@ import { TbHeartHandshake } from "react-icons/tb";
 import { FaLocationCrosshairs } from "react-icons/fa6";
 import { HiBellAlert } from "react-icons/hi2";
 import { GiDogHouse } from "react-icons/gi";
+import { FaChevronDown } from "react-icons/fa";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import meuVideo from "../../assets/video/page-inicial-op.mp4";
@@ -29,6 +31,45 @@ import meuVideo3 from "../../assets/video/divulga-2-op.mp4";
 import meuVideo4 from "../../assets/video/divulga-3-op.mp4";
 
 function Inicial() {
+  const dadosFAQ = [
+    {
+      pergunta: "Como faço um anúncio de pet perdido?",
+      resposta:
+        "No PetOS, basta acessar a aba 'Perdi meu Pet', preencher as informações essenciais e publicar gratuitamente. Adicione fotos e localização para aumentar as chances de reencontro!",
+    },
+    {
+      pergunta: "O anúncio no PetOS é gratuito?",
+      resposta:
+        "Sim! Todos os usuários podem publicar gratuitamente seus anúncios de pets perdidos ou encontrados.",
+    },
+    {
+      pergunta: "Quais ferramentas posso usar sem pagar?",
+      resposta:
+        "Você pode adicionar fotos, localização, descrição, receber alertas e visualizar casos na sua região sem nenhum custo.",
+    },
+    {
+      pergunta: "Como funciona uma campanha patrocinada?",
+      resposta:
+        "A campanha patrocinada destaca o seu anúncio na página inicial e o impulsiona para mais pessoas próximas, aumentando a visibilidade.",
+    },
+    {
+      pergunta: "Vocês garantem que o pet será encontrado?",
+      resposta:
+        "Infelizmente não podemos garantir, mas com a visibilidade local, alertas e colaboração da comunidade, suas chances aumentam significativamente!",
+    },
+    {
+      pergunta: "Como funciona a área de achados e perdidos?",
+      resposta:
+        "Você pode visualizar pets perdidos ou encontrados na sua região e ajudar compartilhando ou tentando contato direto com o anunciante.",
+    },
+  ];
+
+  const [faqAtivo, setFaqAtivo] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setFaqAtivo(faqAtivo === index ? null : index);
+  };
+
   return (
     <>
       <div className="container-inicial">
@@ -274,7 +315,27 @@ function Inicial() {
             </p>
           </div>
         </div>
-        <PerguntasRespostas />
+
+        <div className="faq-container">
+          <h2 className="faq-titulo">Dúvidas sobre o PetOS?</h2>
+          {dadosFAQ.map((item, index) => (
+            <div
+              key={index}
+              className={`faq-item ${faqAtivo === index ? "ativo" : ""}`}
+              onClick={() => toggleFAQ(index)}
+            >
+              <div className="faq-pergunta">
+                <span>{item.pergunta}</span>
+                <FaChevronDown
+                  className={`icone-seta ${faqAtivo === index ? "girar" : ""}`}
+                />
+              </div>
+              {faqAtivo === index && (
+                <div className="faq-resposta">{item.resposta}</div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
