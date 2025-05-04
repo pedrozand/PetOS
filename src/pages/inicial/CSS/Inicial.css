@@ -1,5 +1,5 @@
 .container-inicial {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   width: 100%;

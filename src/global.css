@@ -1,6 +1,8 @@
+/* 
 html {
-  zoom: 0.9; /* Diminui o tamanho da página sem cortar elementos */
+  zoom: 0.9;  Diminui o tamanho da página sem cortar elementos 
 }
+*/
 
 body {
   width: 100vw; /* Garante que o body ocupe toda a tela */

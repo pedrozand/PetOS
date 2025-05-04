@@ -1,42 +1,51 @@
 .containerFooter {
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   background-color: #f5f5f5;
   text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  color: #333;
-  z-index: 1000;
+  padding: 40px 20px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  margin: 4000px 600px auto auto;
 }
 
 .auxFooter {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Alinha verticalmente */
   align-items: center;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 .footerLogo {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
+  margin: -20px -20px;
 }
 
 .logoPetOS {
-  height: 40px;
+  height: 150px;
 }
 
 .iconMidias {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.iconMidias a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px; /* Tamanho do texto */
+  text-decoration: none;
+  color: #ff3131; /* Ajuste conforme seu tema */
+}
+
+.iconMidias svg {
+  font-size: 20px; /* Tamanho do ícone */
 }
 
 .copyRight {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 12px;
 }

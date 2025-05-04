@@ -9,7 +9,6 @@ const Footer = () => {
         {/* Logo e nome */}
         <div className="footerLogo">
           <img src={LogoPetOS} className="logoPetOS" />
-          <h2 className="tituloFooter">PetOS</h2>
         </div>
 
         {/* Redes sociais */}
