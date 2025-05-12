@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import "./CSS/login.css";
 import { useNavigate } from "react-router-dom";
 
@@ -52,9 +53,11 @@ const Login = () => {
             Entrar
           </button>
         </form>
-        <div className="link-cadastro">
-          Não tem uma conta? <a href="/cadastro">Cadastre-se</a>
-        </div>
+        <Link to="/cadastroUser" className="linkroute-ajuste">
+          <div className="link-cadastro">
+            Não tem uma conta? <a>Cadastre-se</a>
+          </div>
+        </Link>
       </div>
       <div className="footer-container">
         <Footer />

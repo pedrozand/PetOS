@@ -33,7 +33,7 @@ form input {
 }
 
 form input:focus {
-  border-color: #6c63ff;
+  border-color: #ff9c9c;
   outline: none;
 }
 
@@ -81,4 +81,10 @@ form input:focus {
   background-color: #f5f5f5;
   text-align: center;
   margin-top: -4150px;
+}
+
+.linkroute-ajuste {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
 }
