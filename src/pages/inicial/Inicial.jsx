@@ -5,7 +5,7 @@ import Perdidos from "../../components/cards/perdidos/perdid.jsx";
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx"; //
 
-import "../../global.css";
+import "../../style/global.css";
 import "./CSS/Inicial.css";
 import "./CSS/video.css";
 import "./CSS/perdid-inicial.css";
