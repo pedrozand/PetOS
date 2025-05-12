@@ -147,7 +147,7 @@ function Inicial() {
               </div>
             </Link>
 
-            <button
+            <a
               className="botao botao-achei"
               onClick={() => alert("Abrir página completa!")}
             >
@@ -159,7 +159,7 @@ function Inicial() {
                 <strong className="strong-perdi">Achei um Pet</strong>
                 <span>Quero buscar o tutor</span>
               </div>
-            </button>
+            </a>
           </div>
           {/* Novo botão abaixo */}
           <button

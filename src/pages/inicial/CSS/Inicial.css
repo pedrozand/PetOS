@@ -47,10 +47,10 @@
   border-radius: 10px;
   font-size: 16px;
   cursor: pointer;
-  border: 2px solid transparent;
   transition: 0.3s;
   width: 100%;
   text-decoration: none;
+  border-color: #e0e0e0;
 }
 
 .botao div {
@@ -75,28 +75,24 @@
 
 /* Estilizando os botões individualmente */
 .botao-perdi {
-  background-color: #ff3131;
+  background: linear-gradient(to right, #ff3131, #ffd040);
   color: white;
-  border: 2px solid #ff3131;
 }
 
 /* Estilizando os botões individualmente */
 .botao-perdi:hover {
-  background-color: #c72525;
+  background: linear-gradient(to right, #ff0000, #ffbf00);
   color: white;
-  border: 2px solid #c72525;
 }
 
 .botao-achei {
-  background-color: white;
+  background: linear-gradient(to right, #ffcece, #ffebb0);
   color: #ff3131;
-  border: 2px solid #ff3131;
 }
 
 .botao-achei:hover {
-  background-color: #fdcfcf;
-  color: black;
-  border: 2px solid #fdcfcf;
+  background: linear-gradient(to right, #ffdfdf, #fff0c4);
+  color: #ff3131;
 }
 
 .icon-container {
@@ -148,8 +144,8 @@
   padding: 35px;
   max-width: 585px; /* Define um limite máximo */
   height: 50px;
-  background-color: #ffd040; /* Cor de destaque */
-  color: black;
+  background: linear-gradient(to right, #ff3131, #ffd040);
+  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -162,12 +158,12 @@
 }
 
 .botao-extra:hover {
-  background-color: #ffe8a2;
+  background: linear-gradient(to right, #ff0000, #ffbf00);
 }
 
 .strong-extra {
   font-size: 20px;
-  color: black;
+  color: white;
 }
 
 .icone-paw {
@@ -177,7 +173,7 @@
 
 .icone-question {
   font-size: 20px;
-  color: black;
+  color: #ff3131;
   position: absolute;
   top: 67%;
   left: 50%;
