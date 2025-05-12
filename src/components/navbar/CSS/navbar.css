@@ -166,7 +166,7 @@ body {
 
 /* Botão Anunciar */
 .btn-anunciar {
-  background-color: #ff3131; /* Amarelo */
+  background: linear-gradient(to right, #ff3131, #ffd040);
   border: none;
   color: white;
   padding: 10px 20px;
@@ -178,13 +178,13 @@ body {
 }
 
 .btn-anunciar:hover {
-  background-color: #c71e1e;
+  background: linear-gradient(to right, #ff0000, #ffbf00);
 }
 
 /* Botão Entrar */
 .btn-entrar {
-  background-color: #ffffff; /* Azul */
-  border: 0.5px solid #ff3131;
+  background: linear-gradient(to right, #ffcece, #ffebb0);
+  border: none;
   color: #ff3131;
   padding: 10px 20px;
   font-size: 14px;
@@ -195,8 +195,7 @@ body {
 }
 
 .btn-entrar:hover {
-  background-color: #fdcfcf;
-  border: 0.5px solid #fdcfcf;
+  background: linear-gradient(to right, #ffdfdf, #fff0c4);
 }
 
 /* Alinhamento dos botões */
