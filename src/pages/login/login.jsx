@@ -1,7 +1,9 @@
-// src/pages/Login.jsx
 import React, { useState } from "react";
 import "./CSS/login.css";
 import { useNavigate } from "react-router-dom";
+
+import NavBar from "../../components/navbar/navbar.jsx";
+import Footer from "../../components/footer/footer.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,32 +28,38 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Faça o login no PetOS</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
-        {erro && <p className="error">{erro}</p>}
-        <button className="btn-login" type="submit">
-          Entrar
-        </button>
-      </form>
-      <div className="signup-link">
-        Não tem uma conta? <a href="/cadastro">Cadastre-se</a>
+    <>
+      <div className="container-login">
+        <NavBar />
+        <h2>Faça o login ou crie uma conta</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
+          {erro && <p className="error">{erro}</p>}
+          <button className="btn-login" type="submit">
+            Entrar
+          </button>
+        </form>
+        <div className="link-cadastro">
+          Não tem uma conta? <a href="/cadastro">Cadastre-se</a>
+        </div>
       </div>
-    </div>
+      <div className="footer-container">
+        <Footer />
+      </div>
+    </>
   );
 };
 
