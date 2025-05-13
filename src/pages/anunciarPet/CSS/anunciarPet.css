@@ -1,56 +1,79 @@
 .form-container {
   display: flex;
-  background: #ffffff;
-  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
+/* Lateral esquerda */
 .carrossel-lateral {
   flex: 1;
-  background: #e3d1ff;
-  padding: 3rem;
+  background: linear-gradient(to top, #ffcece, #ffebb0);
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Parte branca */
 .formulario {
   flex: 2;
   background: #ffffff;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Isso garante espaçamento entre conteúdo e botões */
+  padding: 3rem 4rem;
+  position: relative;
 }
 
+/* Conteúdo do formulário */
+.formulario-conteudo {
+  flex-grow: 1;
+}
+
+/* Labels e selects */
 label {
   display: block;
   margin-top: 1rem;
+  font-weight: 600;
+  color: #333;
 }
 
 select {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   margin-top: 0.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
 }
 
-.botoes-navegacao {
+/* 🔽 Botões agora limitados à div branca */
+.botoes-container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  padding: 20px 40px;
+  border-radius: 8px;
   margin-top: 2rem;
 }
 
+/* Estilo dos botões */
 .btn-voltar,
 .btn-avancar {
   padding: 0.75rem 1.5rem;
   border: none;
-  background-color: #7a32f2;
-  color: white;
+  background: linear-gradient(to right, #ffcece, #ffebb0);
+  color: black;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
+  transition: 0.2s ease;
 }
 
-.imagem-pet {
-  width: 80px;
-  height: 80px;
-  border-radius: 100%;
-  margin-bottom: 1rem;
-}
-
-.comentario {
-  font-style: italic;
-  font-size: 0.9rem;
+.btn-voltar:hover,
+.btn-avancar:hover {
+  opacity: 0.9;
 }
