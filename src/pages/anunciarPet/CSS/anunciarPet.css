@@ -4,68 +4,62 @@
   overflow: hidden;
 }
 
-/* Lateral esquerda */
 .carrossel-lateral {
   flex: 1;
   background: linear-gradient(to top, #ffcece, #ffebb0);
-  padding: 5rem;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* Parte branca */
 .formulario {
   flex: 2;
   background: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Isso garante espaçamento entre conteúdo e botões */
+  justify-content: space-between;
   padding: 3rem 4rem;
   position: relative;
 }
 
-/* Conteúdo do formulário */
 .formulario-conteudo {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza verticalmente */
+  align-items: center; /* Centraliza horizontalmente */
 }
 
-/* Labels e selects */
-label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: 600;
-  color: #333;
+.formulario-conteudo h2 {
+  margin-bottom: 20px;
 }
 
-select {
-  width: 100%;
-  padding: 0.75rem;
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-}
-
-/* 🔽 Botões agora limitados à div branca */
-.botoes-container {
+.botoes-container-anun {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: white;
   border: 2px solid #e0e0e0;
   padding: 20px 40px;
-  border-radius: 8px;
-  margin-top: 2rem;
+  margin: 0 -65px -50px -65px;
 }
 
-/* Estilo dos botões */
-.btn-voltar,
+.btn-voltar {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
 .btn-avancar {
   padding: 0.75rem 1.5rem;
   border: none;
-  background: linear-gradient(to right, #ffcece, #ffebb0);
+  background: linear-gradient(to right, #ffbbbb, #ffe8a2);
   color: black;
   font-weight: bold;
   cursor: pointer;
@@ -75,5 +69,30 @@ select {
 
 .btn-voltar:hover,
 .btn-avancar:hover {
-  opacity: 0.9;
+  opacity: 0.6;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  margin-right: 350px;
+  margin-top: 0.5rem;
 }

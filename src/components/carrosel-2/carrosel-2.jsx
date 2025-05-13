@@ -117,15 +117,19 @@ const historias = [
 function Carrosel() {
   return (
     <div className="historias-container">
-      <h2 className="titulo-historias">Histórias em destaque</h2>
+      <h2 className="titulo-historias">Anuncie com o PetOS</h2>
+      <a className="descricao-historias">
+        No PetOS, você pode criar um anúncio gratuito para ajudar a encontrar
+        seu pet perdido ou dar visibilidade a um animal para adoção. Conecte-se
+        com pessoas de sua comunidade de forma rápida e segura.
+      </a>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
-        navigation
-        pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
+        navigation
       >
         {historias.map((historia, index) => (
           <SwiperSlide key={index}>

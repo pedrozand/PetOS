@@ -1,30 +1,46 @@
-/* Botões de navegação (Anterior e Próximo) */
 .swiper-button-next,
 .swiper-button-prev {
-  color: white; /* Cor dos ícones */
-  width: 5px; /* Largura do ícone */
-  height: 5px; /* Altura do ícone */
-  transition: all 0.3s ease-in-out;
+  color: #4caf50;
+  width: 48px;
+  height: 48px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
 }
 
-/* Estilizando os indicadores (bolinhas) da paginação */
+.swiper-button-prev {
+  left: -40px;
+}
+
+.swiper-button-next {
+  right: -40px;
+}
+
 .swiper-pagination-bullet {
-  background: #ff6b6b; /* Cor padrão */
-  width: 10px; /* Tamanho */
+  background: #ff6b6b;
+  width: 10px;
   height: 10px;
-  opacity: 0.5; /* Deixa os inativos mais transparentes */
+  opacity: 0.5;
   transition: all 0.3s;
 }
 
-/* Cor e tamanho quando está ativo */
 .swiper-pagination-bullet-active {
-  background: #e63946; /* Cor mais intensa quando selecionado */
+  background: #e63946;
   width: 14px;
   height: 14px;
-  opacity: 1; /* Opacidade total */
+  opacity: 1;
 }
 
 .swiper-slide {
   display: flex;
   justify-content: center;
+  border-radius: 16px;
+}
+
+.swiper {
+  position: relative;
+  border-radius: 16px;
 }
