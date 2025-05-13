@@ -1,0 +1,56 @@
+.form-container {
+  display: flex;
+  background: #ffffff;
+  align-items: center;
+}
+
+.carrossel-lateral {
+  flex: 1;
+  background: #e3d1ff;
+  padding: 3rem;
+}
+
+.formulario {
+  flex: 2;
+  background: #ffffff;
+  padding: 2rem;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+}
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.botoes-navegacao {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.btn-voltar,
+.btn-avancar {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background-color: #7a32f2;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.imagem-pet {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+}
+
+.comentario {
+  font-style: italic;
+  font-size: 0.9rem;
+}

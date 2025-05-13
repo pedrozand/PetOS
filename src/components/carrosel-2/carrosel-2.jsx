@@ -4,8 +4,8 @@ import { FaStar } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./CSS/carrosel-og.css";
-import "./CSS/swiper-og.css";
+import "./CSS/carrosel-2.css";
+import "./CSS/swiper-2.css";
 
 const historias = [
   {
@@ -116,19 +116,12 @@ const historias = [
 
 function Carrosel() {
   return (
-    <div className="historias-container-og">
-      <h2 className="titulo-historias-og">Histórias em destaque</h2>
-      {/* Botão "Ver mais" fixo no canto do carrossel */}
-      <button
-        className="ver-mais-fixo-og"
-        onClick={() => alert("Abrir página completa!")}
-      >
-        Ver mais
-      </button>
+    <div className="historias-container">
+      <h2 className="titulo-historias">Histórias em destaque</h2>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={30}
-        slidesPerView={3}
+        spaceBetween={20}
+        slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -136,23 +129,23 @@ function Carrosel() {
       >
         {historias.map((historia, index) => (
           <SwiperSlide key={index}>
-            <div className="cartao-historia-og">
-              <div className="imagem-perfil-og reencontro-container-og">
+            <div className="cartao-historia">
+              <div className="imagem-perfil reencontro-container">
                 <img src={historia.imagem} alt={historia.pet} />
-                <p className="reencontro-og">
+                <p className="reencontro">
                   Reencontro de{" "}
-                  <strong className="nome-cachorro-og">{historia.pet}</strong>
+                  <strong className="nome-cachorro">{historia.pet}</strong>
                 </p>
               </div>
 
-              <h3 className="dono-og">
+              <h3 className="dono">
                 {historia.nome}{" "}
                 {Array(historia.avaliacao).fill(
-                  <FaStar className="icon-star-og" />
+                  <FaStar className="icon-star" />
                 )}
               </h3>
-              <p className="cidade-og">{historia.cidade}</p>
-              <p className="descricao-og">"{historia.descricao}"</p>
+              <p className="cidade">{historia.cidade}</p>
+              <p className="descricao">"{historia.descricao}"</p>
             </div>
           </SwiperSlide>
         ))}

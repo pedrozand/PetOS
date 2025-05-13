@@ -330,7 +330,9 @@ export default function Navbar() {
 
             {/* <!-- Ícone Auxiliares == Usuário não logado --> */}
             <div class="right-buttons">
-              <button class="btn-anunciar">Anunciar</button>
+              <Link to="/anunciarPet">
+                <button class="btn-anunciar">Anunciar</button>
+              </Link>
               <Link to="/login">
                 <button class="btn-entrar">Entrar</button>
               </Link>
