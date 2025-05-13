@@ -147,10 +147,7 @@ function Inicial() {
               </div>
             </Link>
 
-            <a
-              className="botao botao-achei"
-              onClick={() => alert("Abrir página completa!")}
-            >
+            <Link to="/anunciarPet" className="botao botao-achei">
               <div className="icon-container">
                 <RiSearch2Fill className="icon-search-achei" />
                 <LiaBoneSolid className="icon-bone-achei" />
@@ -159,7 +156,7 @@ function Inicial() {
                 <strong className="strong-perdi">Achei um Pet</strong>
                 <span>Quero buscar o tutor</span>
               </div>
-            </a>
+            </Link>
           </div>
           {/* Novo botão abaixo */}
           <button
