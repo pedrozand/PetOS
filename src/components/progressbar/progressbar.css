@@ -1,6 +1,5 @@
 .progressbar-container {
-  width: 100%;
-  margin-top: -50px;
+  margin: -50px -64px 0 -64px;
 }
 
 .progressbar-line-background {
