@@ -39,6 +39,12 @@ export default function FormEtapa1({ onProximo }) {
     onProximo(formData);
   };
 
+  const situacaoDescricoes = {
+    Perdido: "Seu pet sumiu e você está procurando por ele.",
+    "Procurando Tutor": "Você encontrou um pet e está procurando o tutor.",
+    Adocao: "Você deseja anunciar um pet para adoção.",
+  };
+
   return (
     <div className="form-container">
       <div className="carrossel-lateral">
@@ -76,9 +82,13 @@ export default function FormEtapa1({ onProximo }) {
                   <IoIosArrowDown className="select-icon" />
                 )}
               </div>
+              {formData.situacao && (
+                <p className="descricao-situacao">
+                  {situacaoDescricoes[formData.situacao]}
+                </p>
+              )}
             </label>
 
-            {/* Espécie */}
             <label>
               Espécie
               <div className="select-wrapper">
@@ -107,7 +117,6 @@ export default function FormEtapa1({ onProximo }) {
               </div>
             </label>
 
-            {/* Gênero */}
             <label>
               Gênero
               <div className="select-wrapper">
