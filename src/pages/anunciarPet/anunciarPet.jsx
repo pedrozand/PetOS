@@ -4,6 +4,7 @@ import {
   IoIosArrowBack,
   IoIosArrowForward,
   IoIosArrowDown,
+  IoIosArrowUp,
 } from "react-icons/io";
 
 import Carrosel from "../../components/carrosel-2/carrosel-2.jsx";
@@ -16,12 +17,26 @@ export default function FormEtapa1({ onProximo }) {
     genero: "",
   });
 
+  const [selectFocus, setSelectFocus] = useState({
+    situacao: false,
+    especie: false,
+    genero: false,
+  });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleFocus = (campo) => {
+    setSelectFocus((prev) => ({ ...prev, [campo]: true }));
+  };
+
+  const handleBlur = (campo) => {
+    setSelectFocus((prev) => ({ ...prev, [campo]: false }));
+  };
+
   const handleProximo = () => {
-    onProximo(formData); // Envia os dados para o componente pai
+    onProximo(formData);
   };
 
   return (
