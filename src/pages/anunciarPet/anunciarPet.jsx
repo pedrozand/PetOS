@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,9 +10,14 @@ import {
 } from "react-icons/io";
 
 import Carrosel from "../../components/carrosel-2/carrosel-2.jsx";
+import ProgressBar from "../../components/progressbar/progressbar.jsx";
 import "./CSS/anunciarPet.css";
 
 export default function FormEtapa1({ onProximo }) {
+  const [etapaAtual, setEtapaAtual] = React.useState(3);
+
+  const totalEtapas = 7;
+
   const [formData, setFormData] = useState({
     situacao: "",
     especie: "",
@@ -52,6 +59,7 @@ export default function FormEtapa1({ onProximo }) {
       </div>
 
       <div className="formulario">
+        <ProgressBar currentStep={etapaAtual} totalSteps={totalEtapas} />
         <div className="formulario-conteudo">
           <h2>Vamos começar com algumas informações básicas</h2>
           <div className="form-group">

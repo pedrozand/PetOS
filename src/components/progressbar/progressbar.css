@@ -1,0 +1,19 @@
+.progressbar-container {
+  width: 100%;
+  margin-top: -50px;
+}
+
+.progressbar-line-background {
+  height: 20px;
+  background-color: #e0e0e0;
+  background: linear-gradient(to right, #eeeeee, #e0e0e0);
+  position: relative;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.progressbar-line-fill {
+  height: 20px;
+  background: linear-gradient(to right, #ff3131, #ffd040);
+  transition: width 0.3s ease-in-out;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
