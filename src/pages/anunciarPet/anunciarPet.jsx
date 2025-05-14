@@ -14,7 +14,7 @@ import ProgressBar from "../../components/progressbar/progressbar.jsx";
 import "./CSS/anunciarPet.css";
 
 export default function FormEtapa1({ onProximo }) {
-  const [etapaAtual, setEtapaAtual] = React.useState(3);
+  const [etapaAtual, setEtapaAtual] = React.useState(1);
 
   const totalEtapas = 7;
 
