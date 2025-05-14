@@ -35,6 +35,10 @@
   margin-bottom: 20px;
 }
 
+.formulario-conteudo a {
+  margin-bottom: 10px;
+}
+
 .botoes-container-anun {
   display: flex;
   justify-content: space-between;
@@ -100,18 +104,20 @@
 
 .select-wrapper {
   position: relative;
-  display: block;
   width: 100%;
+  margin-top: 10px;
 }
 
 .custom-select {
   width: 100%;
-  padding: 10px 40px 10px 12px; /* espaço para o ícone */
+  padding: 10px 40px 10px 12px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   appearance: none;
   background-color: white;
+  cursor: pointer;
+  color: #000;
 }
 
 .select-icon {
@@ -120,12 +126,30 @@
   right: 12px;
   transform: translateY(-50%);
   pointer-events: none;
-  color: #333;
   font-size: 1.2rem;
+  color: #333;
+  transition: transform 0.3s ease;
 }
 
 .arrow-class-og {
   vertical-align: middle;
-  margin-bottom: 2px; /* Ajuste fino se necessário */
-  font-size: 1.2em; /* Ajuste proporcional ao texto */
+  margin-bottom: 2px;
+  font-size: 1.2em;
+}
+
+.select-placeholder {
+  color: #999;
+}
+
+.custom-select option[value=""] {
+  color: #999;
+}
+
+.custom-select option:not([value=""]) {
+  color: #000;
+}
+
+.custom-select:focus {
+  border: 2px solid #ffc1c1;
+  outline: none;
 }

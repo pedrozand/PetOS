@@ -47,7 +47,7 @@ export default function FormEtapa1({ onProximo }) {
 
       <div className="formulario">
         <div className="formulario-conteudo">
-          <h2>Vamos começar com algumas informações básicas.</h2>
+          <h2>Vamos começar com algumas informações básicas</h2>
           <div className="form-group">
             {/* Situação */}
             <label>
@@ -57,13 +57,24 @@ export default function FormEtapa1({ onProximo }) {
                   name="situacao"
                   value={formData.situacao}
                   onChange={handleChange}
-                  className="custom-select"
+                  onFocus={() => handleFocus("situacao")}
+                  onBlur={() => handleBlur("situacao")}
+                  className={`custom-select ${
+                    formData.situacao === "" ? "select-placeholder" : ""
+                  }`}
                 >
+                  <option value="" disabled hidden>
+                    Selecione uma opção
+                  </option>
                   <option value="Perdido">Perdido</option>
                   <option value="Procurando Tutor">Procurando um Tutor</option>
                   <option value="Adocao">Para Adoção</option>
                 </select>
-                <IoIosArrowDown className="select-icon" />
+                {selectFocus.situacao ? (
+                  <IoIosArrowUp className="select-icon" />
+                ) : (
+                  <IoIosArrowDown className="select-icon" />
+                )}
               </div>
             </label>
 
@@ -75,13 +86,24 @@ export default function FormEtapa1({ onProximo }) {
                   name="especie"
                   value={formData.especie}
                   onChange={handleChange}
-                  className="custom-select"
+                  onFocus={() => handleFocus("especie")}
+                  onBlur={() => handleBlur("especie")}
+                  className={`custom-select ${
+                    formData.especie === "" ? "select-placeholder" : ""
+                  }`}
                 >
+                  <option value="" disabled hidden>
+                    Selecione uma opção
+                  </option>
                   <option value="Cachorro">Cachorro</option>
                   <option value="Gato">Gato</option>
                   <option value="Passaro">Pássaro</option>
                 </select>
-                <IoIosArrowDown className="select-icon" />
+                {selectFocus.especie ? (
+                  <IoIosArrowUp className="select-icon" />
+                ) : (
+                  <IoIosArrowDown className="select-icon" />
+                )}
               </div>
             </label>
 
@@ -93,12 +115,23 @@ export default function FormEtapa1({ onProximo }) {
                   name="genero"
                   value={formData.genero}
                   onChange={handleChange}
-                  className="custom-select"
+                  onFocus={() => handleFocus("genero")}
+                  onBlur={() => handleBlur("genero")}
+                  className={`custom-select ${
+                    formData.genero === "" ? "select-placeholder" : ""
+                  }`}
                 >
+                  <option value="" disabled hidden>
+                    Selecione uma opção
+                  </option>
                   <option value="Macho">Macho</option>
                   <option value="Femea">Fêmea</option>
                 </select>
-                <IoIosArrowDown className="select-icon" />
+                {selectFocus.genero ? (
+                  <IoIosArrowUp className="select-icon" />
+                ) : (
+                  <IoIosArrowDown className="select-icon" />
+                )}
               </div>
             </label>
           </div>
