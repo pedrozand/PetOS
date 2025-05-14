@@ -129,7 +129,6 @@ function Carrosel() {
         slidesPerView={1}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
-        navigation
       >
         {historias.map((historia, index) => (
           <SwiperSlide key={index}>

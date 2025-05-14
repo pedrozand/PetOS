@@ -129,7 +129,6 @@ function Carrosel() {
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={30}
         slidesPerView={3}
-        navigation
         pagination={{ clickable: true }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
