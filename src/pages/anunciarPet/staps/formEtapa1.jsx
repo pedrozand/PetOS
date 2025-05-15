@@ -9,9 +9,9 @@ import {
   IoIosArrowUp,
 } from "react-icons/io";
 
-import Carrosel from "../../components/carrosel-2/carrosel-2.jsx";
-import ProgressBar from "../../components/progressbar/progressbar.jsx";
-import "./CSS/anunciarPet.css";
+import Carrosel from "../../../components/carrosel-2/carrosel-2.jsx";
+import ProgressBar from "../../../components/progressbar/progressbar.jsx";
+import "../CSS/anunciarPet.css";
 
 export default function FormEtapa1({ onProximo }) {
   const [etapaAtual, setEtapaAtual] = React.useState(1);

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Inicial from "./pages/inicial/Inicial.jsx"; // Página inicial
-import Main from "./pages/main/Main.jsx"; // Outra página do sistema
-import Login from "./pages/login/login.jsx"; // Página de Login
+import Inicial from "./pages/inicial/Inicial.jsx";
+import Main from "./pages/main/Main.jsx";
+import Login from "./pages/login/login.jsx";
 import CadastroUser from "./pages/cadastroUser/cadastroUser.jsx";
-import AnunciarPet from "./pages/anunciarPet/anunciarPet.jsx";
+import FormContainer from "./pages/anunciarPet/formContainer.jsx";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cadastroUser" element={<CadastroUser />} />
-        <Route path="/anunciarPet" element={<AnunciarPet />} />
+        <Route path="/anunciarPet" element={<FormContainer />} />
       </Routes>
     </Router>
   );
