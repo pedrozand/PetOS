@@ -18,33 +18,65 @@ export default function FormContainer() {
     setStep((prev) => prev + 1);
   };
 
+  const handleVoltar = () => {
+    setStep((prev) => Math.max(prev - 1, 0));
+  };
+
   return (
     <>
       {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
 
       {/* Etapas para situação "Perdido" */}
       {formData.situacao === "Perdido" && step === 1 && (
-        <FormEtapa2Perdido onProximo={handleProximo} dados={formData} />
+        <FormEtapa2Perdido
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
       {formData.situacao === "Perdido" && step === 2 && (
-        <FormEtapa3Perdido onProximo={handleProximo} dados={formData} />
+        <FormEtapa3Perdido
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
       {formData.situacao === "Perdido" && step === 3 && (
-        <FormEtapa4Perdido onProximo={handleProximo} dados={formData} />
+        <FormEtapa4Perdido
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
       {formData.situacao === "Perdido" && step === 4 && (
-        <FormEtapa5Perdido onProximo={handleProximo} dados={formData} />
+        <FormEtapa5Perdido
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
       {formData.situacao === "Perdido" && step === 5 && (
-        <FormEtapa6Perdido onProximo={handleProximo} dados={formData} />
+        <FormEtapa6Perdido
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
 
       {/* Etapas para outras situações */}
       {step === 1 && formData.situacao === "Procurando Tutor" && (
-        <FormEtapa2Tutor onProximo={handleProximo} dados={formData} />
+        <FormEtapa2Tutor
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
       {step === 1 && formData.situacao === "Adocao" && (
-        <FormEtapa2Adocao onProximo={handleProximo} dados={formData} />
+        <FormEtapa2Adocao
+          onProximo={handleProximo}
+          onVoltar={handleVoltar}
+          dados={formData}
+        />
       )}
     </>
   );

@@ -11,6 +11,7 @@ export default function FormBase({
   totalEtapas = 7,
   children,
   onProximo,
+  onVoltar, // Adicionado para suportar o botão "Voltar"
 }) {
   return (
     <div className="form-container">
@@ -21,15 +22,22 @@ export default function FormBase({
       <div className="formulario">
         <ProgressBar currentStep={etapaAtual} totalSteps={totalEtapas} />
 
-        {/* Aqui entra o conteúdo específico da etapa */}
+        {/* Conteúdo específico da etapa */}
         {children}
 
         <div className="botoes-container-anun">
-          <Link to="/">
-            <button className="btn-voltar">
-              <IoIosArrowBack className="arrow-class-og" /> Página inicial
+          {etapaAtual > 1 ? (
+            <button className="btn-voltar" onClick={onVoltar}>
+              <IoIosArrowBack className="arrow-class-og" /> Voltar
             </button>
-          </Link>
+          ) : (
+            <Link to="/">
+              <button className="btn-voltar">
+                <IoIosArrowBack className="arrow-class-og" /> Página inicial
+              </button>
+            </Link>
+          )}
+
           <button className="btn-avancar" onClick={onProximo}>
             Prosseguir <IoIosArrowForward className="arrow-class-og" />
           </button>
