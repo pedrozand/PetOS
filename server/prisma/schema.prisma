@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  idUser               Int                  @id @default(autoincrement())
+  nome                 String
+  sobrenome            String
+  telefone             String
+  email                String               @unique
+  senha                String
+  cep                  String
+  numeroCasa           String
+  dataCadastro         DateTime             @default(now())
+
+  animais              Animal[]
+  postagens            Postagem[]
+  comentarios          Comentario[]
+  curtidas             Curtida[]
+  compartilhamentos    Compartilhamento[]
+}
+
+model Animal {
+  idAnimal             Int                  @id @default(autoincrement())
+  nome                 String
+  especie              String
+  raca                 String
+  porte                String
+  corPredominante      String
+  corOlhos             String
+  idade                String
+  descricao            String
+  imagem               String
+  idUser               Int
+  usuario              Usuario              @relation(fields: [idUser], references: [idUser])
+
+  postagens            Postagem[]
+}
+
+model Status {
+  idSituacao           Int                  @id @default(autoincrement())
+  situacao             String
+
+  postagens            Postagem[]
+}
+
+model Postagem {
+  idPost               Int                  @id @default(autoincrement())
+  idAnimal             Int
+  idUser               Int
+  idSituacao           Int
+  endereco             String
+  dataPost             DateTime
+  horarioPost          String
+  periodoPost          String
+  statusPost           String
+
+  animal               Animal               @relation(fields: [idAnimal], references: [idAnimal])
+  usuario              Usuario              @relation(fields: [idUser], references: [idUser])
+  status               Status               @relation(fields: [idSituacao], references: [idSituacao])
+
+  comentarios          Comentario[]
+  curtidas             Curtida[]
+  compartilhamentos    Compartilhamento[]
+}
+
+model Comentario {
+  idComentario         Int                  @id @default(autoincrement())
+  texto                String
+  dataComentario       DateTime
+  horaComentario       String
+  idAutor              Int
+  idPost               Int
+
+  autor                Usuario              @relation(fields: [idAutor], references: [idUser])
+  postagem             Postagem             @relation(fields: [idPost], references: [idPost])
+}
+
+model Curtida {
+  idCurtida            Int                  @id @default(autoincrement())
+  idUser               Int
+  dataCurtida          DateTime
+  horaCurtida          String
+  idPost               Int
+
+  usuario              Usuario              @relation(fields: [idUser], references: [idUser])
+  postagem             Postagem             @relation(fields: [idPost], references: [idPost])
+}
+
+model Compartilhamento {
+  idCompartilhamento   Int                  @id @default(autoincrement())
+  idUser               Int
+  dataCompartilhamento DateTime
+  horaCompartilhamento String
+  idPost               Int
+
+  usuario              Usuario              @relation(fields: [idUser], references: [idUser])
+  postagem             Postagem             @relation(fields: [idPost], references: [idPost])
+}
