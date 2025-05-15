@@ -2,13 +2,13 @@
 import React from "react";
 import FormBase from "../../formBase";
 
-export default function FormEtapa2Perdido({ onProximo, dados }) {
+export default function FormEtapa6Perdido({ onProximo, dados }) {
   const handleProximo = () => {
     onProximo({ local: "Exemplo de local perdido" });
   };
 
   return (
-    <FormBase etapaAtual={2} onProximo={handleProximo}>
+    <FormBase etapaAtual={6} onProximo={handleProximo}>
       <div className="formulario-conteudo">
         <h2>Informações de perda</h2>
         <p>Conteúdo específico para a situação "Perdido"</p>
