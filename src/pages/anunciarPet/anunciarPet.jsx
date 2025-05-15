@@ -10,7 +10,7 @@ import {
 import Carrosel from "../../components/carrosel-2/carrosel-2.jsx";
 import "./CSS/anunciarPet.css";
 
-export default function FormEtapa1({ onProximo }) {
+export default function AnunciarPet({ onProximo }) {
   const [formData, setFormData] = useState({
     situacao: "",
     especie: "",
