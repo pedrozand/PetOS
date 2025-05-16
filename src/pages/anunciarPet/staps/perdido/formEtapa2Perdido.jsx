@@ -6,27 +6,27 @@ import "./CSS/formEtapa2Perdido.css";
 export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
   const [imagens, setImagens] = useState([]);
   const [dragOver, setDragOver] = useState(false);
-  const [erro, setErro] = useState("");
+  const [erroImagem, setErroImagem] = useState(""); // Estado para erro
 
   const adicionarImagens = (arquivos) => {
-    const restantes = 5 - imagens.length;
-    const arquivosValidos = arquivos.filter((file) =>
-      file.type.startsWith("image/")
-    );
+    const novosArquivos = arquivos
+      .filter((file) => file.type.startsWith("image/"))
+      .slice(0, 5 - imagens.length);
 
-    if (arquivosValidos.length > restantes) {
-      setErro(`Você só pode adicionar até 5 imagens!`);
-    } else {
-      setErro(""); // limpa erro anterior
+    if (novosArquivos.length + imagens.length > 5) {
+      setErroImagem("Você pode adicionar no máximo 5 fotos.");
+      return;
     }
 
-    const novosArquivos = arquivosValidos.slice(0, restantes);
+    if (novosArquivos.length === 0) return;
+
     const imagensPreview = novosArquivos.map((file) => ({
       file,
       preview: URL.createObjectURL(file),
     }));
 
     setImagens((prev) => [...prev, ...imagensPreview]);
+    setErroImagem(""); // Limpa erro se imagens forem adicionadas com sucesso
   };
 
   const handleImagemChange = (e) => {
@@ -36,26 +36,25 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
 
   const handleDrop = (e) => {
     e.preventDefault();
-    setDragOver(false);
     const arquivos = Array.from(e.dataTransfer.files);
     adicionarImagens(arquivos);
   };
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    setDragOver(true);
-  };
-
-  const handleDragLeave = () => {
-    setDragOver(false);
   };
 
   const removerImagem = (index) => {
     setImagens((prev) => prev.filter((_, i) => i !== index));
-    setErro(""); // limpa o erro ao remover uma imagem
+    setErroImagem(""); // Limpa erro ao remover e permitir nova tentativa
   };
 
   const handleProximo = () => {
+    if (imagens.length === 0) {
+      setErroImagem("Por favor, adicione ao menos uma foto do pet.");
+      return;
+    }
+    setErroImagem(""); // Limpa erro ao avançar com sucesso
     onProximo({ fotos: imagens.map((img) => img.file) });
   };
 
@@ -64,19 +63,18 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
       <div className="formulario-conteudo">
         <div className="box-texto-destaque">
           <p>
-            Carregue <b>até 5 fotos</b> do seu pet. Elas serão utilizadas em
-            todos os materiais de divulgação, incluindo cartazes, postagens em
-            redes sociais e anúncios online.
+            Carregue <strong>até 5 fotos</strong> do seu pet. Elas serão
+            utilizadas em todos os materiais de divulgação, incluindo cartazes,
+            postagens em redes sociais e anúncios online.
           </p>
         </div>
 
         <div className="upload-area-wrapper">
           <h3 className="titulo-upload-img">Fotos do pet</h3>
           <label
-            className={`upload-area ${dragOver ? "dragover" : ""}`}
+            className={`upload-area ${dragOver ? "drag-over" : ""}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
           >
             <input
               type="file"
@@ -97,8 +95,7 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
             </span>
           </label>
 
-          {/* Exibe mensagem de erro */}
-          {erro && <p className="mensagem-erro">{erro}</p>}
+          {erroImagem && <div className="mensagem-erro-2">{erroImagem}</div>}
 
           <div className="preview-imagens">
             {imagens.map((img, index) => (

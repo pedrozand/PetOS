@@ -95,3 +95,10 @@
   margin-top: 8px;
   font-size: 0.9rem;
 }
+
+.mensagem-erro-2 {
+  margin-top: 30px;
+  color: #e63946;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
