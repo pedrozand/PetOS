@@ -35,6 +35,9 @@
   color: #333;
   outline: none;
   transition: border 0.2s ease;
+
+  appearance: none; /* remove a seta nativa */
+  padding-right: 2rem; /* espaço para o ícone */
 }
 
 .etapa3-custom-select:focus {
@@ -52,4 +55,17 @@
 
 .etapa3-custom-select option {
   color: #000 !important; /* Força cor preta nas opções */
+}
+
+.etapa3-select-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.etapa3-select-icon {
+  position: absolute;
+  right: 0.75rem;
+  pointer-events: none;
+  color: #555;
 }

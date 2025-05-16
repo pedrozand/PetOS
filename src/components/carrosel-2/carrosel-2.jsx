@@ -121,7 +121,7 @@ function Carrosel() {
       <a className="descricao-historias">
         No PetOS, você pode criar um <b>anúncio gratuito</b> para ajudar a
         encontrar seu pet perdido ou dar visibilidade a um animal para adoção.
-        <b>Conecte-se com pessoas de sua comunidade</b> de forma rápida e
+        <b> Conecte-se com pessoas de sua comunidade</b> de forma rápida e
         segura.
       </a>
       <Swiper
