@@ -63,9 +63,9 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
       <div className="formulario-conteudo">
         <div className="box-texto-destaque">
           <p>
-            Carregue <strong>até 5 fotos</strong> do seu pet. Elas serão
-            utilizadas em todos os materiais de divulgação, incluindo cartazes,
-            postagens em redes sociais e anúncios online.
+            Carregue <b>até 5 fotos</b> do seu pet. Elas serão utilizadas em
+            todos os materiais de divulgação, incluindo cartazes, postagens em
+            redes sociais e anúncios online.
           </p>
         </div>
 

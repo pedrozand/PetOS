@@ -1,0 +1,55 @@
+.etapa3-select-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.etapa3-select-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.etapa3-select-label {
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: #2d2d2d;
+}
+
+.etapa3-optional-label {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 0.3rem;
+}
+
+.etapa3-custom-select {
+  width: 500px;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  appearance: none;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.etapa3-custom-select:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
+.etapa3-custom-select {
+  color: #000; /* Cor padrão */
+}
+
+.etapa3-custom-select.placeholder {
+  color: #999;
+}
+
+.etapa3-custom-select option {
+  color: #000 !important; /* Força cor preta nas opções */
+}
