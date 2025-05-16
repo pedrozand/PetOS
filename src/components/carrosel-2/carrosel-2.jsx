@@ -119,9 +119,10 @@ function Carrosel() {
     <div className="historias-container">
       <h2 className="titulo-historias">Anuncie com o PetOS</h2>
       <a className="descricao-historias">
-        No PetOS, você pode criar um anúncio gratuito para ajudar a encontrar
-        seu pet perdido ou dar visibilidade a um animal para adoção. Conecte-se
-        com pessoas de sua comunidade de forma rápida e segura.
+        No PetOS, você pode criar um <b>anúncio gratuito</b> para ajudar a
+        encontrar seu pet perdido ou dar visibilidade a um animal para adoção.
+        <b>Conecte-se com pessoas de sua comunidade</b> de forma rápida e
+        segura.
       </a>
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}

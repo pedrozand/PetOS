@@ -11,7 +11,7 @@ export default function FormBase({
   totalEtapas = 7,
   children,
   onProximo,
-  onVoltar, // Adicionado para suportar o botão "Voltar"
+  onVoltar, 
 }) {
   return (
     <div className="form-container">
