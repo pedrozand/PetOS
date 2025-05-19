@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import FormBase from "../../formBase";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 import "./CSS/formEtapa5Perdido.css";
 
-export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
+export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
   const [local, setLocal] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [sugestoes, setSugestoes] = useState([]);
-  const bloquearBusca = useRef(false); // ref para evitar buscas indevidas
-
-  const handleProximo = () => {
-    onProximo({ local });
-  };
+  const [coordenadas, setCoordenadas] = useState(null);
+  const [referencia, setReferencia] = useState(""); // para ponto de referência
+  const mapRef = useRef(null);
+  const markerRef = useRef(null);
+  const bloquearBusca = useRef(false);
 
   const formatarEndereco = (address) => {
     const { road, residential, suburb, city, town, state, country } = address;
@@ -19,14 +21,18 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
     const cidade = city || town || "";
     const estado = state || "";
     const pais = country || "";
-
     return [rua, bairro, cidade, estado, pais].filter(Boolean).join(", ");
+  };
+
+  const handleProximo = () => {
+    // Passa local e referencia no próximo
+    onProximo({ local, referencia });
   };
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (bloquearBusca.current) {
-        bloquearBusca.current = false; // desbloqueia após evitar 1 ciclo
+        bloquearBusca.current = false;
         return;
       }
 
@@ -52,7 +58,6 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-
           fetch(
             `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
           )
@@ -62,22 +67,42 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
                 const enderecoFormatado = formatarEndereco(data.address);
                 setLocal(enderecoFormatado);
                 setInputValue(enderecoFormatado);
-                bloquearBusca.current = true; // impede nova busca
-                setSugestoes([]); // limpa lista
+                setCoordenadas([latitude, longitude]);
+                bloquearBusca.current = true;
+                setSugestoes([]);
               }
-            })
-            .catch((err) =>
-              console.error("Erro ao buscar endereço atual:", err)
-            );
+            });
         },
         (error) => {
           console.error("Erro ao obter localização:", error);
         }
       );
     } else {
-      alert("Geolocalização não é suportada no seu navegador.");
+      alert("Geolocalização não é suportada.");
     }
   };
+
+  // Inicializa o mapa quando coordenadas aparecem
+  useEffect(() => {
+    if (coordenadas && !mapRef.current) {
+      // Inicializa o mapa somente quando o div está no DOM (porque renderiza só se coordenadas)
+      mapRef.current = L.map("map").setView(coordenadas, 16);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap",
+      }).addTo(mapRef.current);
+    }
+
+    if (coordenadas && mapRef.current) {
+      const [lat, lon] = coordenadas;
+      mapRef.current.setView([lat, lon], 16);
+
+      if (markerRef.current) {
+        markerRef.current.setLatLng([lat, lon]);
+      } else {
+        markerRef.current = L.marker([lat, lon]).addTo(mapRef.current);
+      }
+    }
+  }, [coordenadas]);
 
   return (
     <FormBase etapaAtual={5} onProximo={handleProximo} onVoltar={onVoltar}>
@@ -94,8 +119,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
           <div className="endereco-label-linha">
             <label className="form-label">Endereço</label>
             <button
-              className="usar-localizacao-btn"
               type="button"
+              className="usar-localizacao-btn"
               onClick={usarLocalizacaoAtual}
             >
               Usar localização atual
@@ -112,24 +137,53 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
 
           {sugestoes.length > 0 && (
             <ul className="sugestoes-lista">
-              {sugestoes.map((item) => (
-                <li
-                  key={item.place_id}
-                  onClick={() => {
-                    const enderecoFormatado = formatarEndereco(item.address);
-                    setLocal(enderecoFormatado);
-                    setInputValue(enderecoFormatado);
-                    bloquearBusca.current = true;
-                    setSugestoes([]);
-                  }}
-                  className="sugestao-item"
-                >
-                  {formatarEndereco(item.address)}
-                </li>
-              ))}
+              {sugestoes.map((item) => {
+                const endereco = formatarEndereco(item.address);
+                return (
+                  <li
+                    key={item.place_id}
+                    onClick={() => {
+                      setLocal(endereco);
+                      setInputValue(endereco);
+                      bloquearBusca.current = true;
+                      setCoordenadas([item.lat, item.lon]);
+                      setSugestoes([]);
+                    }}
+                    className="sugestao-item"
+                  >
+                    {endereco}
+                  </li>
+                );
+              })}
             </ul>
           )}
+
+          {/* Caixa para ponto de referência - sempre aparece */}
+          <div className="referencia-container" style={{ marginTop: "15px" }}>
+            <label className="form-label">Ponto de referência (opcional)</label>
+            <input
+              id="referenciaInput"
+              type="text"
+              className="referencia-input"
+              placeholder="Descreva um ponto de referência próximo"
+              value={referencia}
+              onChange={(e) => setReferencia(e.target.value)}
+            />
+          </div>
         </div>
+
+        {/* Renderiza o mapa só se coordenadas estiverem definidas */}
+        {coordenadas && (
+          <div
+            id="map"
+            style={{
+              height: "200px",
+              width: "550px",
+              borderRadius: "8px",
+              position: "relative",
+            }}
+          ></div>
+        )}
       </div>
     </FormBase>
   );
