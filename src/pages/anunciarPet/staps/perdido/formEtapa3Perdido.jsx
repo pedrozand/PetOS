@@ -231,11 +231,6 @@ export default function FormEtapa3Perdido({ onProximo, onVoltar, dados }) {
   return (
     <FormBase etapaAtual={3} onProximo={handleProximo} onVoltar={onVoltar}>
       <div className="formulario-conteudo">
-        <h2>Informações adicionais do pet</h2>
-        <p>
-          Preencha os dados abaixo para nos ajudar a identificar melhor o pet.
-        </p>
-
         <div className="etapa3-select-group">
           {renderSelectWithIcon(
             "Raça",
