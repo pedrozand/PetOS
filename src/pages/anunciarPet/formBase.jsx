@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-import Carrosel from "../../components/carrosel-2/carrosel-2.jsx";
 import ProgressBar from "../../components/progressbar/progressbar.jsx";
 import "./CSS/formBase.css";
 
@@ -11,14 +10,10 @@ export default function FormBase({
   totalEtapas = 7,
   children,
   onProximo,
-  onVoltar, 
+  onVoltar,
 }) {
   return (
     <div className="form-container">
-      <div className="carrossel-lateral">
-        <Carrosel />
-      </div>
-
       <div className="formulario">
         <ProgressBar currentStep={etapaAtual} totalSteps={totalEtapas} />
 
