@@ -49,7 +49,7 @@
   color: #6b7280;
 }
 
-.upload-area.dragover {
+.upload-area.drag-over {
   background: linear-gradient(to right, #fff6f6, #fffcf1);
   border-color: #ff9a9a;
 }

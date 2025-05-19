@@ -38,6 +38,7 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
     e.preventDefault();
     const arquivos = Array.from(e.dataTransfer.files);
     adicionarImagens(arquivos);
+    setDragOver(false);
   };
 
   const handleDragOver = (e) => {
@@ -75,6 +76,8 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
             className={`upload-area ${dragOver ? "drag-over" : ""}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
+            onDragEnter={() => setDragOver(true)}
+            onDragLeave={() => setDragOver(false)}
           >
             <input
               type="file"
