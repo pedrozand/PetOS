@@ -21,7 +21,7 @@
   padding: 16px;
   border-radius: 8px;
   color: #585858;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 1rem;
   max-width: 550px;
 }
@@ -181,4 +181,11 @@
   cursor: pointer;
   font-size: 16px;
   color: inherit;
+}
+
+.mensagem-erro-local {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-left: 4px;
 }

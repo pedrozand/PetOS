@@ -15,6 +15,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
   const mapRef = useRef(null);
   const markerRef = useRef(null);
   const bloquearBusca = useRef(false);
+  const [erroLocal, setErroLocal] = useState("");
 
   const formatarEndereco = (address) => {
     const { road, residential, suburb, city, town, state, country } = address;
@@ -27,7 +28,12 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
   };
 
   const handleProximo = () => {
-    // Passa local e referencia no próximo
+    if (!local || local.trim() === "") {
+      setErroLocal("Por favor, insira um endereço válido.");
+      return;
+    }
+
+    setErroLocal(""); // limpa o erro se estiver tudo certo
     onProximo({ local, referencia });
   };
 
@@ -137,7 +143,6 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
                 onClick={() => {
                   setLocal("");
                   setInputValue("");
-                  setCoordenadas(null);
                 }}
                 aria-label="Apagar endereço"
               />
@@ -148,9 +153,13 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
               className="endereco-input"
               placeholder="Insira o endereço onde o pet foi visto pela última vez."
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                if (erroLocal) setErroLocal(""); // ✅ limpa erro ao digitar
+              }}
             />
           )}
+          {erroLocal && <p className="mensagem-erro-local">{erroLocal}</p>}
 
           {sugestoes.length > 0 && (
             <ul className="sugestoes-lista">
@@ -176,20 +185,22 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
           )}
 
           {/* Caixa para ponto de referência - sempre aparece */}
-          <div className="referencia-container" style={{ marginTop: "15px" }}>
-            <label className="form-label">
-              Ponto de referência{" "}
-              <span className="referenica-form-optional">Opcional</span>
-            </label>
-            <input
-              id="referenciaInput"
-              type="text"
-              className="referencia-input"
-              placeholder="Descreva um ponto de referência próximo"
-              value={referencia}
-              onChange={(e) => setReferencia(e.target.value)}
-            />
-          </div>
+          {coordenadas && (
+            <div className="referencia-container" style={{ marginTop: "15px" }}>
+              <label className="form-label">
+                Ponto de referência{" "}
+                <span className="referenica-form-optional">Opcional</span>
+              </label>
+              <input
+                id="referenciaInput"
+                type="text"
+                className="referencia-input"
+                placeholder="Ex. Próximo a lanchonete da Dri"
+                value={referencia}
+                onChange={(e) => setReferencia(e.target.value)}
+              />
+            </div>
+          )}
         </div>
 
         {/* Renderiza o mapa só se coordenadas estiverem definidas */}
