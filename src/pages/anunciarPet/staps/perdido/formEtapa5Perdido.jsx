@@ -6,6 +6,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
   const [local, setLocal] = useState(""); // endereço final selecionado
   const [inputValue, setInputValue] = useState(""); // o que o usuário digita
   const [sugestoes, setSugestoes] = useState([]);
+  const [bloquearBusca, setBloquearBusca] = useState(false);
 
   const handleProximo = () => {
     onProximo({ local });
@@ -27,6 +28,11 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
 
   // Busca endereços conforme o usuário digita
   useEffect(() => {
+    if (bloquearBusca) {
+      setBloquearBusca(false);
+      return; // Evita nova busca após selecionar sugestão
+    }
+
     const delayDebounce = setTimeout(() => {
       if (inputValue.length > 3) {
         fetch(
@@ -43,7 +49,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
     }, 500);
 
     return () => clearTimeout(delayDebounce);
-  }, [inputValue]);
+  }, [inputValue, bloquearBusca]);
 
   // Captura localização atual
   const usarLocalizacaoAtual = () => {
@@ -60,7 +66,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
               if (data.display_name) {
                 const enderecoFormatado = formatarEndereco(data.address);
                 setLocal(enderecoFormatado);
-                setInputValue(enderecoFormatado); // atualiza o campo também
+                setInputValue(enderecoFormatado);
+                setBloquearBusca(true);
               }
             })
             .catch((err) =>
@@ -116,8 +123,9 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
                   onClick={() => {
                     const enderecoFormatado = formatarEndereco(item.address);
                     setLocal(enderecoFormatado);
-                    setInputValue(enderecoFormatado); // também atualiza o campo
-                    setSugestoes([]); // limpa a lista
+                    setInputValue(enderecoFormatado);
+                    setSugestoes([]);
+                    setBloquearBusca(true); // Evita a nova busca
                   }}
                   className="sugestao-item"
                 >
