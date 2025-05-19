@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FormBase from "../../formBase";
 import "./CSS/formEtapa5Perdido.css";
 
 export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
-  const [local, setLocal] = useState(""); // endereço final selecionado
-  const [inputValue, setInputValue] = useState(""); // o que o usuário digita
+  const [local, setLocal] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const [sugestoes, setSugestoes] = useState([]);
-  const [bloquearBusca, setBloquearBusca] = useState(false);
+  const bloquearBusca = useRef(false); // ref para evitar buscas indevidas
 
   const handleProximo = () => {
     onProximo({ local });
@@ -14,26 +14,22 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
 
   const formatarEndereco = (address) => {
     const { road, residential, suburb, city, town, state, country } = address;
-
     const rua = road || residential || "";
     const bairro = suburb || "";
     const cidade = city || town || "";
     const estado = state || "";
     const pais = country || "";
 
-    return [rua, bairro, cidade, estado, pais]
-      .filter((part) => part)
-      .join(", ");
+    return [rua, bairro, cidade, estado, pais].filter(Boolean).join(", ");
   };
 
-  // Busca endereços conforme o usuário digita
   useEffect(() => {
-    if (bloquearBusca) {
-      setBloquearBusca(false);
-      return; // Evita nova busca após selecionar sugestão
-    }
-
     const delayDebounce = setTimeout(() => {
+      if (bloquearBusca.current) {
+        bloquearBusca.current = false; // desbloqueia após evitar 1 ciclo
+        return;
+      }
+
       if (inputValue.length > 3) {
         fetch(
           `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
@@ -49,9 +45,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
     }, 500);
 
     return () => clearTimeout(delayDebounce);
-  }, [inputValue, bloquearBusca]);
+  }, [inputValue]);
 
-  // Captura localização atual
   const usarLocalizacaoAtual = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -67,7 +62,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
                 const enderecoFormatado = formatarEndereco(data.address);
                 setLocal(enderecoFormatado);
                 setInputValue(enderecoFormatado);
-                setBloquearBusca(true);
+                bloquearBusca.current = true; // impede nova busca
+                setSugestoes([]); // limpa lista
               }
             })
             .catch((err) =>
@@ -114,7 +110,6 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
             onChange={(e) => setInputValue(e.target.value)}
           />
 
-          {/* Sugestões de endereço da busca */}
           {sugestoes.length > 0 && (
             <ul className="sugestoes-lista">
               {sugestoes.map((item) => (
@@ -124,8 +119,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar, dados }) {
                     const enderecoFormatado = formatarEndereco(item.address);
                     setLocal(enderecoFormatado);
                     setInputValue(enderecoFormatado);
+                    bloquearBusca.current = true;
                     setSugestoes([]);
-                    setBloquearBusca(true); // Evita a nova busca
                   }}
                   className="sugestao-item"
                 >
