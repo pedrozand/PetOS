@@ -4,6 +4,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./CSS/formEtapa5Perdido.css";
 
+import { FiTrash } from "react-icons/fi";
+
 export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
   const [local, setLocal] = useState("");
   const [inputValue, setInputValue] = useState("");
@@ -127,13 +129,28 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
             </button>
           </div>
 
-          <input
-            type="text"
-            className="endereco-input"
-            placeholder="Insira o endereço onde o pet foi visto pela última vez."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
+          {local ? (
+            <div className="endereco-exibido">
+              <span className="texto-endereco">{local}</span>
+              <FiTrash
+                className="icone-lixeira"
+                onClick={() => {
+                  setLocal("");
+                  setInputValue("");
+                  setCoordenadas(null);
+                }}
+                aria-label="Apagar endereço"
+              />
+            </div>
+          ) : (
+            <input
+              type="text"
+              className="endereco-input"
+              placeholder="Insira o endereço onde o pet foi visto pela última vez."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          )}
 
           {sugestoes.length > 0 && (
             <ul className="sugestoes-lista">
@@ -160,7 +177,10 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
 
           {/* Caixa para ponto de referência - sempre aparece */}
           <div className="referencia-container" style={{ marginTop: "15px" }}>
-            <label className="form-label">Ponto de referência (opcional)</label>
+            <label className="form-label">
+              Ponto de referência{" "}
+              <span className="referenica-form-optional">Opcional</span>
+            </label>
             <input
               id="referenciaInput"
               type="text"
@@ -177,7 +197,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
           <div
             id="map"
             style={{
-              height: "200px",
+              height: "300px",
               width: "550px",
               borderRadius: "8px",
               position: "relative",

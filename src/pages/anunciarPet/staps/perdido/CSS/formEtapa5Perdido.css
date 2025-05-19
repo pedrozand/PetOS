@@ -3,6 +3,7 @@
   border-radius: 12px;
   font-family: "Inter", sans-serif;
   color: #2b2b2b;
+  overflow: hidden;
 }
 
 .form-label {
@@ -113,7 +114,7 @@
 
 .referencia-container .form-label {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 14px;
   color: #333333;
 }
 
@@ -124,18 +125,60 @@
   font-size: 1rem;
   width: 100%;
   outline: none;
-  transition: border-color 0.3s ease;
   max-width: 550px;
   margin-top: 20px;
   margin-bottom: 10px;
 }
 
 .referencia-container .referencia-input::placeholder {
-  color: #999999;
-  font-style: italic;
+  color: #999;
 }
 
 .referencia-container .referencia-input:focus {
   border-color: #ffc1c1;
   box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
+.referenica-form-optional {
+  font-weight: 400;
+  font-size: 12.8px;
+  color: #999;
+  margin-left: 0.3rem;
+}
+
+.endereco-exibido {
+  position: relative;
+  padding: 10px 40px 10px 15px; /* espaço p/ o ícone à direita */
+  border: 1px solid #ffc1c1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 550px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #700000;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.texto-endereco {
+  background-color: #ffeeee; /* Fundo suave nas letras */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+  display: inline;
+}
+
+.icone-lixeira {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: inherit;
 }
