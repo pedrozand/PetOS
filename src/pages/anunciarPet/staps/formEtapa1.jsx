@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useFormContext } from "../FormContext.jsx";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import FormBase from "../formBase.jsx";
 
 export default function FormEtapa1({ onProximo }) {
-  const [formData, setFormData] = useState({
-    situacao: "",
-    especie: "",
-    genero: "",
+  const { formData, updateFormData } = useFormContext();
+
+  // Inicializa estado local com dados do contexto para mostrar no formulário
+  const [localData, setLocalData] = useState({
+    situacao: formData.situacao || "",
+    especie: formData.especie || "",
+    genero: formData.genero || "",
   });
 
   const [selectFocus, setSelectFocus] = useState({
@@ -18,8 +22,9 @@ export default function FormEtapa1({ onProximo }) {
   const [erro, setErro] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErro(""); // limpa o erro ao modificar qualquer campo
+    const { name, value } = e.target;
+    setErro("");
+    setLocalData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleFocus = (campo) => {
@@ -31,8 +36,9 @@ export default function FormEtapa1({ onProximo }) {
   };
 
   const handleProximo = () => {
-    if (formData.situacao && formData.especie && formData.genero) {
-      onProximo(formData);
+    if (localData.situacao && localData.especie && localData.genero) {
+      updateFormData(localData); // Atualiza no contexto
+      onProximo(localData);
     } else {
       setErro("Por favor, preencha todos os campos antes de continuar.");
     }
@@ -55,12 +61,12 @@ export default function FormEtapa1({ onProximo }) {
             <div className="select-wrapper">
               <select
                 name="situacao"
-                value={formData.situacao}
+                value={localData.situacao}
                 onChange={handleChange}
                 onFocus={() => handleFocus("situacao")}
                 onBlur={() => handleBlur("situacao")}
                 className={`custom-select ${
-                  formData.situacao === "" ? "select-placeholder" : ""
+                  localData.situacao === "" ? "select-placeholder" : ""
                 }`}
               >
                 <option value="" disabled hidden>
@@ -76,9 +82,9 @@ export default function FormEtapa1({ onProximo }) {
                 <IoIosArrowDown className="select-icon" />
               )}
             </div>
-            {formData.situacao && (
+            {localData.situacao && (
               <p className="descricao-situacao">
-                {situacaoDescricoes[formData.situacao]}
+                {situacaoDescricoes[localData.situacao]}
               </p>
             )}
           </label>
@@ -89,12 +95,12 @@ export default function FormEtapa1({ onProximo }) {
             <div className="select-wrapper">
               <select
                 name="especie"
-                value={formData.especie}
+                value={localData.especie}
                 onChange={handleChange}
                 onFocus={() => handleFocus("especie")}
                 onBlur={() => handleBlur("especie")}
                 className={`custom-select ${
-                  formData.especie === "" ? "select-placeholder" : ""
+                  localData.especie === "" ? "select-placeholder" : ""
                 }`}
               >
                 <option value="" disabled hidden>
@@ -118,12 +124,12 @@ export default function FormEtapa1({ onProximo }) {
             <div className="select-wrapper">
               <select
                 name="genero"
-                value={formData.genero}
+                value={localData.genero}
                 onChange={handleChange}
                 onFocus={() => handleFocus("genero")}
                 onBlur={() => handleBlur("genero")}
                 className={`custom-select ${
-                  formData.genero === "" ? "select-placeholder" : ""
+                  localData.genero === "" ? "select-placeholder" : ""
                 }`}
               >
                 <option value="" disabled hidden>

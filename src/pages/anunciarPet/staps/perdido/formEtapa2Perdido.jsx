@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useFormContext } from "../../FormContext.jsx";
 import FormBase from "../../formBase";
 import { FiImage, FiX } from "react-icons/fi";
 import "./CSS/formEtapa2Perdido.css";
 
-export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
+export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
+  const { formData, updateFormData } = useFormContext();
+
   const [imagens, setImagens] = useState([]);
   const [dragOver, setDragOver] = useState(false);
-  const [erroImagem, setErroImagem] = useState(""); // Estado para erro
+  const [erroImagem, setErroImagem] = useState("");
+
+  // Carrega imagens existentes do contexto (caso existam)
+  useEffect(() => {
+    if (formData.fotos && formData.fotos.length > 0) {
+      const imagensPreview = formData.fotos.map((file) => ({
+        file,
+        preview: URL.createObjectURL(file),
+      }));
+      setImagens(imagensPreview);
+    }
+  }, [formData.fotos]);
 
   const adicionarImagens = (arquivos) => {
     const novosArquivos = arquivos
@@ -26,7 +40,7 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
     }));
 
     setImagens((prev) => [...prev, ...imagensPreview]);
-    setErroImagem(""); // Limpa erro se imagens forem adicionadas com sucesso
+    setErroImagem("");
   };
 
   const handleImagemChange = (e) => {
@@ -47,7 +61,7 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
 
   const removerImagem = (index) => {
     setImagens((prev) => prev.filter((_, i) => i !== index));
-    setErroImagem(""); // Limpa erro ao remover e permitir nova tentativa
+    setErroImagem("");
   };
 
   const handleProximo = () => {
@@ -55,8 +69,11 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar, dados }) {
       setErroImagem("Por favor, adicione ao menos uma foto do pet.");
       return;
     }
-    setErroImagem(""); // Limpa erro ao avançar com sucesso
-    onProximo({ fotos: imagens.map((img) => img.file) });
+
+    const fotos = imagens.map((img) => img.file);
+    updateFormData({ fotos }); // Atualiza o contexto
+    setErroImagem("");
+    onProximo({ fotos }); // Chama próxima etapa
   };
 
   return (

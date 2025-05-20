@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { useFormContext } from "../../FormContext";
 import FormBase from "../../formBase";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 import "./CSS/formEtapa3Perdido.css";
 
-export default function FormEtapa3Perdido({ onProximo, onVoltar, dados }) {
-  const [raça, setRaca] = useState("");
-  const [porte, setPorte] = useState("");
-  const [corPredominante, setCorPredominante] = useState("");
-  const [corOlhos, setCorOlhos] = useState("");
-  const [idade, setIdade] = useState("");
+export default function FormEtapa3Perdido({ onProximo, onVoltar }) {
+  const { formData, updateFormData } = useFormContext();
+
+  // Estado local inicializado com os dados do contexto (se existirem)
+  const [raça, setRaca] = useState(formData.raca || "");
+  const [porte, setPorte] = useState(formData.porte || "");
+  const [corPredominante, setCorPredominante] = useState(
+    formData.corPredominante || ""
+  );
+  const [corOlhos, setCorOlhos] = useState(formData.corOlhos || "");
+  const [idade, setIdade] = useState(formData.idade || "");
   const [focusedSelect, setFocusedSelect] = useState(null);
 
   const racasPorEspecie = {
@@ -176,16 +182,18 @@ export default function FormEtapa3Perdido({ onProximo, onVoltar, dados }) {
     ],
   };
 
-  const racasDisponiveis = racasPorEspecie[dados?.especie] || [];
+  const racasDisponiveis = racasPorEspecie[formData?.especie] || [];
 
   const handleProximo = () => {
-    onProximo({
+    const novosDados = {
       raca: raça,
       porte,
       corPredominante,
       corOlhos,
       idade,
-    });
+    };
+    updateFormData(novosDados); // Atualiza no contexto
+    onProximo(novosDados); // Passa adiante
   };
 
   const renderSelectWithIcon = (label, value, setValue, name, options) => {
@@ -246,41 +254,38 @@ export default function FormEtapa3Perdido({ onProximo, onVoltar, dados }) {
             "Grande",
           ])}
           {renderSelectWithIcon(
-            "Cor predominante",
+            "Cor Predominante",
             corPredominante,
             setCorPredominante,
             "corPredominante",
             [
               "",
-              "Preta",
-              "Branca",
-              "Cinza",
+              "Preto",
+              "Branco",
               "Marrom",
               "Caramelo",
-              "Vermelha",
+              "Cinza",
+              "Amarelo",
+              "Bege",
+              "Rajado",
+              "Listrado",
+              "Manchado",
+              "Mesclado",
               "Outra",
             ]
           )}
           {renderSelectWithIcon(
-            "Cor dos olhos",
+            "Cor dos Olhos",
             corOlhos,
             setCorOlhos,
             "corOlhos",
-            [
-              "",
-              "Escuros",
-              "Azuis",
-              "Verdes",
-              "Amarelos",
-              "Um de cada cor",
-              "Outra",
-            ]
+            ["", "Castanho", "Azul", "Verde", "Amarelo", "Outra"]
           )}
-          {renderSelectWithIcon("Idade", idade, setIdade, "idade", [
+          {renderSelectWithIcon("Idade Aproximada", idade, setIdade, "idade", [
             "",
             "Filhote",
             "Adulto",
-            "Sênior",
+            "Idoso",
           ])}
         </div>
       </div>

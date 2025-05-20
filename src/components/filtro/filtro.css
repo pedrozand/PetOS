@@ -107,7 +107,7 @@
 
 /* Botão de busca */
 .filter-btn {
-  background-color: #ff3131;
+  background: linear-gradient(to right, #ff3131, #ffd040);
   color: white;
   padding: 12px;
   width: 100%;
@@ -119,7 +119,7 @@
 }
 
 .filter-btn:hover {
-  background-color: #ff8989;
+  background: linear-gradient(to right, #ff0000, #ffbf00);
 }
 
 /* Estilo do container switch */
