@@ -116,7 +116,7 @@ const historias = [
   },
 ];
 
-function Carrosel() {
+function Carrosel2() {
   return (
     <div className="historias-container">
       <h2 className="titulo-historias">Anuncie com o PetOS</h2>
@@ -132,6 +132,8 @@ function Carrosel() {
         slidesPerView={1}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
         loop={true}
+        navigation={true}
+        pagination={{ clickable: true }}
       >
         {historias.map((historia, index) => (
           <SwiperSlide key={index}>
@@ -160,4 +162,4 @@ function Carrosel() {
   );
 }
 
-export default Carrosel;
+export default Carrosel2;

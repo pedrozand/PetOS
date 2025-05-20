@@ -3,6 +3,7 @@
   margin: 40px auto;
   padding: 0 50px;
   position: relative;
+  overflow: visible;
 }
 
 .titulo-historias {

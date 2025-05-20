@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Carrosel from "../../components/carrosel-2/carrosel-2.jsx";
+import Carrosel2 from "../../components/carrosel-2/carrosel-2.jsx";
 import "./CSS/formContainer.css";
 
 import FormEtapa1 from "./staps/formEtapa1";
@@ -31,7 +31,7 @@ export default function FormContainer() {
     <div className="form-container-all">
       {/* LADO ESQUERDO */}
       <div className="carrossel-lateral-all">
-        <Carrosel />
+        <Carrosel2 />
       </div>
 
       {/* LADO DIREITO */}
