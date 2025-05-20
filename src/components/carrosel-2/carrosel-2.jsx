@@ -1,13 +1,12 @@
-import React from "react";
-
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
+import { Pagination, Autoplay } from "swiper/modules";
 import { FaStar } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./CSS/carrosel-2.css";
-import "./CSS/swiper-2.css";
 
 const historias = [
   {
@@ -117,47 +116,67 @@ const historias = [
 ];
 
 function Carrosel2() {
+  const swiperRef = useRef(null);
+
   return (
     <div className="historias-container">
       <h2 className="titulo-historias">Anuncie com o PetOS</h2>
-      <a className="descricao-historias">
+      <p className="descricao-historias">
         No PetOS, você pode criar um <b>anúncio gratuito</b> para ajudar a
         encontrar seu pet perdido ou dar visibilidade a um animal para adoção.
         <b> Conecte-se com pessoas de sua comunidade</b> de forma rápida e
         segura.
-      </a>
-      <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={20}
-        slidesPerView={1}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        loop={true}
-        navigation={true}
-        pagination={{ clickable: true }}
-      >
-        {historias.map((historia, index) => (
-          <SwiperSlide key={index}>
-            <div className="cartao-historia">
-              <div className="imagem-perfil reencontro-container">
-                <img src={historia.imagem} alt={historia.pet} />
-                <p className="reencontro">
-                  Reencontro de{" "}
-                  <strong className="nome-cachorro">{historia.pet}</strong>
-                </p>
-              </div>
+      </p>
 
-              <h3 className="dono">
-                {historia.nome}{" "}
-                {Array(historia.avaliacao).fill(
-                  <FaStar className="icon-star" />
-                )}
-              </h3>
-              <p className="cidade">{historia.cidade}</p>
-              <p className="descricao">"{historia.descricao}"</p>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <div className="swiper-area">
+        <Swiper
+          modules={[Pagination, Autoplay]}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          spaceBetween={20}
+          slidesPerView={1}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          loop={true}
+        >
+          {historias.map((historia, index) => (
+            <SwiperSlide key={index}>
+              <div className="cartao-historia">
+                <div className="imagem-perfil reencontro-container">
+                  <img src={historia.imagem} alt={historia.pet} />
+                  <p className="reencontro">
+                    Reencontro de{" "}
+                    <strong className="nome-cachorro">{historia.pet}</strong>
+                  </p>
+                </div>
+
+                <h3 className="dono">
+                  {historia.nome}{" "}
+                  {Array(historia.avaliacao)
+                    .fill()
+                    .map((_, i) => (
+                      <FaStar className="icon-star" key={i} />
+                    ))}
+                </h3>
+                <p className="cidade">{historia.cidade}</p>
+                <p className="descricao">"{historia.descricao}"</p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Botões laterais */}
+        <div
+          className="swiper-button-prev-custom"
+          onClick={() => swiperRef.current?.slidePrev()}
+        >
+          <IoMdArrowDropleft className="icone-botao" />
+        </div>
+        <div
+          className="swiper-button-next-custom"
+          onClick={() => swiperRef.current?.slideNext()}
+        >
+          <IoMdArrowDropright className="icone-botao" />
+        </div>
+      </div>
     </div>
   );
 }

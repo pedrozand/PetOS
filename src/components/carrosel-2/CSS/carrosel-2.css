@@ -77,3 +77,53 @@
   color: #ffd040;
   margin-left: 5px;
 }
+
+.navegacao-carrosel-externa {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.icone-botao {
+  color: red;
+  font-size: 25px;
+}
+
+.swiper-area {
+  position: relative;
+  width: 100%;
+}
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  margin-bottom: 0;
+  top: 60%;
+  transform: translateY(-50%);
+  color: white;
+  width: 30px;
+  height: 352px; /* Altura maior para efeito vertical */
+  font-size: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* Semitransparente */
+  color: #4caf50;
+}
+
+.swiper-button-prev-custom {
+  left: 0;
+  margin-left: -30px;
+}
+
+.swiper-button-next-custom {
+  right: 0;
+  margin-right: -30px;
+}
