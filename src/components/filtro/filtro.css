@@ -22,9 +22,13 @@
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  background: transparent;
   color: transparent;
   border-radius: 5px;
+  background: linear-gradient(to right, #ff3131, #ffbe31);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .filter-arrow {
@@ -147,7 +151,7 @@
   top: 0;
   width: 40px;
   height: 20px;
-  background-color: #ffa3a3;
+  background: linear-gradient(to right, #ffbcbc, #ffe79e);
   border-radius: 34px;
   transition: 0.4s;
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
@@ -168,7 +172,7 @@
 
 /* Quando marcado */
 .switch input:checked + .slider {
-  background-color: #ff3131;
+  background: linear-gradient(to right, #ff3131, #ffd040);
 }
 
 .switch input:checked + .slider:before {
@@ -233,7 +237,7 @@
 .input-like.selected {
   width: 96%;
   height: 60%;
-  background-color: #ffdfdf;
+  background: linear-gradient(to right, #ffe3e3, #fff7dd);
   border-radius: 7px;
   margin-top: 7px;
   margin-bottom: 7px;
