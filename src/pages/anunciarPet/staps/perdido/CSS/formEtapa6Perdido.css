@@ -3,7 +3,7 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .campo label {
@@ -76,4 +76,65 @@
   color: #6b7280;
   margin-top: 6px;
   margin-left: 5px;
+}
+
+.periodo-selector {
+  display: flex;
+  justify-content: center;
+  gap: 0; /* sem espaço entre os botões */
+  margin-top: 8px;
+}
+
+.periodo-botao {
+  flex: 1;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  height: 25px;
+}
+
+/* Borda arredondada somente nos botões das extremidades */
+.periodo-botao.pos-0 {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.periodo-botao.pos-2 {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+/* Estilo do botão ativo */
+.periodo-botao.ativo {
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  color: #ff6e6e;
+  z-index: 1;
+}
+
+/* Remover duplas bordas entre os botões */
+.periodo-botao + .periodo-botao {
+  border-left: none;
+}
+
+/* Estilo do texto "Opcional" */
+.opcional {
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #888;
+  margin-left: 5px;
+}
+
+.erro-declaracao {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.erro-telefone {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
 }

@@ -5,22 +5,25 @@ import "./CSS/formEtapa6Perdido.css";
 export default function FormEtapa6Perdido({ onProximo, onVoltar, dados }) {
   const [dataDesaparecimento, setDataDesaparecimento] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [periodo, setPeriodo] = useState(""); // novo estado
   const [receberAlertas, setReceberAlertas] = useState(false);
   const [declaracao, setDeclaracao] = useState(false);
+  const [telefoneErro, setTelefoneErro] = useState("");
+  const [declaracaoErro, setDeclaracaoErro] = useState("");
 
   const handleTelefoneChange = (e) => {
-    let input = e.target.value.replace(/\D/g, ""); // remove tudo que não for número
-
-    if (input.length > 11) input = input.slice(0, 11); // limita a 11 dígitos
-
+    let input = e.target.value.replace(/\D/g, "");
+    if (input.length > 11) input = input.slice(0, 11);
     const formatado = input
       .replace(/^(\d{2})(\d)/, "($1) $2")
       .replace(/(\d{5})(\d)/, "$1-$2");
-
     setTelefone(formatado);
+
+    if (input.length === 11) {
+      setTelefoneErro("");
+    }
   };
 
-  // Função para formatar data completa com dia da semana
   const formatarDataCompleta = (dataStr) => {
     const data = new Date(dataStr);
     const opcoes = { day: "numeric", month: "long", year: "numeric" };
@@ -29,24 +32,42 @@ export default function FormEtapa6Perdido({ onProximo, onVoltar, dados }) {
     return `${dataFormatada} (${diaSemana})`;
   };
 
-  // Preencher automaticamente com a data de hoje
   useEffect(() => {
     const hoje = new Date();
-    const yyyyMMdd = hoje.toISOString().split("T")[0]; // formato compatível com <input type="date">
+    const yyyyMMdd = hoje.toISOString().split("T")[0];
     setDataDesaparecimento(yyyyMMdd);
   }, []);
 
   const handleProximo = () => {
-    if (!declaracao) {
-      alert("É necessário aceitar a Declaração de Veracidade.");
-      return;
+    const telefoneNumeros = telefone.replace(/\D/g, "");
+
+    let houveErro = false;
+
+    // Verifica telefone
+    if (telefoneNumeros.length !== 11) {
+      setTelefoneErro("Insira um número de telefone válido com DDD.");
+      houveErro = true;
+    } else {
+      setTelefoneErro("");
     }
 
+    // Verifica declaração
+    if (!declaracao) {
+      setDeclaracaoErro("É necessário aceitar a Declaração de Veracidade.");
+      houveErro = true;
+    } else {
+      setDeclaracaoErro("");
+    }
+
+    if (houveErro) return;
+
+    // Se tudo estiver certo, avança
     onProximo({
       dataDesaparecimento,
       telefone,
       receberAlertas,
       declaracao,
+      periodo,
     });
   };
 
@@ -75,6 +96,29 @@ export default function FormEtapa6Perdido({ onProximo, onVoltar, dados }) {
             value={telefone}
             onChange={handleTelefoneChange}
           />
+          {telefoneErro && <p className="erro-telefone">{telefoneErro}</p>}
+        </div>
+
+        {/* NOVO CAMPO DE PERÍODO */}
+        <div className="campo">
+          <label>
+            Período do desaparecimento{" "}
+            <span className="opcional">Opcional</span>
+          </label>
+          <div className="periodo-selector">
+            {["Manhã", "Tarde", "Noite"].map((p, index) => (
+              <button
+                key={p}
+                type="button"
+                className={`periodo-botao ${
+                  periodo === p ? "ativo" : ""
+                } pos-${index}`}
+                onClick={() => setPeriodo(periodo === p ? "" : p)}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="checkbox-bloco">
@@ -89,11 +133,6 @@ export default function FormEtapa6Perdido({ onProximo, onVoltar, dados }) {
               Concordo em receber comunicações relevantes por WhatsApp de outros
               usuários.
               <br />
-              <strong>Atenção:</strong>{" "}
-              <em>
-                Nunca solicitaremos dados de pagamentos ou cobranças de taxas
-                por WhatsApp. Desconfie de qualquer mensagem desse tipo.
-              </em>
             </p>
           </label>
         </div>
@@ -103,7 +142,11 @@ export default function FormEtapa6Perdido({ onProximo, onVoltar, dados }) {
             <input
               type="checkbox"
               checked={declaracao}
-              onChange={() => setDeclaracao(!declaracao)}
+              onChange={() => {
+                setDeclaracao(!declaracao);
+                if (!declaracaoErro && !declaracao) return;
+                setDeclaracaoErro("");
+              }}
             />
             <span>Declaração de Veracidade</span>
             <p className="texto-menor">
@@ -112,6 +155,9 @@ export default function FormEtapa6Perdido({ onProximo, onVoltar, dados }) {
               deste pet.
             </p>
           </label>
+          {declaracaoErro && (
+            <p className="erro-declaracao">{declaracaoErro}</p>
+          )}
         </div>
       </div>
     </FormBase>

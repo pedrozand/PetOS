@@ -189,3 +189,9 @@
   margin-top: 6px;
   margin-left: 4px;
 }
+
+.erro-telefone {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
