@@ -1,0 +1,24 @@
+.form-container-all {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carrossel-lateral-all {
+  flex: 1;
+  background: linear-gradient(to top, #ffcece, #ffebb0);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.formulario-all {
+  flex: 2;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}

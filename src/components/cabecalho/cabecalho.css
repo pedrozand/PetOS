@@ -1,32 +1,57 @@
 .cabecalho-container {
-  border-radius: 10px;
-  text-align: left;
-  margin-bottom: -15px;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #fff8f8, #fffbee);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
 .cabecalho-titulo {
-  font-size: 45px;
-  font-weight: bold;
-  color: #ff3131;
-  margin-bottom: 5px;
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #ff3131, #ffbe31);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
 }
 
 .cabecalho-subtitulo {
-  font-size: 20px;
-  color: #a1a1a1; /* Cor mais suave para o subtítulo */
-  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 30px;
+  margin-bottom: 0.5rem;
+  margin-right: 240px;
+}
+
+.cabecalho-barra-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 650px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 2px solid #ffbe31;
+  border-radius: 999px;
+  padding: 0.1rem 0.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .cabecalho-barra {
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem;
   width: 100%;
-  height: 40px;
-  background-color: #ebebeb;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  padding: 15px;
-  font-size: 16px;
   outline: none;
-  caret-color: transparent;
+  background: transparent;
+  color: #333;
   font-weight: bold;
-  margin-bottom: -5px;
+}
+
+.icone-localizacao {
+  color: #ff3131;
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
 }

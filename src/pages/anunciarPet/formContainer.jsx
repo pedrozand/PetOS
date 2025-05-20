@@ -1,5 +1,10 @@
 import { useState } from "react";
+
+import Carrosel2 from "../../components/carrosel-2/carrosel-2.jsx";
+import "./CSS/formContainer.css";
+
 import FormEtapa1 from "./staps/formEtapa1";
+
 import FormEtapa2Perdido from "./staps/perdido/formEtapa2Perdido";
 import FormEtapa3Perdido from "./staps/perdido/formEtapa3Perdido";
 import FormEtapa4Perdido from "./staps/perdido/formEtapa4Perdido";
@@ -23,61 +28,69 @@ export default function FormContainer() {
   };
 
   return (
-    <>
-      {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
+    <div className="form-container-all">
+      {/* LADO ESQUERDO */}
+      <div className="carrossel-lateral-all">
+        <Carrosel2 />
+      </div>
 
-      {/* Etapas para situação "Perdido" */}
-      {formData.situacao === "Perdido" && step === 1 && (
-        <FormEtapa2Perdido
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
-      {formData.situacao === "Perdido" && step === 2 && (
-        <FormEtapa3Perdido
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
-      {formData.situacao === "Perdido" && step === 3 && (
-        <FormEtapa4Perdido
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
-      {formData.situacao === "Perdido" && step === 4 && (
-        <FormEtapa5Perdido
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
-      {formData.situacao === "Perdido" && step === 5 && (
-        <FormEtapa6Perdido
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
+      {/* LADO DIREITO */}
+      <div className="formulario-all">
+        {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
 
-      {/* Etapas para outras situações */}
-      {step === 1 && formData.situacao === "Procurando Tutor" && (
-        <FormEtapa2Tutor
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
-      {step === 1 && formData.situacao === "Adocao" && (
-        <FormEtapa2Adocao
-          onProximo={handleProximo}
-          onVoltar={handleVoltar}
-          dados={formData}
-        />
-      )}
-    </>
+        {/* Etapas para situação "Perdido" */}
+        {formData.situacao === "Perdido" && step === 1 && (
+          <FormEtapa2Perdido
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+        {formData.situacao === "Perdido" && step === 2 && (
+          <FormEtapa3Perdido
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+        {formData.situacao === "Perdido" && step === 3 && (
+          <FormEtapa4Perdido
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+        {formData.situacao === "Perdido" && step === 4 && (
+          <FormEtapa5Perdido
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+        {formData.situacao === "Perdido" && step === 5 && (
+          <FormEtapa6Perdido
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+
+        {/* Etapas para outras situações */}
+        {step === 1 && formData.situacao === "Procurando Tutor" && (
+          <FormEtapa2Tutor
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+        {step === 1 && formData.situacao === "Adocao" && (
+          <FormEtapa2Adocao
+            onProximo={handleProximo}
+            onVoltar={handleVoltar}
+            dados={formData}
+          />
+        )}
+      </div>
+    </div>
   );
 }

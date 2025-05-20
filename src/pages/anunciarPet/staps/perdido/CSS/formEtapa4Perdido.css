@@ -1,0 +1,165 @@
+.form-wrapper {
+  width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-textarea::placeholder {
+  color: #999;
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+.form-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: -14px;
+}
+
+.form-optional {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 0.3rem;
+}
+
+.form-input,
+.form-textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
+.reward-label-tit {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: -30px;
+}
+
+.reward-label-val {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #333;
+  margin: 15px 5px 0px 5px;
+}
+
+.reward-valor-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: -40px;
+}
+
+/* Recompensa toggle */
+.reward-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reward-label {
+  margin-right: 800px;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+  margin-top: 5px;
+}
+
+.form-input-reward {
+  width: 600px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  margin-top: 15px;
+}
+
+.form-input-reward::placeholder {
+  color: #999;
+}
+
+.reward-toggle .switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.reward-toggle .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.reward-toggle .slider {
+  position: absolute;
+  cursor: pointer;
+  background: linear-gradient(to right, #ffd2d2, #fff2ca);
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+
+.reward-toggle .slider::before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 3px;
+  bottom: 2.5px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.reward-toggle .switch input:checked + .slider {
+  background: linear-gradient(to right, #ff3131, #ffd040);
+}
+
+.reward-toggle .switch input:checked + .slider::before {
+  transform: translateX(18px);
+}
