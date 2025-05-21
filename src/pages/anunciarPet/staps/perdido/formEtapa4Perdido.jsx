@@ -1,26 +1,42 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useFormContext } from "../../FormContext.jsx";
 import FormBase from "../../formBase";
 import "./CSS/formEtapa4Perdido.css";
 
-export default function FormEtapa4Perdido({ onProximo, onVoltar, dados }) {
-  const [nomePet, setNomePet] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [oferecerRecompensa, setOferecerRecompensa] = useState(false);
-  const [valorRecompensa, setValorRecompensa] = useState("");
+export default function FormEtapa4Perdido({ onProximo, onVoltar }) {
+  const { formData, updateFormData } = useFormContext();
+
+  // Estado local inicializado com dados do contexto, se existirem
+  const [localData, setLocalData] = useState({
+    nomePet: formData.nomePet || "",
+    descricao: formData.descricao || "",
+    oferecerRecompensa: formData.oferecerRecompensa || false,
+    valorRecompensa: formData.valorRecompensa || "",
+  });
 
   function formatarParaReal(valor) {
-    const numero = valor.replace(/\D/g, ""); // Remove tudo que não for dígito
-    const numeroFormatado = (Number(numero) / 100).toFixed(2); // Divide por 100 para ter 2 casas decimais
-    return "R$ " + numeroFormatado.replace(".", ","); // Troca ponto por vírgula
+    const numero = valor.replace(/\D/g, "");
+    const numeroFormatado = (Number(numero) / 100).toFixed(2);
+    return "R$ " + numeroFormatado.replace(".", ",");
   }
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setLocalData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleToggleRecompensa = () => {
+    setLocalData((prev) => ({
+      ...prev,
+      oferecerRecompensa: !prev.oferecerRecompensa,
+      valorRecompensa: !prev.oferecerRecompensa ? "" : prev.valorRecompensa,
+    }));
+  };
+
   const handleProximo = () => {
-    onProximo({
-      nomePet,
-      descricao,
-      oferecerRecompensa,
-      valorRecompensa: oferecerRecompensa ? valorRecompensa : null,
-    });
+    // Atualiza os dados no contexto global
+    updateFormData(localData);
+    onProximo(localData);
   };
 
   return (
@@ -33,9 +49,10 @@ export default function FormEtapa4Perdido({ onProximo, onVoltar, dados }) {
           </label>
           <input
             type="text"
+            name="nomePet"
             placeholder="Deixe em branco se não souber."
-            value={nomePet}
-            onChange={(e) => setNomePet(e.target.value)}
+            value={localData.nomePet}
+            onChange={handleChange}
             className="form-input"
           />
         </div>
@@ -46,9 +63,10 @@ export default function FormEtapa4Perdido({ onProximo, onVoltar, dados }) {
             Descrição <span className="form-optional">Opcional</span>
           </label>
           <textarea
+            name="descricao"
             placeholder="Insira informações relevantes que ajudem na identificação do pet."
-            value={descricao}
-            onChange={(e) => setDescricao(e.target.value)}
+            value={localData.descricao}
+            onChange={handleChange}
             className="form-textarea"
             rows={4}
           />
@@ -61,37 +79,40 @@ export default function FormEtapa4Perdido({ onProximo, onVoltar, dados }) {
             <label className="switch">
               <input
                 type="checkbox"
-                checked={oferecerRecompensa}
-                onChange={() => setOferecerRecompensa(!oferecerRecompensa)}
+                checked={localData.oferecerRecompensa}
+                onChange={handleToggleRecompensa}
               />
               <span className="slider"></span>
             </label>
             <span className="reward-label">Oferecer recompensa</span>
           </div>
 
-          {/* Área do valor da recompensa, sempre visível mas com visibilidade controlada */}
+          {/* Valor da recompensa */}
           <div className="reward-valor-wrapper">
-            <a
-              className="reward-label-val"
+            <label
               style={{
-                visibility: oferecerRecompensa ? "visible" : "hidden",
-                opacity: oferecerRecompensa ? 1 : 0,
+                visibility: localData.oferecerRecompensa ? "visible" : "hidden",
+                opacity: localData.oferecerRecompensa ? 1 : 0,
                 transition: "opacity 0.3s ease",
               }}
             >
-              Valor:
-            </a>
+              <a className="reward-label-val">Valor:</a>
+            </label>
             <input
               type="text"
+              name="valorRecompensa"
               placeholder="Opcional"
-              value={valorRecompensa}
+              value={localData.valorRecompensa}
               onChange={(e) =>
-                setValorRecompensa(formatarParaReal(e.target.value))
+                setLocalData((prev) => ({
+                  ...prev,
+                  valorRecompensa: formatarParaReal(e.target.value),
+                }))
               }
               className="form-input-reward"
               style={{
-                visibility: oferecerRecompensa ? "visible" : "hidden",
-                opacity: oferecerRecompensa ? 1 : 0,
+                visibility: localData.oferecerRecompensa ? "visible" : "hidden",
+                opacity: localData.oferecerRecompensa ? 1 : 0,
                 transition: "opacity 0.3s ease",
               }}
             />

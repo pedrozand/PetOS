@@ -3,19 +3,22 @@ import FormBase from "../../formBase";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./CSS/formEtapa5Perdido.css";
-
 import { FiTrash } from "react-icons/fi";
+import { useFormContext } from "../../FormContext"; // importa contexto
 
 export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
-  const [local, setLocal] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  const { formData, updateFormData } = useFormContext();
+
+  const [local, setLocal] = useState(formData.local || "");
+  const [inputValue, setInputValue] = useState(formData.local || "");
+  const [referencia, setReferencia] = useState(formData.referencia || "");
   const [sugestoes, setSugestoes] = useState([]);
-  const [coordenadas, setCoordenadas] = useState(null);
-  const [referencia, setReferencia] = useState(""); // para ponto de referência
+  const [coordenadas, setCoordenadas] = useState(formData.coordenadas || null);
+  const [erroLocal, setErroLocal] = useState("");
+
   const mapRef = useRef(null);
   const markerRef = useRef(null);
   const bloquearBusca = useRef(false);
-  const [erroLocal, setErroLocal] = useState("");
 
   const formatarEndereco = (address) => {
     const { road, residential, suburb, city, town, state, country } = address;
@@ -34,7 +37,12 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
     }
 
     setErroLocal(""); // limpa o erro se estiver tudo certo
-    onProximo({ local, referencia });
+
+    // Atualiza os dados no contexto
+    updateFormData({ local, referencia, coordenadas });
+
+    // Avança etapa
+    onProximo({ local, referencia, coordenadas });
   };
 
   useEffect(() => {
@@ -90,10 +98,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
     }
   };
 
-  // Inicializa o mapa quando coordenadas aparecem
   useEffect(() => {
     if (coordenadas && !mapRef.current) {
-      // Inicializa o mapa somente quando o div está no DOM (porque renderiza só se coordenadas)
       mapRef.current = L.map("map").setView(coordenadas, 16);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "© OpenStreetMap",
@@ -143,6 +149,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
                 onClick={() => {
                   setLocal("");
                   setInputValue("");
+                  setCoordenadas(null);
                 }}
                 aria-label="Apagar endereço"
               />
@@ -155,7 +162,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
               value={inputValue}
               onChange={(e) => {
                 setInputValue(e.target.value);
-                if (erroLocal) setErroLocal(""); // ✅ limpa erro ao digitar
+                if (erroLocal) setErroLocal("");
               }}
             />
           )}
@@ -171,8 +178,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
                     onClick={() => {
                       setLocal(endereco);
                       setInputValue(endereco);
-                      bloquearBusca.current = true;
                       setCoordenadas([item.lat, item.lon]);
+                      bloquearBusca.current = true;
                       setSugestoes([]);
                     }}
                     className="sugestao-item"
@@ -184,7 +191,6 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
             </ul>
           )}
 
-          {/* Caixa para ponto de referência - sempre aparece */}
           {coordenadas && (
             <div className="referencia-container" style={{ marginTop: "15px" }}>
               <label className="form-label">
@@ -195,7 +201,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
                 id="referenciaInput"
                 type="text"
                 className="referencia-input"
-                placeholder="Ex. Próximo a lanchonete da Dri"
+                placeholder="Ex. Próximo à lanchonete da Dri"
                 value={referencia}
                 onChange={(e) => setReferencia(e.target.value)}
               />
@@ -203,7 +209,6 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
           )}
         </div>
 
-        {/* Renderiza o mapa só se coordenadas estiverem definidas */}
         {coordenadas && (
           <div
             id="map"
@@ -212,8 +217,9 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
               width: "550px",
               borderRadius: "8px",
               position: "relative",
+              marginTop: "20px",
             }}
-          ></div>
+          />
         )}
       </div>
     </FormBase>

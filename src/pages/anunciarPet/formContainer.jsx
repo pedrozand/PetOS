@@ -11,6 +11,7 @@ import FormEtapa3Perdido from "./staps/perdido/formEtapa3Perdido";
 import FormEtapa4Perdido from "./staps/perdido/formEtapa4Perdido";
 import FormEtapa5Perdido from "./staps/perdido/formEtapa5Perdido";
 import FormEtapa6Perdido from "./staps/perdido/formEtapa6Perdido";
+import FormEtapa7Perdido from "./staps/perdido/formEtapa7Perdido";
 
 import FormEtapa2Tutor from "./staps/procurandoTutor/formEtapa2Tutor";
 import FormEtapa2Adocao from "./staps/adocao/formEtapa2Adocao";
@@ -71,6 +72,13 @@ export default function FormContainer() {
           )}
           {formData.situacao === "Perdido" && step === 5 && (
             <FormEtapa6Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {formData.situacao === "Perdido" && step === 6 && (
+            <FormEtapa7Perdido
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
