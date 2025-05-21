@@ -21,7 +21,7 @@ export default function Post({
   nomeAnimal,
   especie,
   descricao,
-  imgPet, // É um Array de imagens burro
+  imgPet,
   raca,
   idade,
   porte,
@@ -106,7 +106,10 @@ export default function Post({
           </div>
         </div>
         <div className="post-content">
-          <h2 className="nome-animal">{nomeAnimal}</h2>
+          <div className="especie">
+            <strong>Nome do Pet</strong>
+            <h2 className="nome-animal">{nomeAnimal}</h2>
+          </div>
 
           <div className="especie">
             <strong>Espécie</strong>
@@ -114,7 +117,7 @@ export default function Post({
           </div>
 
           <div className="comentario">
-            <strong>Comentário do Tutor</strong>
+            <strong>Descrição do Pet</strong>
             <p>{descricao}</p>
           </div>
         </div>
@@ -150,7 +153,7 @@ export default function Post({
                 <strong>Cor dos olhos</strong> {corOlhos}
               </p>
               <p>
-                <strong>Sexo</strong> {sexo}
+                <strong>Gênero</strong> {sexo}
               </p>
             </div>
           </div>

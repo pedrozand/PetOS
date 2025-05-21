@@ -177,6 +177,11 @@ export default function Navbar() {
               </li>
             </ul>
 
+            <div class="right-buttons">
+              <Link to="/anunciarPet">
+                <button class="btn-anunciar">Anunciar</button>
+              </Link>
+            </div>
             {/* Ícone de perfil */}
             <div className="right-profile">
               <a href="perfil.html">
