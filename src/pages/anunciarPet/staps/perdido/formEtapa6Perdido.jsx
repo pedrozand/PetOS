@@ -86,6 +86,7 @@ export default function FormEtapa6Perdido({ onProximo, onVoltar }) {
           <input
             type="date"
             value={localData.dataDesaparecimento}
+            max={getDataHoje()}
             onChange={(e) =>
               handleChange("dataDesaparecimento", e.target.value)
             }
