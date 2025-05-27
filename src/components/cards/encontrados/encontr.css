@@ -20,7 +20,7 @@
 
 /* Cabeçalho "Encontrado" */
 .card-encontr-header {
-  background-color: #4caf50;
+  background: linear-gradient(to right, #4caf50, #ffde7b);
   color: white;
   font-weight: bold;
   padding: 8px 0;
@@ -104,7 +104,7 @@
 }
 
 .btn-ver-mais {
-  background-color: #ff3131;
+  background: linear-gradient(to right, #ff3131, #ffd040);
   color: white;
   width: 300px;
   font-size: 16px;
@@ -118,6 +118,6 @@
 }
 
 .btn-ver-mais:hover {
-  background-color: #ff8989;
+  background: linear-gradient(to right, #ff0000, #ffbf00);
   transform: scale(1.02);
 }
