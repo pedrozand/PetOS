@@ -29,6 +29,7 @@ export default function Post({
   corOlhos,
   sexo,
   localDesap,
+  referencia,
   dataDesap,
 }) {
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
@@ -182,6 +183,8 @@ export default function Post({
           <div className="info-item">
             <strong>Local do Desaparecimento</strong>
             <p>{localDesap}</p>
+            <strong className="ref-ajuste-post">Ponto de Referência</strong>
+            <p>{referencia ? referencia : "Sem ponto de referência!"}</p>
           </div>
           <div className="info-item">
             <strong>Data do Desaparecimento</strong>

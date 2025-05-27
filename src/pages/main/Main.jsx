@@ -54,6 +54,7 @@ function Main() {
               corOlhos={"Castanhos"}
               sexo={"Macho"}
               localDesap={"Bragança Paulista - São Paulo"}
+              referencia={"Bar da Vanda"}
               dataDesap={"2025/03/15"}
             />
             <Post
