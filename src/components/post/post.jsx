@@ -184,7 +184,7 @@ export default function Post({
             <strong>Local do Desaparecimento</strong>
             <p>{localDesap}</p>
             <strong className="ref-ajuste-post">Ponto de Referência</strong>
-            <p>{referencia ? referencia : "Sem ponto de referência!"}</p>
+            <p>{referencia ? referencia : "-"}</p>
           </div>
           <div className="info-item">
             <strong>Data do Desaparecimento</strong>
