@@ -1,6 +1,7 @@
 import "./CSS/post.css";
 import "./CSS/caracterisiticas.css";
 import "./CSS/botoes-intera.css";
+import "./CSS/alert-tel.css";
 import "./CSS/img-modal.css";
 import "./CSS/animal-info.css";
 import { useState, useEffect } from "react";
@@ -17,8 +18,12 @@ import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
 
 export default function Post({
+  // Usuário
   avatar,
-  nomeUser,
+  nome,
+  sobrenome,
+  email,
+  // Post
   nomeAnimal,
   especie,
   descricao,
@@ -33,7 +38,9 @@ export default function Post({
   referencia,
   dataDesap,
   recompensa,
+  telefone,
 }) {
+  const [mostrarContato, setMostrarContato] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
   const [imagemExpandida, setImagemExpandida] = useState(false);
@@ -95,7 +102,9 @@ export default function Post({
       <div className="post">
         <div className="post-header">
           <img src={avatar} alt="Perfil" />
-          <div className="name">{nomeUser}</div>
+          <div className="name">
+            {nome} {sobrenome}
+          </div>
           <div className="animal-post-icon">
             {sexo === "Macho" && <FaMars className="animal-icon-macho" />}
             {sexo === "Fêmea" && <FaVenus className="animal-icon-femea" />}
@@ -207,6 +216,22 @@ export default function Post({
                 ? `${dataDesap} - ${tempoDecorrido}`
                 : "Data não informada"}
             </p>
+            <div className="nome-sobrenome-ajuste-post">
+              <strong>Nome do Tutor -</strong>
+              <p>
+                {nome} {sobrenome}
+              </p>
+            </div>
+            {!mostrarContato && (
+              <button
+                className="btn-mostrar-contato"
+                onClick={() => setMostrarContato(true)}
+              >
+                Mostrar Contato
+              </button>
+            )}
+
+            {mostrarContato && <p>{telefone}</p>}
           </div>
         </div>
         <div className="post-actions">

@@ -34,7 +34,8 @@ function Main() {
             <Cabecalho />
             <Post
               avatar={imgPerfilTeste}
-              nomeUser={"Pedro Henrique de Oliveira"}
+              nome={"Pedro"}
+              sobrenome={"Oliveira"}
               nomeAnimal={"Goku"}
               especie={"Cachorro"}
               descricao={
@@ -57,6 +58,7 @@ function Main() {
               referencia={"Bar da Vanda"}
               dataDesap={"2025/03/15"}
               recompensa={"R$ 500,00"}
+              telefone={"(11) 99999-9999"}
             />
             <Post
               avatar={imgPerfilTeste}
@@ -81,6 +83,7 @@ function Main() {
               sexo={"Macho"}
               localDesap={"Bragança Paulista - São Paulo"}
               dataDesap={"2025/03/15"}
+              email={"pedro@gmail.com"}
             />
             <Post
               avatar={imgPerfilTeste}
