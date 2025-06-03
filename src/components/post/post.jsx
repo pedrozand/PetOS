@@ -11,6 +11,7 @@ import {
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
+import { AiFillDollarCircle } from "react-icons/ai";
 import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
@@ -31,6 +32,7 @@ export default function Post({
   localDesap,
   referencia,
   dataDesap,
+  recompensa,
 }) {
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
@@ -120,6 +122,16 @@ export default function Post({
           <div className="comentario">
             <strong>Descrição do Pet</strong>
             <p>{descricao}</p>
+          </div>
+
+          <div className="recompensa-pet">
+            <div className="icone-recompensa">
+              <AiFillDollarCircle />
+            </div>
+            <strong>Recompensa: R$ {recompensa}</strong>
+            <div className="icone-recompensa">
+              <AiFillDollarCircle />
+            </div>
           </div>
         </div>
 

@@ -11,6 +11,28 @@
   gap: 4px; /* Pequeno espaço entre título e conteúdo */
 }
 
+.recompensa-pet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #a9f9c9; /* verde claro */
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-weight: bold;
+  color: #155e37; /* verde escuro */
+}
+
+.icone-recompensa {
+  color: green;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+}
+
 strong {
   font-size: 15px;
   color: #ff3131; /* Cor levemente mais escura para destaque */
