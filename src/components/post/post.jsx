@@ -16,6 +16,7 @@ import { AiFillDollarCircle } from "react-icons/ai";
 import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
+import { FiX } from "react-icons/fi";
 
 export default function Post({
   // Usuário
@@ -233,7 +234,12 @@ export default function Post({
                 <div className="modal-content-tel">
                   <div className="modal-header-tel">
                     <h2>Informações de Contato</h2>
-                    <button onClick={() => setMostrarModal(false)}>✖</button>
+                    <button
+                      className="btn-closed-tel"
+                      onClick={() => setMostrarModal(false)}
+                    >
+                      ✖
+                    </button>
                   </div>
 
                   <div className="modal-body-tel">

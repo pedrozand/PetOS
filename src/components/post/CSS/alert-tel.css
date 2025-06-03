@@ -13,10 +13,9 @@
 
 .modal-content-tel {
   background: white;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 20px;
-  width: 90%;
-  max-width: 400px;
+  max-width: 500px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
@@ -24,14 +23,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: linear-gradient(to right, #ff6a6a, #ffda6b);
+  padding: 10px 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-top: -20px;
+  width: 500px;
+  margin-left: -20px;
 }
 
 .modal-header-tel h2 {
   margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
 }
 
 .modal-body-tel h3 {
-  margin-top: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .modal-buttons-tel {
@@ -44,9 +55,12 @@
   background: #4caf50;
   color: white;
   padding: 5px 10px;
-  border-radius: 8px;
+  border: none;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
+  width: 180px;
+  height: 40px;
 }
 
 .btn-azul-tel {
@@ -54,18 +68,19 @@
   color: white;
   padding: 5px 10px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  width: 180px;
+  height: 40px;
 }
 
 .alerta-tel {
-  background: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-  padding: 10px;
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  border: 2px solid #ffce39;
+  padding: 10px 15px;
   border-radius: 8px;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .btn-mostrar-contato-tel {
@@ -81,4 +96,11 @@
 
 .btn-mostrar-contato-tel:hover {
   background-color: #45a049;
+}
+
+.btn-closed-tel {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  color: #ff3838;
 }
