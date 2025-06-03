@@ -128,7 +128,7 @@ export default function Post({
             <div className="icone-recompensa">
               <AiFillDollarCircle />
             </div>
-            <strong>Recompensa: R$ {recompensa}</strong>
+            <div>Recompensa: {recompensa}</div>
             <div className="icone-recompensa">
               <AiFillDollarCircle />
             </div>
