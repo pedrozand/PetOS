@@ -18,10 +18,12 @@
   gap: 8px;
   background-color: #a9f9c9; /* verde claro */
   border-radius: 12px;
-  padding: 8px 16px;
+  padding: 10px 5px;
   font-weight: bold;
   color: #155e37; /* verde escuro */
-  width: 250px;
+  width: 300px;
+  margin-left: 370px;
+  margin-bottom: -50px;
 }
 
 .icone-recompensa {
