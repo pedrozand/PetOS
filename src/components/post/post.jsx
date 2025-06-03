@@ -124,7 +124,7 @@ export default function Post({
             <p>{descricao}</p>
           </div>
 
-          {recompensa && recompensa !== "0" && (
+          {!mostrarCaracteristicas && recompensa && recompensa !== "0" && (
             <div className="recompensa-pet">
               <div className="icone-recompensa">
                 <AiFillDollarCircle />
