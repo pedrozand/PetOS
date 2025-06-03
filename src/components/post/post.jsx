@@ -40,7 +40,7 @@ export default function Post({
   recompensa,
   telefone,
 }) {
-  const [mostrarContato, setMostrarContato] = useState(false);
+  const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
   const [imagemExpandida, setImagemExpandida] = useState(false);
@@ -222,16 +222,59 @@ export default function Post({
                 {nome} {sobrenome}
               </p>
             </div>
-            {!mostrarContato && (
-              <button
-                className="btn-mostrar-contato"
-                onClick={() => setMostrarContato(true)}
-              >
-                Mostrar Contato
-              </button>
-            )}
+            <button
+              className="btn-mostrar-contato-tel"
+              onClick={() => setMostrarModal(true)}
+            >
+              Mostrar Contato
+            </button>
+            {mostrarModal && (
+              <div className="modal-overlay-tel">
+                <div className="modal-content-tel">
+                  <div className="modal-header-tel">
+                    <h2>Informações de Contato</h2>
+                    <button onClick={() => setMostrarModal(false)}>✖</button>
+                  </div>
 
-            {mostrarContato && <p>{telefone}</p>}
+                  <div className="modal-body-tel">
+                    <h3>Telefone do Tutor</h3>
+                    <p>{telefone}</p>
+
+                    <div className="modal-buttons-tel">
+                      <a
+                        className="btn-verde-tel"
+                        href={`https://wa.me/${telefone.replace(/\D/g, "")}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Enviar mensagem
+                      </a>
+                      <button
+                        className="btn-azul-tel"
+                        onClick={() => navigator.clipboard.writeText(telefone)}
+                      >
+                        Copiar número
+                      </button>
+                    </div>
+
+                    <h3>Email do Tutor</h3>
+                    <p>{email}</p>
+
+                    <div className="alerta-tel">
+                      <strong>ATENÇÃO</strong>
+                      <p>
+                        Entre em contato com este número <strong>apenas</strong>{" "}
+                        se você tiver informações relevantes sobre o paradeiro
+                        do pet.
+                        <br />
+                        Qualquer outro tipo de contato é expressamente proibido
+                        e sujeito a medidas legais.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="post-actions">

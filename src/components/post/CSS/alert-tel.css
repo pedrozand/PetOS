@@ -1,0 +1,84 @@
+.modal-overlay-tel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content-tel {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header-tel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header-tel h2 {
+  margin: 0;
+}
+
+.modal-body-tel h3 {
+  margin-top: 15px;
+}
+
+.modal-buttons-tel {
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-verde-tel {
+  background: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-azul-tel {
+  background: #1976d2;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.alerta-tel {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.btn-mostrar-contato-tel {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-mostrar-contato-tel:hover {
+  background-color: #45a049;
+}

@@ -110,18 +110,3 @@ strong {
   gap: 0.5rem;
   margin-top: 5px;
 }
-
-.btn-mostrar-contato {
-  margin-top: 5px;
-  padding: 5px 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.btn-mostrar-contato:hover {
-  background-color: #45a049;
-}

@@ -59,6 +59,7 @@ function Main() {
               dataDesap={"2025/03/15"}
               recompensa={"R$ 500,00"}
               telefone={"(11) 99999-9999"}
+              email={"pedro@gmail.com"}
             />
             <Post
               avatar={imgPerfilTeste}
