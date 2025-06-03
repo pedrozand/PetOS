@@ -6,6 +6,8 @@ import "./CSS/img-modal.css";
 import "./CSS/animal-info.css";
 import { useState, useEffect } from "react";
 import {
+  FaWhatsapp,
+  FaRegCopy,
   FaThumbsUp,
   FaCommentAlt,
   FaShare,
@@ -253,13 +255,13 @@ export default function Post({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Enviar mensagem
+                        <FaWhatsapp size={18} /> Enviar mensagem
                       </a>
                       <button
                         className="btn-azul-tel"
                         onClick={() => navigator.clipboard.writeText(telefone)}
                       >
-                        Copiar número
+                        <FaRegCopy size={15} /> Copiar número
                       </button>
                     </div>
 
@@ -269,10 +271,10 @@ export default function Post({
                     <div className="alerta-tel">
                       <strong>ATENÇÃO</strong>
                       <p>
-                        Entre em contato com este número <strong>apenas</strong>{" "}
-                        se você tiver informações relevantes sobre o paradeiro
-                        do pet.
-                        <br />
+                        Entre em contato com este número <b>apenas</b> se você
+                        tiver informações relevantes sobre o paradeiro do pet.
+                      </p>
+                      <p>
                         Qualquer outro tipo de contato é expressamente proibido
                         e sujeito a medidas legais.
                       </p>

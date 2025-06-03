@@ -51,9 +51,13 @@
   gap: 10px;
 }
 
-.btn-verde-tel {
-  background: #4caf50;
-  color: white;
+.btn-verde-tel,
+.btn-azul-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+
   padding: 5px 10px;
   border: none;
   border-radius: 6px;
@@ -61,41 +65,59 @@
   font-weight: bold;
   width: 180px;
   height: 40px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+.btn-verde-tel {
+  background: #4caf50;
+  color: white;
 }
 
 .btn-azul-tel {
   background: #1976d2;
   color: white;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  width: 180px;
-  height: 40px;
 }
 
 .alerta-tel {
   background: linear-gradient(to right, #ffe6e6, #fff3ce);
-  border: 2px solid #ffce39;
+  border: 1px solid #ffce39;
   padding: 10px 15px;
   border-radius: 8px;
   margin-top: 25px;
 }
 
+.alerta-tel p:first-of-type {
+  font-size: 13px !important;
+  line-height: 1.4;
+  color: #ff3636 !important;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.alerta-tel p:last-of-type {
+  font-size: 13px !important;
+  line-height: 1.4;
+  color: #ff3636 !important;
+}
+
+.alerta-tel strong {
+  color: #ff3939 !important;
+}
+
 .btn-mostrar-contato-tel {
-  margin-top: 10px;
   padding: 5px 10px;
-  background-color: #4caf50;
+  background: linear-gradient(to right, #ff6969, #ffd65b);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
 }
 
 .btn-mostrar-contato-tel:hover {
-  background-color: #45a049;
+  background: linear-gradient(to right, #ff7f7f, #ffdf7f);
 }
 
 .btn-closed-tel {
@@ -103,4 +125,8 @@
   border: none;
   font-size: 15px;
   color: #ff3838;
+}
+
+.btn-closed-tel:hover {
+  color: #ff8585;
 }
