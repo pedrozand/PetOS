@@ -56,7 +56,7 @@ function Main() {
               sexo={"Macho"}
               localDesap={"Bragança Paulista - São Paulo"}
               referencia={"Bar da Vanda"}
-              dataDesap={"2025/03/15"}
+              dataDesap={"15/03/2025"}
               recompensa={"R$ 500,00"}
               telefone={"(11) 99999-9999"}
               email={"pedro@gmail.com"}
@@ -83,7 +83,7 @@ function Main() {
               corOlhos={"Castanhos"}
               sexo={"Macho"}
               localDesap={"Bragança Paulista - São Paulo"}
-              dataDesap={"2025/03/15"}
+              dataDesap={"03/06/2025"}
               email={"pedro@gmail.com"}
             />
             <Post

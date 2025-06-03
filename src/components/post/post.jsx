@@ -63,8 +63,16 @@ export default function Post({
   useEffect(() => {
     if (dataDesap) {
       const calcularTempoDecorrido = () => {
-        // Verifica se dataDesap é uma string válida
-        const dataDesaparecimento = new Date(dataDesap);
+        let dataFormatada = dataDesap;
+
+        // Se a data estiver no formato DD/MM/AAAA
+        if (/\d{2}\/\d{2}\/\d{4}/.test(dataDesap)) {
+          const [dia, mes, ano] = dataDesap.split("/");
+          dataFormatada = `${ano}-${mes}-${dia}`; // AAAA-MM-DD
+        }
+
+        const dataDesaparecimento = new Date(dataFormatada);
+
         if (isNaN(dataDesaparecimento.getTime())) {
           console.error("Data inválida:", dataDesap);
           setTempoDecorrido("Data inválida");
