@@ -124,15 +124,17 @@ export default function Post({
             <p>{descricao}</p>
           </div>
 
-          <div className="recompensa-pet">
-            <div className="icone-recompensa">
-              <AiFillDollarCircle />
+          {recompensa && recompensa !== "0" && (
+            <div className="recompensa-pet">
+              <div className="icone-recompensa">
+                <AiFillDollarCircle />
+              </div>
+              <div>Recompensa: {recompensa}</div>
+              <div className="icone-recompensa">
+                <AiFillDollarCircle />
+              </div>
             </div>
-            <div>Recompensa: {recompensa}</div>
-            <div className="icone-recompensa">
-              <AiFillDollarCircle />
-            </div>
-          </div>
+          )}
         </div>
 
         <button
