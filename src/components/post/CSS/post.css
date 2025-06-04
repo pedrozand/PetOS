@@ -13,7 +13,6 @@
   justify-content: flex-start;
   align-items: flex-start; /* Garante que ambos fiquem alinhados no topo */
   flex-wrap: nowrap;
-  margin-top: -20px;
 }
 
 .post-header {
