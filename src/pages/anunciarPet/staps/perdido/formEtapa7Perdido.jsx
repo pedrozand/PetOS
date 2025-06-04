@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import FormBase from "../../formBase";
+import Post from "../../../../components/post/post.jsx";
 import { useFormContext } from "../../FormContext";
+
+import "./CSS/formEtapa7Perdido.css";
 
 export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
   const { formData } = useFormContext();
   const [previews, setPreviews] = useState([]);
 
   const handleProximo = () => {
-    onProximo({ confirmacao: true }); // Exemplo, pode ser ajustado
+    onProximo({ confirmacao: true });
   };
 
   useEffect(() => {
@@ -17,7 +20,6 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
       );
       setPreviews(previewUrls);
 
-      // Cleanup
       return () => {
         previewUrls.forEach((url) => {
           if (url.startsWith("blob:")) URL.revokeObjectURL(url);
@@ -28,83 +30,31 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
 
   return (
     <FormBase etapaAtual={7} onProximo={handleProximo} onVoltar={onVoltar}>
-      <div className="formulario-conteudo">
+      <div className="formulario-conteudo-form7">
         <h2>Resumo das Informações</h2>
         <p>Confira os dados preenchidos antes de finalizar:</p>
-
-        <div className="resumo-dados">
-          <p>
-            <strong>Situação:</strong> {formData.situacao}
-          </p>
-          <p>
-            <strong>Espécie:</strong> {formData.especie}
-          </p>
-          <p>
-            <strong>Gênero:</strong> {formData.genero}
-          </p>
-
-          {previews.length > 0 && (
-            <div className="resumo-fotos">
-              <h3>Fotos do Pet:</h3>
-              <div className="resumo-fotos-grid">
-                {previews.map((src, index) => (
-                  <img
-                    key={index}
-                    src={src}
-                    alt={`Foto ${index + 1}`}
-                    style={{
-                      width: "120px",
-                      height: "120px",
-                      objectFit: "cover",
-                      borderRadius: "8px",
-                      margin: "5px",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          <p>
-            <strong>Nome:</strong> {formData.nomePet}
-          </p>
-          <p>
-            <strong>Decrição:</strong> {formData.descricao}
-          </p>
-          <p>
-            <strong>Recompensa:</strong> {formData.valorRecompensa}
-          </p>
-          <p>
-            <strong>Raça:</strong> {formData.raca}
-          </p>
-          <p>
-            <strong>Porte:</strong> {formData.porte}
-          </p>
-          <p>
-            <strong>Cor Predominante:</strong> {formData.corPredominante}
-          </p>
-          <p>
-            <strong>Cor dos Olhos:</strong> {formData.corOlhos}
-          </p>
-          <p>
-            <strong>Idade Aproximada:</strong> {formData.idade}
-          </p>
-          <p>
-            <strong>Última Localização Vista:</strong> {formData.local}
-          </p>
-          <p>
-            <strong>Ponto de Referência:</strong> {formData.referencia}
-          </p>
-          <p>
-            <strong>Data de Desaparecimento:</strong>{" "}
-            {formData.dataDesaparecimento}
-          </p>
-          <p>
-            <strong>Telefone:</strong> {formData.telefone}
-          </p>
-          <p>
-            <strong>Período:</strong> {formData.periodo}
-          </p>
+        <div className="resumo-dados-form7">
+          <Post
+            avatar={formData.avatar || ""} // opcional, caso você tenha o campo
+            nome={formData.nomeUsuario || ""}
+            sobrenome={formData.sobrenomeUsuario || ""}
+            nomeAnimal={formData.nomePet || ""}
+            especie={formData.especie || ""}
+            descricao={formData.descricao || ""}
+            imgPet={previews}
+            raca={formData.raca || ""}
+            idade={formData.idade || ""}
+            porte={formData.porte || ""}
+            corPredominante={formData.corPredominante || ""}
+            corOlhos={formData.corOlhos || ""}
+            sexo={formData.genero || ""}
+            localDesap={formData.local || ""}
+            referencia={formData.referencia || ""}
+            dataDesap={formData.dataDesaparecimento || ""}
+            recompensa={formData.valorRecompensa || ""}
+            telefone={formData.telefone || ""}
+            email={formData.email || ""}
+          />
         </div>
       </div>
     </FormBase>

@@ -1,0 +1,11 @@
+.formulario-conteudo-form7 {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+
+.resumo-dados-form7 {
+  max-height: 500px; /* ajuste conforme necessário */
+  padding: 10px;
+}
