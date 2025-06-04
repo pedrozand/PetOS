@@ -108,7 +108,7 @@ export default function FormEtapa1({ onProximo }) {
                 </option>
                 <option value="Cachorro">Cachorro</option>
                 <option value="Gato">Gato</option>
-                <option value="Passaro">Pássaro</option>
+                <option value="Pássaro">Pássaro</option>
               </select>
               {selectFocus.especie ? (
                 <IoIosArrowUp className="select-icon" />
@@ -136,7 +136,7 @@ export default function FormEtapa1({ onProximo }) {
                   Selecione uma opção
                 </option>
                 <option value="Macho">Macho</option>
-                <option value="Femea">Fêmea</option>
+                <option value="Fêmea">Fêmea</option>
               </select>
               {selectFocus.genero ? (
                 <IoIosArrowUp className="select-icon" />

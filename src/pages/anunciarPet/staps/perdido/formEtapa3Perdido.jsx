@@ -161,7 +161,7 @@ export default function FormEtapa3Perdido({ onProximo, onVoltar }) {
       "Van Turco",
     ],
 
-    Passaro: [
+    Pássaro: [
       "",
       "Outro",
       "Não sei",
