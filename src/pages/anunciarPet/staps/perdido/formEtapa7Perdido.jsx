@@ -30,32 +30,36 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
 
   return (
     <FormBase etapaAtual={7} onProximo={handleProximo} onVoltar={onVoltar}>
-      <div className="formulario-titulo-form7 post-ajustado">
+      <div className="formulario-conteudo-form7">
         <h2>Resumo das Informações</h2>
-        <p>Confira os dados preenchidos antes de finalizar:</p>
-      </div>
-      <div className="formulario-conteudo-form7 post-ajustado">
-        <Post
-          avatar={formData.avatar || ""} // opcional, caso você tenha o campo
-          nome={formData.nomeUsuario || ""}
-          sobrenome={formData.sobrenomeUsuario || ""}
-          nomeAnimal={formData.nomePet || ""}
-          especie={formData.especie || ""}
-          descricao={formData.descricao || ""}
-          imgPet={previews}
-          raca={formData.raca || ""}
-          idade={formData.idade || ""}
-          porte={formData.porte || ""}
-          corPredominante={formData.corPredominante || ""}
-          corOlhos={formData.corOlhos || ""}
-          sexo={formData.genero || ""}
-          localDesap={formData.local || ""}
-          referencia={formData.referencia || ""}
-          dataDesap={formData.dataDesaparecimento || ""}
-          recompensa={formData.valorRecompensa || ""}
-          telefone={formData.telefone || ""}
-          email={formData.email || ""}
-        />
+        <p className="formulario-desc-form7">
+          Seu anúncio está pronto!{" "}
+          <b>Confira atentamente todas as informações antes de finalizar</b>.{" "}
+          Desejamos muita sorte na busca pelo seu pet!
+        </p>
+        <div className="resumo-dados-form7 post-ajustado">
+          <Post
+            avatar={formData.avatar || ""} // opcional, caso você tenha o campo
+            nome={formData.nomeUsuario || ""}
+            sobrenome={formData.sobrenomeUsuario || ""}
+            nomeAnimal={formData.nomePet || ""}
+            especie={formData.especie || ""}
+            descricao={formData.descricao || ""}
+            imgPet={previews}
+            raca={formData.raca || ""}
+            idade={formData.idade || ""}
+            porte={formData.porte || ""}
+            corPredominante={formData.corPredominante || ""}
+            corOlhos={formData.corOlhos || ""}
+            sexo={formData.genero || ""}
+            localDesap={formData.local || ""}
+            referencia={formData.referencia || ""}
+            dataDesap={formData.dataDesaparecimento || ""}
+            recompensa={formData.valorRecompensa || ""}
+            telefone={formData.telefone || ""}
+            email={formData.email || ""}
+          />
+        </div>
       </div>
     </FormBase>
   );
