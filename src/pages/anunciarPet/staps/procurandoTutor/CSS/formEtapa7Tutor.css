@@ -1,0 +1,64 @@
+.formulario-conteudo-form7-tut {
+  width: 100%;
+  max-width: 630px;
+  margin: 0 auto;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.resumo-dados-form7-tut {
+  max-height: 700px;
+  max-width: 650px;
+  overflow-y: auto;
+  padding: 15px;
+  scrollbar-width: thin;
+  scrollbar-color: #dddddd transparent;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .resumo-dados-form7-tut {
+    max-height: none; /* Ou um valor maior se quiser, tipo 1000px */
+    overflow-y: visible; /* Deixa o conteúdo fluir com a rolagem da página */
+  }
+}
+
+.resumo-dados-form7-tut::-webkit-scrollbar {
+  width: 6px;
+}
+
+.resumo-dados-form7-tut::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.resumo-dados-form7-tut::-webkit-scrollbar-track {
+  background: transparent; /* Sem fundo */
+}
+
+.resumo-dados-form7-tut::-webkit-scrollbar {
+  display: none; /* Webkit: esconde a barra mas mantém scroll */
+}
+
+.formulario-conteudo-form7-tut h2:first-child {
+  margin-top: 40px;
+}
+
+.formulario-desc-form7-tut {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  color: #585858;
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.post-ajustado-tut > * {
+  transform: scale(0.85);
+  transform-origin: top left;
+  margin-bottom: -140px;
+  margin-top: -37px;
+}

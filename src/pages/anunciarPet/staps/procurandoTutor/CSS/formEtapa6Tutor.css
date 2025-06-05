@@ -1,0 +1,140 @@
+.formulario-conteudo-tut {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo-tut label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #2c2c2c;
+}
+
+.campo-tut input[type="date"],
+.campo-tut input[type="tel"] {
+  padding: 12px 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 550px;
+}
+
+.campo-tut input:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
+.checkbox-bloco-tut {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9f9f9;
+  width: 550px;
+}
+
+.checkbox-container-tut {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.checkbox-container-tut input[type="checkbox"] {
+  margin-right: 485px;
+  margin-bottom: -23px;
+}
+
+.checkbox-container-tut span {
+  font-weight: normal;
+  color: #666666;
+  margin-left: 40px;
+}
+
+.texto-menor-tut {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.texto-menor-tut strong {
+  color: #8b8b8b;
+  font-style: italic;
+  font-size: 13.6px;
+}
+
+.texto-menor-tut em {
+  font-style: italic;
+}
+
+.data-formatada-tut {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+
+.periodo-selector-tut {
+  display: flex;
+  justify-content: center;
+  gap: 0; /* sem espaço entre os botões */
+  margin-top: 8px;
+}
+
+.periodo-botao-tut {
+  flex: 1;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  height: 25px;
+}
+
+/* Borda arredondada somente nos botões das extremidades */
+.periodo-botao-tut.pos-0 {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.periodo-botao-tut.pos-2 {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+/* Estilo do botão ativo */
+.periodo-botao-tut.ativo {
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  color: #ff6e6e;
+  z-index: 1;
+}
+
+/* Remover duplas bordas entre os botões */
+.periodo-botao-tut + .periodo-botao-tut {
+  border-left: none;
+}
+
+/* Estilo do texto "Opcional" */
+.opcional-tut {
+  font-weight: normal;
+  font-size: 0.9em;
+  color: #888;
+  margin-left: 5px;
+}
+
+.erro-declaracao-tut {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.erro-telefone-tut {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
