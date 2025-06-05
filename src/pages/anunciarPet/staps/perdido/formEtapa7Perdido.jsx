@@ -59,6 +59,7 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
             telefone={formData.telefone || ""}
             email={formData.email || ""}
             periodo={formData.periodo || ""}
+            situacao={formData.situacao || ""}
           />
         </div>
       </div>

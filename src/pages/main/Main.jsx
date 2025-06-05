@@ -61,6 +61,7 @@ function Main() {
               telefone={"(11) 99999-9999"}
               email={"pedro@gmail.com"}
               periodo={"Manhã"}
+              situacao={"Para Adoção"}
             />
             <Post
               avatar={imgPerfilTeste}

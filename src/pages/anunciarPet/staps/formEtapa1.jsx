@@ -73,7 +73,7 @@ export default function FormEtapa1({ onProximo }) {
                   Selecione uma opção
                 </option>
                 <option value="Perdido">Perdido</option>
-                <option value="Procurando Tutor">Procurando um Tutor</option>
+                <option value="Procurando Tutor">Procurando Tutor</option>
                 <option value="Adocao">Para Adoção</option>
               </select>
               {selectFocus.situacao ? (

@@ -65,7 +65,37 @@
   margin-top: 15px;
   top: 10px;
   right: 20px;
-  background: linear-gradient(to top, #ff3131, #ff6969);
+  background: linear-gradient(to top, #ff3131, #ff5e5e);
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.tag-procurando {
+  position: absolute;
+  margin-top: 15px;
+  top: 10px;
+  right: 20px;
+  background: linear-gradient(to top, #ff9900, #ffc266); /* Laranja */
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.tag-adocao {
+  position: absolute;
+  margin-top: 15px;
+  top: 10px;
+  right: 20px;
+  background: linear-gradient(to top, #008cff, #36a5ff); /* Verde */
   color: white;
   padding: 10px 15px;
   font-size: 18px;

@@ -27,6 +27,7 @@ export default function Post({
   sobrenome,
   email,
   // Post
+  situacao,
   nomeAnimal,
   especie,
   descricao,
@@ -49,6 +50,19 @@ export default function Post({
   const [tempoDecorrido, setTempoDecorrido] = useState("");
   const [imagemExpandida, setImagemExpandida] = useState(false);
   const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
+
+  function getTagClass(situacao) {
+    switch (situacao) {
+      case "Perdido":
+        return "tag-perdido";
+      case "Procurando Tutor":
+        return "tag-procurando";
+      case "Para Adoção":
+        return "tag-adocao";
+      default:
+        return "tag-default";
+    }
+  }
 
   // Funções para navegar entre as imagens no modal
   const proximaImagemModal = (e) => {
@@ -195,9 +209,8 @@ export default function Post({
           </div>
         )}
 
-        {/* Carrossel de imagens */}
         <div className="post-image-container">
-          <span className="tag-perdido">Perdido</span>
+          <span className={getTagClass(situacao)}>{situacao}</span>
           <button className="nav-button left" onClick={imagemAnterior}>
             <FaChevronLeft />
           </button>
