@@ -217,7 +217,6 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
               width: "550px",
               borderRadius: "8px",
               position: "relative",
-              marginTop: "20px",
             }}
           />
         )}
