@@ -40,6 +40,7 @@ export default function Post({
   localDesap,
   referencia,
   dataDesap,
+  periodo,
   recompensa,
   telefone,
 }) {
@@ -218,7 +219,7 @@ export default function Post({
             <strong>Local do Desaparecimento</strong>
             <p>{localDesap}</p>
             <strong className="ref-ajuste-post">Ponto de Referência</strong>
-            <p>{referencia ? referencia : "-"}</p>
+            <p>{referencia ? referencia : "Não informado"}</p>
           </div>
           <div className="info-item">
             <strong>Data do Desaparecimento</strong>
@@ -227,6 +228,11 @@ export default function Post({
                 ? `${dataDesap} - ${tempoDecorrido}`
                 : "Data não informada"}
             </p>
+
+            <div className="periodo-ajuste-post">
+              <strong>Período -</strong>
+              <p>{periodo ? periodo : "Não informado"}</p>
+            </div>
             <div className="nome-sobrenome-ajuste-post">
               <strong>Nome do Tutor -</strong>
               <p>

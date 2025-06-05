@@ -60,6 +60,7 @@ function Main() {
               recompensa={"R$ 500,00"}
               telefone={"(11) 99999-9999"}
               email={"pedro@gmail.com"}
+              periodo={"Manhã"}
             />
             <Post
               avatar={imgPerfilTeste}
