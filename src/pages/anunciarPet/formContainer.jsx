@@ -21,6 +21,11 @@ import FormEtapa6Tutor from "./staps/procurandoTutor/formEtapa6Tutor";
 import FormEtapa7Tutor from "./staps/procurandoTutor/formEtapa7Tutor";
 
 import FormEtapa2Adocao from "./staps/adocao/formEtapa2Adocao";
+import FormEtapa3Adocao from "./staps/adocao/formEtapa3Adocao";
+import FormEtapa4Adocao from "./staps/adocao/formEtapa4Adocao";
+import FormEtapa5Adocao from "./staps/adocao/formEtapa5Adocao";
+import FormEtapa6Adocao from "./staps/adocao/formEtapa6Adocao";
+import FormEtapa7Adocao from "./staps/adocao/formEtapa7Adocao";
 
 export default function FormContainer() {
   const [step, setStep] = useState(0);
@@ -139,6 +144,41 @@ export default function FormContainer() {
           {/* ADOÇÃO */}
           {step === 1 && formData.situacao === "Adocao" && (
             <FormEtapa2Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 2 && formData.situacao === "Adocao" && (
+            <FormEtapa3Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 3 && formData.situacao === "Adocao" && (
+            <FormEtapa4Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 4 && formData.situacao === "Adocao" && (
+            <FormEtapa5Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 5 && formData.situacao === "Adocao" && (
+            <FormEtapa6Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 6 && formData.situacao === "Adocao" && (
+            <FormEtapa7Adocao
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
