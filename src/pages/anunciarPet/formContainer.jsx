@@ -39,6 +39,7 @@ export default function FormContainer() {
 
         {/* LADO DIREITO */}
         <div className="formulario-all">
+          {/* PERDIDO */}
           {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
 
           {/* Etapas para situação "Perdido" */}
@@ -85,7 +86,7 @@ export default function FormContainer() {
             />
           )}
 
-          {/* Etapas para outras situações */}
+          {/* TUTOR */}
           {step === 1 && formData.situacao === "Procurando Tutor" && (
             <FormEtapa2Tutor
               onProximo={handleProximo}
@@ -93,6 +94,43 @@ export default function FormContainer() {
               dados={formData}
             />
           )}
+          {step === 2 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa3Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 3 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa4Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 4 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa5Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 5 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa6Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+          {step === 6 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa7Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+            />
+          )}
+
+          {/* ADOÇÃO */}
           {step === 1 && formData.situacao === "Adocao" && (
             <FormEtapa2Adocao
               onProximo={handleProximo}
