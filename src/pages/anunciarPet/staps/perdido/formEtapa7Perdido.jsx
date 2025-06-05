@@ -58,6 +58,7 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
             recompensa={formData.valorRecompensa || ""}
             telefone={formData.telefone || ""}
             email={formData.email || ""}
+            periodo={formData.periodo || ""}
           />
         </div>
       </div>
