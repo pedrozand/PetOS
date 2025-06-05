@@ -69,53 +69,6 @@ export default function FormEtapa4Tutor({ onProximo, onVoltar }) {
             rows={4}
           />
         </div>
-
-        {/* Recompensa */}
-        <div className="form-group">
-          <label className="reward-label-tit-tut">Recompensa</label>
-          <div className="reward-toggle-tut">
-            <label className="switch">
-              <input
-                type="checkbox"
-                checked={localData.oferecerRecompensa}
-                onChange={handleToggleRecompensa}
-              />
-              <span className="slider"></span>
-            </label>
-            <span className="reward-label-tut">Oferecer recompensa</span>
-          </div>
-
-          {/* Valor da recompensa */}
-          <div className="reward-valor-wrapper-tut">
-            <label
-              style={{
-                visibility: localData.oferecerRecompensa ? "visible" : "hidden",
-                opacity: localData.oferecerRecompensa ? 1 : 0,
-                transition: "opacity 0.3s ease",
-              }}
-            >
-              <a className="reward-label-val-tut">Valor:</a>
-            </label>
-            <input
-              type="text"
-              name="valorRecompensa"
-              placeholder="Opcional"
-              value={localData.valorRecompensa}
-              onChange={(e) =>
-                setLocalData((prev) => ({
-                  ...prev,
-                  valorRecompensa: formatarParaReal(e.target.value),
-                }))
-              }
-              className="form-input-reward-tut"
-              style={{
-                visibility: localData.oferecerRecompensa ? "visible" : "hidden",
-                opacity: localData.oferecerRecompensa ? 1 : 0,
-                transition: "opacity 0.3s ease",
-              }}
-            />
-          </div>
-        </div>
       </div>
     </FormBase>
   );

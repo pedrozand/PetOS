@@ -124,9 +124,9 @@ export default function FormEtapa5Tutor({ onProximo, onVoltar }) {
         <div className="endereco-container-tut">
           <div className="endereco-instrucao-tut">
             <p>
-              Nos informe o <b>local onde o pet foi visto pela última vez.</b>{" "}
-              Caso não saiba exatamente o endereço, indique um ponto de
-              referência próximo.
+              Nos informe o <b>local onde o pet foi encontrado.</b> Caso não
+              saiba exatamente o endereço, indique um endereço próximo ou um
+              ponto de referência.
             </p>
           </div>
 
@@ -158,7 +158,7 @@ export default function FormEtapa5Tutor({ onProximo, onVoltar }) {
             <input
               type="text"
               className="endereco-input-tut"
-              placeholder="Insira o endereço onde o pet foi visto pela última vez."
+              placeholder="Insira o endereço onde o pet foi encontrado."
               value={inputValue}
               onChange={(e) => {
                 setInputValue(e.target.value);

@@ -18,6 +18,7 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
     periodo: formData.periodo || "",
     receberAlertas: formData.receberAlertas || false,
     declaracao: formData.declaracao || false,
+    localRadio: formData.declaracao || "",
   });
 
   const [telefoneErro, setTelefoneErro] = useState("");
@@ -76,6 +77,42 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
   return (
     <FormBase etapaAtual={6} onProximo={handleProximo} onVoltar={onVoltar}>
       <div className="formulario-conteudo">
+        <div className="campo-tut">
+          <a className="local-pet-radio-tut">Local onde o pet está agora</a>
+          <div className="local-pet-opcoes">
+            {[
+              "Lar Temporário",
+              "Petshop",
+              "Abrigo",
+              "Canil",
+              "ONG",
+              "Outro",
+            ].map((localRadio) => (
+              <label key={localRadio} className="local-pet-label">
+                <input
+                  type="radio"
+                  name="localPet"
+                  value={localRadio}
+                  checked={localData.localPet === localRadio}
+                  onChange={() => handleChange("localPet", localRadio)}
+                />
+                <span>{localRadio}</span>
+              </label>
+            ))}
+          </div>
+
+          {/* Input aparece quando alguma opção for selecionada */}
+          {localData.localPet && (
+            <input
+              type="text"
+              className="input-descricao-local"
+              placeholder="Descreva mais sobre o local..."
+              value={localData.descricaoLocal || ""}
+              onChange={(e) => handleChange("descricaoLocal", e.target.value)}
+            />
+          )}
+        </div>
+
         {/* Data */}
         <div className="campo-tut">
           <label>Data do desaparecimento</label>

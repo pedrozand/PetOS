@@ -125,8 +125,8 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
           <div className="endereco-instrucao">
             <p>
               Nos informe o <b>local onde o pet foi visto pela última vez.</b>{" "}
-              Caso não saiba exatamente o endereço, indique um ponto de
-              referência próximo.
+              Caso não saiba exatamente o endereço, indique um endereço próximo
+              ou um ponto de referência.
             </p>
           </div>
 
