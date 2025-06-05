@@ -14,6 +14,12 @@ import FormEtapa6Perdido from "./staps/perdido/formEtapa6Perdido";
 import FormEtapa7Perdido from "./staps/perdido/formEtapa7Perdido";
 
 import FormEtapa2Tutor from "./staps/procurandoTutor/formEtapa2Tutor";
+import FormEtapa3Tutor from "./staps/procurandoTutor/formEtapa3Tutor";
+import FormEtapa4Tutor from "./staps/procurandoTutor/formEtapa4Tutor";
+import FormEtapa5Tutor from "./staps/procurandoTutor/formEtapa5Tutor";
+import FormEtapa6Tutor from "./staps/procurandoTutor/formEtapa6Tutor";
+import FormEtapa7Tutor from "./staps/procurandoTutor/formEtapa7Tutor";
+
 import FormEtapa2Adocao from "./staps/adocao/formEtapa2Adocao";
 
 export default function FormContainer() {
