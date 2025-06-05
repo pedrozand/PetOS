@@ -16,11 +16,6 @@
   width: 550px;
 }
 
-.campo-tut input:focus {
-  border-color: #ffc1c1;
-  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
-}
-
 .checkbox-bloco-tut {
   border: 1px solid #e5e5e5;
   border-radius: 8px;
@@ -137,6 +132,9 @@
   gap: 15px;
   margin-top: 8px;
   width: 600px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  color: red;
 }
 
 .local-pet-label {
