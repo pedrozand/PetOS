@@ -199,3 +199,13 @@
   margin-left: 22px;
   font-weight: bold;
 }
+
+.texto-radio {
+  margin-left: 5px;
+}
+
+.formulario-scroll {
+  max-height: 70vh; /* Ajuste conforme a altura disponível na tela */
+  overflow-y: auto;
+  padding-right: 10px; /* Para não esconder conteúdo atrás da barra */
+}

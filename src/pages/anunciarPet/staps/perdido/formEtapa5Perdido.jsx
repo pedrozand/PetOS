@@ -120,106 +120,111 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
 
   return (
     <FormBase etapaAtual={5} onProximo={handleProximo} onVoltar={onVoltar}>
-      <div className="formulario-conteudo">
-        <div className="endereco-container">
-          <div className="endereco-instrucao">
-            <p>
-              Nos informe o <b>local onde o pet foi visto pela última vez.</b>{" "}
-              Caso não saiba exatamente o endereço, indique um endereço próximo
-              ou um ponto de referência.
-            </p>
-          </div>
-
-          <div className="endereco-label-linha">
-            <label className="form-label">Endereço</label>
-            <button
-              type="button"
-              className="usar-localizacao-btn"
-              onClick={usarLocalizacaoAtual}
-            >
-              Usar localização atual
-            </button>
-          </div>
-
-          {local ? (
-            <div className="endereco-exibido">
-              <span className="texto-endereco">{local}</span>
-              <FiTrash
-                className="icone-lixeira"
-                onClick={() => {
-                  setLocal("");
-                  setInputValue("");
-                  setCoordenadas(null);
-                }}
-                aria-label="Apagar endereço"
-              />
+      <div className="formulario-scroll">
+        <div className="formulario-conteudo">
+          <div className="endereco-container">
+            <div className="endereco-instrucao">
+              <p>
+                Nos informe o <b>local onde o pet foi visto pela última vez.</b>{" "}
+                Caso não saiba exatamente o endereço, indique um endereço
+                próximo ou um ponto de referência.
+              </p>
             </div>
-          ) : (
-            <input
-              type="text"
-              className="endereco-input"
-              placeholder="Insira o endereço onde o pet foi visto pela última vez."
-              value={inputValue}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-                if (erroLocal) setErroLocal("");
+
+            <div className="endereco-label-linha">
+              <label className="form-label">Endereço</label>
+              <button
+                type="button"
+                className="usar-localizacao-btn"
+                onClick={usarLocalizacaoAtual}
+              >
+                Usar localização atual
+              </button>
+            </div>
+
+            {local ? (
+              <div className="endereco-exibido">
+                <span className="texto-endereco">{local}</span>
+                <FiTrash
+                  className="icone-lixeira"
+                  onClick={() => {
+                    setLocal("");
+                    setInputValue("");
+                    setCoordenadas(null);
+                  }}
+                  aria-label="Apagar endereço"
+                />
+              </div>
+            ) : (
+              <input
+                type="text"
+                className="endereco-input"
+                placeholder="Insira o endereço onde o pet foi visto pela última vez."
+                value={inputValue}
+                onChange={(e) => {
+                  setInputValue(e.target.value);
+                  if (erroLocal) setErroLocal("");
+                }}
+              />
+            )}
+            {erroLocal && <p className="mensagem-erro-local">{erroLocal}</p>}
+
+            {sugestoes.length > 0 && (
+              <ul className="sugestoes-lista">
+                {sugestoes.map((item) => {
+                  const endereco = formatarEndereco(item.address);
+                  return (
+                    <li
+                      key={item.place_id}
+                      onClick={() => {
+                        setLocal(endereco);
+                        setInputValue(endereco);
+                        setCoordenadas([item.lat, item.lon]);
+                        bloquearBusca.current = true;
+                        setSugestoes([]);
+                      }}
+                      className="sugestao-item"
+                    >
+                      {endereco}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+
+            {coordenadas && (
+              <div
+                className="referencia-container"
+                style={{ marginTop: "15px" }}
+              >
+                <label className="form-label">
+                  Ponto de referência{" "}
+                  <span className="referenica-form-optional">Opcional</span>
+                </label>
+                <input
+                  id="referenciaInput"
+                  type="text"
+                  className="referencia-input"
+                  placeholder="Ex. Próximo à lanchonete da Dri"
+                  value={referencia}
+                  onChange={(e) => setReferencia(e.target.value)}
+                />
+              </div>
+            )}
+          </div>
+
+          {coordenadas && (
+            <div
+              id="map"
+              style={{
+                height: "300px",
+                width: "550px",
+                borderRadius: "8px",
+                position: "relative",
               }}
             />
           )}
-          {erroLocal && <p className="mensagem-erro-local">{erroLocal}</p>}
-
-          {sugestoes.length > 0 && (
-            <ul className="sugestoes-lista">
-              {sugestoes.map((item) => {
-                const endereco = formatarEndereco(item.address);
-                return (
-                  <li
-                    key={item.place_id}
-                    onClick={() => {
-                      setLocal(endereco);
-                      setInputValue(endereco);
-                      setCoordenadas([item.lat, item.lon]);
-                      bloquearBusca.current = true;
-                      setSugestoes([]);
-                    }}
-                    className="sugestao-item"
-                  >
-                    {endereco}
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-
-          {coordenadas && (
-            <div className="referencia-container" style={{ marginTop: "15px" }}>
-              <label className="form-label">
-                Ponto de referência{" "}
-                <span className="referenica-form-optional">Opcional</span>
-              </label>
-              <input
-                id="referenciaInput"
-                type="text"
-                className="referencia-input"
-                placeholder="Ex. Próximo à lanchonete da Dri"
-                value={referencia}
-                onChange={(e) => setReferencia(e.target.value)}
-              />
-            </div>
-          )}
         </div>
-
-        {coordenadas && (
-          <div
-            id="map"
-            style={{
-              height: "300px",
-              width: "550px",
-              borderRadius: "8px",
-              position: "relative",
-            }}
-          />
-        )}
       </div>
     </FormBase>
   );

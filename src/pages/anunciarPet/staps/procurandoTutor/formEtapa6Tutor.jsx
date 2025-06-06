@@ -76,133 +76,143 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
 
   return (
     <FormBase etapaAtual={6} onProximo={handleProximo} onVoltar={onVoltar}>
-      <div className="formulario-conteudo">
-        <div className="campo-tut">
-          <a className="local-pet-radio-tut">Local onde o pet está agora</a>
-          <div className="local-pet-opcoes">
-            {[
-              " Lar Temporário",
-              " Petshop",
-              " Abrigo",
-              " Canil",
-              " ONG",
-              " Outro",
-            ].map((localRadio) => (
-              <label key={localRadio} className="local-pet-label">
-                <input
-                  type="radio"
-                  name="localPet"
-                  value={localRadio}
-                  checked={localData.localPet === localRadio}
-                  onChange={() => handleChange("localPet", localRadio)}
-                />
-                <span>{localRadio}</span>
-              </label>
-            ))}
-          </div>
+      <div className="formulario-scroll">
+        <div className="formulario-conteudo">
+          <div className="campo-tut">
+            <a className="local-pet-radio-tut">Local onde o pet está agora</a>
+            <div className="local-pet-opcoes">
+              {[
+                "Lar Temporário",
+                "Petshop",
+                "Abrigo",
+                "Canil",
+                "ONG",
+                "Outro",
+              ].map((localRadio) => (
+                <label key={localRadio} className="local-pet-label">
+                  <input
+                    type="radio"
+                    name="localPet"
+                    value={localRadio}
+                    checked={localData.localPet === localRadio}
+                    onChange={() => handleChange("localPet", localRadio)}
+                  />
+                  <span className="texto-radio">{localRadio}</span>
+                </label>
+              ))}
+            </div>
 
-          {/* Input aparece quando alguma opção for selecionada */}
-          {localData.localPet && (
-            <input
-              type="text"
-              className="input-descricao-local"
-              placeholder="Descreva mais sobre o local..."
-              value={localData.descricaoLocal || ""}
-              onChange={(e) => handleChange("descricaoLocal", e.target.value)}
-            />
-          )}
-        </div>
-
-        {/* Data */}
-        <div className="campo-tut">
-          <label>Data do desaparecimento</label>
-          <input
-            type="date"
-            value={localData.dataDesaparecimento}
-            max={getDataHoje()}
-            onChange={(e) =>
-              handleChange("dataDesaparecimento", e.target.value)
-            }
-          />
-          {localData.dataDesaparecimento && (
-            <p className="data-formatada-tut">
-              {formatarDataCompleta(localData.dataDesaparecimento)}
-            </p>
-          )}
-        </div>
-
-        {/* Telefone */}
-        <div className="campo-tut">
-          <label>Telefone com WhatsApp</label>
-          <input
-            type="tel"
-            placeholder="Insira seu telefone com DDD"
-            value={localData.telefone}
-            onChange={handleTelefoneChange}
-          />
-          {telefoneErro && <p className="erro-telefone-tut">{telefoneErro}</p>}
-        </div>
-
-        {/* Período */}
-        <div className="campo-tut">
-          <label>
-            Período do desaparecimento{" "}
-            <span className="opcional-tut">Opcional</span>
-          </label>
-          <div className="periodo-selector-tut">
-            {["Manhã", "Tarde", "Noite"].map((p, index) => (
-              <button
-                key={p}
-                type="button"
-                className={`periodo-botao-tut ${
-                  localData.periodo === p ? "ativo" : ""
-                } pos-${index}`}
-                onClick={() =>
-                  handleChange("periodo", localData.periodo === p ? "" : p)
+            {/* Input aparece quando alguma opção for selecionada */}
+            {localData.localPet && (
+              <input
+                type="text"
+                className="input-descricao-local"
+                placeholder={
+                  localData.localPet === "Lar Temporário"
+                    ? "Indique o contato se não for você!"
+                    : "Qual?"
                 }
-              >
-                {p}
-              </button>
-            ))}
+                value={localData.descricaoLocal || ""}
+                onChange={(e) => handleChange("descricaoLocal", e.target.value)}
+              />
+            )}
           </div>
-        </div>
 
-        {/* Alertas */}
-        <div className="checkbox-bloco-tut">
-          <label className="checkbox-container-tut">
+          {/* Data */}
+          <div className="campo-tut">
+            <label>Data do desaparecimento</label>
             <input
-              type="checkbox"
-              checked={localData.receberAlertas}
-              onChange={() =>
-                handleChange("receberAlertas", !localData.receberAlertas)
+              type="date"
+              value={localData.dataDesaparecimento}
+              max={getDataHoje()}
+              onChange={(e) =>
+                handleChange("dataDesaparecimento", e.target.value)
               }
             />
-            <span>Receber alertas por WhatsApp</span>
-            <p className="texto-menor-tut">
-              Concordo em receber comunicações relevantes por WhatsApp de outros
-              usuários.
-            </p>
-          </label>
-        </div>
+            {localData.dataDesaparecimento && (
+              <p className="data-formatada-tut">
+                {formatarDataCompleta(localData.dataDesaparecimento)}
+              </p>
+            )}
+          </div>
 
-        {/* Declaração */}
-        <div className="checkbox-bloco-tut">
-          <label className="checkbox-container-tut">
+          {/* Telefone */}
+          <div className="campo-tut">
+            <label>Telefone com WhatsApp</label>
             <input
-              type="checkbox"
-              checked={localData.declaracao}
-              onChange={() => handleChange("declaracao", !localData.declaracao)}
+              type="tel"
+              placeholder="Insira seu telefone com DDD"
+              value={localData.telefone}
+              onChange={handleTelefoneChange}
             />
-            <span>Declaração de Veracidade</span>
-            <p className="texto-menor-tut">
-              Certifico que todas as informações fornecidas são precisas e
-              atualizadas, assumindo total responsabilidade pela divulgação
-              deste pet.
-            </p>
-          </label>
-          {declaracaoErro && (
-            <p className="erro-declaracao-tut">{declaracaoErro}</p>
-          )}
+            {telefoneErro && (
+              <p className="erro-telefone-tut">{telefoneErro}</p>
+            )}
+          </div>
+
+          {/* Período */}
+          <div className="campo-tut">
+            <label>
+              Período do desaparecimento{" "}
+              <span className="opcional-tut">Opcional</span>
+            </label>
+            <div className="periodo-selector-tut">
+              {["Manhã", "Tarde", "Noite"].map((p, index) => (
+                <button
+                  key={p}
+                  type="button"
+                  className={`periodo-botao-tut ${
+                    localData.periodo === p ? "ativo" : ""
+                  } pos-${index}`}
+                  onClick={() =>
+                    handleChange("periodo", localData.periodo === p ? "" : p)
+                  }
+                >
+                  {p}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Alertas */}
+          <div className="checkbox-bloco-tut">
+            <label className="checkbox-container-tut">
+              <input
+                type="checkbox"
+                checked={localData.receberAlertas}
+                onChange={() =>
+                  handleChange("receberAlertas", !localData.receberAlertas)
+                }
+              />
+              <span>Receber alertas por WhatsApp</span>
+              <p className="texto-menor-tut">
+                Concordo em receber comunicações relevantes por WhatsApp de
+                outros usuários.
+              </p>
+            </label>
+          </div>
+
+          {/* Declaração */}
+          <div className="checkbox-bloco-tut">
+            <label className="checkbox-container-tut">
+              <input
+                type="checkbox"
+                checked={localData.declaracao}
+                onChange={() =>
+                  handleChange("declaracao", !localData.declaracao)
+                }
+              />
+              <span>Declaração de Veracidade</span>
+              <p className="texto-menor-tut">
+                Certifico que todas as informações fornecidas são precisas e
+                atualizadas, assumindo total responsabilidade pela divulgação
+                deste pet.
+              </p>
+            </label>
+            {declaracaoErro && (
+              <p className="erro-declaracao-tut">{declaracaoErro}</p>
+            )}
+          </div>
         </div>
       </div>
     </FormBase>
