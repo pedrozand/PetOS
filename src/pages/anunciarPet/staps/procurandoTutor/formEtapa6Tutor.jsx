@@ -99,12 +99,14 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
                     name="localPet"
                     value={localRadio}
                     checked={localData.localPet === localRadio}
-                    onClick={() =>
-                      handleChange(
-                        "localPet",
-                        localData.localPet === localRadio ? "" : localRadio
-                      )
-                    }
+                    onClick={() => {
+                      if (localData.localPet === localRadio) {
+                        handleChange("localPet", "");
+                        handleChange("descricaoLocal", "");
+                      } else {
+                        handleChange("localPet", localRadio);
+                      }
+                    }}
                   />
                   <span className="texto-radio">{localRadio}</span>
                 </label>

@@ -174,11 +174,16 @@ export default function Post({
                   <AiFillDollarCircle />
                 </div>
               </div>
-            ) : situacao === "Procurando Tutor" ? (
+            ) : situacao === "Procurando Tutor" &&
+              (localPet || descricaoLocal) ? ( // <-- Condição extra aqui
               <div className="local-encontrado-container">
                 <strong>Local onde o pet está agora:</strong>
-                <p className="local-encontrado-texto">{localPet}</p>
-                <p className="descricao-local">{descricaoLocal}</p>
+                {localPet && (
+                  <p className="local-encontrado-texto">{localPet}</p>
+                )}
+                {descricaoLocal && (
+                  <p className="descricao-local">{descricaoLocal}</p>
+                )}
               </div>
             ) : null)}
         </div>
