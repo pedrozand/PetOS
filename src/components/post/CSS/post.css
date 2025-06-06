@@ -118,3 +118,30 @@
   text-align: left;
   margin-bottom: 40px;
 }
+
+.local-encontrado-container {
+  background-color: #f1f7ff;
+  border-left: 5px solid #0077cc;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 12px;
+}
+
+.local-encontrado-container strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #004f99;
+}
+
+.local-encontrado-texto {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #222;
+}
+
+.descricao-local {
+  font-style: italic;
+  color: #555;
+  margin-top: 0.3rem;
+}

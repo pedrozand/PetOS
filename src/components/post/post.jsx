@@ -45,7 +45,7 @@ export default function Post({
   recompensa, // PERDIDO
   telefone,
   descricaoLocal, // TUTOR
-  localRadio, // TUTOR
+  localPet, // TUTOR
 }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
@@ -161,17 +161,24 @@ export default function Post({
             <p>{descricao}</p>
           </div>
 
-          {!mostrarCaracteristicas && recompensa && recompensa !== "0" && (
-            <div className="recompensa-pet">
-              <div className="icone-recompensa">
-                <AiFillDollarCircle />
+          {!mostrarCaracteristicas &&
+            (situacao === "Perdido" && recompensa && recompensa !== "0" ? (
+              <div className="recompensa-pet">
+                <div className="icone-recompensa">
+                  <AiFillDollarCircle />
+                </div>
+                <div>Recompensa: {recompensa}</div>
+                <div className="icone-recompensa">
+                  <AiFillDollarCircle />
+                </div>
               </div>
-              <div>Recompensa: {recompensa}</div>
-              <div className="icone-recompensa">
-                <AiFillDollarCircle />
+            ) : situacao === "Procurando Tutor" ? (
+              <div className="local-encontrado-container">
+                <strong>Local onde o pet está agora:</strong>
+                <p className="local-encontrado-texto">{localPet}</p>
+                <p className="descricao-local">{descricaoLocal}</p>
               </div>
-            </div>
-          )}
+            ) : null)}
         </div>
 
         <button
@@ -231,13 +238,21 @@ export default function Post({
 
         <div className="info-desaparecimento">
           <div className="info-item">
-            <strong>Local do Desaparecimento</strong>
+            <strong>
+              {situacao === "Procurando Tutor"
+                ? "Local onde o pet foi Encontrado"
+                : "Local do Desaparecimento"}
+            </strong>
             <p>{localDesap}</p>
             <strong className="ref-ajuste-post">Ponto de Referência</strong>
             <p>{referencia ? referencia : "Não informado"}</p>
           </div>
           <div className="info-item">
-            <strong>Data do Desaparecimento</strong>
+            <strong>
+              {situacao === "Procurando Tutor"
+                ? "Data que o pet foi encontrado"
+                : "Data do Desaparecimento"}
+            </strong>
             <p>
               {dataDesap
                 ? `${dataDesap} - ${tempoDecorrido}`

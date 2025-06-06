@@ -18,8 +18,8 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
     periodo: formData.periodo || "",
     receberAlertas: formData.receberAlertas || false,
     declaracao: formData.declaracao || false,
-    localRadio: formData.declaracao || "",
-    descricaoLocal: formData.declaracaoLocal || "",
+    localPet: formData.localPet || "",
+    descricaoLocal: formData.descricaoLocal || "",
   });
 
   const [telefoneErro, setTelefoneErro] = useState("");
@@ -77,7 +77,7 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
 
   return (
     <FormBase etapaAtual={6} onProximo={handleProximo} onVoltar={onVoltar}>
-      <div className="formulario-scroll">
+      <div className="formulario-scroll-tut">
         <div className="formulario-conteudo">
           <div className="campo-tut">
             <a className="local-pet-radio-tut">Local onde o pet está agora</a>
@@ -121,7 +121,7 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
 
           {/* Data */}
           <div className="campo-tut">
-            <label>Data do desaparecimento</label>
+            <label>Data que o pet foi encontrado</label>
             <input
               type="date"
               value={localData.dataDesaparecimento}
