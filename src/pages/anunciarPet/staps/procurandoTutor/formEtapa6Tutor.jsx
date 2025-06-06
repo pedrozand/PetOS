@@ -80,7 +80,10 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
       <div className="formulario-scroll-tut">
         <div className="formulario-conteudo">
           <div className="campo-tut">
-            <a className="local-pet-radio-tut">Local onde o pet está agora</a>
+            <a className="local-pet-radio-tut">
+              Local onde o pet está agora
+              <span className="referenica-form-optional-tut-2">Opcional</span>
+            </a>
             <div className="local-pet-opcoes">
               {[
                 "Lar Temporário",
@@ -96,7 +99,12 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
                     name="localPet"
                     value={localRadio}
                     checked={localData.localPet === localRadio}
-                    onChange={() => handleChange("localPet", localRadio)}
+                    onClick={() =>
+                      handleChange(
+                        "localPet",
+                        localData.localPet === localRadio ? "" : localRadio
+                      )
+                    }
                   />
                   <span className="texto-radio">{localRadio}</span>
                 </label>

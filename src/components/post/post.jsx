@@ -146,10 +146,12 @@ export default function Post({
           </div>
         </div>
         <div className="post-content">
-          <div className="especie">
-            <strong>Nome do Pet</strong>
-            <h2 className="nome-animal">{nomeAnimal}</h2>
-          </div>
+          {nomeAnimal && (
+            <div className="especie">
+              <strong>Nome do Pet</strong>
+              <h2 className="nome-animal">{nomeAnimal}</h2>
+            </div>
+          )}
 
           <div className="especie">
             <strong>Espécie</strong>
@@ -197,9 +199,11 @@ export default function Post({
               <p>
                 <strong>Raça</strong> {raca}
               </p>
+
               <p>
                 <strong>Idade</strong> {idade}
               </p>
+
               <p>
                 <strong>Porte</strong> {porte}
               </p>
@@ -208,9 +212,11 @@ export default function Post({
               <p>
                 <strong>Cor predominante</strong> {corPredominante}
               </p>
+
               <p>
                 <strong>Cor dos olhos</strong> {corOlhos}
               </p>
+
               <p>
                 <strong>Gênero</strong> {sexo}
               </p>
@@ -238,31 +244,42 @@ export default function Post({
 
         <div className="info-desaparecimento">
           <div className="info-item">
-            <strong>
-              {situacao === "Procurando Tutor"
-                ? "Local onde o pet foi Encontrado"
-                : "Local do Desaparecimento"}
-            </strong>
-            <p>{localDesap}</p>
-            <strong className="ref-ajuste-post">Ponto de Referência</strong>
-            <p>{referencia ? referencia : "Não informado"}</p>
+            {localDesap && (
+              <>
+                <strong>
+                  {situacao === "Procurando Tutor"
+                    ? "Local onde o pet foi Encontrado"
+                    : "Local do Desaparecimento"}
+                </strong>
+                <p>{localDesap}</p>
+              </>
+            )}
+            {referencia && (
+              <>
+                <strong className="ref-ajuste-post">Ponto de Referência</strong>
+                <p>{referencia}</p>
+              </>
+            )}
           </div>
           <div className="info-item">
-            <strong>
-              {situacao === "Procurando Tutor"
-                ? "Data que o pet foi encontrado"
-                : "Data do Desaparecimento"}
-            </strong>
-            <p>
-              {dataDesap
-                ? `${dataDesap} - ${tempoDecorrido}`
-                : "Data não informada"}
-            </p>
+            {dataDesap && (
+              <>
+                <strong>
+                  {situacao === "Procurando Tutor"
+                    ? "Data que o pet foi encontrado"
+                    : "Data do Desaparecimento"}
+                </strong>
+                <p>{`${dataDesap} - ${tempoDecorrido}`}</p>
+              </>
+            )}
 
-            <div className="periodo-ajuste-post">
-              <strong>Período -</strong>
-              <p>{periodo ? periodo : "Não informado"}</p>
-            </div>
+            {periodo && (
+              <div className="periodo-ajuste-post">
+                <strong>Período -</strong>
+                <p>{periodo}</p>
+              </div>
+            )}
+
             <div className="nome-sobrenome-ajuste-post">
               <strong>Nome do Tutor -</strong>
               <p>
