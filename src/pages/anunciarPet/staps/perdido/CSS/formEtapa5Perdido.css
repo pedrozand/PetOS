@@ -197,7 +197,7 @@
 }
 
 .formulario-scroll {
-  max-height: 70vh; /* Ajuste conforme a altura disponível na tela */
+  max-height: 85vh;
   overflow-y: auto;
-  padding-right: 10px; /* Para não esconder conteúdo atrás da barra */
+  padding-right: 10px;
 }

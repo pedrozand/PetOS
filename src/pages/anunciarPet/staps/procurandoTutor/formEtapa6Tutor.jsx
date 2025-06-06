@@ -19,6 +19,7 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
     receberAlertas: formData.receberAlertas || false,
     declaracao: formData.declaracao || false,
     localRadio: formData.declaracao || "",
+    descricaoLocal: formData.declaracaoLocal || "",
   });
 
   const [telefoneErro, setTelefoneErro] = useState("");
@@ -153,7 +154,7 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
           {/* Período */}
           <div className="campo-tut">
             <label>
-              Período do desaparecimento{" "}
+              Período que encontrou o pet{" "}
               <span className="opcional-tut">Opcional</span>
             </label>
             <div className="periodo-selector-tut">

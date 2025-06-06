@@ -42,8 +42,10 @@ export default function Post({
   referencia,
   dataDesap,
   periodo,
-  recompensa,
+  recompensa, // PERDIDO
   telefone,
+  descricaoLocal, // TUTOR
+  localRadio, // TUTOR
 }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
