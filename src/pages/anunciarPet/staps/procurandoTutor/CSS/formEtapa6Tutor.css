@@ -16,6 +16,11 @@
   width: 550px;
 }
 
+.campo-tut input:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
 .checkbox-bloco-tut {
   border: 1px solid #e5e5e5;
   border-radius: 8px;
@@ -133,25 +138,50 @@
   margin-top: 8px;
   width: 600px;
   margin-bottom: 10px;
-  margin-left: 50px;
   color: red;
 }
 
 .local-pet-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
   font-size: 16px;
   color: #333;
+  font-weight: normal !important;
+  margin-top: 10px;
 }
 
 .local-pet-label input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
   width: 20px;
   height: 20px;
-  accent-color: #ffa6a6;
+  border: 2px solid #ffa6a6;
+  border-radius: 50%;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  outline: none;
   vertical-align: middle;
   margin-top: -2.5px;
+}
+
+.local-pet-label input[type="radio"]:checked::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  background-color: #ffa6a6;
+  border-radius: 50%;
+}
+
+.local-pet-label input:focus {
+  box-shadow: 0 0 0 0px rgba(255, 193, 193, 0.5);
 }
 
 .input-descricao-local {

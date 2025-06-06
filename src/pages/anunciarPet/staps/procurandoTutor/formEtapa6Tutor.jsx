@@ -81,12 +81,12 @@ export default function FormEtapa6Tutor({ onProximo, onVoltar }) {
           <a className="local-pet-radio-tut">Local onde o pet está agora</a>
           <div className="local-pet-opcoes">
             {[
-              "Lar Temporário",
-              "Petshop",
-              "Abrigo",
-              "Canil",
-              "ONG",
-              "Outro",
+              " Lar Temporário",
+              " Petshop",
+              " Abrigo",
+              " Canil",
+              " ONG",
+              " Outro",
             ].map((localRadio) => (
               <label key={localRadio} className="local-pet-label">
                 <input
