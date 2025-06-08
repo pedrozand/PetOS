@@ -38,7 +38,7 @@ const CARACTERISTICAS = {
   ],
 };
 
-export default function FormEtapa5Adocao({ onProximo, onVoltar }) {
+export default function FormEtapa5Adocao({ onProximo, onVoltar, totalEtapas }) {
   const { formData, updateFormData } = useFormContext();
 
   const [caracteristicas, setCaracteristicas] = useState(
@@ -88,7 +88,12 @@ export default function FormEtapa5Adocao({ onProximo, onVoltar }) {
   );
 
   return (
-    <FormBase etapaAtual={5} onProximo={handleProximo} onVoltar={onVoltar}>
+    <FormBase
+      etapaAtual={5}
+      onProximo={handleProximo}
+      onVoltar={onVoltar}
+      totalEtapas={totalEtapas}
+    >
       <div className="formulario-scroll-ado">
         <div className="form-wrapper-ado">
           <div className="mensagem-destaque">

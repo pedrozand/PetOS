@@ -5,7 +5,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 import "./CSS/formEtapa3Adocao.css"; // atualizado o caminho do CSS
 
-export default function FormEtapa3Adocao({ onProximo, onVoltar }) {
+export default function FormEtapa3Adocao({ onProximo, onVoltar, totalEtapas }) {
   const { formData, updateFormData } = useFormContext();
 
   const [raça, setRaca] = useState(formData.raca || "");
@@ -236,7 +236,12 @@ export default function FormEtapa3Adocao({ onProximo, onVoltar }) {
   };
 
   return (
-    <FormBase etapaAtual={3} onProximo={handleProximo} onVoltar={onVoltar}>
+    <FormBase
+      etapaAtual={3}
+      onProximo={handleProximo}
+      onVoltar={onVoltar}
+      totalEtapas={totalEtapas}
+    >
       <div className="formulario-conteudo">
         <div className="etapa3-select-group-ado">
           {renderSelectWithIcon(

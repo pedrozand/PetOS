@@ -17,7 +17,6 @@ export default function FormBase({
       <div className="formulario">
         <ProgressBar currentStep={etapaAtual} totalSteps={totalEtapas} />
 
-        {/* Conteúdo específico da etapa */}
         {children}
 
         <div className="botoes-container-anun">

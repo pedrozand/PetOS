@@ -3,7 +3,7 @@ import FormBase from "../../formBase";
 import { useFormContext } from "../../FormContext.jsx";
 import "./CSS/formEtapa7Adocao.css";
 
-export default function FormEtapa7Adocao({ onProximo, onVoltar }) {
+export default function FormEtapa7Adocao({ onProximo, onVoltar, totalEtapas }) {
   const { formData, updateFormData } = useFormContext();
 
   const [localData, setLocalData] = useState({
@@ -54,7 +54,12 @@ export default function FormEtapa7Adocao({ onProximo, onVoltar }) {
   };
 
   return (
-    <FormBase etapaAtual={6} onProximo={handleProximo} onVoltar={onVoltar}>
+    <FormBase
+      etapaAtual={7}
+      onProximo={handleProximo}
+      onVoltar={onVoltar}
+      totalEtapas={totalEtapas}
+    >
       <div className="formulario-scroll-ado">
         <div className="formulario-conteudo">
           <div className="campo-ado">

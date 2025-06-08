@@ -4,7 +4,7 @@ import FormBase from "../../formBase";
 import { FiImage, FiX } from "react-icons/fi";
 import "./CSS/formEtapa2Adocao.css";
 
-export default function FormEtapa2Adocao({ onProximo, onVoltar }) {
+export default function FormEtapa2Adocao({ onProximo, onVoltar, totalEtapas }) {
   const { formData, updateFormData } = useFormContext();
 
   const [imagens, setImagens] = useState([]);
@@ -76,7 +76,12 @@ export default function FormEtapa2Adocao({ onProximo, onVoltar }) {
   };
 
   return (
-    <FormBase etapaAtual={2} onProximo={handleProximo} onVoltar={onVoltar}>
+    <FormBase
+      etapaAtual={2}
+      onProximo={handleProximo}
+      onVoltar={onVoltar}
+      totalEtapas={totalEtapas}
+    >
       <div className="formulario-conteudo">
         <div className="box-texto-destaque-ado">
           <p>

@@ -6,7 +6,7 @@ import "./CSS/formEtapa6Adocao.css";
 import { FiTrash } from "react-icons/fi";
 import { useFormContext } from "../../FormContext";
 
-export default function FormEtapa6Adocao({ onProximo, onVoltar }) {
+export default function FormEtapa6Adocao({ onProximo, onVoltar, totalEtapas }) {
   const { formData, updateFormData } = useFormContext();
 
   const [local, setLocal] = useState(formData.local || "");
@@ -119,7 +119,12 @@ export default function FormEtapa6Adocao({ onProximo, onVoltar }) {
   }, [coordenadas]);
 
   return (
-    <FormBase etapaAtual={5} onProximo={handleProximo} onVoltar={onVoltar}>
+    <FormBase
+      etapaAtual={6}
+      onProximo={handleProximo}
+      onVoltar={onVoltar}
+      totalEtapas={totalEtapas}
+    >
       <div className="formulario-scroll-ado">
         <div className="formulario-conteudo">
           <div className="endereco-container-ado">

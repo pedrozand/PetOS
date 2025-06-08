@@ -3,7 +3,7 @@ import { useFormContext } from "../../FormContext.jsx";
 import FormBase from "../../formBase";
 import "./CSS/formEtapa4Adocao.css";
 
-export default function FormEtapa4Adocao({ onProximo, onVoltar }) {
+export default function FormEtapa4Adocao({ onProximo, onVoltar, totalEtapas }) {
   const { formData, updateFormData } = useFormContext();
 
   const [localData, setLocalData] = useState({
@@ -38,7 +38,12 @@ export default function FormEtapa4Adocao({ onProximo, onVoltar }) {
   };
 
   return (
-    <FormBase etapaAtual={4} onProximo={handleProximo} onVoltar={onVoltar}>
+    <FormBase
+      etapaAtual={4}
+      onProximo={handleProximo}
+      onVoltar={onVoltar}
+      totalEtapas={totalEtapas}
+    >
       <div className="form-wrapper-ado">
         {/* Nome do pet */}
         <div className="form-group">

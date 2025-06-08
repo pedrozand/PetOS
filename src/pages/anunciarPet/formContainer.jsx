@@ -32,6 +32,11 @@ export default function FormContainer() {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({});
 
+  let totalEtapas = 7; // padrão
+  if (formData.situacao === "Adocao") {
+    totalEtapas = 8;
+  }
+
   const handleProximo = (dadosEtapaAtual) => {
     setFormData((prev) => ({ ...prev, ...dadosEtapaAtual }));
     setStep((prev) => prev + 1);
@@ -148,6 +153,7 @@ export default function FormContainer() {
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
+              totalEtapas={totalEtapas}
             />
           )}
           {step === 2 && formData.situacao === "Adocao" && (
@@ -155,6 +161,7 @@ export default function FormContainer() {
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
+              totalEtapas={totalEtapas}
             />
           )}
           {step === 3 && formData.situacao === "Adocao" && (
@@ -162,6 +169,7 @@ export default function FormContainer() {
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
+              totalEtapas={totalEtapas}
             />
           )}
           {step === 4 && formData.situacao === "Adocao" && (
@@ -169,6 +177,7 @@ export default function FormContainer() {
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
+              totalEtapas={totalEtapas}
             />
           )}
           {step === 5 && formData.situacao === "Adocao" && (
@@ -176,6 +185,7 @@ export default function FormContainer() {
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
+              totalEtapas={totalEtapas}
             />
           )}
           {step === 6 && formData.situacao === "Adocao" && (
@@ -183,6 +193,15 @@ export default function FormContainer() {
               onProximo={handleProximo}
               onVoltar={handleVoltar}
               dados={formData}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 7 && formData.situacao === "Adocao" && (
+            <FormEtapa8Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              dados={formData}
+              totalEtapas={totalEtapas}
             />
           )}
         </div>
