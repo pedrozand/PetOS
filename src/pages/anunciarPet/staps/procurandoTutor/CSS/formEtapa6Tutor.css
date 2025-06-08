@@ -114,7 +114,7 @@
 /* Estilo do texto "Opcional" */
 .opcional-tut {
   font-weight: normal;
-  font-size: 0.9em;
+  font-size: 14px;
   color: #888;
   margin-left: 5px;
 }
@@ -213,7 +213,7 @@
 
 .referenica-form-optional-tut-2 {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   color: #999;
   margin-left: 0.6rem;
 }
