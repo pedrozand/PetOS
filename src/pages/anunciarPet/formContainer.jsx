@@ -26,6 +26,7 @@ import FormEtapa4Adocao from "./staps/adocao/formEtapa4Adocao";
 import FormEtapa5Adocao from "./staps/adocao/formEtapa5Adocao";
 import FormEtapa6Adocao from "./staps/adocao/formEtapa6Adocao";
 import FormEtapa7Adocao from "./staps/adocao/formEtapa7Adocao";
+import FormEtapa8Adocao from "./staps/adocao/formEtapa8Adocao.jsx";
 
 export default function FormContainer() {
   const [step, setStep] = useState(0);

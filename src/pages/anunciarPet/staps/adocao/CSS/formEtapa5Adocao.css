@@ -1,0 +1,50 @@
+.form-wrapper-ado {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.mensagem-destaque {
+  background-color: #f5ebff;
+  color: #4b0082;
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.grupo-caracteristica h4 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #222;
+}
+
+.botoes-caracteristica {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.botao-caracteristica {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #e6e1e1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.botao-caracteristica.ativo {
+  background-color: #e4ccff;
+  color: #4b0082;
+  font-weight: 600;
+}
+
+.formulario-scroll-ado {
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
