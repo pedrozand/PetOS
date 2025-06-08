@@ -36,7 +36,7 @@ export default function FormEtapa7Tutor({ onProximo, onVoltar }) {
           <p className="formulario-desc-form7-tut">
             Seu anúncio está pronto!{" "}
             <b>Confira atentamente todas as informações antes de finalizar</b>.{" "}
-            Desejamos muita sorte na busca pelo seu pet!
+            Desejamos muita sorte na busca pelo pet!
           </p>
           <div className="resumo-dados-form7-tut post-ajustado-tut">
             <Post

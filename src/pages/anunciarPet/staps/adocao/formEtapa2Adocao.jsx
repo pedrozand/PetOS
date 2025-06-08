@@ -11,7 +11,6 @@ export default function FormEtapa2Adocao({ onProximo, onVoltar }) {
   const [dragOver, setDragOver] = useState(false);
   const [erroImagem, setErroImagem] = useState("");
 
-  // Carrega imagens existentes do contexto (caso existam)
   useEffect(() => {
     if (formData.fotos && formData.fotos.length > 0) {
       const imagensPreview = formData.fotos.map((file) => ({
@@ -71,15 +70,15 @@ export default function FormEtapa2Adocao({ onProximo, onVoltar }) {
     }
 
     const fotos = imagens.map((img) => img.file);
-    updateFormData({ fotos }); // Atualiza o contexto
+    updateFormData({ fotos });
     setErroImagem("");
-    onProximo({ fotos }); // Chama próxima etapa
+    onProximo({ fotos });
   };
 
   return (
     <FormBase etapaAtual={2} onProximo={handleProximo} onVoltar={onVoltar}>
       <div className="formulario-conteudo">
-        <div className="box-texto-destaque">
+        <div className="box-texto-destaque-ado">
           <p>
             Carregue <b>até 5 fotos</b> do seu pet. Elas serão utilizadas em
             todos os materiais de divulgação, incluindo cartazes, postagens em
@@ -87,10 +86,10 @@ export default function FormEtapa2Adocao({ onProximo, onVoltar }) {
           </p>
         </div>
 
-        <div className="upload-area-wrapper">
-          <h3 className="titulo-upload-img">Fotos do pet</h3>
+        <div className="upload-area-wrapper-ado">
+          <h3 className="titulo-upload-img-ado">Fotos do pet</h3>
           <label
-            className={`upload-area ${dragOver ? "drag-over" : ""}`}
+            className={`upload-area-ado ${dragOver ? "drag-over-ado" : ""}`}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onDragEnter={() => setDragOver(true)}
@@ -115,14 +114,16 @@ export default function FormEtapa2Adocao({ onProximo, onVoltar }) {
             </span>
           </label>
 
-          {erroImagem && <div className="mensagem-erro-2">{erroImagem}</div>}
+          {erroImagem && (
+            <div className="mensagem-erro-2-ado">{erroImagem}</div>
+          )}
 
-          <div className="preview-imagens">
+          <div className="preview-imagens-ado">
             {imagens.map((img, index) => (
-              <div className="preview-item" key={index}>
+              <div className="preview-item-ado" key={index}>
                 <img src={img.preview} alt={`Preview ${index}`} />
                 <button
-                  className="btn-remover"
+                  className="btn-remover-ado"
                   onClick={() => removerImagem(index)}
                 >
                   <FiX />

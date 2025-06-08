@@ -1,0 +1,70 @@
+.form-wrapper-ado {
+  width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+}
+
+.form-title-ado {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.form-content-ado {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-textarea-ado::placeholder {
+  color: #999;
+}
+
+.form-input-ado::placeholder {
+  color: #999;
+}
+
+.form-title-ado {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label-ado {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: -14px;
+}
+
+.form-optional-ado {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #999;
+  margin-left: 0.3rem;
+}
+
+.form-input-ado,
+.form-textarea-ado {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-input-ado:focus,
+.form-textarea-ado:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
