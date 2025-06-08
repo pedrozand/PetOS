@@ -53,7 +53,7 @@ export default function FormEtapa4Adocao({ onProximo, onVoltar, totalEtapas }) {
           <input
             type="text"
             name="nomePet"
-            placeholder="Deixe em branco se não souber."
+            placeholder="Deixe em branco se não tiver nome."
             value={localData.nomePet}
             onChange={handleChange}
             className="form-input-ado"
@@ -63,11 +63,11 @@ export default function FormEtapa4Adocao({ onProximo, onVoltar, totalEtapas }) {
         {/* Descrição */}
         <div className="form-group">
           <label className="form-label-ado">
-            Descrição <span className="form-optional-ado">Opcional</span>
+            Sobre o Pet <span className="form-optional-ado">Opcional</span>
           </label>
           <textarea
             name="descricao"
-            placeholder="Insira informações relevantes que ajudem na identificação do pet."
+            placeholder="Conte um pouco sobre o pet, como ele foi encontrado, como está sendo cuidado, ou qualquer informação que seja relavante sobre o pet. "
             value={localData.descricao}
             onChange={handleChange}
             className="form-textarea-ado"

@@ -130,7 +130,7 @@ export default function FormEtapa6Adocao({ onProximo, onVoltar, totalEtapas }) {
           <div className="endereco-container-ado">
             <div className="endereco-instrucao-ado">
               <p>
-                Nos informe o <b>local onde o pet foi encontrado.</b> Caso não
+                Nos informe <b>onde o pet se encontra atualmente.</b> Caso não
                 saiba exatamente o endereço, indique um endereço próximo ou um
                 ponto de referência.
               </p>
@@ -205,7 +205,7 @@ export default function FormEtapa6Adocao({ onProximo, onVoltar, totalEtapas }) {
                 style={{ marginTop: "15px" }}
               >
                 <label className="form-label-ado">
-                  Ponto de referência{" "}
+                  <a>Ponto de referência </a>
                   <span className="referenica-form-optional-ado">Opcional</span>
                 </label>
                 <input
