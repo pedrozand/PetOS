@@ -59,7 +59,7 @@ export default function Post({
         return "tag-perdido";
       case "Procurando Tutor":
         return "tag-procurando";
-      case "Para Adoção":
+      case "Adocao":
         return "tag-adocao";
       default:
         return "tag-default";
