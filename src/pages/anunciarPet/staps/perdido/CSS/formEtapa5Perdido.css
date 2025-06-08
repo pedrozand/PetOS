@@ -10,6 +10,10 @@
   font-weight: bold;
 }
 
+.form-label a {
+  font-size: 16px;
+}
+
 .endereco-container {
   display: flex;
   flex-direction: column;
@@ -141,7 +145,7 @@
 
 .referenica-form-optional {
   font-weight: 400;
-  font-size: 12.8px;
+  font-size: 14px;
   color: #999;
   margin-left: 0.3rem;
 }

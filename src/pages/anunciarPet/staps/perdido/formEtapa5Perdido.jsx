@@ -198,7 +198,7 @@ export default function FormEtapa5Perdido({ onProximo, onVoltar }) {
                 style={{ marginTop: "15px" }}
               >
                 <label className="form-label">
-                  Ponto de referência{" "}
+                  <a>Ponto de referência </a>
                   <span className="referenica-form-optional">Opcional</span>
                 </label>
                 <input
