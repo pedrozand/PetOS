@@ -20,13 +20,21 @@ const CARACTERISTICAS = {
     "Tímido",
     "Independente",
     "Carente",
+    "Energia alta",
+    "Medroso",
   ],
-  adaptabilidade: ["Vive bem em apartamento", "Vive bem em casa com quintal"],
+  adaptabilidade: [
+    "Vive bem em apartamento",
+    "Vive bem em casa com quintal",
+    "Necessita de espaço amplo",
+    "Se adapta a mudanças frequentes",
+  ],
   socializacao: [
     "Sociável com crianças",
     "Sociável com gatos",
     "Sociável com cães",
     "Sociável com estranhos",
+    "Tolerante a visitas",
   ],
 };
 
@@ -84,7 +92,9 @@ export default function FormEtapa5Adocao({ onProximo, onVoltar }) {
       <div className="formulario-scroll-ado">
         <div className="form-wrapper-ado">
           <div className="mensagem-destaque">
-            Muito bem! Agora adicione características que você sabe sobre o pet.
+            Estamos quase lá! Agora selecione as{" "}
+            <b>características que você conhece sobre o pet</b>. Essas
+            informações ajudam a entender melhor seu perfil e necessidades.
           </div>
           {renderGrupo("Cuidados Veterinários", "cuidados")}
           {renderGrupo("Temperamento", "temperamento")}

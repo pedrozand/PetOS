@@ -8,8 +8,8 @@
 }
 
 .mensagem-destaque {
-  background-color: #f5ebff;
-  color: #4b0082;
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  color: #585858;
   padding: 16px;
   border-radius: 8px;
   font-weight: 500;
@@ -30,7 +30,7 @@
 .botao-caracteristica {
   padding: 8px 16px;
   border-radius: 8px;
-  background-color: #e6e1e1;
+  background-color: #ffe1e1;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -38,8 +38,8 @@
 }
 
 .botao-caracteristica.ativo {
-  background-color: #e4ccff;
-  color: #4b0082;
+  background: linear-gradient(to right, #ffa5a5, #ffe28d);
+  color: black;
   font-weight: 600;
 }
 
