@@ -1,0 +1,203 @@
+.formulario-conteudo {
+  padding: 2rem;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  color: #2b2b2b;
+  overflow: hidden;
+}
+
+.form-label-ado {
+  font-weight: bold;
+}
+
+.endereco-container-ado {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.endereco-instrucao-ado {
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  padding: 25px;
+  border-radius: 8px;
+  color: #585858;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  max-width: 550px;
+}
+
+.endereco-form-group-ado {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 550px;
+}
+
+.endereco-label-ado {
+  font-weight: 600;
+  color: #2b2b2b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.endereco-label-linha-ado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usar-localizacao-ado {
+  font-size: 0.9rem;
+  color: #ff6e6e;
+  cursor: pointer;
+}
+
+.endereco-input-ado {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ffc1c1;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease;
+  max-width: 550px;
+}
+
+.endereco-input-ado::placeholder {
+  color: #999;
+}
+
+.endereco-input-ado:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
+.usar-localizacao-btn-ado {
+  background: none;
+  border: none;
+  color: #ff6e6e;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.sugestoes-lista-ado {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 8px;
+  margin-top: 0.3rem;
+  padding: 0;
+  list-style: none;
+  max-width: 550px;
+}
+
+.sugestao-item-ado {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.sugestao-item-ado:hover {
+  background-color: #eee;
+}
+
+.referencia-container-ado {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 550px;
+  width: 100%;
+}
+
+.referencia-container-ado .form-label-ado {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333333;
+}
+
+.referencia-container-ado .referencia-input-ado {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ffc1c1;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  max-width: 550px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.referencia-container-ado .referencia-input-ado::placeholder {
+  color: #999;
+}
+
+.referencia-container-ado .referencia-input-ado:focus {
+  border-color: #ffc1c1;
+  box-shadow: 0 0 0 2px rgba(255, 193, 193, 0.5);
+}
+
+.referenica-form-optional-ado {
+  font-weight: 400;
+  font-size: 12.8px;
+  color: #999;
+  margin-left: 0.3rem;
+}
+
+.endereco-exibido-ado {
+  position: relative;
+  padding: 10px 40px 10px 15px; /* espaço p/ o ícone à direita */
+  border: 1px solid #ffc1c1;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 550px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #700000;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.texto-endereco-ado {
+  background-color: #ffeeee; /* Fundo suave nas letras */
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+  display: inline;
+}
+
+.icone-lixeira-ado {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: inherit;
+}
+
+.mensagem-erro-local-ado {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.erro-telefone-ado {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.formulario-scroll-ado {
+  max-height: 85vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
