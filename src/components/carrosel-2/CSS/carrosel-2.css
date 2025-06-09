@@ -95,7 +95,23 @@
   width: 100%;
 }
 
-.swiper-button-prev-custom,
+.swiper-button-prev-custom {
+  position: absolute;
+  margin-bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  width: 30px;
+  height: 330px; /* Altura maior para efeito vertical */
+  font-size: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
 .swiper-button-next-custom {
   position: absolute;
   margin-bottom: 0;
@@ -103,13 +119,15 @@
   transform: translateY(-50%);
   color: white;
   width: 30px;
-  height: 352px; /* Altura maior para efeito vertical */
+  height: 330px; /* Altura maior para efeito vertical */
   font-size: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .swiper-button-prev-custom:hover,
