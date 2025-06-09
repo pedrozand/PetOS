@@ -57,6 +57,16 @@ export default function Post({
   const [imagemExpandida, setImagemExpandida] = useState(false);
   const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
 
+  function formatarData(dataISO) {
+    const data = new Date(dataISO);
+    if (isNaN(data.getTime())) return "Data inválida";
+
+    const dia = String(data.getDate()).padStart(2, "0");
+    const mes = String(data.getMonth() + 1).padStart(2, "0");
+    const ano = data.getFullYear();
+    return `${dia}/${mes}/${ano}`;
+  }
+
   function getTagClass(situacao) {
     switch (situacao) {
       case "Perdido":
@@ -367,7 +377,7 @@ export default function Post({
                     ? "Disponivel para adoção desde"
                     : "Data do Desaparecimento"}
                 </strong>
-                <p>{`${dataDesap} - ${tempoDecorrido}`}</p>
+                <p>{`${formatarData(dataDesap)} - ${tempoDecorrido}`}</p>
               </>
             )}
 

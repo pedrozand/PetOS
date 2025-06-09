@@ -56,7 +56,7 @@ function Main() {
               sexo={"Macho"}
               localDesap={"Bragança Paulista - São Paulo"}
               referencia={"Bar da Vanda"}
-              dataDesap={"15/03/2025"}
+              dataDesap={"2025-03-12"}
               recompensa={"R$ 500,00"}
               telefone={"(11) 99999-9999"}
               email={"pedro@gmail.com"}
@@ -67,55 +67,6 @@ function Main() {
               temperamento={["Teste", "Teste"]}
               adaptabilidade={["Teste", "Teste"]}
               socializacao={["Teste", "Teste"]}
-            />
-            <Post
-              avatar={imgPerfilTeste}
-              nomeUser={"Pedro Henrique de Oliveira"}
-              nomeAnimal={"Goku"}
-              especie={"Cachorro"}
-              descricao={
-                "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
-              }
-              imgPet={[
-                imgPostPet1,
-                imgPostPet2,
-                imgPostPet3,
-                imgPostPet4,
-                imgPostPet5,
-              ]}
-              raca={"Corgi"}
-              idade={"Senior"}
-              porte={"Médio"}
-              corPredominante={"Preto e Laranja"}
-              corOlhos={"Castanhos"}
-              sexo={"Macho"}
-              localDesap={"Bragança Paulista - São Paulo"}
-              dataDesap={"03/06/2025"}
-              email={"pedro@gmail.com"}
-            />
-            <Post
-              avatar={imgPerfilTeste}
-              nomeUser={"Pedro Henrique de Oliveira"}
-              nomeAnimal={"Goku"}
-              especie={"Cachorro"}
-              descricao={
-                "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
-              }
-              imgPet={[
-                imgPostPet1,
-                imgPostPet2,
-                imgPostPet3,
-                imgPostPet4,
-                imgPostPet5,
-              ]}
-              raca={"Corgi"}
-              idade={"Senior"}
-              porte={"Médio"}
-              corPredominante={"Preto e Laranja"}
-              corOlhos={"Castanhos"}
-              sexo={"Macho"}
-              localDesap={"Bragança Paulista - São Paulo"}
-              dataDesap={"2025/03/15"}
             />
           </div>
         </LocationProvider>
