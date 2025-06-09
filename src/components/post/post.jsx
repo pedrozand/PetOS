@@ -18,7 +18,7 @@ import { AiFillDollarCircle } from "react-icons/ai";
 import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
-import { FiX } from "react-icons/fi";
+import { createPortal } from "react-dom";
 
 export default function Post({
   // Usuário
@@ -46,6 +46,10 @@ export default function Post({
   telefone,
   descricaoLocal, // TUTOR
   localPet, // TUTOR
+  cuidados, // ADOÇÃO
+  temperamento, // ADOÇÃO
+  adaptabilidade, // ADOÇÃO
+  socializacao, // ADOÇÃO
 }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
@@ -63,6 +67,19 @@ export default function Post({
         return "tag-adocao";
       default:
         return "tag-default";
+    }
+  }
+
+  function getSituacaoLabel(situacao) {
+    switch (situacao) {
+      case "Perdido":
+        return "Perdido";
+      case "Procurando Tutor":
+        return "Procurando Tutor";
+      case "Adocao":
+        return "Para Adoção";
+      default:
+        return "Situação Desconhecida";
     }
   }
 
@@ -199,38 +216,110 @@ export default function Post({
         </button>
 
         {mostrarCaracteristicas && (
-          <div className="caracteristicas">
-            <div className="caracteristicas caracteristicas-coluna">
-              <p>
-                <strong>Raça</strong> {raca}
-              </p>
+          <>
+            <div className="caracteristicas">
+              <div className="caracteristicas caracteristicas-coluna">
+                <p>
+                  <strong>Raça</strong> {raca}
+                </p>
 
-              <p>
-                <strong>Idade</strong> {idade}
-              </p>
+                <p>
+                  <strong>Idade</strong> {idade}
+                </p>
 
-              <p>
-                <strong>Porte</strong> {porte}
-              </p>
+                <p>
+                  <strong>Porte</strong> {porte}
+                </p>
+              </div>
+              <div className="caracteristicas caracteristicas-coluna">
+                <p>
+                  <strong>Cor predominante</strong> {corPredominante}
+                </p>
+
+                <p>
+                  <strong>Cor dos olhos</strong> {corOlhos}
+                </p>
+
+                <p>
+                  <strong>Gênero</strong> {sexo}
+                </p>
+              </div>
             </div>
-            <div className="caracteristicas caracteristicas-coluna">
-              <p>
-                <strong>Cor predominante</strong> {corPredominante}
-              </p>
 
-              <p>
-                <strong>Cor dos olhos</strong> {corOlhos}
-              </p>
+            {situacao === "Adocao" && (
+              <div className="caracteristicas-exibicao-post">
+                {cuidados?.length > 0 && (
+                  <div className="grupo-caracteristica-post">
+                    <h4>CUIDADOS VETERINÁRIOS</h4>
+                    <div className="botoes-caracteristica-post">
+                      {cuidados.map((item) => (
+                        <span
+                          key={item}
+                          className="botao-caracteristica-post ativo"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-              <p>
-                <strong>Gênero</strong> {sexo}
-              </p>
-            </div>
-          </div>
+                {temperamento?.length > 0 && (
+                  <div className="grupo-caracteristica-post">
+                    <h4>TEMPERAMENTO</h4>
+                    <div className="botoes-caracteristica-post">
+                      {temperamento.map((item) => (
+                        <span
+                          key={item}
+                          className="botao-caracteristica-post ativo"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {adaptabilidade?.length > 0 && (
+                  <div className="grupo-caracteristica-post">
+                    <h4>ADAPTABILIDADE</h4>
+                    <div className="botoes-caracteristica-post">
+                      {adaptabilidade.map((item) => (
+                        <span
+                          key={item}
+                          className="botao-caracteristica-post ativo"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {socializacao?.length > 0 && (
+                  <div className="grupo-caracteristica-post">
+                    <h4>SOCIALIZAÇÃO</h4>
+                    <div className="botoes-caracteristica-post">
+                      {socializacao.map((item) => (
+                        <span
+                          key={item}
+                          className="botao-caracteristica-post ativo"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </>
         )}
 
         <div className="post-image-container">
-          <span className={getTagClass(situacao)}>{situacao}</span>
+          <span className={getTagClass(situacao)}>
+            {getSituacaoLabel(situacao)}
+          </span>
           <button className="nav-button left" onClick={imagemAnterior}>
             <FaChevronLeft />
           </button>
@@ -254,6 +343,8 @@ export default function Post({
                 <strong>
                   {situacao === "Procurando Tutor"
                     ? "Local onde o pet foi Encontrado"
+                    : situacao === "Adocao"
+                    ? "Local onde o pet Está"
                     : "Local do Desaparecimento"}
                 </strong>
                 <p>{localDesap}</p>
@@ -272,19 +363,20 @@ export default function Post({
                 <strong>
                   {situacao === "Procurando Tutor"
                     ? "Data que o pet foi encontrado"
+                    : situacao === "Adocao"
+                    ? "Disponivel para adoção desde"
                     : "Data do Desaparecimento"}
                 </strong>
                 <p>{`${dataDesap} - ${tempoDecorrido}`}</p>
               </>
             )}
 
-            {periodo && (
+            {situacao !== "Adocao" && periodo && (
               <div className="periodo-ajuste-post">
                 <strong>Período -</strong>
                 <p>{periodo}</p>
               </div>
             )}
-
             <div className="nome-sobrenome-ajuste-post">
               <strong>Nome do Tutor -</strong>
               <p>
@@ -297,58 +389,62 @@ export default function Post({
             >
               Mostrar Contato
             </button>
-            {mostrarModal && (
-              <div className="modal-overlay-tel">
-                <div className="modal-content-tel">
-                  <div className="modal-header-tel">
-                    <h2>Informações de Contato</h2>
-                    <button
-                      className="btn-closed-tel"
-                      onClick={() => setMostrarModal(false)}
-                    >
-                      ✖
-                    </button>
-                  </div>
-
-                  <div className="modal-body-tel">
-                    <h3>Telefone do Tutor</h3>
-                    <p>{telefone}</p>
-
-                    <div className="modal-buttons-tel">
-                      <a
-                        className="btn-verde-tel"
-                        href={`https://wa.me/${telefone.replace(/\D/g, "")}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaWhatsapp size={18} /> Enviar mensagem
-                      </a>
+            {mostrarModal &&
+              createPortal(
+                <div className="modal-overlay-tel">
+                  <div className="modal-content-tel">
+                    <div className="modal-header-tel">
+                      <h2>Informações de Contato</h2>
                       <button
-                        className="btn-azul-tel"
-                        onClick={() => navigator.clipboard.writeText(telefone)}
+                        className="btn-closed-tel"
+                        onClick={() => setMostrarModal(false)}
                       >
-                        <FaRegCopy size={15} /> Copiar número
+                        ✖
                       </button>
                     </div>
 
-                    <h3>Email do Tutor</h3>
-                    <p>{email}</p>
+                    <div className="modal-body-tel">
+                      <h3>Telefone do Tutor</h3>
+                      <p>{telefone}</p>
 
-                    <div className="alerta-tel">
-                      <strong>ATENÇÃO</strong>
-                      <p>
-                        Entre em contato com este número <b>apenas</b> se você
-                        tiver informações relevantes sobre o paradeiro do pet.
-                      </p>
-                      <p>
-                        Qualquer outro tipo de contato é expressamente proibido
-                        e sujeito a medidas legais.
-                      </p>
+                      <div className="modal-buttons-tel">
+                        <a
+                          className="btn-verde-tel"
+                          href={`https://wa.me/${telefone.replace(/\D/g, "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaWhatsapp size={18} /> Enviar mensagem
+                        </a>
+                        <button
+                          className="btn-azul-tel"
+                          onClick={() =>
+                            navigator.clipboard.writeText(telefone)
+                          }
+                        >
+                          <FaRegCopy size={15} /> Copiar número
+                        </button>
+                      </div>
+
+                      <h3>Email do Tutor</h3>
+                      <p>{email}</p>
+
+                      <div className="alerta-tel">
+                        <strong>ATENÇÃO</strong>
+                        <p>
+                          Entre em contato com este número <b>apenas</b> se você
+                          tiver informações relevantes sobre o paradeiro do pet.
+                        </p>
+                        <p>
+                          Qualquer outro tipo de contato é expressamente
+                          proibido e sujeito a medidas legais.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            )}
+                </div>,
+                document.getElementById("modal-root")
+              )}
           </div>
         </div>
         <div className="post-actions">
@@ -365,35 +461,54 @@ export default function Post({
       </div>
 
       {/* Modal de imagem expandida */}
-      {imagemExpandida && (
-        <div className="modal" onClick={() => setImagemExpandida(false)}>
-          <div className="modal-content">
-            <button
-              className="nav-button-modal left"
-              onClick={imagemAnteriorModal}
-            >
-              <FaChevronLeft />
-            </button>
-            <img
-              src={imgPet[imagemAtual]}
-              alt="Imagem expandida"
-              className="modal-image"
-            />
-            <button
-              className="nav-button-modal right"
-              onClick={proximaImagemModal}
-            >
-              <FaChevronRight />
-            </button>
-          </div>
-          <button
-            className="close-modal"
+      {imagemExpandida &&
+        createPortal(
+          <div
+            className="modal-overlay"
             onClick={() => setImagemExpandida(false)}
           >
-            ✖
-          </button>
-        </div>
-      )}
+            <div
+              className="modal-content"
+              onClick={(e) => e.stopPropagation()} // evita fechar modal ao clicar dentro
+            >
+              <button
+                className="nav-button-modal left"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setImagemAtual(
+                    (prev) => (prev - 1 + imgPet.length) % imgPet.length
+                  );
+                }}
+              >
+                <FaChevronLeft />
+              </button>
+
+              <img
+                className="modal-image"
+                src={imgPet[imagemAtual]}
+                alt="Imagem do animal ampliada"
+              />
+
+              <button
+                className="nav-button-modal right"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setImagemAtual((prev) => (prev + 1) % imgPet.length);
+                }}
+              >
+                <FaChevronRight />
+              </button>
+
+              <button
+                className="btn-close-modal"
+                onClick={() => setImagemExpandida(false)}
+              >
+                ✖
+              </button>
+            </div>
+          </div>,
+          document.getElementById("modal-root")
+        )}
     </div>
   );
 }

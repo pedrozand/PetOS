@@ -14,22 +14,24 @@
 
 /* Estilos para a imagem no modal */
 .modal-image {
-  width: 80%;
-  height: 80%;
+  width: 120%;
+  height: 120%;
   object-fit: contain; /* Mantém as proporções da imagem */
   border-radius: 8px;
 }
 
 /* Botão para fechar o modal */
-.close-modal {
+.btn-close-modal {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  color: white;
-  background: none;
+  top: 8px;
+  right: 8px;
   border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 /* Modal - Fundo escuro */
@@ -43,7 +45,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 /* Modal - Conteúdo (Imagem) */

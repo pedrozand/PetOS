@@ -61,8 +61,12 @@ function Main() {
               telefone={"(11) 99999-9999"}
               email={"pedro@gmail.com"}
               periodo={"Manhã"}
-              situacao={"Procurando Tutor"}
+              situacao={"Adocao"}
               localPet={"Teste"}
+              cuidados={["Teste", "Teste"]}
+              temperamento={["Teste", "Teste"]}
+              adaptabilidade={["Teste", "Teste"]}
+              socializacao={["Teste", "Teste"]}
             />
             <Post
               avatar={imgPerfilTeste}

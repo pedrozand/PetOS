@@ -217,3 +217,13 @@
   color: #999;
   margin-left: 0.6rem;
 }
+
+.endereco-instrucao-ado-2 {
+  background: linear-gradient(to right, #ffe6e6, #fff3ce);
+  padding: 25px;
+  border-radius: 8px;
+  color: #585858;
+  margin-bottom: 30px;
+  font-size: 1rem;
+  max-width: 800px;
+}

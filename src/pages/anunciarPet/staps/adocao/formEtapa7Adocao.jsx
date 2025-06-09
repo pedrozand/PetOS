@@ -63,55 +63,13 @@ export default function FormEtapa7Adocao({ onProximo, onVoltar, totalEtapas }) {
       <div className="formulario-scroll-ado">
         <div className="formulario-conteudo">
           <div className="campo-ado">
-            <a className="local-pet-radio-ado">
-              Local onde o pet está agora
-              <span className="referenica-form-optional-ado-2">Opcional</span>
-            </a>
-            <div className="local-pet-opcoes">
-              {[
-                "Lar Temporário",
-                "Petshop",
-                "Abrigo",
-                "Canil",
-                "ONG",
-                "Outro",
-              ].map((localRadio) => (
-                <label key={localRadio} className="local-pet-label">
-                  <input
-                    type="radio"
-                    name="localPet"
-                    value={localRadio}
-                    checked={localData.localPet === localRadio}
-                    onClick={() => {
-                      if (localData.localPet === localRadio) {
-                        handleChange("localPet", "");
-                        handleChange("descricaoLocal", "");
-                      } else {
-                        handleChange("localPet", localRadio);
-                      }
-                    }}
-                  />
-                  <span className="texto-radio">{localRadio}</span>
-                </label>
-              ))}
+            <div className="endereco-instrucao-ado-2">
+              <p>
+                Nos informe <b>um telefone para contato</b>. Ele será exibido no
+                anúncio para que interessados possam ligar ou enviar mensagem
+                sobre a adoção.
+              </p>
             </div>
-
-            {localData.localPet && (
-              <input
-                type="text"
-                className="input-descricao-local"
-                placeholder={
-                  localData.localPet === "Lar Temporário"
-                    ? "Indique o contato se não for você!"
-                    : "Qual?"
-                }
-                value={localData.descricaoLocal || ""}
-                onChange={(e) => handleChange("descricaoLocal", e.target.value)}
-              />
-            )}
-          </div>
-
-          <div className="campo-ado">
             <label>Telefone com WhatsApp</label>
             <input
               type="tel"
@@ -122,29 +80,6 @@ export default function FormEtapa7Adocao({ onProximo, onVoltar, totalEtapas }) {
             {telefoneErro && (
               <p className="erro-telefone-ado">{telefoneErro}</p>
             )}
-          </div>
-
-          <div className="campo-ado">
-            <label>
-              Período que encontrou o pet{" "}
-              <span className="opcional-ado">Opcional</span>
-            </label>
-            <div className="periodo-selector-ado">
-              {["Manhã", "Tarde", "Noite"].map((p, index) => (
-                <button
-                  key={p}
-                  type="button"
-                  className={`periodo-botao-ado ${
-                    localData.periodo === p ? "ativo" : ""
-                  } pos-${index}`}
-                  onClick={() =>
-                    handleChange("periodo", localData.periodo === p ? "" : p)
-                  }
-                >
-                  {p}
-                </button>
-              ))}
-            </div>
           </div>
 
           <div className="checkbox-bloco-ado">
