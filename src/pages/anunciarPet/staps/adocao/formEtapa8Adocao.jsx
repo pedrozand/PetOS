@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FormBase from "../../formBase";
 import Post from "../../../../components/post/post.jsx";
 import { useFormContext } from "../../FormContext";
+import { IoIosArrowDown } from "react-icons/io";
 
 import "./CSS/formEtapa8Adocao.css";
 

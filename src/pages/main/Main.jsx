@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Post from "../../components/post/post.jsx";
-import Filtro from "../../components/filtro/filtro.jsx";
 import Encontrados from "../../components/cards/encontrados/encontr.jsx";
-import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
-import { LocationProvider } from "../../components/location/LocationContext.jsx";
-
+import SideBarFilter from "../../components/filtro/sidebarfilter.jsx";
 import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg";
 
 import imgPostPet1 from "../../assets/img/post/corgi-2.jpg";
@@ -26,50 +23,49 @@ function Main() {
     <>
       <div className="container-geral">
         <NavBar />
-        <LocationProvider>
-          <div>
-            <Filtro />
-          </div>
-          <div>
-            <Cabecalho />
-            <Post
-              avatar={imgPerfilTeste}
-              nome={"Pedro"}
-              sobrenome={"Oliveira"}
-              nomeAnimal={"Goku"}
-              especie={"Cachorro"}
-              descricao={
-                "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
-              }
-              imgPet={[
-                imgPostPet1,
-                imgPostPet2,
-                imgPostPet3,
-                imgPostPet4,
-                imgPostPet5,
-              ]}
-              raca={"Corgi"}
-              idade={"Senior"}
-              porte={"Médio"}
-              corPredominante={"Preto e Laranja"}
-              corOlhos={"Castanhos"}
-              sexo={"Macho"}
-              localDesap={"Bragança Paulista - São Paulo"}
-              referencia={"Bar da Vanda"}
-              dataDesap={"2025-03-12"}
-              recompensa={"R$ 500,00"}
-              telefone={"(11) 99999-9999"}
-              email={"pedro@gmail.com"}
-              periodo={"Manhã"}
-              situacao={"Adocao"}
-              localPet={"Teste"}
-              cuidados={["Teste", "Teste"]}
-              temperamento={["Teste", "Teste"]}
-              adaptabilidade={["Teste", "Teste"]}
-              socializacao={["Teste", "Teste"]}
-            />
-          </div>
-        </LocationProvider>
+
+        <div>
+          <SideBarFilter />
+        </div>
+        <div>
+          <Post
+            avatar={imgPerfilTeste}
+            nome={"Pedro"}
+            sobrenome={"Oliveira"}
+            nomeAnimal={"Goku"}
+            especie={"Cachorro"}
+            descricao={
+              "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
+            }
+            imgPet={[
+              imgPostPet1,
+              imgPostPet2,
+              imgPostPet3,
+              imgPostPet4,
+              imgPostPet5,
+            ]}
+            raca={"Corgi"}
+            idade={"Senior"}
+            porte={"Médio"}
+            corPredominante={"Preto e Laranja"}
+            corOlhos={"Castanhos"}
+            sexo={"Macho"}
+            localDesap={"Bragança Paulista - São Paulo"}
+            referencia={"Bar da Vanda"}
+            dataDesap={"2025-03-12"}
+            recompensa={"R$ 500,00"}
+            telefone={"(11) 99999-9999"}
+            email={"pedro@gmail.com"}
+            periodo={"Manhã"}
+            situacao={"Adocao"}
+            localPet={"Teste"}
+            cuidados={["Teste", "Teste"]}
+            temperamento={["Teste", "Teste"]}
+            adaptabilidade={["Teste", "Teste"]}
+            socializacao={["Teste", "Teste"]}
+          />
+        </div>
+
         <div>
           <Encontrados
             imgPet={imgCardPet1}

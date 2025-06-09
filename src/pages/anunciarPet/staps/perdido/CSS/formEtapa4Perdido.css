@@ -142,6 +142,7 @@
   right: 0;
   bottom: 0;
   transition: 0.4s;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
 .reward-toggle .slider::before {
@@ -149,8 +150,8 @@
   content: "";
   height: 15px;
   width: 15px;
-  left: 3px;
-  bottom: 3px;
+  left: 6px;
+  bottom: 3.5px;
   background-color: white;
   border-radius: 50%;
   transition: 0.4s;
@@ -162,4 +163,18 @@
 
 .reward-toggle .switch input:checked + .slider::before {
   transform: translateX(18px);
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 45px; /* Espaço para o botão */
+  font-weight: normal;
+  color: #444;
+  user-select: none;
+  font-size: 16px;
+  line-height: 20px; /* Ajuste a altura da linha para alinhar o texto */
 }
