@@ -225,7 +225,7 @@ const SidebarFilter = ({ onFilterChange }) => {
 
       <label>Situação</label>
       <select name="situacao" value={filtros.situacao} onChange={handleChange}>
-        <option value="">Qualquer</option>
+        <option value="">Todas</option>
         <option value="Perdido">Perdido</option>
         <option value="Para Adoção">Para Adoção</option>
         <option value="Procurando Tutor">Procurando Tutor</option>
@@ -234,7 +234,6 @@ const SidebarFilter = ({ onFilterChange }) => {
       <label>Espécie</label>
       {Object.keys(filtros.especies).map((esp) => (
         <div className="switch-row" key={esp}>
-          <span>{esp}</span>
           <label className="switch">
             <input
               type="checkbox"
@@ -243,6 +242,7 @@ const SidebarFilter = ({ onFilterChange }) => {
             />
             <span className="slider" />
           </label>
+          <span className="switch-row-ali">{esp}</span>
         </div>
       ))}
 
@@ -264,6 +264,21 @@ const SidebarFilter = ({ onFilterChange }) => {
             </div>
           )
       )}
+
+      <label>Sexo</label>
+      {Object.keys(filtros.sexo).map((sx) => (
+        <div className="switch-row" key={sx}>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={filtros.sexo[sx]}
+              onChange={() => handleSwitchChange("sexo", sx)}
+            />
+            <span className="slider" />
+          </label>
+          <span className="switch-row-ali">{sx}</span>
+        </div>
+      ))}
 
       <label>Idade</label>
       <select name="idade" value={filtros.idade} onChange={handleChange}>
@@ -301,21 +316,6 @@ const SidebarFilter = ({ onFilterChange }) => {
         <option value="Azul">Azul</option>
         <option value="Verde">Verde</option>
       </select>
-
-      <label>Sexo</label>
-      {Object.keys(filtros.sexo).map((sx) => (
-        <div className="switch-row" key={sx}>
-          <span>{sx}</span>
-          <label className="switch">
-            <input
-              type="checkbox"
-              checked={filtros.sexo[sx]}
-              onChange={() => handleSwitchChange("sexo", sx)}
-            />
-            <span className="slider" />
-          </label>
-        </div>
-      ))}
     </aside>
   );
 };

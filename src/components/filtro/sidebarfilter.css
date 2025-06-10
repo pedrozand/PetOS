@@ -14,7 +14,7 @@
 .filtro-lateral label {
   display: block;
   margin-top: 12px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   font-weight: bold;
 }
 
@@ -28,12 +28,15 @@
 
 .switch-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 6px 0;
+  margin: -5px 0;
+  gap: 10px;
 }
 
-/* Switch estilo iOS */
+.switch-row-ali {
+  margin-top: 8px;
+}
+
 .switch {
   position: relative;
   display: inline-block;
