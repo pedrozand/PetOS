@@ -204,3 +204,34 @@
   border: 1px solid #ccc;
   border-radius: 8px;
 }
+
+.endereco-autocomplete-wrapper {
+  position: relative; /* só se precisar para algum outro elemento */
+  width: 100%;
+}
+
+.sugestoes-lista {
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  border-radius: 6px;
+  background: white;
+  max-height: none !important;
+  overflow: visible !important;
+  border: none !important;
+  position: static;
+}
+
+.sugestao-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.sugestao-item:last-child {
+  border-bottom: none;
+}
+
+.sugestao-item:hover {
+  background-color: #f0f0f0;
+}

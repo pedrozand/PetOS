@@ -169,7 +169,6 @@ const racasPorEspecie = {
 };
 
 const SidebarFilter = ({ onFilterChange }) => {
-  const { location, isLocationSet, setLocation } = useContext(LocationContext);
   const [filtros, setFiltros] = useState({
     nomeAnimal: "",
     situacao: "",
@@ -200,10 +199,8 @@ const SidebarFilter = ({ onFilterChange }) => {
   };
 
   const [selectAberto, setSelectAberto] = useState("");
-  const handleSelectFocus = (nome) => setSelectAberto(nome);
-  const handleSelectBlur = () => setSelectAberto("");
 
-  const [showInput, setShowInput] = useState(false);
+  const { location, isLocationSet, setLocation } = useContext(LocationContext);
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -214,14 +211,27 @@ const SidebarFilter = ({ onFilterChange }) => {
     }
 
     const delayDebounce = setTimeout(() => {
-      fetch(
-        `https://nominatim.openstreetmap.org/search?q=${searchTerm}&format=json`
-      )
+      const encodedSearch = encodeURIComponent(searchTerm);
+      const url =
+        `https://nominatim.openstreetmap.org/search?` +
+        `q=${encodedSearch}&format=json&addressdetails=1` +
+        `&countrycodes=br&limit=5` +
+        `&viewbox=-46.605, -22.930, -46.495, -22.960&bounded=1`;
+
+      fetch(url)
         .then((res) => res.json())
         .then((data) => {
-          setSuggestions(data);
+          const filtered = data.filter((item) => {
+            const addr = item.address;
+            return (
+              addr.city === "Bragança Paulista" ||
+              addr.town === "Bragança Paulista"
+            );
+          });
+
+          setSuggestions(filtered);
         });
-    }, 300); // debounce
+    }, 300);
 
     return () => clearTimeout(delayDebounce);
   }, [searchTerm]);
@@ -285,14 +295,48 @@ const SidebarFilter = ({ onFilterChange }) => {
             </button>
           </div>
         ) : (
-          <input
-            type="text"
-            placeholder="Digite um endereço"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div className="endereco-autocomplete-wrapper">
+            <input
+              type="text"
+              placeholder="Digite um endereço"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
         )}
       </div>
+      {suggestions.length > 0 && (
+        <ul className="sugestoes-lista">
+          {suggestions.map((item) => {
+            const addr = item.address;
+            const formatado = [
+              addr.road,
+              addr.house_number,
+              addr.suburb,
+              addr.city || addr.town,
+              addr.state,
+              addr.postcode,
+              addr.country,
+            ]
+              .filter(Boolean)
+              .join(", ");
+
+            return (
+              <li
+                key={item.place_id}
+                className="sugestao-item"
+                onClick={() => {
+                  setLocation(formatado);
+                  setSearchTerm("");
+                  setSuggestions([]);
+                }}
+              >
+                {formatado}
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
       <label>Nome do Animal</label>
       <input
