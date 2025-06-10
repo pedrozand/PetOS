@@ -418,7 +418,21 @@ const SidebarFilter = ({ onFilterChange }) => {
       <label>Cor</label>
       {renderSelectComIcone(
         "corPredominante",
-        ["", "Preto", "Branco", "Caramelo", "Mesclado"],
+        [
+          "",
+          "Preto",
+          "Branco",
+          "Marrom",
+          "Caramelo",
+          "Cinza",
+          "Amarelo",
+          "Bege",
+          "Rajado",
+          "Listrado",
+          "Manchado",
+          "Mesclado",
+          "Outra",
+        ],
         filtros.corPredominante,
         handleChange
       )}
@@ -426,7 +440,7 @@ const SidebarFilter = ({ onFilterChange }) => {
       <label>Cor dos Olhos</label>
       {renderSelectComIcone(
         "corOlhos",
-        ["", "Castanho", "Azul", "Verde"],
+        ["", "Castanho", "Azul", "Verde", "Amarelo", "Outra"],
         filtros.corOlhos,
         handleChange
       )}
