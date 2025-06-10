@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./sidebarfilter.css";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const racasPorEspecie = {
   Cachorro: [
@@ -195,6 +196,10 @@ const SidebarFilter = ({ onFilterChange }) => {
     }));
   };
 
+  const [selectAberto, setSelectAberto] = useState("");
+  const handleSelectFocus = (nome) => setSelectAberto(nome);
+  const handleSelectBlur = () => setSelectAberto("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFiltros((prev) => ({ ...prev, [name]: value }));
@@ -210,6 +215,31 @@ const SidebarFilter = ({ onFilterChange }) => {
     }));
   };
 
+  const renderSelectComIcone = (nome, options, valor, onChange) => (
+    <div className="select-container-side">
+      <select
+        name={nome}
+        value={valor}
+        onChange={onChange}
+        onClick={() => {
+          setSelectAberto((prev) => (prev === nome ? "" : nome));
+        }}
+        onBlur={() => {
+          setSelectAberto("");
+        }}
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt || "Qualquer"}
+          </option>
+        ))}
+      </select>
+      <span className="icone-select-side">
+        {selectAberto === nome ? <FaChevronUp /> : <FaChevronDown />}
+      </span>
+    </div>
+  );
+
   return (
     <aside className="filtro-lateral">
       <h3>Filtros</h3>
@@ -224,12 +254,12 @@ const SidebarFilter = ({ onFilterChange }) => {
       />
 
       <label>Situação</label>
-      <select name="situacao" value={filtros.situacao} onChange={handleChange}>
-        <option value="">Todas</option>
-        <option value="Perdido">Perdido</option>
-        <option value="Para Adoção">Para Adoção</option>
-        <option value="Procurando Tutor">Procurando Tutor</option>
-      </select>
+      {renderSelectComIcone(
+        "situacao",
+        ["", "Perdido", "Para Adoção", "Procurando Tutor"],
+        filtros.situacao,
+        handleChange
+      )}
 
       <label>Espécie</label>
       {Object.keys(filtros.especies).map((esp) => (
@@ -251,16 +281,12 @@ const SidebarFilter = ({ onFilterChange }) => {
           ativo && (
             <div key={esp}>
               <label>Raça ({esp})</label>
-              <select
-                value={filtros.racasSelecionadas[esp] || ""}
-                onChange={(e) => handleRacaChange(esp, e.target.value)}
-              >
-                {racasPorEspecie[esp].map((raca) => (
-                  <option key={raca} value={raca}>
-                    {raca || "Qualquer"}
-                  </option>
-                ))}
-              </select>
+              {renderSelectComIcone(
+                `raca-${esp}`,
+                racasPorEspecie[esp],
+                filtros.racasSelecionadas[esp] || "",
+                (e) => handleRacaChange(esp, e.target.value)
+              )}
             </div>
           )
       )}
@@ -281,41 +307,36 @@ const SidebarFilter = ({ onFilterChange }) => {
       ))}
 
       <label>Idade</label>
-      <select name="idade" value={filtros.idade} onChange={handleChange}>
-        <option value="">Qualquer</option>
-        <option value="Filhote">Filhote</option>
-        <option value="Adulto">Adulto</option>
-        <option value="Idoso">Idoso</option>
-      </select>
+      {renderSelectComIcone(
+        "idade",
+        ["", "Filhote", "Adulto", "Idoso"],
+        filtros.idade,
+        handleChange
+      )}
 
       <label>Porte</label>
-      <select name="porte" value={filtros.porte} onChange={handleChange}>
-        <option value="">Qualquer</option>
-        <option value="Pequeno">Pequeno</option>
-        <option value="Médio">Médio</option>
-        <option value="Grande">Grande</option>
-      </select>
+      {renderSelectComIcone(
+        "porte",
+        ["", "Pequeno", "Médio", "Grande"],
+        filtros.porte,
+        handleChange
+      )}
 
       <label>Cor</label>
-      <select
-        name="corPredominante"
-        value={filtros.corPredominante}
-        onChange={handleChange}
-      >
-        <option value="">Qualquer</option>
-        <option value="Preto">Preto</option>
-        <option value="Branco">Branco</option>
-        <option value="Caramelo">Caramelo</option>
-        <option value="Mesclado">Mesclado</option>
-      </select>
+      {renderSelectComIcone(
+        "corPredominante",
+        ["", "Preto", "Branco", "Caramelo", "Mesclado"],
+        filtros.corPredominante,
+        handleChange
+      )}
 
       <label>Cor dos Olhos</label>
-      <select name="corOlhos" value={filtros.corOlhos} onChange={handleChange}>
-        <option value="">Qualquer</option>
-        <option value="Castanho">Castanho</option>
-        <option value="Azul">Azul</option>
-        <option value="Verde">Verde</option>
-      </select>
+      {renderSelectComIcone(
+        "corOlhos",
+        ["", "Castanho", "Azul", "Verde"],
+        filtros.corOlhos,
+        handleChange
+      )}
     </aside>
   );
 };
