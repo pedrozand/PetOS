@@ -1,0 +1,57 @@
+.cabecalho-container {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #fff8f8, #fffbee);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.cabecalho-titulo {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(to right, #ff3131, #ffbe31);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.cabecalho-subtitulo {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 30px;
+  margin-bottom: 0.5rem;
+  margin-right: 240px;
+}
+
+.cabecalho-barra-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 650px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 2px solid #ffbe31;
+  border-radius: 999px;
+  padding: 0.1rem 0.1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cabecalho-barra {
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  color: #333;
+  font-weight: bold;
+}
+
+.icone-localizacao {
+  color: #ff3131;
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
