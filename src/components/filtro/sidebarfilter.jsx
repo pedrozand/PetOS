@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import LocationContext from "../../../server/location/LocationContext";
 import "./sidebarfilter.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { PiTrash } from "react-icons/pi";
 
 const racasPorEspecie = {
   Cachorro: [
@@ -167,6 +169,7 @@ const racasPorEspecie = {
 };
 
 const SidebarFilter = ({ onFilterChange }) => {
+  const { location, isLocationSet, setLocation } = useContext(LocationContext);
   const [filtros, setFiltros] = useState({
     nomeAnimal: "",
     situacao: "",
@@ -200,6 +203,29 @@ const SidebarFilter = ({ onFilterChange }) => {
   const handleSelectFocus = (nome) => setSelectAberto(nome);
   const handleSelectBlur = () => setSelectAberto("");
 
+  const [showInput, setShowInput] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
+  useEffect(() => {
+    if (searchTerm.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+
+    const delayDebounce = setTimeout(() => {
+      fetch(
+        `https://nominatim.openstreetmap.org/search?q=${searchTerm}&format=json`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setSuggestions(data);
+        });
+    }, 300); // debounce
+
+    return () => clearTimeout(delayDebounce);
+  }, [searchTerm]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFiltros((prev) => ({ ...prev, [name]: value }));
@@ -213,6 +239,11 @@ const SidebarFilter = ({ onFilterChange }) => {
         [especie]: value,
       },
     }));
+  };
+
+  const handleClear = () => {
+    setLocation("");
+    setSearchTerm("");
   };
 
   const renderSelectComIcone = (nome, options, valor, onChange) => (
@@ -244,13 +275,31 @@ const SidebarFilter = ({ onFilterChange }) => {
     <aside className="filtro-lateral">
       <h3>Filtros</h3>
 
+      <label>Endereço</label>
+      <div className="localizacao-overlay">
+        {location ? (
+          <div className="highlight">
+            {location}
+            <button className="clear-btn" onClick={handleClear}>
+              <PiTrash />
+            </button>
+          </div>
+        ) : (
+          <input
+            type="text"
+            placeholder="Digite um endereço"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        )}
+      </div>
+
       <label>Nome do Animal</label>
       <input
         type="text"
         name="nomeAnimal"
         value={filtros.nomeAnimal}
         onChange={handleChange}
-        placeholder="Digite o nome..."
       />
 
       <label>Situação</label>
