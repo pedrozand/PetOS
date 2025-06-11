@@ -65,7 +65,7 @@ export default function Navbar() {
                 )}
               </a>
               {dropdownAberto === "busca" && (
-                <ul className="dropdown-menu">
+                <ul className={`dropdown-menu ${usuario ? "logged-in" : ""}`}>
                   <li>
                     <Link to="/main">
                       Achados e Perdidos
@@ -107,7 +107,7 @@ export default function Navbar() {
                 )}
               </a>
               {dropdownAberto === "conheca" && (
-                <ul className="dropdown-menu">
+                <ul className={`dropdown-menu ${usuario ? "logged-in" : ""}`}>
                   <li>
                     <a href="achados-perdidos.html">
                       ONG Faros D'Ajuda
@@ -140,7 +140,7 @@ export default function Navbar() {
                 )}
               </a>
               {dropdownAberto === "adocao" && (
-                <ul className="dropdown-menu">
+                <ul className={`dropdown-menu ${usuario ? "logged-in" : ""}`}>
                   <li>
                     <a href="/View/adocao.html">
                       Pets para Adoção

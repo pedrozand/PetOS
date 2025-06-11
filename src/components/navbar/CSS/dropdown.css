@@ -1,32 +1,56 @@
 /* Dropdown oculto por padrão */
 .dropdown-menu {
-  right: auto; /* Gruda à direita do botão */
-  left: 820px; /* Garante que não vai usar o left */
+  right: auto;
+  left: 820px;
   top: 60%;
   display: none;
   position: absolute;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  margin: 0; /* REMOVE espaçamento entre o botão e o menu */
+  margin: 0;
   margin-top: 15px;
   list-style: none;
   padding: 10px;
   width: 100%;
   max-width: 420px;
   z-index: 9999;
-  max-height: 400px; /* Definindo a altura máxima do menu */
-  visibility: hidden; /* Inicialmente invisível */
-  opacity: 0; /* Inicialmente transparente */
-  transition: opacity 0.2s ease-in-out; /* Transição suave */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adicionando a sombra */
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Cor da borda com leve transparência */
+  max-height: 400px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu.logged-in {
+  right: auto;
+  left: 860px;
+  top: 60%;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 0;
+  margin-top: 15px;
+  list-style: none;
+  padding: 10px;
+  width: 100%;
+  max-width: 420px;
+  z-index: 9999;
+  max-height: 400px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .dropdown-arrow {
-  font-size: 10px; /* Reduz o tamanho */
-  margin-left: 1px; /* Dá um espaço do título */
-  vertical-align: middle; /* Alinha com o texto */
+  font-size: 10px;
+  margin-left: 1px;
+  vertical-align: middle;
 }
 
 /* Mostrar ao passar o mouse */
@@ -37,28 +61,26 @@
   padding: 20px;
 }
 
-/* Itens internos */
 .dropdown-menu li {
   margin-bottom: 0;
 }
 
-/* Remove o espaçamento no último item */
 .dropdown-menu li:last-child {
   margin-bottom: 0;
 }
 
 .busca-menu {
-  margin-right: -35px; /* Ajuste o valor conforme necessário */
+  margin-right: -35px;
 }
 
-/* Links internos */
 .dropdown-menu a {
   text-decoration: none;
   color: #333;
   display: block;
   font-size: 15px;
   font-weight: normal;
-  padding: 15px 15px; /* Ajuste no padding para aumentar a área clicável */
+  padding: 15px 15px;
+  border-radius: 6px !important;
 }
 
 /* Descrição */
