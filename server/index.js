@@ -75,3 +75,48 @@ app.post("/api/login", async (req, res) => {
       .json({ erro: "Erro ao fazer login", detalhes: error.message });
   }
 });
+
+// Buscar dados do usuário pelo idUser (GET)
+app.get("/api/usuarios/:idUser", async (req, res) => {
+  const { idUser } = req.params;
+  try {
+    const usuario = await prisma.usuario.findUnique({
+      where: { idUser: Number(idUser) },
+      select: {
+        idUser: true,
+        nome: true,
+        sobrenome: true,
+        telefone: true,
+        email: true,
+        cep: true,
+        numeroCasa: true,
+      },
+    });
+    if (!usuario) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
+    }
+    res.json(usuario);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ erro: "Erro ao buscar usuário", detalhes: error.message });
+  }
+});
+
+// Atualizar dados do usuário pelo idUser (PUT)
+app.put("/api/usuarios/:idUser", async (req, res) => {
+  const { idUser } = req.params;
+  const { nome, sobrenome, telefone, email, cep, numeroCasa } = req.body;
+
+  try {
+    const usuarioAtualizado = await prisma.usuario.update({
+      where: { idUser: Number(idUser) },
+      data: { nome, sobrenome, telefone, email, cep, numeroCasa },
+    });
+    res.json(usuarioAtualizado);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ erro: "Erro ao atualizar usuário", detalhes: error.message });
+  }
+});

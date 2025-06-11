@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import "./CSS/navbar.css";
 import "./CSS/dropdown.css";
 import "./CSS/perfil-menu.css";
@@ -6,7 +7,6 @@ import "./CSS/perfil-menu.css";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
 import { useState, useEffect } from "react";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-import React from "react";
 
 import Logo from "../../assets/img/icon/logo_petos.png";
 import imgAdocao from "../../assets/img/icon/adocao_icon.png";
@@ -15,6 +15,8 @@ import imgPerfilDefault from "../../assets/img/perfil/img-default.jpg"; // Subst
 
 export default function Navbar() {
   const { usuario, logout } = useAuth();
+  const navigate = useNavigate();
+
   const [dropdownAberto, setDropdownAberto] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [perfilMenuAberto, setPerfilMenuAberto] = useState(false);
@@ -184,7 +186,7 @@ export default function Navbar() {
                     <Link to="/meus-pets" onClick={fecharPerfilMenu}>
                       <a className="tit-color">Meus Pets</a>
                     </Link>
-                    <Link to="/minha-conta" onClick={fecharPerfilMenu}>
+                    <Link to="/painelUser" onClick={fecharPerfilMenu}>
                       <a className="tit-color">Minha Conta</a>
                     </Link>
                     <div className="perfil-email">{usuario?.email}</div>
@@ -192,6 +194,7 @@ export default function Navbar() {
                       onClick={() => {
                         fecharPerfilMenu();
                         logout();
+                        navigate("/");
                       }}
                     >
                       Sair
