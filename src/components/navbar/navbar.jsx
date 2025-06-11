@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./CSS/navbar.css";
 import "./CSS/dropdown.css";
+import "./CSS/perfil-menu.css";
 
 import { useAuth } from "../../../server/context/AuthContext.jsx";
 import { useState, useEffect } from "react";
@@ -16,6 +17,15 @@ export default function Navbar() {
   const { usuario } = useAuth();
   const [dropdownAberto, setDropdownAberto] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  const [perfilMenuAberto, setPerfilMenuAberto] = useState(false);
+
+  const togglePerfilMenu = () => {
+    setPerfilMenuAberto((prev) => !prev);
+  };
+
+  const fecharPerfilMenu = () => {
+    setPerfilMenuAberto(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -160,14 +170,34 @@ export default function Navbar() {
               </Link>
             ) : (
               <div className="right-profile">
-                <Link to="/perfil">
+                <div className="profile-wrapper" onClick={togglePerfilMenu}>
                   <img
                     src={imgPerfilTeste}
                     alt="Perfil"
                     className="profile-pic"
                   />
                   <div className="online-indicator"></div>
-                </Link>
+                </div>
+
+                {perfilMenuAberto && (
+                  <div className="perfil-dropdown-menu">
+                    <Link to="/meus-pets" onClick={fecharPerfilMenu}>
+                      <a className="tit-color">Meus Pets</a>
+                    </Link>
+                    <Link to="/minha-conta" onClick={fecharPerfilMenu}>
+                      <a className="tit-color">Minha Conta</a>
+                    </Link>
+                    <div className="perfil-email">{usuario?.email}</div>
+                    <button
+                      onClick={() => {
+                        fecharPerfilMenu();
+                        // Chamar função logout
+                      }}
+                    >
+                      Sair
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>

@@ -1,0 +1,62 @@
+.profile-wrapper {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.perfil-dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  background: white;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 10px 0;
+  min-width: 180px;
+  z-index: 100;
+  border: 1px solid #e0e0e0;
+}
+
+.perfil-dropdown-menu button {
+  display: block;
+  padding: 10px 20px;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.perfil-dropdown-menu a {
+  display: block;
+  padding: 10px 10px;
+  text-align: left;
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  color: #333;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.perfil-dropdown-menu a:hover,
+.perfil-dropdown-menu button:hover {
+  background-color: #f1f1f1;
+}
+
+.perfil-email {
+  padding: 10px 20px;
+  font-size: 13px;
+  color: gray;
+  cursor: default;
+  border-top: 2px solid #e0e0e0;
+}
+
+.tit-color {
+  color: black !important;
+}
