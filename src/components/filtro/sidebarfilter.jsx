@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import LocationContext from "../../../server/location/LocationContext";
-import "./sidebarfilter.css";
+import "./CSS/sidebarfilter.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { PiTrash } from "react-icons/pi";
 
