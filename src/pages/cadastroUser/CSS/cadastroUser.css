@@ -38,3 +38,16 @@
 .btn-cadastro:hover {
   background: linear-gradient(to right, #ff0000, #ffbf00);
 }
+
+.input-erro {
+  border: 2px solid red;
+  outline: none;
+}
+
+.mensagem-erro {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  white-space: nowrap;
+}

@@ -32,9 +32,17 @@ app.post("/api/usuarios", async (req, res) => {
 
     res.status(201).json(novoUsuario);
   } catch (error) {
-    res
-      .status(500)
-      .json({ erro: "Erro ao criar usuário.", detalhes: error.message });
+    console.error("Erro ao criar usuário:", error);
+
+    // Trata erro de e-mail duplicado (código P2002 do Prisma)
+    if (error.code === "P2002" && error.meta?.target?.includes("email")) {
+      return res.status(409).json({
+        erro: "O e-mail informado já está cadastrado. Tente outro e-mail.",
+      });
+    }
+
+    // Outros erros genéricos
+    res.status(500).json({ erro: "Erro ao cadastrar usuário." });
   }
 });
 

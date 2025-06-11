@@ -18,6 +18,7 @@ function CadastroUser() {
   });
 
   const [mensagem, setMensagem] = useState("");
+  const [erroEmail, setErroEmail] = useState("");
 
   const formatarTelefone = (valor) => {
     let telefone = valor.replace(/\D/g, ""); // Remove caracteres não numéricos
@@ -72,7 +73,16 @@ function CadastroUser() {
         });
       } else {
         const erro = await response.json();
-        setMensagem("Erro ao cadastrar: " + erro.detalhes);
+
+        if (response.status === 409) {
+          setErroEmail(erro.erro); // mensagem de erro do backend
+          setMensagem(""); // limpa a mensagem geral
+        } else {
+          setErroEmail("");
+          setMensagem(
+            "Erro ao cadastrar: " + (erro.erro || "Erro desconhecido.")
+          );
+        }
       }
     } catch (error) {
       console.error("Erro ao conectar com API:", error);
@@ -113,8 +123,10 @@ function CadastroUser() {
             type="email"
             value={formData.email}
             onChange={handleChange}
+            className={erroEmail ? "input-erro" : ""}
             required
           />
+          {erroEmail && <p className="mensagem-erro">{erroEmail}</p>}
           <input
             name="senha"
             placeholder="Senha"
