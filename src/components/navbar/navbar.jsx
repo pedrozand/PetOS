@@ -11,7 +11,7 @@ import React from "react";
 import Logo from "../../assets/img/icon/logo_petos.png";
 import imgAdocao from "../../assets/img/icon/adocao_icon.png";
 
-import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg"; // Substitua futuramente pela foto real do usuário
+import imgPerfilDefault from "../../assets/img/perfil/img-default.jpg"; // Substitua futuramente pela foto real do usuário
 
 export default function Navbar() {
   const { usuario, logout } = useAuth();
@@ -172,7 +172,7 @@ export default function Navbar() {
               <div className="right-profile">
                 <div className="profile-wrapper" onClick={togglePerfilMenu}>
                   <img
-                    src={imgPerfilTeste}
+                    src={imgPerfilDefault}
                     alt="Perfil"
                     className="profile-pic"
                   />
