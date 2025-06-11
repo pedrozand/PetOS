@@ -32,14 +32,25 @@ function CadastroUser() {
     return telefone;
   };
 
+  // Adicione essa função junto com o formatarTelefone
+  const formatarCEP = (valor) => {
+    valor = valor.replace(/\D/g, ""); // Remove não dígitos
+    if (valor.length > 5) {
+      valor = valor.replace(/^(\d{5})(\d{1,3}).*/, "$1-$2");
+    }
+    return valor;
+  };
+
   const handleChange = (e) => {
     let { name, value } = e.target;
-
-    // Verifica se foi pressionada a tecla Backspace ou Delete
     const isDeleting = e.nativeEvent.inputType === "deleteContentBackward";
 
     if (name === "telefone") {
       value = isDeleting ? value : formatarTelefone(value);
+    }
+
+    if (name === "cep") {
+      value = isDeleting ? value : formatarCEP(value);
     }
 
     setFormData({

@@ -6,11 +6,15 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
 
+import { useAuth } from "../../../server/context/AuthContext.jsx"; // importe o hook do contexto
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const navigate = useNavigate();
+
+  const { login } = useAuth(); // obtenha a função login do contexto
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,11 +38,11 @@ const Login = () => {
         return;
       }
 
-      // Armazena os dados do usuário logado no localStorage
-      localStorage.setItem("usuario", JSON.stringify(data));
+      // Use a função login do contexto para atualizar estado e localStorage
+      login(data);
 
-      // Redireciona
-      navigate("/"); // ou página protegida
+      // Redireciona para a página inicial
+      navigate("/");
     } catch (error) {
       setErro("Erro ao conectar com o servidor.");
     }
