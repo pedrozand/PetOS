@@ -4,6 +4,7 @@ import Main from "./pages/main/Main.jsx";
 import Login from "./pages/login/login.jsx";
 import CadastroUser from "./pages/cadastroUser/cadastroUser.jsx";
 import FormContainer from "./pages/anunciarPet/formContainer.jsx";
+import RotaPrivada from "./components/rotaPrivada/RotaPrivada.jsx";
 
 function App() {
   return (

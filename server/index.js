@@ -41,3 +41,29 @@ app.post("/api/usuarios", async (req, res) => {
 app.listen(3001, () => {
   console.log("Servidor backend rodando na porta 3001");
 });
+
+// Rota de login
+app.post("/api/login", async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const usuario = await prisma.usuario.findUnique({
+      where: { email },
+    });
+
+    if (!usuario || usuario.senha !== senha) {
+      return res.status(401).json({ erro: "Credenciais inválidas" });
+    }
+
+    // Retorne dados úteis (nunca a senha!)
+    res.json({
+      idUser: usuario.idUser,
+      nome: usuario.nome,
+      email: usuario.email,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ erro: "Erro ao fazer login", detalhes: error.message });
+  }
+});

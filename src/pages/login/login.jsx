@@ -12,20 +12,36 @@ const Login = () => {
   const [erro, setErro] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!email || !senha) {
       setErro("Por favor, preencha todos os campos.");
       return;
     }
 
-    setErro("");
-    // Aqui você pode integrar com sua API
-    console.log("Login com:", { email, senha });
+    try {
+      const response = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha }),
+      });
 
-    // Redireciona para página principal após login
-    // Exemplo: navigate("/dashboard");
-    alert("Login realizado com sucesso!");
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErro(data.erro || "Erro ao fazer login");
+        return;
+      }
+
+      // Armazena os dados do usuário logado no localStorage
+      localStorage.setItem("usuario", JSON.stringify(data));
+
+      // Redireciona
+      navigate("/"); // ou página protegida
+    } catch (error) {
+      setErro("Erro ao conectar com o servidor.");
+    }
   };
 
   return (
