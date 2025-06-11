@@ -14,7 +14,7 @@ import imgAdocao from "../../assets/img/icon/adocao_icon.png";
 import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg"; // Substitua futuramente pela foto real do usuário
 
 export default function Navbar() {
-  const { usuario } = useAuth();
+  const { usuario, logout } = useAuth();
   const [dropdownAberto, setDropdownAberto] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [perfilMenuAberto, setPerfilMenuAberto] = useState(false);
@@ -33,7 +33,7 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [usuario]);
 
   const handleMouseEnter = (menu) => setDropdownAberto(menu);
   const handleMouseLeave = () => setDropdownAberto(null);
@@ -191,7 +191,7 @@ export default function Navbar() {
                     <button
                       onClick={() => {
                         fecharPerfilMenu();
-                        // Chamar função logout
+                        logout();
                       }}
                     >
                       Sair
