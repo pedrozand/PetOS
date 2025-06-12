@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CSS/paineldoUser.css";
+
+import ImagemDefault from "../../assets/img/perfil/img-default.jpg";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
 
 const PainelDoUser = () => {
-  const { usuario, login } = useAuth();
+  const { usuario, login, logout } = useAuth();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
     nome: "",
@@ -15,11 +19,15 @@ const PainelDoUser = () => {
     telefone: "",
     cep: "",
     numeroCasa: "",
+    fotoPerfil: "",
   });
 
   const [editMode, setEditMode] = useState(false);
   const [formValues, setFormValues] = useState({ ...userData });
   const [erro, setErro] = useState("");
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fotoPreview, setFotoPreview] = useState("");
 
   useEffect(() => {
     if (!usuario?.idUser) return;
@@ -30,9 +38,17 @@ const PainelDoUser = () => {
           `http://localhost:3001/api/usuarios/${usuario.idUser}`
         );
         if (!res.ok) throw new Error("Erro ao buscar dados do usuário");
+
         const data = await res.json();
         setUserData(data);
         setFormValues(data);
+
+        // Se não houver foto, usa imagem padrão
+        if (data.fotoPerfil) {
+          setFotoPreview(`http://localhost:3001/uploads/${data.fotoPerfil}`);
+        } else {
+          setFotoPreview(ImagemDefault);
+        }
       } catch (error) {
         setErro(error.message);
       }
@@ -43,7 +59,6 @@ const PainelDoUser = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     let valorFormatado = value;
 
     if (name === "telefone") {
@@ -60,14 +75,14 @@ const PainelDoUser = () => {
 
   const handleSave = async () => {
     try {
-      const { email, ...formDataSemEmail } = formValues; // <-- remove o email
+      const { email, ...formDataSemEmail } = formValues;
 
       const res = await fetch(
         `http://localhost:3001/api/usuarios/${usuario.idUser}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formDataSemEmail), // <-- envia sem o email
+          body: JSON.stringify(formDataSemEmail),
         }
       );
 
@@ -86,6 +101,7 @@ const PainelDoUser = () => {
         ...usuario,
         nome: updatedUser.nome,
         email: updatedUser.email,
+        fotoPerfil: updatedUser.fotoPerfil,
       });
 
       alert("Informações atualizadas com sucesso!");
@@ -95,9 +111,41 @@ const PainelDoUser = () => {
     }
   };
 
-  const formatarTelefone = (valor) => {
-    const somenteNumeros = valor.replace(/\D/g, "").slice(0, 11); // Máximo 11 dígitos
+  const handleFotoChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    setFotoPreview(URL.createObjectURL(file));
+  };
 
+  const handleFotoUpload = async () => {
+    if (!selectedFile) return alert("Selecione uma imagem primeiro!");
+
+    const formData = new FormData();
+    formData.append("fotoPerfil", selectedFile);
+
+    try {
+      const res = await fetch(
+        `http://localhost:3001/api/usuarios/${usuario.idUser}/foto`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!res.ok) throw new Error("Erro ao enviar a foto");
+
+      const data = await res.json();
+      setUserData((prev) => ({ ...prev, fotoPerfil: data.fotoPerfil }));
+      setFotoPreview(`http://localhost:3001/uploads/${data.fotoPerfil}`);
+      setSelectedFile(null);
+      alert("Foto atualizada com sucesso!");
+    } catch (err) {
+      alert("Erro ao atualizar a foto de perfil.");
+    }
+  };
+
+  const formatarTelefone = (valor) => {
+    const somenteNumeros = valor.replace(/\D/g, "").slice(0, 11);
     if (somenteNumeros.length <= 10) {
       return somenteNumeros.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
     } else {
@@ -106,7 +154,7 @@ const PainelDoUser = () => {
   };
 
   const formatarCEP = (valor) => {
-    const somenteNumeros = valor.replace(/\D/g, "").slice(0, 8); // Máximo 8 dígitos
+    const somenteNumeros = valor.replace(/\D/g, "").slice(0, 8);
     return somenteNumeros.replace(/(\d{5})(\d{0,3})/, "$1-$2");
   };
 
@@ -115,89 +163,10 @@ const PainelDoUser = () => {
       <div className="painel-container">
         <NavBar />
         <h2 className="painel-titulo">Painel do Usuário</h2>
-        <div className="painel-geral">
-          <h2>Informações Gerais</h2>
-          <div className="painel-formulario">
-            {erro && <p className="error">{erro}</p>}
 
-            <div className="painel-campo">
-              <label className="painel-label">
-                Email<span>Seu e-mail não pode ser alterado.</span>
-              </label>
-              {editMode ? (
-                <input
-                  type="email"
-                  name="email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                  className="painel-input"
-                  disabled
-                />
-              ) : (
-                <p className="painel-texto">{userData.email}</p>
-              )}
-            </div>
-
-            <div className="painel-campo">
-              <label className="painel-label">Nome</label>
-              {editMode ? (
-                <input
-                  type="text"
-                  name="nome"
-                  value={formValues.nome}
-                  onChange={handleChange}
-                  className="painel-input"
-                />
-              ) : (
-                <p className="painel-texto">{userData.nome}</p>
-              )}
-            </div>
-
-            <div className="painel-campo">
-              <label className="painel-label">Telefone</label>
-              {editMode ? (
-                <input
-                  type="text"
-                  name="telefone"
-                  value={formValues.telefone}
-                  onChange={handleChange}
-                  className="painel-input"
-                />
-              ) : (
-                <p className="painel-texto">{userData.telefone}</p>
-              )}
-            </div>
-
-            <div className="painel-campo">
-              <label className="painel-label">CEP</label>
-              {editMode ? (
-                <input
-                  type="text"
-                  name="cep"
-                  value={formValues.cep}
-                  onChange={handleChange}
-                  className="painel-input"
-                />
-              ) : (
-                <p className="painel-texto">{userData.cep}</p>
-              )}
-            </div>
-
-            <div className="painel-campo">
-              <label className="painel-label">Número da Casa</label>
-              {editMode ? (
-                <input
-                  type="text"
-                  name="numeroCasa"
-                  value={formValues.numeroCasa}
-                  onChange={handleChange}
-                  className="painel-input"
-                />
-              ) : (
-                <p className="painel-texto">{userData.numeroCasa}</p>
-              )}
-            </div>
-
+        <div className="painel-wrapper">
+          <div className="painel-geral">
+            <h2>Informações Gerais</h2>
             <div className="painel-botoes">
               {editMode ? (
                 <>
@@ -224,6 +193,122 @@ const PainelDoUser = () => {
                 </button>
               )}
             </div>
+
+            <div className="painel-formulario">
+              {erro && <p className="error">{erro}</p>}
+
+              <div className="painel-campo">
+                <label className="painel-label">
+                  Email<b>Seu e-mail não pode ser alterado.</b>
+                </label>
+                {editMode ? (
+                  <input
+                    type="email"
+                    name="email"
+                    value={formValues.email}
+                    onChange={handleChange}
+                    className="painel-input"
+                    disabled
+                  />
+                ) : (
+                  <p className="painel-texto">{userData.email}</p>
+                )}
+              </div>
+
+              <div className="painel-campo">
+                <label className="painel-label">Nome</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    name="nome"
+                    value={formValues.nome}
+                    onChange={handleChange}
+                    className="painel-input"
+                  />
+                ) : (
+                  <p className="painel-texto">{userData.nome}</p>
+                )}
+              </div>
+
+              <div className="painel-campo">
+                <label className="painel-label">Telefone</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    name="telefone"
+                    value={formValues.telefone}
+                    onChange={handleChange}
+                    className="painel-input"
+                  />
+                ) : (
+                  <p className="painel-texto">{userData.telefone}</p>
+                )}
+              </div>
+
+              <div className="painel-campo">
+                <label className="painel-label">CEP</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    name="cep"
+                    value={formValues.cep}
+                    onChange={handleChange}
+                    className="painel-input"
+                  />
+                ) : (
+                  <p className="painel-texto">{userData.cep}</p>
+                )}
+              </div>
+
+              <div className="painel-campo">
+                <label className="painel-label">Número da Casa</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    name="numeroCasa"
+                    value={formValues.numeroCasa}
+                    onChange={handleChange}
+                    className="painel-input"
+                  />
+                ) : (
+                  <p className="painel-texto">{userData.numeroCasa}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div className="painel-perfil">
+            <img
+              src={fotoPreview || "https://via.placeholder.com/120"}
+              alt="Foto do usuário"
+              className="painel-foto-perfil"
+            />
+
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFotoChange}
+              className="painel-upload-foto"
+            />
+            {selectedFile && (
+              <button
+                onClick={handleFotoUpload}
+                className="painel-botao salvar"
+              >
+                Salvar Foto
+              </button>
+            )}
+
+            <h3 className="painel-nome-usuario">{userData.nome}</h3>
+            <button
+              onClick={() => {
+                logout();
+                navigate("/");
+              }}
+              className="painel-botao logout"
+            >
+              Sair
+            </button>
           </div>
         </div>
       </div>

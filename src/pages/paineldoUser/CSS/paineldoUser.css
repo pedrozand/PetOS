@@ -11,9 +11,9 @@
 .painel-geral {
   width: 600px;
   padding: 30px;
-  background: linear-gradient(to right, #ffe7e7, #fff9e2);
+  background: linear-gradient(to right, #fff0f0, #fffcf2);
   border-radius: 8px;
-  margin-right: 825px;
+  margin-left: -515px;
   border: 1px solid #ffd8d8;
 }
 
@@ -50,10 +50,9 @@
   font-weight: bold;
 }
 
-.painel-label span {
+.painel-label b {
   color: #b3b3b3;
   margin-left: 10px;
-  font-weight: bold;
 }
 
 .painel-input {
@@ -87,6 +86,8 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin-top: -50px;
+  margin-bottom: 20px;
 }
 
 .painel-botao.editar {
@@ -126,4 +127,52 @@
   background-color: #f5f5f5;
   text-align: center;
   margin-top: -3950px;
+}
+
+.painel-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 20px;
+}
+
+.painel-perfil {
+  width: 250px;
+  padding: 20px;
+  background: linear-gradient(to right, #fffaf0, #ffe5e5);
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #ffd8d8;
+  height: fit-content;
+}
+
+.painel-foto-perfil {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid #ffbdbd;
+}
+
+.painel-nome-usuario {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.painel-botao.logout {
+  background: linear-gradient(to right, #ff4d4d, #ff9900);
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.painel-botao.logout:hover {
+  background: linear-gradient(to right, #ff6f6f, #ffc266);
 }

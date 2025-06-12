@@ -17,6 +17,7 @@ model Usuario {
   cep                  String
   numeroCasa           String
   dataCadastro         DateTime             @default(now())
+  fotoPerfil           String?
 
   animais              Animal[]
   postagens            Postagem[]

@@ -90,6 +90,7 @@ app.get("/api/usuarios/:idUser", async (req, res) => {
         email: true,
         cep: true,
         numeroCasa: true,
+        fotoPerfil: true,
       },
     });
     if (!usuario) {
@@ -120,3 +121,46 @@ app.put("/api/usuarios/:idUser", async (req, res) => {
       .json({ erro: "Erro ao atualizar usuário", detalhes: error.message });
   }
 });
+
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
+// Configuração do multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = "./uploads";
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `foto-${Date.now()}${ext}`);
+  },
+});
+const upload = multer({ storage });
+
+// Upload de foto de perfil
+app.post(
+  "/api/usuarios/:idUser/foto",
+  upload.single("fotoPerfil"),
+  async (req, res) => {
+    const { idUser } = req.params;
+    const fotoPerfil = req.file.filename;
+
+    try {
+      const usuarioAtualizado = await prisma.usuario.update({
+        where: { idUser: parseInt(idUser) },
+        data: { fotoPerfil },
+      });
+
+      res.json({ fotoPerfil });
+    } catch (error) {
+      console.error("Erro ao salvar foto:", error);
+      res.status(500).json({ erro: "Erro ao salvar foto." });
+    }
+  }
+);
+
+// Tornar a pasta de uploads pública
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
