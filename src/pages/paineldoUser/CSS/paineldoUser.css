@@ -12,7 +12,7 @@
   width: 600px;
   padding: 30px;
   background: linear-gradient(to right, #ffecec, #fffbed);
-  border-radius: 12px;
+  border-radius: 8px;
   margin-right: 825px;
   border: 1px solid #ffd8d8;
 }
@@ -50,17 +50,26 @@
   font-weight: bold;
 }
 
+.painel-label span {
+  color: #b3b3b3;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
 .painel-input {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffbdbd;
   border-radius: 6px;
+  outline-color: #ff9a9a;
 }
 
 .painel-texto {
   font-size: 16px;
   color: #222;
-  padding: 8px 0;
+  padding: 10px;
+  border: 1px solid #ffbdbd;
+  border-radius: 6px;
 }
 
 .painel-botoes {
@@ -81,30 +90,35 @@
 }
 
 .painel-botao.editar {
-  background-color: #007bff;
+  background: linear-gradient(to right, #ff0000, #ffbf00);
   color: #fff;
+  font-weight: bold;
 }
 
 .painel-botao.editar:hover {
-  background-color: #0069d9;
+  background: linear-gradient(to right, #ff5454, #ffd454);
+  color: #fff;
+  font-weight: bold;
 }
 
 .painel-botao.salvar {
-  background-color: #28a745;
+  background: linear-gradient(to right, #dbab1b, #ffd34d);
   color: #fff;
+  font-weight: bold;
 }
 
 .painel-botao.salvar:hover {
-  background-color: #218838;
+  background: linear-gradient(to right, #eeba1d, #ffe38f);
 }
 
 .painel-botao.cancelar {
-  background-color: #6c757d;
+  background: linear-gradient(to right, #6c757d, #acbac5);
   color: #fff;
+  font-weight: bold;
 }
 
 .painel-botao.cancelar:hover {
-  background-color: #5a6268;
+  background: linear-gradient(to right, #a1a2a5, #c9d9e6);
 }
 
 .footer-container-painel-user {

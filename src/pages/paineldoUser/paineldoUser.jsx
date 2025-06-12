@@ -42,20 +42,32 @@ const PainelDoUser = () => {
   }, [usuario]);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    let valorFormatado = value;
+
+    if (name === "telefone") {
+      valorFormatado = formatarTelefone(value);
+    } else if (name === "cep") {
+      valorFormatado = formatarCEP(value);
+    }
+
     setFormValues({
       ...formValues,
-      [e.target.name]: e.target.value,
+      [name]: valorFormatado,
     });
   };
 
   const handleSave = async () => {
     try {
+      const { email, ...formDataSemEmail } = formValues; // <-- remove o email
+
       const res = await fetch(
         `http://localhost:3001/api/usuarios/${usuario.idUser}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formValues),
+          body: JSON.stringify(formDataSemEmail), // <-- envia sem o email
         }
       );
 
@@ -70,7 +82,6 @@ const PainelDoUser = () => {
       setFormValues(updatedUser);
       setEditMode(false);
 
-      // Atualiza o contexto e o localStorage com os dados atualizados
       login({
         ...usuario,
         nome: updatedUser.nome,
@@ -84,6 +95,21 @@ const PainelDoUser = () => {
     }
   };
 
+  const formatarTelefone = (valor) => {
+    const somenteNumeros = valor.replace(/\D/g, "").slice(0, 11); // Máximo 11 dígitos
+
+    if (somenteNumeros.length <= 10) {
+      return somenteNumeros.replace(/(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+    } else {
+      return somenteNumeros.replace(/(\d{2})(\d{5})(\d{0,4})/, "($1) $2-$3");
+    }
+  };
+
+  const formatarCEP = (valor) => {
+    const somenteNumeros = valor.replace(/\D/g, "").slice(0, 8); // Máximo 8 dígitos
+    return somenteNumeros.replace(/(\d{5})(\d{0,3})/, "$1-$2");
+  };
+
   return (
     <>
       <div className="painel-container">
@@ -95,7 +121,9 @@ const PainelDoUser = () => {
             {erro && <p className="error">{erro}</p>}
 
             <div className="painel-campo">
-              <label className="painel-label">Email</label>
+              <label className="painel-label">
+                Email<span>Seu e-mail não pode ser alterado.</span>
+              </label>
               {editMode ? (
                 <input
                   type="email"
@@ -103,6 +131,7 @@ const PainelDoUser = () => {
                   value={formValues.email}
                   onChange={handleChange}
                   className="painel-input"
+                  disabled
                 />
               ) : (
                 <p className="painel-texto">{userData.email}</p>
