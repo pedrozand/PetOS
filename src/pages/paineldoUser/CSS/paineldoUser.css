@@ -11,10 +11,11 @@
 .painel-geral {
   width: 600px;
   padding: 30px;
-  background: linear-gradient(to right, #fff0f0, #fffcf2);
+  background-color: #f9f9f9;
   border-radius: 8px;
-  margin-left: -515px;
+  margin-left: -65px;
   border: 1px solid #ffd8d8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .painel-geral h2 {
@@ -26,9 +27,17 @@
   text-align: left;
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 20px;
   margin-top: 80px;
   margin-right: 1150px;
+  background: linear-gradient(to right, #ff3131, #ffbe31);
+  background-clip: text;
+  color: transparent;
+}
+
+.bcolor-painel {
+  display: flex;
+  background: linear-gradient(135deg, #fff8f8, #fffbee);
+  margin-top: 70px;
 }
 
 .painel-formulario {
@@ -44,10 +53,9 @@
 
 .painel-label {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   margin-bottom: 10px;
   color: #333;
-  font-weight: bold;
 }
 
 .painel-label b {
@@ -137,29 +145,56 @@
 }
 
 .painel-perfil {
-  width: 250px;
+  display: flex;
+  gap: 20px;
+  width: 700px;
   padding: 20px;
-  background: linear-gradient(to right, #fffaf0, #ffe5e5);
-  border-radius: 8px;
-  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 12px;
   border: 1px solid #ffd8d8;
-  height: fit-content;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  align-items: flex-start;
+}
+
+.perfil-lado-esquerdo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.perfil-lado-direito {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 1;
 }
 
 .painel-foto-perfil {
-  width: 120px;
-  height: 120px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 15px;
-  border: 2px solid #ffbdbd;
+  border-radius: 10px;
+  border: 3px solid #ff8f8f;
+}
+
+.linha-separadora {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.linha-logout {
+  margin-top: 20px;
+  width: 100%;
+  text-align: left;
 }
 
 .painel-nome-usuario {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
 }
 
 .painel-botao.logout {

@@ -162,8 +162,9 @@ const PainelDoUser = () => {
     <>
       <div className="painel-container">
         <NavBar />
-        <h2 className="painel-titulo">Painel do Usuário</h2>
-
+        <div className="bcolor-painel">
+          <h2 className="painel-titulo">Painel do Usuário</h2>
+        </div>
         <div className="painel-wrapper">
           <div className="painel-geral">
             <h2>Informações Gerais</h2>
@@ -231,6 +232,21 @@ const PainelDoUser = () => {
               </div>
 
               <div className="painel-campo">
+                <label className="painel-label">Sobrenome</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    name="sobrenome"
+                    value={formValues.sobrenome}
+                    onChange={handleChange}
+                    className="painel-input"
+                  />
+                ) : (
+                  <p className="painel-texto">{userData.sobrenome}</p>
+                )}
+              </div>
+
+              <div className="painel-campo">
                 <label className="painel-label">Telefone</label>
                 {editMode ? (
                   <input
@@ -278,37 +294,45 @@ const PainelDoUser = () => {
           </div>
 
           <div className="painel-perfil">
-            <img
-              src={fotoPreview || "https://via.placeholder.com/120"}
-              alt="Foto do usuário"
-              className="painel-foto-perfil"
-            />
+            <div className="perfil-lado-esquerdo">
+              <img
+                src={fotoPreview || "https://via.placeholder.com/120"}
+                alt="Foto do usuário"
+                className="painel-foto-perfil"
+              />
+              <div className="linha-logout">
+                <hr className="linha-separadora" />
+                <button
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                  }}
+                  className="painel-botao logout"
+                >
+                  Sair
+                </button>
+              </div>
+            </div>
 
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFotoChange}
-              className="painel-upload-foto"
-            />
-            {selectedFile && (
-              <button
-                onClick={handleFotoUpload}
-                className="painel-botao salvar"
-              >
-                Salvar Foto
-              </button>
-            )}
-
-            <h3 className="painel-nome-usuario">{userData.nome}</h3>
-            <button
-              onClick={() => {
-                logout();
-                navigate("/");
-              }}
-              className="painel-botao logout"
-            >
-              Sair
-            </button>
+            <div className="perfil-lado-direito">
+              <h3 className="painel-nome-usuario">
+                {userData.nome} {userData.sobrenome}
+              </h3>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFotoChange}
+                className="painel-upload-foto"
+              />
+              {selectedFile && (
+                <button
+                  onClick={handleFotoUpload}
+                  className="painel-botao salvar"
+                >
+                  Salvar Foto
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
