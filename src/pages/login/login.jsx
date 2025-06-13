@@ -41,8 +41,24 @@ const Login = () => {
       // Use a função login do contexto para atualizar estado e localStorage
       login(data);
 
-      // Redireciona para a página inicial
-      navigate("/");
+      // Verifica se havia um formulário em andamento
+      const formDataTemp = localStorage.getItem("formDataTemp");
+      const formStepTemp = localStorage.getItem("formStepTemp");
+
+      if (formDataTemp && formStepTemp) {
+        // Limpa os dados temporários
+        localStorage.removeItem("formDataTemp");
+        localStorage.removeItem("formStepTemp");
+
+        navigate("/anunciarPet", {
+          state: {
+            formData: JSON.parse(formDataTemp),
+            step: Number(formStepTemp),
+          },
+        });
+      } else {
+        navigate("/"); // Redirecionamento normal se não houver dados
+      }
     } catch (error) {
       setErro("Erro ao conectar com o servidor.");
     }

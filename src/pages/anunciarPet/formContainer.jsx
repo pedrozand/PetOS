@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FormProvider } from "./FormContext.jsx";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Carrosel2 from "../../components/carrosel-2/carrosel-2.jsx";
 import "./CSS/formContainer.css";
@@ -32,14 +33,42 @@ import FormEtapa8Adocao from "./staps/adocao/formEtapa8Adocao.jsx";
 
 export default function FormContainer() {
   const { usuario } = useAuth();
+  const location = useLocation();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   let totalEtapas = 7; // padrão
   if (formData.situacao === "Adocao") {
     totalEtapas = 8;
   }
+
+  useEffect(() => {
+    if (
+      location.state &&
+      location.state.formData &&
+      location.state.step !== undefined
+    ) {
+      // Se veio pelo navigate com state, usa esses dados
+      setFormData(location.state.formData);
+      setStep(location.state.step);
+    } else {
+      // Senão tenta carregar do localStorage
+      const dadosSalvos = localStorage.getItem("formDataTemp");
+      const etapaSalva = localStorage.getItem("formStepTemp");
+
+      if (dadosSalvos && etapaSalva) {
+        setFormData(JSON.parse(dadosSalvos));
+        setStep(parseInt(etapaSalva));
+        localStorage.removeItem("formDataTemp");
+        localStorage.removeItem("formStepTemp");
+      }
+    }
+    setLoading(false);
+  }, [location.state]);
+
+  if (loading) return null;
 
   const handleProximo = (dadosEtapaAtual) => {
     // Atualiza o formData com os dados recebidos
@@ -55,8 +84,16 @@ export default function FormContainer() {
       alert(
         "Você precisa estar logado para continuar. Faça login ou cadastre-se."
       );
+
+      // Salva os dados no localStorage
+      localStorage.setItem(
+        "formDataTemp",
+        JSON.stringify({ ...formData, ...dadosEtapaAtual })
+      );
+      localStorage.setItem("formStepTemp", step + 1);
+
       navigate("/login");
-      return; // Não avança
+      return;
     }
 
     // Avança normalmente se estiver logado ou etapa não crítica
