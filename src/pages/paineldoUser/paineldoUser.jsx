@@ -139,6 +139,8 @@ const PainelDoUser = () => {
       setFotoPreview(`http://localhost:3001/uploads/${data.fotoPerfil}`);
       setSelectedFile(null);
       alert("Foto atualizada com sucesso!");
+
+      window.location.reload();
     } catch (err) {
       alert("Erro ao atualizar a foto de perfil.");
     }

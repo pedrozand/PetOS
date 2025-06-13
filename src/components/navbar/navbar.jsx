@@ -17,6 +17,39 @@ export default function Navbar() {
   const { usuario, logout } = useAuth();
   const navigate = useNavigate();
 
+  const [fotoPerfilURL, setFotoPerfilURL] = useState(imgPerfilDefault);
+
+  useEffect(() => {
+    const buscarFotoPerfil = async () => {
+      if (!usuario?.idUser) return;
+
+      try {
+        const res = await fetch(
+          `http://localhost:3001/api/usuarios/${usuario.idUser}`
+        );
+        if (!res.ok) throw new Error("Erro ao buscar usuário");
+
+        const data = await res.json();
+
+        if (data.fotoPerfil) {
+          setFotoPerfilURL(`http://localhost:3001/uploads/${data.fotoPerfil}`);
+        } else {
+          setFotoPerfilURL(imgPerfilDefault);
+        }
+      } catch (err) {
+        console.error("Erro ao carregar imagem de perfil:", err.message);
+        setFotoPerfilURL(imgPerfilDefault);
+      }
+    };
+
+    buscarFotoPerfil();
+  }, [usuario]);
+
+  const URL_IMG = "http://localhost:3001/uploads/"; // ajuste se for outra URL do backend
+  const imagemPerfil = usuario?.fotoPerfil
+    ? `${URL_IMG}${usuario.fotoPerfil}`
+    : imgPerfilDefault;
+
   const [dropdownAberto, setDropdownAberto] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const [perfilMenuAberto, setPerfilMenuAberto] = useState(false);
@@ -174,8 +207,8 @@ export default function Navbar() {
               <div className="right-profile">
                 <div className="profile-wrapper" onClick={togglePerfilMenu}>
                   <img
-                    src={imgPerfilDefault}
-                    alt="Perfil"
+                    src={fotoPerfilURL}
+                    alt="Foto do usuário"
                     className="profile-pic"
                   />
                   <div className="online-indicator"></div>
