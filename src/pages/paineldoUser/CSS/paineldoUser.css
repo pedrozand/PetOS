@@ -73,12 +73,18 @@
   outline-color: #ff9a9a;
 }
 
+.painel-input:disabled {
+  background-color: #f6f6f6;
+  border: 1px solid #dfdfdf;
+}
+
 .painel-texto {
   font-size: 16px;
   color: #222;
   padding: 10px;
-  border: 1px solid #ffbdbd;
+  border: 1px solid #dfdfdf;
   border-radius: 6px;
+  background-color: #f6f6f6;
 }
 
 .painel-botoes {
@@ -118,7 +124,6 @@
   font-weight: bold;
   padding: 5px 10px;
   margin-left: 200px;
-  margin-top: -46px;
 }
 
 .painel-botao.salvar:hover {
@@ -129,6 +134,7 @@
   background: linear-gradient(to right, #6c757d, #acbac5);
   color: #fff;
   font-weight: bold;
+  padding: 5px 10px;
 }
 
 .painel-botao.cancelar:hover {
