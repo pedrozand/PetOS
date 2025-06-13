@@ -11,7 +11,7 @@ import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import Logo from "../../assets/img/icon/logo_petos.png";
 import imgAdocao from "../../assets/img/icon/adocao_icon.png";
 
-import imgPerfilDefault from "../../assets/img/perfil/img-default.jpg"; // Substitua futuramente pela foto real do usuário
+import imgPerfilDefault from "../../assets/img/perfil/img-default.png"; // Substitua futuramente pela foto real do usuário
 
 export default function Navbar() {
   const { usuario, logout } = useAuth();

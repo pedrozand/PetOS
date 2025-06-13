@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/paineldoUser.css";
 
-import ImagemDefault from "../../assets/img/perfil/img-default.jpg";
+import ImagemDefault from "../../assets/img/perfil/img-default.png";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
@@ -27,7 +27,7 @@ const PainelDoUser = () => {
   const [erro, setErro] = useState("");
 
   const [selectedFile, setSelectedFile] = useState(null);
-  const [fotoPreview, setFotoPreview] = useState("");
+  const [fotoPreview, setFotoPreview] = useState(ImagemDefault);
 
   useEffect(() => {
     if (!usuario?.idUser) return;
@@ -297,10 +297,28 @@ const PainelDoUser = () => {
             <div className="perfil-conteudo">
               <div className="perfil-lado-esquerdo">
                 <img
-                  src={fotoPreview || "https://via.placeholder.com/120"}
+                  src={fotoPreview ? fotoPreview : ImagemDefault}
                   alt="Foto do usuário"
                   className="painel-foto-perfil"
                 />
+                <input
+                  type="file"
+                  id="upload-foto"
+                  accept="image/*"
+                  onChange={handleFotoChange}
+                  className="painel-upload-foto"
+                />
+                <label htmlFor="upload-foto" className="painel-botao trocar">
+                  Trocar foto de perfil
+                </label>
+                {selectedFile && (
+                  <button
+                    onClick={handleFotoUpload}
+                    className="painel-botao salvar"
+                  >
+                    Salvar Foto
+                  </button>
+                )}
               </div>
 
               <div className="perfil-lado-direito">
@@ -320,20 +338,6 @@ const PainelDoUser = () => {
                     <a>Email</a>
                     <h3 className="painel-email-usuario">{userData.email}</h3>
                   </div>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFotoChange}
-                    className="painel-upload-foto"
-                  />
-                  {selectedFile && (
-                    <button
-                      onClick={handleFotoUpload}
-                      className="painel-botao salvar"
-                    >
-                      Salvar Foto
-                    </button>
-                  )}
                 </div>
               </div>
             </div>
