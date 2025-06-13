@@ -294,44 +294,61 @@ const PainelDoUser = () => {
           </div>
 
           <div className="painel-perfil">
-            <div className="perfil-lado-esquerdo">
-              <img
-                src={fotoPreview || "https://via.placeholder.com/120"}
-                alt="Foto do usuário"
-                className="painel-foto-perfil"
-              />
-              <div className="linha-logout">
-                <hr className="linha-separadora" />
-                <button
-                  onClick={() => {
-                    logout();
-                    navigate("/");
-                  }}
-                  className="painel-botao logout"
-                >
-                  Sair
-                </button>
+            <div className="perfil-conteudo">
+              <div className="perfil-lado-esquerdo">
+                <img
+                  src={fotoPreview || "https://via.placeholder.com/120"}
+                  alt="Foto do usuário"
+                  className="painel-foto-perfil"
+                />
+              </div>
+
+              <div className="perfil-lado-direito">
+                <div className="perfil-info">
+                  <a>Nome</a>
+                  <h3 className="painel-nome-usuario">
+                    {userData.nome} {userData.sobrenome}
+                  </h3>
+                  <div className="painel-info-contato-wrap">
+                    <h3 className="painel-info-contato">
+                      Informações de Contato
+                    </h3>
+                    <a>Telefone</a>
+                    <h3 className="painel-telefone-usuario">
+                      {userData.telefone}
+                    </h3>
+                    <a>Email</a>
+                    <h3 className="painel-email-usuario">{userData.email}</h3>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFotoChange}
+                    className="painel-upload-foto"
+                  />
+                  {selectedFile && (
+                    <button
+                      onClick={handleFotoUpload}
+                      className="painel-botao salvar"
+                    >
+                      Salvar Foto
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="perfil-lado-direito">
-              <h3 className="painel-nome-usuario">
-                {userData.nome} {userData.sobrenome}
-              </h3>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFotoChange}
-                className="painel-upload-foto"
-              />
-              {selectedFile && (
-                <button
-                  onClick={handleFotoUpload}
-                  className="painel-botao salvar"
-                >
-                  Salvar Foto
-                </button>
-              )}
+            <div className="linha-logout">
+              <hr className="linha-separadora" />
+              <button
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+                className="painel-botao logout"
+              >
+                Sair
+              </button>
             </div>
           </div>
         </div>
