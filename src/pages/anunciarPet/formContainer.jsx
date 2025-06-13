@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FormProvider } from "./FormContext.jsx";
+import { useAuth } from "../../../server/context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 import Carrosel2 from "../../components/carrosel-2/carrosel-2.jsx";
 import "./CSS/formContainer.css";
@@ -29,8 +31,10 @@ import FormEtapa7Adocao from "./staps/adocao/formEtapa7Adocao";
 import FormEtapa8Adocao from "./staps/adocao/formEtapa8Adocao.jsx";
 
 export default function FormContainer() {
+  const { usuario } = useAuth();
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
 
   let totalEtapas = 7; // padrão
   if (formData.situacao === "Adocao") {
@@ -38,7 +42,24 @@ export default function FormContainer() {
   }
 
   const handleProximo = (dadosEtapaAtual) => {
+    // Atualiza o formData com os dados recebidos
     setFormData((prev) => ({ ...prev, ...dadosEtapaAtual }));
+
+    // Verificações de login para etapas críticas
+    const etapaCritica =
+      (formData.situacao === "Perdido" && step === 5) ||
+      (formData.situacao === "Procurando Tutor" && step === 5) ||
+      (formData.situacao === "Adocao" && step === 6);
+
+    if (etapaCritica && !usuario) {
+      alert(
+        "Você precisa estar logado para continuar. Faça login ou cadastre-se."
+      );
+      navigate("/login");
+      return; // Não avança
+    }
+
+    // Avança normalmente se estiver logado ou etapa não crítica
     setStep((prev) => prev + 1);
   };
 
@@ -56,7 +77,7 @@ export default function FormContainer() {
 
         {/* LADO DIREITO */}
         <div className="formulario-all">
-          {/* PERDIDO */}
+          {/* Comum para todas as etapas */}
           {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
 
           {/* Etapas para situação "Perdido" */}
