@@ -4,6 +4,8 @@ import { useAuth } from "../../../server/context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
+import LoginModal from "../../components/loginModal/LoginModal.jsx";
+
 import Carrosel2 from "../../components/carrosel-2/carrosel-2.jsx";
 import "./CSS/formContainer.css";
 
@@ -44,6 +46,7 @@ function FormContainer() {
   const { usuario } = useAuth();
   const location = useLocation();
   const [step, setStep] = useState(0);
+  const [mostrarLoginModal, setMostrarLoginModal] = useState(false);
 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -82,29 +85,16 @@ function FormContainer() {
   const handleProximo = (dadosEtapaAtual) => {
     updateFormData(dadosEtapaAtual);
 
-    // Verificações de login para etapas críticas
     const etapaCritica =
       (formData.situacao === "Perdido" && step === 5) ||
       (formData.situacao === "Procurando Tutor" && step === 5) ||
       (formData.situacao === "Adocao" && step === 6);
 
     if (etapaCritica && !usuario) {
-      alert(
-        "Você precisa estar logado para continuar. Faça login ou cadastre-se."
-      );
-
-      // Salva os dados no localStorage
-      localStorage.setItem(
-        "formDataTemp",
-        JSON.stringify({ ...formData, ...dadosEtapaAtual })
-      );
-      localStorage.setItem("formStepTemp", step + 1);
-
-      navigate("/login");
+      setMostrarLoginModal(true);
       return;
     }
 
-    // Avança normalmente se estiver logado ou etapa não crítica
     setStep((prev) => prev + 1);
   };
 
@@ -113,157 +103,155 @@ function FormContainer() {
   };
 
   return (
-    <div className="form-container-all">
-      {/* LADO ESQUERDO */}
-      <div className="carrossel-lateral-all">
-        <Carrosel2 />
+    <>
+      <div className="form-container-all">
+        {/* LADO ESQUERDO */}
+        <div className="carrossel-lateral-all">
+          <Carrosel2 />
+        </div>
+
+        {/* LADO DIREITO */}
+        <div className="formulario-all">
+          {/* Comum para todas as etapas */}
+          {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
+
+          {/* Etapas para situação "Perdido" */}
+          {formData.situacao === "Perdido" && step === 1 && (
+            <FormEtapa2Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {formData.situacao === "Perdido" && step === 2 && (
+            <FormEtapa3Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {formData.situacao === "Perdido" && step === 3 && (
+            <FormEtapa4Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {formData.situacao === "Perdido" && step === 4 && (
+            <FormEtapa5Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {formData.situacao === "Perdido" && step === 5 && (
+            <FormEtapa6Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {formData.situacao === "Perdido" && step === 6 && (
+            <FormEtapa7Perdido
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+
+          {/* TUTOR */}
+          {step === 1 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa2Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {step === 2 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa3Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {step === 3 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa4Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {step === 4 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa5Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {step === 5 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa6Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+          {step === 6 && formData.situacao === "Procurando Tutor" && (
+            <FormEtapa7Tutor
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+            />
+          )}
+
+          {/* ADOÇÃO */}
+          {step === 1 && formData.situacao === "Adocao" && (
+            <FormEtapa2Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 2 && formData.situacao === "Adocao" && (
+            <FormEtapa3Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 3 && formData.situacao === "Adocao" && (
+            <FormEtapa4Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 4 && formData.situacao === "Adocao" && (
+            <FormEtapa5Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 5 && formData.situacao === "Adocao" && (
+            <FormEtapa6Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 6 && formData.situacao === "Adocao" && (
+            <FormEtapa7Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+          {step === 7 && formData.situacao === "Adocao" && (
+            <FormEtapa8Adocao
+              onProximo={handleProximo}
+              onVoltar={handleVoltar}
+              totalEtapas={totalEtapas}
+            />
+          )}
+        </div>
       </div>
-
-      {/* LADO DIREITO */}
-      <div className="formulario-all">
-        {/* Comum para todas as etapas */}
-        {step === 0 && <FormEtapa1 onProximo={handleProximo} />}
-
-        {/* Etapas para situação "Perdido" */}
-        {formData.situacao === "Perdido" && step === 1 && (
-          <FormEtapa2Perdido
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-          />
-        )}
-        {formData.situacao === "Perdido" && step === 2 && (
-          <FormEtapa3Perdido
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-          />
-        )}
-        {formData.situacao === "Perdido" && step === 3 && (
-          <FormEtapa4Perdido
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-          />
-        )}
-        {formData.situacao === "Perdido" && step === 4 && (
-          <FormEtapa5Perdido
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-          />
-        )}
-        {formData.situacao === "Perdido" && step === 5 && (
-          <FormEtapa6Perdido
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-          />
-        )}
-        {formData.situacao === "Perdido" && step === 6 && (
-          <FormEtapa7Perdido
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-          />
-        )}
-
-        {/* TUTOR */}
-        {step === 1 && formData.situacao === "Procurando Tutor" && (
-          <FormEtapa2Tutor
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-          />
-        )}
-        {step === 2 && formData.situacao === "Procurando Tutor" && (
-          <FormEtapa3Tutor
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-          />
-        )}
-        {step === 3 && formData.situacao === "Procurando Tutor" && (
-          <FormEtapa4Tutor
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-          />
-        )}
-        {step === 4 && formData.situacao === "Procurando Tutor" && (
-          <FormEtapa5Tutor
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-          />
-        )}
-        {step === 5 && formData.situacao === "Procurando Tutor" && (
-          <FormEtapa6Tutor
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-          />
-        )}
-        {step === 6 && formData.situacao === "Procurando Tutor" && (
-          <FormEtapa7Tutor
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-          />
-        )}
-
-        {/* ADOÇÃO */}
-        {step === 1 && formData.situacao === "Adocao" && (
-          <FormEtapa2Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-        {step === 2 && formData.situacao === "Adocao" && (
-          <FormEtapa3Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-        {step === 3 && formData.situacao === "Adocao" && (
-          <FormEtapa4Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-        {step === 4 && formData.situacao === "Adocao" && (
-          <FormEtapa5Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-        {step === 5 && formData.situacao === "Adocao" && (
-          <FormEtapa6Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-        {step === 6 && formData.situacao === "Adocao" && (
-          <FormEtapa7Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-        {step === 7 && formData.situacao === "Adocao" && (
-          <FormEtapa8Adocao
-            onProximo={handleProximo}
-            onVoltar={handleVoltar}
-            dados={formData}
-            totalEtapas={totalEtapas}
-          />
-        )}
-      </div>
-    </div>
+      {mostrarLoginModal && (
+        <LoginModal
+          onClose={() => setMostrarLoginModal(false)} // apenas fecha o modal sem logar
+          onLoginSuccess={() => {
+            setMostrarLoginModal(false);
+            setStep((prev) => prev + 1); // avança só se logar com sucesso
+          }}
+        />
+      )}
+    </>
   );
 }

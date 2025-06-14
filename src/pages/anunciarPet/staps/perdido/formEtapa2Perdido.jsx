@@ -2,32 +2,36 @@ import { useState, useEffect } from "react";
 import { useFormContext } from "../../FormContext.jsx";
 import FormBase from "../../formBase";
 import { FiImage, FiX } from "react-icons/fi";
+import { useAuth } from "../../../../../server/context/AuthContext.jsx";
 import "./CSS/formEtapa2Perdido.css";
 
 export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
   const { formData, updateFormData } = useFormContext();
+  const { user } = useAuth();
 
   const [imagens, setImagens] = useState([]);
   const [dragOver, setDragOver] = useState(false);
   const [erroImagem, setErroImagem] = useState("");
 
   useEffect(() => {
-    if (Array.isArray(formData?.fotos)) {
+    if (formData?.fotos?.length > 0) {
       const imagensPreview = formData.fotos
-        .filter(
-          (file) =>
-            file && (typeof file === "string" ? file.trim() !== "" : true)
-        )
+        .filter((file) => file)
         .map((file) => ({
           file,
-          preview: typeof file === "string" ? file : URL.createObjectURL(file),
+          preview: file instanceof File ? URL.createObjectURL(file) : file,
         }));
 
       setImagens(imagensPreview);
 
       return () => {
         imagensPreview.forEach((img) => {
-          if (img.preview.startsWith("blob:")) URL.revokeObjectURL(img.preview);
+          if (
+            typeof img.preview === "string" &&
+            img.preview.startsWith("blob:")
+          ) {
+            URL.revokeObjectURL(img.preview);
+          }
         });
       };
     }
@@ -50,7 +54,8 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
       preview: URL.createObjectURL(file),
     }));
 
-    setImagens((prev) => [...prev, ...imagensPreview]);
+    const novasImagens = [...imagens, ...imagensPreview];
+    setImagens(novasImagens);
     setErroImagem("");
   };
 
@@ -71,7 +76,8 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
   };
 
   const removerImagem = (index) => {
-    setImagens((prev) => prev.filter((_, i) => i !== index));
+    const novasImagens = imagens.filter((_, i) => i !== index);
+    setImagens(novasImagens);
     setErroImagem("");
   };
 
@@ -82,9 +88,9 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
     }
 
     const fotos = imagens.map((img) => img.file);
-    updateFormData({ fotos }); // Atualiza o contexto
+    updateFormData({ fotos });
     setErroImagem("");
-    onProximo({ fotos }); // Chama próxima etapa
+    onProximo({ fotos });
   };
 
   return (
