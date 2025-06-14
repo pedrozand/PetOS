@@ -85,7 +85,14 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
       </div>
 
       {mostrarCadastro && (
-        <CadastroModal onClose={() => setMostrarCadastro(false)} />
+        <CadastroModal
+          onClose={() => setMostrarCadastro(false)}
+          onCadastroSuccess={() => {
+            setMostrarCadastro(false); // fecha o CadastroModal
+            onClose(); // fecha o LoginModal
+            onLoginSuccess(); // segue o fluxo do formulário
+          }}
+        />
       )}
     </>
   );

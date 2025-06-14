@@ -1,7 +1,10 @@
 import { useState } from "react";
 import "./CSS/cadastroModal.css";
+import { useAuth } from "../../../server/context/AuthContext.jsx";
 
-const CadastroModal = ({ onClose }) => {
+const CadastroModal = ({ onClose, onCadastroSuccess }) => {
+  const { login } = useAuth();
+
   const [formData, setFormData] = useState({
     nome: "",
     sobrenome: "",
@@ -17,31 +20,41 @@ const CadastroModal = ({ onClose }) => {
 
   const formatarTelefone = (valor) => {
     let telefone = valor.replace(/\D/g, "");
-    return telefone.length > 10
-      ? telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3")
-      : telefone.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    if (telefone.length > 10) {
+      telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
+    } else {
+      telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+    }
+    return telefone;
   };
 
   const formatarCEP = (valor) => {
     valor = valor.replace(/\D/g, "");
-    return valor.length > 5
-      ? valor.replace(/^(\d{5})(\d{1,3}).*/, "$1-$2")
-      : valor;
+    if (valor.length > 5) {
+      valor = valor.replace(/^(\d{5})(\d{1,3}).*/, "$1-$2");
+    }
+    return valor;
   };
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    const isDeleting = e.nativeEvent?.inputType === "deleteContentBackward";
+    const isDeleting = e.nativeEvent.inputType === "deleteContentBackward";
 
-    if (name === "telefone")
+    if (name === "telefone") {
       value = isDeleting ? value : formatarTelefone(value);
-    if (name === "cep") value = isDeleting ? value : formatarCEP(value);
+    }
+
+    if (name === "cep") {
+      value = isDeleting ? value : formatarCEP(value);
+    }
 
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErroEmail("");
+    setMensagem("");
 
     try {
       const response = await fetch("http://localhost:3001/api/usuarios", {
@@ -50,27 +63,21 @@ const CadastroModal = ({ onClose }) => {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const resultado = await response.json();
 
       if (response.ok) {
-        setMensagem("Cadastro realizado com sucesso!");
-        setFormData({
-          nome: "",
-          sobrenome: "",
-          telefone: "",
-          email: "",
-          senha: "",
-          cep: "",
-          numeroCasa: "",
-        });
+        login(resultado); // login automático
+        onClose(); // fecha o CadastroModal
+        onCadastroSuccess?.(); // avisa o LoginModal para fechar também
       } else if (response.status === 409) {
-        setErroEmail(data.erro);
-        setMensagem("");
+        setErroEmail(resultado.erro || "E-mail já cadastrado.");
       } else {
-        setErroEmail("");
-        setMensagem(data.erro || "Erro ao cadastrar.");
+        setMensagem(
+          "Erro ao cadastrar: " + (resultado.erro || "Erro desconhecido.")
+        );
       }
     } catch (error) {
+      console.error("Erro ao conectar com API:", error);
       setMensagem("Erro de conexão com o servidor.");
     }
   };
@@ -78,6 +85,9 @@ const CadastroModal = ({ onClose }) => {
   return (
     <div className="modal-overlay-cadastro">
       <div className="modal-content-cadastro">
+        <button className="btn-close" onClick={onClose}>
+          ×
+        </button>
         <h2>Crie sua conta no PetOS</h2>
         <form onSubmit={handleSubmit}>
           <input
@@ -107,10 +117,10 @@ const CadastroModal = ({ onClose }) => {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            className={erroEmail ? "erro-input" : ""}
+            className={erroEmail ? "input-erro" : ""}
             required
           />
-          {erroEmail && <p className="erro-texto">{erroEmail}</p>}
+          {erroEmail && <p className="mensagem-erro">{erroEmail}</p>}
           <input
             name="senha"
             placeholder="Senha"
@@ -128,7 +138,7 @@ const CadastroModal = ({ onClose }) => {
           />
           <input
             name="numeroCasa"
-            placeholder="Número da Casa"
+            placeholder="Número da casa"
             value={formData.numeroCasa}
             onChange={handleChange}
             required
@@ -138,11 +148,7 @@ const CadastroModal = ({ onClose }) => {
             Cadastrar
           </button>
         </form>
-        {mensagem && <p className="mensagem-feedback">{mensagem}</p>}
-
-        <button className="btn-fechar-cadastro" onClick={onClose}>
-          Fechar
-        </button>
+        {mensagem && <p className="mensagem">{mensagem}</p>}
       </div>
     </div>
   );
