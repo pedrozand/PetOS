@@ -2,11 +2,15 @@ import { useState } from "react";
 import "./CSS/loginModal.css";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
 
+import CadastroModal from "../cadastroModal/CadastroModal.jsx";
+
 const LoginModal = ({ onClose, onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const { login } = useAuth();
+
+  const [mostrarCadastro, setMostrarCadastro] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,39 +42,52 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
   };
 
   return (
-    <div className="modal-overlay-login">
-      <div className="modal-content-login">
-        <button className="btn-close" onClick={onClose}>
-          ×
-        </button>
-        <h2>Login Necessário</h2>
-        <p className="mensagem-explicativa">
-          Para finalizar a publicação do pet, é necessário fazer login ou criar
-          uma conta no PetOS.
-        </p>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Digite seu e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Digite sua senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-          {erro && <p className="erro-login">{erro}</p>}
-          <button type="submit" className="btn-login">
-            Entrar
+    <>
+      <div className="modal-overlay-login">
+        <div className="modal-content-login">
+          <button className="btn-close" onClick={onClose}>
+            ×
           </button>
-        </form>
-        <p className="mensagem-cadastro">
-          Ainda não tem uma conta? <a href="/cadastroUser">Cadastre-se</a>
-        </p>
+          <h2>Login Necessário</h2>
+          <p className="mensagem-explicativa">
+            Para finalizar a publicação do pet, é necessário fazer login ou
+            criar uma conta no PetOS.
+          </p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Digite seu e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Digite sua senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+            {erro && <p className="erro-login">{erro}</p>}
+            <button type="submit" className="btn-login">
+              Entrar
+            </button>
+          </form>
+
+          <p className="mensagem-cadastro">
+            Ainda não tem uma conta?{" "}
+            <button
+              className="btn-cadastro-inline"
+              onClick={() => setMostrarCadastro(true)}
+            >
+              Cadastre-se
+            </button>
+          </p>
+        </div>
       </div>
-    </div>
+
+      {mostrarCadastro && (
+        <CadastroModal onClose={() => setMostrarCadastro(false)} />
+      )}
+    </>
   );
 };
 

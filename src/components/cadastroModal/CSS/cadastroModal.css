@@ -1,0 +1,95 @@
+.modal-overlay-cadastro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content-cadastro {
+  background: #fff;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  animation: scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-content-cadastro h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #444;
+}
+
+.modal-content-cadastro input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.modal-content-cadastro .btn-cadastro {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px;
+  background-color: #0055aa;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content-cadastro .btn-cadastro:hover {
+  background-color: #004090;
+}
+
+.btn-fechar-cadastro {
+  margin-top: 14px;
+  background: none;
+  color: #d11a2a;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.erro-texto {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.erro-input {
+  border-color: red;
+}
+
+.mensagem-feedback {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: green;
+  text-align: center;
+}

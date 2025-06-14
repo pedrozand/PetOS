@@ -91,3 +91,24 @@
 .mensagem-cadastro a:hover {
   text-decoration: underline;
 }
+
+.mensagem-cadastro {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.btn-cadastro-inline {
+  background: none;
+  border: none;
+  color: #0077cc;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+.btn-cadastro-inline:hover {
+  color: #004b8a;
+}
