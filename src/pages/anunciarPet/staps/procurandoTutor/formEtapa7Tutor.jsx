@@ -40,7 +40,7 @@ export default function FormEtapa7Tutor({ onProximo, onVoltar }) {
           </p>
           <div className="resumo-dados-form7-tut post-ajustado-tut">
             <Post
-              avatar={formData.avatar || ""} // opcional, caso você tenha o campo
+              fotoPerfil={formData.fotoPerfil || ""} // opcional, caso você tenha o campo
               nome={formData.nomeUsuario || ""}
               sobrenome={formData.sobrenomeUsuario || ""}
               nomeAnimal={formData.nomePet || ""}

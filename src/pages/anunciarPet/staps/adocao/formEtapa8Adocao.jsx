@@ -56,7 +56,7 @@ export default function FormEtapa8Adocao({ onProximo, onVoltar, totalEtapas }) {
 
           <div className="resumo-dados-form7-ado post-ajustado-ado">
             <Post
-              avatar={formData.avatar || ""}
+              fotoPerfil={formData.fotoPerfil || ""}
               nome={formData.nomeUsuario || ""}
               sobrenome={formData.sobrenomeUsuario || ""}
               nomeAnimal={formData.nomePet || ""}

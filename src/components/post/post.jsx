@@ -22,7 +22,7 @@ import { createPortal } from "react-dom";
 
 export default function Post({
   // Usuário
-  avatar,
+  fotoPerfil,
   nome,
   sobrenome,
   email,
@@ -59,6 +59,10 @@ export default function Post({
 
   function formatarData(dataISO) {
     const data = new Date(dataISO);
+
+    // Corrige a data somando 3 horas para compensar o fuso UTC-3
+    data.setHours(data.getHours() + 3);
+
     if (isNaN(data.getTime())) return "Data inválida";
 
     const dia = String(data.getDate()).padStart(2, "0");
@@ -149,7 +153,7 @@ export default function Post({
       <div class="post-title-header"></div>
       <div className="post">
         <div className="post-header">
-          <img src={avatar} alt="Perfil" />
+          <img src={fotoPerfil} alt="Perfil" />
           <div className="name">
             {nome} {sobrenome}
           </div>
