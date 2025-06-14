@@ -11,16 +11,27 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
   const [dragOver, setDragOver] = useState(false);
   const [erroImagem, setErroImagem] = useState("");
 
-  // Carrega imagens existentes do contexto (caso existam)
   useEffect(() => {
-    if (formData.fotos && formData.fotos.length > 0) {
-      const imagensPreview = formData.fotos.map((file) => ({
-        file,
-        preview: URL.createObjectURL(file),
-      }));
+    if (Array.isArray(formData?.fotos)) {
+      const imagensPreview = formData.fotos
+        .filter(
+          (file) =>
+            file && (typeof file === "string" ? file.trim() !== "" : true)
+        )
+        .map((file) => ({
+          file,
+          preview: typeof file === "string" ? file : URL.createObjectURL(file),
+        }));
+
       setImagens(imagensPreview);
+
+      return () => {
+        imagensPreview.forEach((img) => {
+          if (img.preview.startsWith("blob:")) URL.revokeObjectURL(img.preview);
+        });
+      };
     }
-  }, [formData.fotos]);
+  }, [formData?.fotos]);
 
   const adicionarImagens = (arquivos) => {
     const novosArquivos = arquivos
@@ -120,7 +131,7 @@ export default function FormEtapa2Perdido({ onProximo, onVoltar }) {
           <div className="preview-imagens">
             {imagens.map((img, index) => (
               <div className="preview-item" key={index}>
-                <img src={img.preview} alt={`Preview ${index}`} />
+                <img src={img.preview || null} alt={`Preview ${index}`} />
                 <button
                   className="btn-remover"
                   onClick={() => removerImagem(index)}

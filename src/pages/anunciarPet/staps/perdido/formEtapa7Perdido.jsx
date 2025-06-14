@@ -15,9 +15,12 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
 
   useEffect(() => {
     if (formData.fotos && formData.fotos.length > 0) {
-      const previewUrls = formData.fotos.map((file) =>
-        typeof file === "string" ? file : URL.createObjectURL(file)
-      );
+      const previewUrls = formData.fotos
+        .filter((file) => typeof file === "string" || file instanceof File)
+        .map((file) =>
+          typeof file === "string" ? file : URL.createObjectURL(file)
+        );
+
       setPreviews(previewUrls);
 
       return () => {

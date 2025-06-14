@@ -93,17 +93,6 @@ export default function Post({
     }
   }
 
-  // Funções para navegar entre as imagens no modal
-  const proximaImagemModal = (e) => {
-    e.stopPropagation(); // Impede que o clique feche o modal
-    setImagemAtual((prev) => (prev + 1) % imgPet.length);
-  };
-
-  const imagemAnteriorModal = (e) => {
-    e.stopPropagation(); // Impede que o clique feche o modal
-    setImagemAtual((prev) => (prev - 1 + imgPet.length) % imgPet.length);
-  };
-
   useEffect(() => {
     if (dataDesap) {
       const calcularTempoDecorrido = () => {
@@ -144,11 +133,15 @@ export default function Post({
 
   // Funções para navegar entre as imagens
   const proximaImagem = () => {
-    setImagemAtual((prev) => (prev + 1) % imgPet.length);
+    if (imgPet?.length > 0) {
+      setImagemAtual((prev) => (prev + 1) % imgPet.length);
+    }
   };
 
   const imagemAnterior = () => {
-    setImagemAtual((prev) => (prev - 1 + imgPet.length) % imgPet.length);
+    if (imgPet?.length > 0) {
+      setImagemAtual((prev) => (prev - 1 + imgPet.length) % imgPet.length);
+    }
   };
 
   return (
@@ -334,12 +327,14 @@ export default function Post({
             <FaChevronLeft />
           </button>
 
-          <img
-            className="post-image"
-            src={imgPet[imagemAtual]}
-            alt="Imagem do animal"
-            onClick={() => setImagemExpandida(true)} // Abre o modal ao clicar
-          />
+          {imgPet?.length > 0 && (
+            <img
+              className="post-image"
+              src={imgPet[imagemAtual]}
+              alt="Imagem do animal"
+              onClick={() => setImagemExpandida(true)} // Abre o modal ao clicar
+            />
+          )}
 
           <button className="nav-button right" onClick={proximaImagem}>
             <FaChevronRight />
