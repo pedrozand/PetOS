@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../server/context/AuthContext.jsx";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Post from "../../components/post/post.jsx";
@@ -22,14 +23,15 @@ import imgCardPet3 from "../../assets/img/card/card-encontrado-3.jpg";
 import "./CSS/main.css";
 
 function Main() {
+  const { usuario } = useAuth();
+
   return (
     <>
       <div className="container-geral">
         <NavBar />
         <LocationProvider>
           <div>
-            <PerfilCard />
-            <SideBarFilter />
+            {usuario && <PerfilCard />} <SideBarFilter />
           </div>
           <div>
             <Cabecalho />
