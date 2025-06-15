@@ -104,7 +104,9 @@ export default function FormEtapa8Adocao({ onProximo, onVoltar, totalEtapas }) {
               sexo={formData.genero || "-"}
               localDesap={formData.local || ""}
               referencia={formData.referencia || ""}
-              dataDesap={formData.dataDesaparecimento || getDataHojeFormatada()}
+              dataDesap={
+                formData.dataDesaparecimento || new Date().toISOString()
+              }
               recompensa={formData.valorRecompensa || ""}
               telefone={formData.telefone || ""}
               periodo={formData.periodo || ""}
