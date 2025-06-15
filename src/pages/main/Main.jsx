@@ -7,6 +7,7 @@ import SideBarFilter from "../../components/filtro/sidebarfilter.jsx";
 import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg";
 import { LocationProvider } from "../../../server/location/LocationContext.jsx";
 import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
+import PerfilCard from "../../components/perfilPost/PerfilCard.jsx";
 
 import imgPostPet1 from "../../assets/img/post/corgi-2.jpg";
 import imgPostPet2 from "../../assets/img/post/corgi-5.jpg";
@@ -27,6 +28,7 @@ function Main() {
         <NavBar />
         <LocationProvider>
           <div>
+            <PerfilCard />
             <SideBarFilter />
           </div>
           <div>
