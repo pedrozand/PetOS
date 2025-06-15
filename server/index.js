@@ -164,3 +164,95 @@ app.post(
 
 // Tornar a pasta de uploads pública
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Rota para criar um animal
+app.post("/api/animais", async (req, res) => {
+  const {
+    nome,
+    especie,
+    raca,
+    porte,
+    corPredominante,
+    corOlhos,
+    idade,
+    descricao,
+    imagem,
+    idUser,
+  } = req.body;
+
+  try {
+    const novoAnimal = await prisma.animal.create({
+      data: {
+        nome,
+        especie,
+        raca,
+        porte,
+        corPredominante,
+        corOlhos,
+        idade,
+        descricao,
+        imagem,
+        idUser,
+      },
+    });
+
+    res.status(201).json(novoAnimal);
+  } catch (error) {
+    console.error("Erro ao criar animal:", error);
+    res.status(500).json({ erro: "Erro ao salvar animal." });
+  }
+});
+
+// Rota para criar um post
+app.post("/api/postagens", async (req, res) => {
+  const {
+    idAnimal,
+    idUser,
+    idSituacao,
+    endereco,
+    dataPost,
+    horarioPost,
+    periodoPost,
+    statusPost,
+  } = req.body;
+
+  try {
+    const novaPostagem = await prisma.postagem.create({
+      data: {
+        idAnimal,
+        idUser,
+        idSituacao,
+        endereco,
+        dataPost: new Date(dataPost),
+        horarioPost,
+        periodoPost,
+        statusPost,
+      },
+    });
+
+    res.status(201).json(novaPostagem);
+  } catch (error) {
+    console.error("Erro ao criar postagem:", error);
+    res.status(500).json({ erro: "Erro ao salvar postagem." });
+  }
+});
+
+app.get("/api/postagens", async (req, res) => {
+  try {
+    const postagens = await prisma.postagem.findMany({
+      include: {
+        usuario: true,
+        animal: true,
+        status: true,
+      },
+      orderBy: {
+        dataPost: "desc",
+      },
+    });
+
+    res.json(postagens);
+  } catch (error) {
+    console.error("Erro ao buscar postagens:", error);
+    res.status(500).json({ erro: "Erro ao buscar postagens" });
+  }
+});

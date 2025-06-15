@@ -16,9 +16,7 @@ export default function FormBase({
     <div className="form-container">
       <div className="formulario">
         <ProgressBar currentStep={etapaAtual} totalSteps={totalEtapas} />
-
         {children}
-
         <div className="botoes-container-anun">
           {etapaAtual > 1 ? (
             <button className="btn-voltar" onClick={onVoltar}>
@@ -32,9 +30,17 @@ export default function FormBase({
             </Link>
           )}
 
-          <button className="btn-avancar" onClick={onProximo}>
-            Prosseguir <IoIosArrowForward className="arrow-class-og" />
-          </button>
+          {etapaAtual < totalEtapas - 0 ? (
+            <button className="btn-avancar" onClick={onProximo}>
+              Prosseguir <IoIosArrowForward className="arrow-class-og" />
+            </button>
+          ) : (
+            <Link to="/main">
+              <button className="btn-avancar" onClick={onProximo}>
+                Criar Anuncio <IoIosArrowForward className="arrow-class-og" />
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
