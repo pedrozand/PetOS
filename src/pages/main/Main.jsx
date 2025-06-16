@@ -66,7 +66,7 @@ function Main() {
                 corOlhos={p.animal.corOlhos}
                 sexo={"TESTE"}
                 localDesap={p.endereco}
-                referencia={p.referencia}
+                referencia={p.pontoReferencia}
                 dataDesap={p.dataPost}
                 periodo={p.periodoPost}
                 recompensa={p.statusPost}
