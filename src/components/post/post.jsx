@@ -389,8 +389,8 @@ export default function Post({
             <div className="nome-sobrenome-ajuste-post">
               <strong>
                 {situacao === "Perdido"
-                  ? "Nome do Tutor -"
-                  : "Nome do Anunciante -"}
+                  ? "Nome do Tutor"
+                  : "Nome do Anunciante"}
               </strong>
               <p>
                 {nome} {sobrenome}

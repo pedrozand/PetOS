@@ -38,6 +38,10 @@ model Animal {
   idade                String
   descricao            String
   imagensAnimal        String
+  cuidados             String?
+  temperamento         String?
+  adaptabilidade       String?
+  socializacao         String?
   idUser               Int
   usuario              Usuario              @relation(fields: [idUser], references: [idUser])
 

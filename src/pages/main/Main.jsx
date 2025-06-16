@@ -74,6 +74,10 @@ function Main() {
                 localPet={p.localPet}
                 telefone={p.telefonePost}
                 situacao={p.situacao}
+                cuidados={p.animal.cuidados}
+                temperamento={p.animal.temperamento}
+                adaptabilidade={p.animal.adaptabilidade}
+                socializacao={p.animal.socializacao}
               />
             ))}
           </div>

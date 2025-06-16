@@ -196,6 +196,10 @@ app.post("/api/animais", async (req, res) => {
     idade,
     descricao,
     imagensAnimal,
+    cuidados,
+    temperamento,
+    adaptabilidade,
+    socializacao,
     idUser,
   } = req.body;
 
@@ -211,7 +215,11 @@ app.post("/api/animais", async (req, res) => {
         corOlhos,
         idade,
         descricao,
-        imagensAnimal: JSON.stringify(imagensAnimal), // <== transforma em string
+        imagensAnimal: JSON.stringify(imagensAnimal),
+        cuidados,
+        temperamento,
+        adaptabilidade,
+        socializacao,
         idUser,
       },
     });
@@ -307,6 +315,10 @@ app.post("/api/posts", async (req, res) => {
     recompensa,
     descricaoLocal,
     localPet,
+    cuidados,
+    temperamento,
+    adaptabilidade,
+    socializacao,
   } = req.body;
 
   const idUser = req.body.idUser; // assumindo autenticação ativa
@@ -325,6 +337,10 @@ app.post("/api/posts", async (req, res) => {
         idade,
         descricao,
         imagensAnimal: JSON.stringify(fotos),
+        cuidados: JSON.stringify(cuidados),
+        temperamento: JSON.stringify(temperamento),
+        adaptabilidade: JSON.stringify(adaptabilidade),
+        socializacao: JSON.stringify(socializacao),
         idUser,
       },
     });
@@ -377,6 +393,10 @@ app.get("/api/posts", async (req, res) => {
     // Parse manual das imagensAnimal
     const postsComImagens = posts.map((post) => {
       let imagens = [];
+      let cuidados = [];
+      let temperamento = [];
+      let adaptabilidade = [];
+      let socializacao = [];
 
       try {
         imagens = JSON.parse(post.animal.imagensAnimal || "[]");
@@ -384,11 +404,24 @@ app.get("/api/posts", async (req, res) => {
         console.error("Erro ao converter imagensAnimal:", e.message);
       }
 
+      try {
+        cuidados = JSON.parse(post.animal.cuidados || "[]");
+        temperamento = JSON.parse(post.animal.temperamento || "[]");
+        adaptabilidade = JSON.parse(post.animal.adaptabilidade || "[]");
+        socializacao = JSON.parse(post.animal.socializacao || "[]");
+      } catch (e) {
+        console.error("Erro ao converter características:", e.message);
+      }
+
       return {
         ...post,
         animal: {
           ...post.animal,
           imagensAnimal: imagens,
+          cuidados,
+          temperamento,
+          adaptabilidade,
+          socializacao,
         },
       };
     });
