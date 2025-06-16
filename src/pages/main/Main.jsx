@@ -58,19 +58,25 @@ function Main() {
                 nomeAnimal={p.animal.nome}
                 especie={p.animal.especie}
                 descricao={p.animal.descricao}
-                imgPet={[`http://localhost:3001/uploads/${p.animal.imagem}`]}
+                imgPet={
+                  p.animal.imagensAnimal && p.animal.imagensAnimal.length > 0
+                    ? p.animal.imagensAnimal.map(
+                        (img) => `http://localhost:3001/uploads/${img}`
+                      )
+                    : []
+                }
                 raca={p.animal.raca}
                 idade={p.animal.idade}
                 porte={p.animal.porte}
                 corPredominante={p.animal.corPredominante}
                 corOlhos={p.animal.corOlhos}
-                sexo={"TESTE"}
+                sexo={p.animal.sexo}
                 localDesap={p.endereco}
                 referencia={p.pontoReferencia}
                 dataDesap={p.dataPost}
                 periodo={p.periodoPost}
-                recompensa={p.statusPost}
-                telefone={p.usuario.telefone}
+                recompensa={p.recompensa}
+                telefone={p.telefonePost}
                 situacao={p.situacao}
               />
             ))}
