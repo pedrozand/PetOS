@@ -11,12 +11,6 @@ import { LocationProvider } from "../../../server/location/LocationContext.jsx";
 import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
 import PerfilCard from "../../components/perfilPost/PerfilCard.jsx";
 
-import imgPostPet1 from "../../assets/img/post/corgi-2.jpg";
-import imgPostPet2 from "../../assets/img/post/corgi-5.jpg";
-import imgPostPet3 from "../../assets/img/post/corgi-4.jpg";
-import imgPostPet4 from "../../assets/img/post/corgi-3.jpg";
-import imgPostPet5 from "../../assets/img/post/corgi-1.jpg";
-
 import imgCardPet1 from "../../assets/img/card/card-encontrado-1.jpg";
 import imgCardPet2 from "../../assets/img/card/card-encontrado-2.jpg";
 import imgCardPet3 from "../../assets/img/card/card-encontrado-3.jpg";
@@ -50,7 +44,7 @@ function Main() {
                 fotoPerfil={
                   p.usuario.fotoPerfil
                     ? `http://localhost:3001/uploads/${p.usuario.fotoPerfil}`
-                    : imgPostPet5
+                    : []
                 }
                 nome={p.usuario.nome}
                 sobrenome={p.usuario.sobrenome}
