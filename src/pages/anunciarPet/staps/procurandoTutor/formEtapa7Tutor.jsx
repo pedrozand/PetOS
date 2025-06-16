@@ -4,6 +4,7 @@ import Post from "../../../../components/post/post.jsx";
 
 import { useFormContext } from "../../FormContext";
 import { useAuth } from "../../../../../server/context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 import ImagemDefault from "../../../../assets/img/perfil/img-default.png";
 
@@ -11,6 +12,7 @@ import "./CSS/formEtapa7Tutor.css";
 
 export default function FormEtapa7Tutor({ onProximo, onVoltar }) {
   const { usuario } = useAuth();
+  const navigate = useNavigate();
   const { formData } = useFormContext();
   const [previews, setPreviews] = useState([]);
   const [userData, setUserData] = useState({
@@ -71,6 +73,12 @@ export default function FormEtapa7Tutor({ onProximo, onVoltar }) {
       onProximo({ confirmacao: true });
     } catch (err) {
       alert(err.message);
+    }
+
+    if (window.location.pathname === "/main") {
+      window.location.reload();
+    } else {
+      navigate("/main");
     }
   };
 

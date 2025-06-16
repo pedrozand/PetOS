@@ -4,12 +4,14 @@ import Post from "../../../../components/post/post.jsx";
 
 import { useFormContext } from "../../FormContext";
 import { useAuth } from "../../../../../server/context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 import ImagemDefault from "../../../../assets/img/perfil/img-default.png";
 
 import "./CSS/formEtapa8Adocao.css";
 
 export default function FormEtapa8Adocao({ onProximo, onVoltar, totalEtapas }) {
+  const navigate = useNavigate();
   const { usuario } = useAuth();
   const { formData } = useFormContext();
   const [previews, setPreviews] = useState([]);
@@ -75,6 +77,12 @@ export default function FormEtapa8Adocao({ onProximo, onVoltar, totalEtapas }) {
       onProximo({ confirmacao: true });
     } catch (err) {
       alert(err.message);
+    }
+
+    if (window.location.pathname === "/main") {
+      window.location.reload();
+    } else {
+      navigate("/main");
     }
   };
 

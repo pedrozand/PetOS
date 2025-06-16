@@ -35,11 +35,9 @@ export default function FormBase({
               Prosseguir <IoIosArrowForward className="arrow-class-og" />
             </button>
           ) : (
-            <Link to="/main">
-              <button className="btn-avancar" onClick={onProximo}>
-                Criar Anuncio <IoIosArrowForward className="arrow-class-og" />
-              </button>
-            </Link>
+            <button className="btn-avancar" onClick={onProximo}>
+              Criar Anuncio <IoIosArrowForward className="arrow-class-og" />
+            </button>
           )}
         </div>
       </div>
