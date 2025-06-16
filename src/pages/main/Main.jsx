@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
+import React, { useEffect, useState } from "react";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Post from "../../components/post/post.jsx";
@@ -24,6 +25,14 @@ import "./CSS/main.css";
 
 function Main() {
   const { usuario } = useAuth();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/posts")
+      .then((r) => r.json())
+      .then(setPosts)
+      .catch(console.error);
+  }, []);
 
   return (
     <>
@@ -35,42 +44,36 @@ function Main() {
           </div>
           <div>
             <Cabecalho />
-            <Post
-              avatar={imgPerfilTeste}
-              nome={"Pedro"}
-              sobrenome={"Oliveira"}
-              nomeAnimal={"Goku"}
-              especie={"Cachorro"}
-              descricao={
-                "Animal calmo e adestrado, responde por Goku, fugiu próximo ao bairro do Jardim Recreio, deixei meu portão aberto assim que cheguei do serviço e ele acabou fugindo"
-              }
-              imgPet={[
-                imgPostPet1,
-                imgPostPet2,
-                imgPostPet3,
-                imgPostPet4,
-                imgPostPet5,
-              ]}
-              raca={"Corgi"}
-              idade={"Senior"}
-              porte={"Médio"}
-              corPredominante={"Preto e Laranja"}
-              corOlhos={"Castanhos"}
-              sexo={"Macho"}
-              localDesap={"Bragança Paulista - São Paulo"}
-              referencia={"Bar da Vanda"}
-              dataDesap={"2025-03-12"}
-              recompensa={"R$ 500,00"}
-              telefone={"(11) 99999-9999"}
-              email={"pedro@gmail.com"}
-              periodo={"Manhã"}
-              situacao={"Adocao"}
-              localPet={"Teste"}
-              cuidados={["Teste", "Teste"]}
-              temperamento={["Teste", "Teste"]}
-              adaptabilidade={["Teste", "Teste"]}
-              socializacao={["Teste", "Teste"]}
-            />
+            {posts.map((p) => (
+              <Post
+                key={p.idPost}
+                fotoPerfil={
+                  p.usuario.fotoPerfil
+                    ? `http://localhost:3001/uploads/${p.usuario.fotoPerfil}`
+                    : imgPostPet5
+                }
+                nome={p.usuario.nome}
+                sobrenome={p.usuario.sobrenome}
+                email={p.usuario.email}
+                nomeAnimal={p.animal.nome}
+                especie={p.animal.especie}
+                descricao={p.animal.descricao}
+                imgPet={[`http://localhost:3001/uploads/${p.animal.imagem}`]}
+                raca={p.animal.raca}
+                idade={p.animal.idade}
+                porte={p.animal.porte}
+                corPredominante={p.animal.corPredominante}
+                corOlhos={p.animal.corOlhos}
+                sexo={"TESTE"}
+                localDesap={p.endereco}
+                referencia={p.referencia}
+                dataDesap={p.dataPost}
+                periodo={p.periodoPost}
+                recompensa={p.statusPost}
+                telefone={p.usuario.telefone}
+                situacao={p.situacao}
+              />
+            ))}
           </div>
         </LocationProvider>
 

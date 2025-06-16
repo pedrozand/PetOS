@@ -31,39 +31,34 @@ model Animal {
   nome                 String
   especie              String
   raca                 String
+  sexo                 String
   porte                String
   corPredominante      String
   corOlhos             String
   idade                String
   descricao            String
-  imagem               String
+  imagensAnimal        String
   idUser               Int
   usuario              Usuario              @relation(fields: [idUser], references: [idUser])
-
-  postagens            Postagem[]
-}
-
-model Status {
-  idSituacao           Int                  @id @default(autoincrement())
-  situacao             String
 
   postagens            Postagem[]
 }
 
 model Postagem {
   idPost               Int                  @id @default(autoincrement())
+  situacao             String
   idAnimal             Int
   idUser               Int
-  idSituacao           Int
   endereco             String
+  telefonePost         String
+  periodoPost          String
+  pontoReferencia      String
   dataPost             DateTime
   horarioPost          String
-  periodoPost          String
-  statusPost           String
+  recompensa           String
 
   animal               Animal               @relation(fields: [idAnimal], references: [idAnimal])
   usuario              Usuario              @relation(fields: [idUser], references: [idUser])
-  status               Status               @relation(fields: [idSituacao], references: [idSituacao])
 
   comentarios          Comentario[]
   curtidas             Curtida[]

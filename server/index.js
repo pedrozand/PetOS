@@ -5,7 +5,12 @@ const { PrismaClient } = require("@prisma/client");
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // ou o domínio real do seu frontend
+    credentials: true, // permite envio de cookies/sessão
+  })
+);
 app.use(express.json());
 
 // Rota de teste
@@ -165,6 +170,8 @@ app.post(
 // Tornar a pasta de uploads pública
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// ----------------------------------------------------------------------
+
 // Rota para criar um animal
 app.post("/api/animais", async (req, res) => {
   const {
@@ -172,11 +179,12 @@ app.post("/api/animais", async (req, res) => {
     especie,
     raca,
     porte,
+    sexo,
     corPredominante,
     corOlhos,
     idade,
     descricao,
-    imagem,
+    imagensAnimal,
     idUser,
   } = req.body;
 
@@ -186,12 +194,13 @@ app.post("/api/animais", async (req, res) => {
         nome,
         especie,
         raca,
+        sexo,
         porte,
         corPredominante,
         corOlhos,
         idade,
         descricao,
-        imagem,
+        imagensAnimal: JSON.stringify(imagensAnimal), // <== transforma em string
         idUser,
       },
     });
@@ -208,12 +217,14 @@ app.post("/api/postagens", async (req, res) => {
   const {
     idAnimal,
     idUser,
-    idSituacao,
+    situacao,
     endereco,
+    telefonePost,
+    pontoReferencia,
     dataPost,
     horarioPost,
     periodoPost,
-    statusPost,
+    recompensa,
   } = req.body;
 
   try {
@@ -221,12 +232,14 @@ app.post("/api/postagens", async (req, res) => {
       data: {
         idAnimal,
         idUser,
-        idSituacao,
+        situacao,
         endereco,
+        telefonePost,
+        pontoReferencia,
         dataPost: new Date(dataPost),
         horarioPost,
         periodoPost,
-        statusPost,
+        recompensa,
       },
     });
 
@@ -254,5 +267,119 @@ app.get("/api/postagens", async (req, res) => {
   } catch (error) {
     console.error("Erro ao buscar postagens:", error);
     res.status(500).json({ erro: "Erro ao buscar postagens" });
+  }
+});
+
+// Cria animal + postagem
+app.post("/api/posts", async (req, res) => {
+  const {
+    nomePet,
+    especie,
+    raca,
+    sexo,
+    porte,
+    corPredominante,
+    corOlhos,
+    idade,
+    descricao,
+    fotos, // array de imagens
+    situacao,
+    local,
+    telefonePost,
+    pontoReferencia,
+    dataDesaparecimento,
+    periodo,
+    recompensa,
+  } = req.body;
+
+  const idUser = req.body.idUser; // assumindo autenticação ativa
+  const t = new Date(); // data e hora atuais
+
+  try {
+    const animal = await prisma.animal.create({
+      data: {
+        nome: nomePet,
+        especie,
+        raca,
+        sexo,
+        porte,
+        corPredominante,
+        corOlhos,
+        idade,
+        descricao,
+        imagensAnimal: JSON.stringify(fotos),
+        idUser,
+      },
+    });
+
+    const postagem = await prisma.postagem.create({
+      data: {
+        idAnimal: animal.idAnimal,
+        idUser,
+        situacao,
+        endereco: local,
+        telefonePost,
+        pontoReferencia: pontoReferencia,
+        dataPost: dataDesaparecimento ? new Date(dataDesaparecimento) : t,
+        horarioPost: t.toTimeString().slice(0, 5),
+        periodoPost: periodo,
+        recompensa: recompensa || "",
+      },
+    });
+
+    res.status(201).json({ postagem, animal });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: "Não foi possível criar o anúncio." });
+  }
+});
+
+// Busca todas as postagens com include do usuário e animal
+app.get("/api/posts", async (req, res) => {
+  try {
+    const posts = await prisma.postagem.findMany({
+      include: {
+        usuario: true,
+        animal: true,
+      },
+      orderBy: {
+        dataPost: "desc",
+      },
+    });
+
+    // Parse manual das imagensAnimal
+    const postsComImagens = posts.map((post) => {
+      let imagens = [];
+
+      try {
+        imagens = JSON.parse(post.animal.imagensAnimal || "[]");
+      } catch (e) {
+        console.error("Erro ao converter imagensAnimal:", e.message);
+      }
+
+      return {
+        ...post,
+        animal: {
+          ...post.animal,
+          imagensAnimal: imagens,
+        },
+      };
+    });
+
+    res.json(postsComImagens);
+  } catch (error) {
+    console.error("Erro ao buscar postagens:", error);
+    res.status(500).json({ erro: "Erro ao buscar postagens." });
+  }
+});
+
+// Rota para uplaodo das fotos dos animais
+app.post("/api/upload/fotos", upload.array("fotos", 5), async (req, res) => {
+  try {
+    const arquivos = req.files.map((file) => file.filename);
+    res.json({ arquivosSalvos: arquivos });
+  } catch (err) {
+    console.error("Erro ao fazer upload de imagens:", err);
+    res.status(500).json({ erro: "Erro ao fazer upload das imagens." });
   }
 });
