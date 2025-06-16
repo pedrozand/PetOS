@@ -387,11 +387,16 @@ export default function Post({
               </div>
             )}
             <div className="nome-sobrenome-ajuste-post">
-              <strong>Nome do Tutor -</strong>
+              <strong>
+                {situacao === "Perdido"
+                  ? "Nome do Tutor -"
+                  : "Nome do Anunciante -"}
+              </strong>
               <p>
                 {nome} {sobrenome}
               </p>
             </div>
+
             <button
               className="btn-mostrar-contato-tel"
               onClick={() => setMostrarModal(true)}
@@ -413,7 +418,11 @@ export default function Post({
                     </div>
 
                     <div className="modal-body-tel">
-                      <h3>Telefone do Tutor</h3>
+                      <h3>
+                        {situacao === "Perdido"
+                          ? "Telefone do Tutor"
+                          : "Telefone do Anunciante"}
+                      </h3>
                       <p>{telefone}</p>
 
                       <div className="modal-buttons-tel">

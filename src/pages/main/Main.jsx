@@ -70,6 +70,8 @@ function Main() {
                 dataDesap={p.dataPost}
                 periodo={p.periodoPost}
                 recompensa={p.recompensa}
+                descricaoLocal={p.descricaoLocal}
+                localPet={p.localPet}
                 telefone={p.telefonePost}
                 situacao={p.situacao}
               />

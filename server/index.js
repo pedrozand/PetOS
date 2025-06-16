@@ -225,6 +225,8 @@ app.post("/api/postagens", async (req, res) => {
     horarioPost,
     periodoPost,
     recompensa,
+    descricaoLocal,
+    localPet,
   } = req.body;
 
   try {
@@ -240,6 +242,8 @@ app.post("/api/postagens", async (req, res) => {
         horarioPost,
         periodoPost,
         recompensa,
+        descricaoLocal,
+        localPet,
       },
     });
 
@@ -290,6 +294,8 @@ app.post("/api/posts", async (req, res) => {
     dataDesaparecimento,
     periodo,
     recompensa,
+    descricaoLocal,
+    localPet,
   } = req.body;
 
   const idUser = req.body.idUser; // assumindo autenticação ativa
@@ -324,6 +330,8 @@ app.post("/api/posts", async (req, res) => {
         horarioPost: t.toTimeString().slice(0, 5),
         periodoPost: periodo,
         recompensa: recompensa || "",
+        descricaoLocal,
+        localPet,
       },
     });
 
