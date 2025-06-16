@@ -55,6 +55,7 @@ model Postagem {
   pontoReferencia      String
   dataPost             DateTime
   horarioPost          String
+  dataHoraPost         DateTime?
   recompensa           String
   descricaoLocal       String?
   localPet             String?

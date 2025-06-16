@@ -172,6 +172,17 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // ----------------------------------------------------------------------
 
+// Função para o fuso-horário do post
+function criarDataHoraPost(data, horario) {
+  const [hora, minuto] = horario.split(":").map(Number);
+  const dataCompleta = new Date(data);
+  dataCompleta.setHours(hora - 3);
+  dataCompleta.setMinutes(minuto);
+  dataCompleta.setSeconds(0);
+  dataCompleta.setMilliseconds(0);
+  return dataCompleta;
+}
+
 // Rota para criar um animal
 app.post("/api/animais", async (req, res) => {
   const {
@@ -332,6 +343,14 @@ app.post("/api/posts", async (req, res) => {
         recompensa: recompensa || "",
         descricaoLocal,
         localPet,
+        dataHoraPost: criarDataHoraPost(
+          dataDesaparecimento
+            ? dataDesaparecimento
+            : `${t.getFullYear()}-${(t.getMonth() + 1)
+                .toString()
+                .padStart(2, "0")}-${t.getDate().toString().padStart(2, "0")}`,
+          t.toTimeString().slice(0, 5)
+        ),
       },
     });
 
@@ -351,7 +370,7 @@ app.get("/api/posts", async (req, res) => {
         animal: true,
       },
       orderBy: {
-        dataPost: "desc",
+        dataHoraPost: "desc",
       },
     });
 
