@@ -122,14 +122,28 @@
   background: linear-gradient(to right, #dbab1b, #ffd34d);
   color: #fff;
   font-weight: bold;
-  padding: 4.8px 10px;
-  margin-left: 200px;
-  margin-top: -45px;
-  font-size: 13px;
+  padding: 5px 10px;
 }
 
 .painel-botao.salvar:hover {
   background: linear-gradient(to right, #eeba1d, #ffe38f);
+}
+
+.painel-botao.salvar2 {
+  background: linear-gradient(to right, #6c757d, #acbac5);
+  margin-top: -45.1px;
+  margin-left: 205px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 13px;
+}
+
+.painel-botao.salvar2:hover {
+  background: linear-gradient(to right, #a1a2a5, #c9d9e6);
 }
 
 .painel-botao.cancelar {

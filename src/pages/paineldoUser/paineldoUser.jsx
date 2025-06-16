@@ -316,7 +316,7 @@ const PainelDoUser = () => {
                 {selectedFile && (
                   <button
                     onClick={handleFotoUpload}
-                    className="painel-botao salvar"
+                    className="painel-botao salvar2"
                   >
                     Salvar Foto
                   </button>
