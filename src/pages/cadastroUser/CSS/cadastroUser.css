@@ -52,3 +52,46 @@
   margin-bottom: 8px;
   white-space: nowrap;
 }
+
+.input-erro {
+  border: 2px solid red;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.input-container input {
+  width: 100%;
+  padding-right: 40px; /* Espaço para o ícone de olho */
+}
+
+.icone-olho {
+  position: absolute;
+  right: 12px;
+  top: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 20px;
+}
+
+.icone-olho:hover {
+  color: #000;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-clear-button,
+input[type="password"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="password"] {
+  -webkit-text-security: disc;
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./CSS/cadastroUser.css";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
@@ -19,22 +19,24 @@ function CadastroUser() {
 
   const [mensagem, setMensagem] = useState("");
   const [erroEmail, setErroEmail] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [erroSenha, setErroSenha] = useState("");
+  const [erroConfirmarSenha, setErroConfirmarSenha] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
 
   const formatarTelefone = (valor) => {
-    let telefone = valor.replace(/\D/g, ""); // Remove caracteres não numéricos
-
+    let telefone = valor.replace(/\D/g, "");
     if (telefone.length > 10) {
       telefone = telefone.replace(/^(\d{2})(\d{5})(\d{4}).*/, "($1) $2-$3");
     } else {
       telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, "($1) $2-$3");
     }
-
     return telefone;
   };
 
-  // Adicione essa função junto com o formatarTelefone
   const formatarCEP = (valor) => {
-    valor = valor.replace(/\D/g, ""); // Remove não dígitos
+    valor = valor.replace(/\D/g, "");
     if (valor.length > 5) {
       valor = valor.replace(/^(\d{5})(\d{1,3}).*/, "$1-$2");
     }
@@ -53,14 +55,23 @@ function CadastroUser() {
       value = isDeleting ? value : formatarCEP(value);
     }
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.senha.length < 8) {
+      setErroSenha("A senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+    if (formData.senha !== confirmarSenha) {
+      setErroConfirmarSenha("As senhas não coincidem.");
+      return;
+    }
+
+    setErroConfirmarSenha("");
+    setErroSenha("");
 
     try {
       const response = await fetch("http://localhost:3001/api/usuarios", {
@@ -82,12 +93,12 @@ function CadastroUser() {
           cep: "",
           numeroCasa: "",
         });
+        setConfirmarSenha("");
       } else {
         const erro = await response.json();
-
         if (response.status === 409) {
-          setErroEmail(erro.erro); // mensagem de erro do backend
-          setMensagem(""); // limpa a mensagem geral
+          setErroEmail(erro.erro);
+          setMensagem("");
         } else {
           setErroEmail("");
           setMensagem(
@@ -138,14 +149,77 @@ function CadastroUser() {
             required
           />
           {erroEmail && <p className="mensagem-erro">{erroEmail}</p>}
-          <input
-            name="senha"
-            placeholder="Senha"
-            type="password"
-            value={formData.senha}
-            onChange={handleChange}
-            required
-          />
+
+          {/* SENHA */}
+          {/* SENHA */}
+          <div className="input-container">
+            <input
+              name="senha"
+              placeholder="Senha (mínimo 8 caracteres)"
+              type={mostrarSenha ? "text" : "password"}
+              value={formData.senha}
+              onChange={(e) => {
+                const senha = e.target.value;
+                setFormData({ ...formData, senha });
+
+                // Se o usuário já preencheu a confirmação, verifica se são iguais
+                if (confirmarSenha && senha !== confirmarSenha) {
+                  setErroConfirmarSenha("As senhas não coincidem.");
+                } else {
+                  setErroConfirmarSenha("");
+                }
+
+                // Esconde erro enquanto digita
+                if (erroSenha) setErroSenha("");
+              }}
+              onBlur={() => {
+                if (formData.senha && formData.senha.length < 8) {
+                  setErroSenha("A senha deve ter pelo menos 8 caracteres.");
+                }
+              }}
+              className={erroSenha ? "input-erro" : ""}
+            />
+            {formData.senha && (
+              <span
+                className="icone-olho"
+                onClick={() => setMostrarSenha(!mostrarSenha)}
+              >
+                {mostrarSenha ? <FaEye /> : <FaEyeSlash />}
+              </span>
+            )}
+          </div>
+          {erroSenha && <p className="mensagem-erro">{erroSenha}</p>}
+
+          {/* CONFIRMAR SENHA */}
+          <div className="input-container">
+            <input
+              name="confirmarSenha"
+              placeholder="Confirmar senha"
+              type={mostrarConfirmarSenha ? "text" : "password"}
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+              onBlur={() => {
+                if (confirmarSenha !== formData.senha) {
+                  setErroConfirmarSenha("As senhas não coincidem.");
+                } else {
+                  setErroConfirmarSenha("");
+                }
+              }}
+              className={erroConfirmarSenha ? "input-erro" : ""}
+            />
+            {confirmarSenha && (
+              <span
+                className="icone-olho"
+                onClick={() => setMostrarConfirmarSenha(!mostrarConfirmarSenha)}
+              >
+                {mostrarConfirmarSenha ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            )}
+          </div>
+          {erroConfirmarSenha && (
+            <p className="mensagem-erro">{erroConfirmarSenha}</p>
+          )}
+
           <input
             name="cep"
             placeholder="CEP"
@@ -160,6 +234,7 @@ function CadastroUser() {
             onChange={handleChange}
             required
           />
+
           <button type="submit" className="btn-cadastro">
             Cadastrar
           </button>
