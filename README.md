@@ -82,20 +82,6 @@ cd ../client
 npm run dev
 ```
 
-### Estrutura do Projeto
-
-PetOS/
-├── client/ # Aplicação React
-│ ├── components/ # Componentes reutilizáveis
-│ ├── pages/ # Páginas principais
-│ ├── assets/ # Imagens e ícones
-│ └── ...
-├── server/ # Backend Node.js com Express e Prisma
-│ ├── index.js # Entrada do servidor
-│ ├── prisma/ # Schema e banco de dados
-│ └── ...
-└── README.md # Documentação
-
 ### 🤝 Contribuição
 
 Contribuições são bem-vindas! Abra uma issue ou envie um pull request.
