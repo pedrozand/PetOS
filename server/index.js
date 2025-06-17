@@ -174,12 +174,9 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Função para o fuso-horário do post
 function criarDataHoraPost(data, horario) {
+  const [ano, mes, dia] = data.split("-").map(Number);
   const [hora, minuto] = horario.split(":").map(Number);
-  const dataCompleta = new Date(data);
-  dataCompleta.setHours(hora - 3);
-  dataCompleta.setMinutes(minuto);
-  dataCompleta.setSeconds(0);
-  dataCompleta.setMilliseconds(0);
+  const dataCompleta = new Date(ano, mes - 1, dia, hora, minuto);
   return dataCompleta;
 }
 

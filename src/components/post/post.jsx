@@ -63,6 +63,7 @@ export default function Post({
   function calcularTempoRelativo(dataISO) {
     const agora = new Date();
     const dataPost = new Date(dataISO);
+    dataPost.setHours(dataPost.getHours());
 
     const diffMs = agora - dataPost;
     const diffMin = Math.floor(diffMs / (1000 * 60));
