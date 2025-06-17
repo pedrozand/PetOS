@@ -50,12 +50,38 @@ export default function Post({
   temperamento, // ADOÇÃO
   adaptabilidade, // ADOÇÃO
   socializacao, // ADOÇÃO
+  dataHoraPost,
 }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
   const [imagemExpandida, setImagemExpandida] = useState(false);
   const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
+
+  const [tempoPostagem, setTempoPostagem] = useState("");
+
+  function calcularTempoRelativo(dataISO) {
+    const agora = new Date();
+    const dataPost = new Date(dataISO);
+
+    const diffMs = agora - dataPost;
+    const diffMin = Math.floor(diffMs / (1000 * 60));
+    const diffHoras = Math.floor(diffMin / 60);
+    const diffDias = Math.floor(diffHoras / 24);
+    const diffMeses = Math.floor(diffDias / 30);
+
+    if (diffMin < 1) return "agora mesmo";
+    if (diffMin < 60) return `${diffMin} min`;
+    if (diffHoras < 24) return `${diffHoras} h`;
+    if (diffDias < 30) return `${diffDias} dias atrás`;
+    return `${diffMeses} mês${diffMeses > 1 ? "es" : ""} atrás`;
+  }
+
+  useEffect(() => {
+    if (dataHoraPost) {
+      setTempoPostagem(calcularTempoRelativo(dataHoraPost));
+    }
+  }, [dataHoraPost]);
 
   function formatarData(dataISO) {
     const data = new Date(dataISO);
@@ -154,8 +180,13 @@ export default function Post({
       <div className="post">
         <div className="post-header">
           <img src={fotoPerfil} alt="Perfil" />
-          <div className="name">
-            {nome} {sobrenome}
+          <div>
+            <div className="name">
+              {nome} {sobrenome}
+            </div>
+            {tempoPostagem && (
+              <div className="tempo-postagem">{tempoPostagem}</div>
+            )}
           </div>
           <div className="animal-post-icon">
             {sexo === "Macho" && <FaMars className="animal-icon-macho" />}

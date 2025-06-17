@@ -78,6 +78,7 @@ function Main() {
                 temperamento={p.animal.temperamento}
                 adaptabilidade={p.animal.adaptabilidade}
                 socializacao={p.animal.socializacao}
+                dataHoraPost={p.dataHoraPost}
               />
             ))}
           </div>

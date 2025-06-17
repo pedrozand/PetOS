@@ -178,3 +178,9 @@
   color: #616161;
   font-weight: bold;
 }
+
+.tempo-postagem {
+  font-size: 0.85rem;
+  color: #777;
+  margin-left: 5px;
+}
