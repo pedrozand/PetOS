@@ -30,8 +30,8 @@ const EditarModal = ({ post, onClose, onSave }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay-ppet">
+      <div className="modal-content-ppet">
         <h3>Editar Informações do Pet</h3>
 
         <label>Descrição:</label>
@@ -47,7 +47,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
           onChange={(e) => setTelefone(e.target.value)}
         />
 
-        <div className="modal-actions">
+        <div className="modal-actions-ppet">
           <button onClick={salvarEdicao}>Salvar</button>
           <button onClick={onClose}>Cancelar</button>
         </div>

@@ -21,7 +21,6 @@ const PainelDoPet = () => {
     fetch(`http://localhost:3001/api/postagens/usuario/${user.idUser}`)
       .then((r) => r.json())
       .then((data) => {
-        console.log("POSTS recebidos:", data);
         setPosts(data);
       })
       .catch(console.error);
@@ -38,6 +37,11 @@ const PainelDoPet = () => {
     );
     setPosts(novosPosts);
     fecharModal();
+  };
+
+  const abrirModalEdicao = (post) => {
+    setPostSelecionado(post);
+    setMostrarModal(true);
   };
 
   return (
@@ -93,8 +97,10 @@ const PainelDoPet = () => {
                 />
                 <div className="painel-lateral-ppet">
                   <p>Ações rápidas</p>
-                  <button onClick={() => abrirModalEdicao(p)}>Editar</button>
-                  <button>Excluir</button>
+                  <button onClick={() => abrirModalEdicao(p)}>
+                    Editar Anúncio
+                  </button>
+                  <button>Inativar Anúncio</button>
                 </div>
               </div>
             ))
