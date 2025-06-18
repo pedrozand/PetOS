@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CSS/cadastroModal.css";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const CadastroModal = ({ onClose, onCadastroSuccess }) => {
   const { login } = useAuth();
@@ -15,8 +16,14 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
     numeroCasa: "",
   });
 
-  const [mensagem, setMensagem] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+
   const [erroEmail, setErroEmail] = useState("");
+  const [erroSenha, setErroSenha] = useState("");
+  const [erroConfirmarSenha, setErroConfirmarSenha] = useState("");
+  const [mensagem, setMensagem] = useState("");
 
   const formatarTelefone = (valor) => {
     let telefone = valor.replace(/\D/g, "");
@@ -43,7 +50,6 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
     if (name === "telefone") {
       value = isDeleting ? value : formatarTelefone(value);
     }
-
     if (name === "cep") {
       value = isDeleting ? value : formatarCEP(value);
     }
@@ -53,6 +59,18 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formData.senha.length < 8) {
+      setErroSenha("A senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+    if (formData.senha !== confirmarSenha) {
+      setErroConfirmarSenha("As senhas não coincidem.");
+      return;
+    }
+
+    setErroSenha("");
+    setErroConfirmarSenha("");
     setErroEmail("");
     setMensagem("");
 
@@ -66,9 +84,9 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
       const resultado = await response.json();
 
       if (response.ok) {
-        login(resultado); // login automático
-        onClose(); // fecha o CadastroModal
-        onCadastroSuccess?.(); // avisa o LoginModal para fechar também
+        login(resultado);
+        onClose();
+        onCadastroSuccess?.();
       } else if (response.status === 409) {
         setErroEmail(resultado.erro || "E-mail já cadastrado.");
       } else {
@@ -85,10 +103,11 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
   return (
     <div className="modal-overlay-cadastro">
       <div className="modal-content-cadastro">
-        <button className="btn-close" onClick={onClose}>
+        <button className="btn-fechar-cadastro" onClick={onClose}>
           ×
         </button>
         <h2>Crie sua conta no PetOS</h2>
+
         <form onSubmit={handleSubmit}>
           <input
             name="nome"
@@ -121,14 +140,76 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
             required
           />
           {erroEmail && <p className="mensagem-erro">{erroEmail}</p>}
-          <input
-            name="senha"
-            placeholder="Senha"
-            type="password"
-            value={formData.senha}
-            onChange={handleChange}
-            required
-          />
+
+          {/* SENHA */}
+          <div className="input-container-modal-cad">
+            <input
+              name="senha"
+              placeholder="Senha (mínimo 8 caracteres)"
+              type={mostrarSenha ? "text" : "password"}
+              value={formData.senha}
+              onChange={(e) => {
+                const senha = e.target.value;
+                setFormData({ ...formData, senha });
+
+                if (confirmarSenha && senha !== confirmarSenha) {
+                  setErroConfirmarSenha("As senhas não coincidem.");
+                } else {
+                  setErroConfirmarSenha("");
+                }
+
+                if (erroSenha) setErroSenha("");
+              }}
+              onBlur={() => {
+                if (formData.senha && formData.senha.length < 8) {
+                  setErroSenha("A senha deve ter pelo menos 8 caracteres.");
+                }
+              }}
+              className={erroSenha ? "input-erro-modal-cad" : ""}
+              required
+            />
+            {formData.senha && (
+              <span
+                className="icone-olho-modal-cad"
+                onClick={() => setMostrarSenha(!mostrarSenha)}
+              >
+                {mostrarSenha ? <FaEye /> : <FaEyeSlash />}
+              </span>
+            )}
+          </div>
+          {erroSenha && <p className="mensagem-erro-modal-cad">{erroSenha}</p>}
+
+          {/* CONFIRMAR SENHA */}
+          <div className="input-container-modal-cad">
+            <input
+              name="confirmarSenha"
+              placeholder="Confirmar senha"
+              type={mostrarConfirmarSenha ? "text" : "password"}
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
+              onBlur={() => {
+                if (confirmarSenha !== formData.senha) {
+                  setErroConfirmarSenha("As senhas não coincidem.");
+                } else {
+                  setErroConfirmarSenha("");
+                }
+              }}
+              className={erroConfirmarSenha ? "input-erro-modal-cad" : ""}
+              required
+            />
+            {confirmarSenha && (
+              <span
+                className="icone-olho-modal-cad"
+                onClick={() => setMostrarConfirmarSenha(!mostrarConfirmarSenha)}
+              >
+                {mostrarConfirmarSenha ? <FaEye /> : <FaEyeSlash />}
+              </span>
+            )}
+          </div>
+          {erroConfirmarSenha && (
+            <p className="mensagem-erro-modal-cad">{erroConfirmarSenha}</p>
+          )}
+
           <input
             name="cep"
             placeholder="CEP"
@@ -148,6 +229,7 @@ const CadastroModal = ({ onClose, onCadastroSuccess }) => {
             Cadastrar
           </button>
         </form>
+
         {mensagem && <p className="mensagem">{mensagem}</p>}
       </div>
     </div>
