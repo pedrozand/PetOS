@@ -6,6 +6,7 @@ import CadastroUser from "./pages/cadastroUser/cadastroUser.jsx";
 import FormContainer from "./pages/anunciarPet/formContainer.jsx";
 import PaineldoUsuario from "./pages/paineldoUser/paineldoUser.jsx";
 import RotaPrivada from "./components/rotaPrivada/RotaPrivada.jsx";
+import PainelDoPet from "./pages/paineldoPet/PainelDoPet.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/cadastroUser" element={<CadastroUser />} />
         <Route path="/anunciarPet" element={<FormContainer />} />
         <Route path="/painelUser" element={<PaineldoUsuario />} />
+        <Route path="/painelPet" element={<PainelDoPet />} />
       </Routes>
     </Router>
   );

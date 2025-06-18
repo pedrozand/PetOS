@@ -216,7 +216,7 @@ export default function Navbar() {
 
                 {perfilMenuAberto && (
                   <div className="perfil-dropdown-menu">
-                    <Link to="/meus-pets" onClick={fecharPerfilMenu}>
+                    <Link to="/painelPet" onClick={fecharPerfilMenu}>
                       <a className="tit-color">Meus Pets</a>
                     </Link>
                     <Link to="/painelUser" onClick={fecharPerfilMenu}>
