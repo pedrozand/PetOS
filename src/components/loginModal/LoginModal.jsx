@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CSS/loginModal.css";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import CadastroModal from "../cadastroModal/CadastroModal.jsx";
 
@@ -8,9 +9,14 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const { login } = useAuth();
 
   const [mostrarCadastro, setMostrarCadastro] = useState(false);
+
+  const alternarVisibilidadeSenha = () => {
+    setMostrarSenha((prev) => !prev);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,12 +66,23 @@ const LoginModal = ({ onClose, onLoginSuccess }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
-              type="password"
-              placeholder="Digite sua senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-            />
+            <div className="campo-senha-sen-modal">
+              <input
+                type={mostrarSenha ? "text" : "password"}
+                placeholder="Senha"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+              />
+              {senha && (
+                <span
+                  className="icone-olho-sen-modal"
+                  onClick={alternarVisibilidadeSenha}
+                >
+                  {mostrarSenha ? <FaEye /> : <FaEyeSlash />}
+                </span>
+              )}
+            </div>
             {erro && <p className="erro-login">{erro}</p>}
             <button type="submit" className="btn-login">
               Entrar

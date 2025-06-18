@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./CSS/login.css";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
@@ -12,9 +13,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const navigate = useNavigate();
 
   const { login } = useAuth(); // obtenha a função login do contexto
+
+  const alternarVisibilidadeSenha = () => {
+    setMostrarSenha((prev) => !prev);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,13 +83,23 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <input
-            type="password"
-            placeholder="Senha"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
+          <div className="campo-senha-sen">
+            <input
+              type={mostrarSenha ? "text" : "password"}
+              placeholder="Senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+            {senha && (
+              <span
+                className="icone-olho-sen"
+                onClick={alternarVisibilidadeSenha}
+              >
+                {mostrarSenha ? <FaEye /> : <FaEyeSlash />}
+              </span>
+            )}
+          </div>
           {erro && <p className="error">{erro}</p>}
           <button className="btn-login" type="submit">
             Entrar
