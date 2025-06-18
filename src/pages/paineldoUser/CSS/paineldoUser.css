@@ -131,7 +131,7 @@
 
 .painel-botao.salvar2 {
   background: linear-gradient(to right, #6c757d, #acbac5);
-  margin-top: -45.1px;
+  margin-top: -45.5px;
   margin-left: 205px;
   color: white;
   font-weight: bold;
@@ -247,6 +247,7 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border: none;
+  text-align: center;
 }
 
 .painel-telefone-usuario {

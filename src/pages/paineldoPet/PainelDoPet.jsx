@@ -46,7 +46,6 @@ const PainelDoPet = () => {
         <NavBar />
         <div className="painel-pet-container-ppet">
           <h2>Meus Pets Publicados</h2>
-
           {posts.length === 0 ? (
             <p>Você ainda não publicou nenhum pet.</p>
           ) : (
@@ -92,12 +91,11 @@ const PainelDoPet = () => {
                   socializacao={p.animal.socializacao}
                   dataHoraPost={p.dataHoraPost}
                 />
-                <button
-                  className="btn-editar-post-ppet"
-                  onClick={() => abrirModalEdicao(p)}
-                >
-                  Editar
-                </button>
+                <div className="painel-lateral-ppet">
+                  <p>Ações rápidas</p>
+                  <button onClick={() => abrirModalEdicao(p)}>Editar</button>
+                  <button>Excluir</button>
+                </div>
               </div>
             ))
           )}
