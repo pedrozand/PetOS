@@ -175,6 +175,31 @@ export default function Post({
     }
   };
 
+  // Garante que todas as listas sejam arrays
+  const cuidadosList = Array.isArray(cuidados)
+    ? cuidados
+    : typeof cuidados === "string"
+    ? cuidados.split(",").map((c) => c.trim())
+    : [];
+
+  const temperamentoList = Array.isArray(temperamento)
+    ? temperamento
+    : typeof temperamento === "string"
+    ? temperamento.split(",").map((c) => c.trim())
+    : [];
+
+  const adaptabilidadeList = Array.isArray(adaptabilidade)
+    ? adaptabilidade
+    : typeof adaptabilidade === "string"
+    ? adaptabilidade.split(",").map((c) => c.trim())
+    : [];
+
+  const socializacaoList = Array.isArray(socializacao)
+    ? socializacao
+    : typeof socializacao === "string"
+    ? socializacao.split(",").map((c) => c.trim())
+    : [];
+
   return (
     <div className="container">
       <div class="post-title-header"></div>
@@ -291,7 +316,7 @@ export default function Post({
                   <div className="grupo-caracteristica-post">
                     <h4>CUIDADOS VETERINÁRIOS</h4>
                     <div className="botoes-caracteristica-post">
-                      {cuidados.map((item) => (
+                      {cuidadosList.map((item) => (
                         <span
                           key={item}
                           className="botao-caracteristica-post ativo"
@@ -307,7 +332,7 @@ export default function Post({
                   <div className="grupo-caracteristica-post">
                     <h4>TEMPERAMENTO</h4>
                     <div className="botoes-caracteristica-post">
-                      {temperamento.map((item) => (
+                      {temperamentoList.map((item) => (
                         <span
                           key={item}
                           className="botao-caracteristica-post ativo"
@@ -323,7 +348,7 @@ export default function Post({
                   <div className="grupo-caracteristica-post">
                     <h4>ADAPTABILIDADE</h4>
                     <div className="botoes-caracteristica-post">
-                      {adaptabilidade.map((item) => (
+                      {adaptabilidadeList.map((item) => (
                         <span
                           key={item}
                           className="botao-caracteristica-post ativo"
@@ -339,7 +364,7 @@ export default function Post({
                   <div className="grupo-caracteristica-post">
                     <h4>SOCIALIZAÇÃO</h4>
                     <div className="botoes-caracteristica-post">
-                      {socializacao.map((item) => (
+                      {socializacaoList.map((item) => (
                         <span
                           key={item}
                           className="botao-caracteristica-post ativo"

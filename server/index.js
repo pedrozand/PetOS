@@ -452,7 +452,43 @@ app.get("/api/postagens/usuario/:id", async (req, res) => {
         usuario: true,
       },
     });
-    res.json(postagens);
+
+    const postagensTratadas = postagens.map((post) => {
+      let imagens = [];
+      let cuidados = [];
+      let temperamento = [];
+      let adaptabilidade = [];
+      let socializacao = [];
+
+      try {
+        imagens = JSON.parse(post.animal.imagensAnimal || "[]");
+      } catch (e) {
+        console.error("Erro ao converter imagensAnimal:", e.message);
+      }
+
+      try {
+        cuidados = JSON.parse(post.animal.cuidados || "[]");
+        temperamento = JSON.parse(post.animal.temperamento || "[]");
+        adaptabilidade = JSON.parse(post.animal.adaptabilidade || "[]");
+        socializacao = JSON.parse(post.animal.socializacao || "[]");
+      } catch (e) {
+        console.error("Erro ao converter características:", e.message);
+      }
+
+      return {
+        ...post,
+        animal: {
+          ...post.animal,
+          imagensAnimal: imagens,
+          cuidados,
+          temperamento,
+          adaptabilidade,
+          socializacao,
+        },
+      };
+    });
+
+    res.json(postagensTratadas);
   } catch (error) {
     console.error("Erro ao buscar postagens por usuário:", error);
     res.status(500).json({ erro: "Erro ao buscar postagens" });

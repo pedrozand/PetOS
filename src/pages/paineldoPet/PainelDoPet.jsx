@@ -49,9 +49,11 @@ const PainelDoPet = () => {
       <div className="painel-container-ppet">
         <NavBar />
         <div className="painel-pet-container-ppet">
-          <h2>Meus Pets Publicados</h2>
+          <h2 className="painel-pet-container-tit-ppet">
+            Meus Pets Publicados
+          </h2>
           {posts.length === 0 ? (
-            <p>Você ainda não publicou nenhum pet.</p>
+            <a>Você ainda não publicou nenhum pet.</a>
           ) : (
             posts.map((p) => (
               <div key={p.idPost} className="post-wrapper-ppet">
@@ -68,8 +70,8 @@ const PainelDoPet = () => {
                   especie={p.animal.especie}
                   descricao={p.animal.descricao}
                   imgPet={
-                    p.animal.imagensAnimal
-                      ? JSON.parse(p.animal.imagensAnimal).map(
+                    Array.isArray(p.animal.imagensAnimal)
+                      ? p.animal.imagensAnimal.map(
                           (img) => `http://localhost:3001/uploads/${img}`
                         )
                       : []

@@ -16,7 +16,7 @@
   font-family: "Segoe UI", sans-serif;
 }
 
-.painel-pet-container-ppet h2:first-child {
+.painel-pet-container-tit-ppet {
   font-size: 28px;
   margin-bottom: -40px;
   color: transparent;
@@ -107,7 +107,7 @@
   gap: 10px;
 }
 
-.painel-container-ppet p:first-child {
+.painel-lateral-ppet p:first-child {
   background-color: rebeccapurple;
   color: white;
   padding: 10px;
