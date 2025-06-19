@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./CSS/editarModal.css";
+import { FiX } from "react-icons/fi";
 
 const EditarModal = ({ post, onClose, onSave }) => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
     especie: post.animal.especie || "",
     descricao: post.animal.descricao || "",
     imagens: Array.isArray(post.animal?.imagensAnimal)
-      ? JSON.parse(post.animal.imagensAnimal)
+      ? post.animal.imagensAnimal
       : [],
     novaImagem: null,
     raca: post.animal.raca || "",
@@ -269,9 +270,19 @@ const EditarModal = ({ post, onClose, onSave }) => {
         <label>Imagens:</label>
         <div className="preview-imagens-modal-ppet">
           {formData.imagens.map((img, index) => (
-            <div key={index} className="imagem-preview-modal-ppet">
-              <img src={`http://localhost:3001/uploads/${img}`} alt="preview" />
-              <button onClick={() => removerImagem(index)}>X</button>
+            <div key={index} className="preview-item-ado">
+              <img
+                src={`http://localhost:3001/uploads/${img}`}
+                alt={`Preview ${index}`}
+              />
+              <button
+                className="btn-remover-ado"
+                onClick={() => removerImagem(index)}
+                type="button"
+                aria-label="Remover imagem"
+              >
+                <FiX />
+              </button>
             </div>
           ))}
         </div>
