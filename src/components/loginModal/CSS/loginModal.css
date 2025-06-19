@@ -112,3 +112,23 @@
 .btn-cadastro-inline:hover {
   color: #004b8a;
 }
+
+.campo-senha-sen-modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.campo-senha-sen-modal input {
+  width: 100%;
+  padding-right: 40px; /* espaço para o ícone */
+}
+
+.icone-olho-sen-modal {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: #666;
+  font-size: 20px;
+  margin-top: 8px;
+}
