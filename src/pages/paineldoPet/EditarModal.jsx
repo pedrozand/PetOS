@@ -33,6 +33,26 @@ const EditarModal = ({ post, onClose, onSave }) => {
     socializacao: post.animal.socializacao || [],
   });
 
+  const labelLocalDesap =
+    {
+      Perdido: "Local do Desaparecimento",
+      "Procurando Tutor": "Local onde o pet foi Encontrado",
+      Adocao: "Local onde o pet Está",
+    }[formData.situacao] || "Local";
+
+  const labelData =
+    {
+      Perdido: "Data do Desaparecimento",
+      "Procurando Tutor": "Data que o pet foi encontrado",
+      Adocao: "Disponível para adoção desde",
+    }[formData.situacao] || "Data";
+
+  const labelPeriodo =
+    {
+      Perdido: "Período que o pet foi perdido",
+      "Procurando Tutor": "Período que o pet foi encontrado",
+    }[formData.situacao] || "Período do Dia";
+
   const [inputEndereco, setInputEndereco] = useState(formData.localDesap || "");
   const [sugestoesEndereco, setSugestoesEndereco] = useState([]);
   const [coordenadasEndereco, setCoordenadasEndereco] = useState(
@@ -50,6 +70,18 @@ const EditarModal = ({ post, onClose, onSave }) => {
     setFormData((prev) => ({
       ...prev,
       telefone: formatado,
+    }));
+  };
+
+  const handleRecompensaChange = (e) => {
+    const valor = e.target.value;
+    const numero = valor.replace(/\D/g, "");
+    const numeroFormatado = (Number(numero) / 100).toFixed(2);
+    const valorFormatado = "R$ " + numeroFormatado.replace(".", ",");
+
+    setFormData((prev) => ({
+      ...prev,
+      recompensa: valorFormatado,
     }));
   };
 
@@ -374,7 +406,6 @@ const EditarModal = ({ post, onClose, onSave }) => {
       "localDesap",
       "referencia",
       "dataDesap",
-      "periodo",
       "telefone",
       "cuidados",
       "temperamento",
@@ -643,16 +674,10 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("localDesap") && (
           <>
-            <label
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Local do Desaparecimento
-            </label>
+            <label className="local-modal-edit">{labelLocalDesap}</label>
             {isCampoVisivel("localDesap") && (
               <>
-                <label style={{ fontWeight: "bold" }}>Endereço</label>
+                <label className="local-modal-edit-titu">Endereço</label>
                 {formData.localDesap ? (
                   <div className="endereco-exibido-edit">
                     <span className="texto-endereco-edit">
@@ -732,13 +757,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("dataDesap") && (
           <>
-            <label
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Data do Desaparecimento
-            </label>
+            <label style={{ fontWeight: "bold" }}>{labelData}</label>
             <input
               type="date"
               name="dataDesap"
@@ -750,27 +769,17 @@ const EditarModal = ({ post, onClose, onSave }) => {
         )}
 
         {isCampoVisivel("periodo") &&
-          selectList("Período do Dia", "periodo", [
-            "",
-            "Manhã",
-            "Tarde",
-            "Noite",
-          ])}
+          selectList(labelPeriodo, "periodo", ["", "Manhã", "Tarde", "Noite"])}
 
         {isCampoVisivel("recompensa") && (
           <>
-            <label
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Recompensa
-            </label>
+            <label style={{ fontWeight: "bold" }}>Recompensa</label>
             <input
               type="text"
               name="recompensa"
               value={formData.recompensa}
-              onChange={handleInput}
+              onChange={handleRecompensaChange}
+              maxLength={15}
             />
           </>
         )}
@@ -806,7 +815,9 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("telefone") && (
           <>
-            <label style={{ fontWeight: "bold" }}>Telefone para Contato</label>
+            <label style={{ fontWeight: "bold" }}>
+              Telefone para Contato (WhatsApp ou ligação)
+            </label>
             <input
               type="text"
               name="telefone"
