@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiX } from "react-icons/fi";
-import AsyncSelect from "react-select/async";
+import { FiTrash } from "react-icons/fi";
 import "./CSS/editarModal.css";
 
 const EditarModal = ({ post, onClose, onSave }) => {
@@ -11,7 +11,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
     imagens: Array.isArray(post.animal?.imagensAnimal)
       ? post.animal.imagensAnimal
       : [],
-    novaImagem: null,
+    novasImagens: [],
     raca: post.animal.raca || "",
     idade: post.animal.idade || "",
     porte: post.animal.porte || "",
@@ -33,6 +33,47 @@ const EditarModal = ({ post, onClose, onSave }) => {
     socializacao: post.animal.socializacao || [],
   });
 
+  const [inputEndereco, setInputEndereco] = useState(formData.localDesap || "");
+  const [sugestoesEndereco, setSugestoesEndereco] = useState([]);
+  const [coordenadasEndereco, setCoordenadasEndereco] = useState(
+    formData.coordenadas || null
+  );
+  const bloquearBusca = useRef(false);
+
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (bloquearBusca.current) {
+        bloquearBusca.current = false;
+        return;
+      }
+
+      if (inputEndereco.length > 3) {
+        fetch(
+          `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
+            inputEndereco
+          )}&format=json&addressdetails=1&bounded=1&viewbox=-46.625,-22.920,-46.500,-22.990`
+        )
+          .then((res) => res.json())
+          .then((data) => setSugestoesEndereco(data))
+          .catch((err) => console.error("Erro ao buscar endereço:", err));
+      } else {
+        setSugestoesEndereco([]);
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [inputEndereco]);
+
+  const formatarEndereco = (address) => {
+    const { road, residential, suburb, city, town, state, country } = address;
+    const rua = road || residential || "";
+    const bairro = suburb || "";
+    const cidade = city || town || "";
+    const estado = state || "";
+    const pais = country || "";
+    return [rua, bairro, cidade, estado, pais].filter(Boolean).join(", ");
+  };
+
   useEffect(() => {
     if (!formData.raca) {
       setFormData((prev) => ({ ...prev, raca: "" }));
@@ -52,16 +93,28 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
   const salvarEdicao = async () => {
     try {
+      const data = new FormData();
+      data.append(
+        "json",
+        JSON.stringify({
+          ...formData,
+          imagens: formData.imagens,
+        })
+      );
+
+      // Adiciona as novas imagens
+      formData.novasImagens.forEach((item) => {
+        data.append("novasImagens", item.file);
+      });
+
       const response = await fetch(
         `http://localhost:3001/api/postagens/${post.idPost}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-          }),
+          body: data,
         }
       );
+
       const atualizado = await response.json();
       onSave(atualizado);
     } catch (err) {
@@ -252,10 +305,12 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
   const loadAddressOptions = async (inputValue) => {
     if (!inputValue) return [];
+
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${inputValue}`
     );
     const data = await res.json();
+
     return data.map((item) => ({
       label: item.display_name,
       value: item.display_name,
@@ -395,6 +450,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
   return (
     <div className="modal-overlay-modal-ppet">
+      <button
+        className="botao-fechar-modal-edit"
+        onClick={onClose}
+        aria-label="Fechar modal"
+      >
+        <FiX size={20} />
+      </button>
       <div className="modal-content-modal-ppet">
         <h3>Editar Informações do Pet</h3>
 
@@ -457,30 +519,63 @@ const EditarModal = ({ post, onClose, onSave }) => {
             <h4 className="preview-imagens-modal-ppet">Imagens</h4>
             <div className="preview-imagens-modal-ppet">
               {formData.imagens.map((img, index) => (
-                <div key={index} className="preview-item-ado">
+                <div key={`img-antiga-${index}`} className="preview-item-ado">
                   <img
                     src={`http://localhost:3001/uploads/${img}`}
-                    alt={`Preview ${index}`}
+                    alt={`Imagem ${index}`}
                   />
                   <button
-                    className="btn-remover-ado"
                     onClick={() => removerImagem(index)}
+                    className="btn-remover-ado"
+                  >
+                    <FiX />
+                  </button>
+                </div>
+              ))}
+
+              {formData.novasImagens.map((item, index) => (
+                <div key={`img-nova-${index}`} className="preview-item-ado">
+                  <img src={item.preview} alt={`Nova Imagem ${index}`} />
+                  <button
+                    onClick={() => {
+                      const novas = [...formData.novasImagens];
+                      novas.splice(index, 1);
+                      setFormData({ ...formData, novasImagens: novas });
+                    }}
+                    className="btn-remover-ado"
                   >
                     <FiX />
                   </button>
                 </div>
               ))}
             </div>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const nova = e.target.files[0];
-                if (nova && formData.imagens.length < 5) {
-                  setFormData({ ...formData, novaImagem: nova });
-                }
-              }}
-            />
+            <div className="upload-wrapper-edit">
+              <label htmlFor="upload-img" className="upload-button-edit">
+                Selecionar Imagem
+              </label>
+              <input
+                id="upload-img"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const arquivo = e.target.files[0];
+                  if (arquivo) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        novasImagens: [
+                          ...prev.novasImagens,
+                          { file: arquivo, preview: reader.result },
+                        ],
+                      }));
+                    };
+                    reader.readAsDataURL(arquivo);
+                  }
+                }}
+                className="upload-input-edit"
+              />
+            </div>
           </>
         )}
 
@@ -529,19 +624,64 @@ const EditarModal = ({ post, onClose, onSave }) => {
             >
               Local do Desaparecimento
             </label>
-            <AsyncSelect
-              cacheOptions
-              loadOptions={loadAddressOptions}
-              defaultOptions
-              onChange={(selected) =>
-                setFormData({ ...formData, localDesap: selected.value })
-              }
-              value={
-                formData.localDesap
-                  ? { label: formData.localDesap, value: formData.localDesap }
-                  : null
-              }
-            />
+            {isCampoVisivel("localDesap") && (
+              <>
+                <label style={{ fontWeight: "bold" }}>Endereço</label>
+                {formData.localDesap ? (
+                  <div className="endereco-exibido-edit">
+                    <span className="texto-endereco-edit">
+                      {formData.localDesap}
+                    </span>
+                    <FiTrash
+                      className="icone-lixeira-edit"
+                      onClick={() => {
+                        setFormData({ ...formData, localDesap: "" });
+                        setInputEndereco("");
+                        setCoordenadasEndereco(null);
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <input
+                    type="text"
+                    className="endereco-input-edit"
+                    placeholder="Digite o endereço..."
+                    value={inputEndereco}
+                    onChange={(e) => {
+                      setInputEndereco(e.target.value);
+                    }}
+                  />
+                )}
+
+                {inputEndereco &&
+                  !formData.localDesap &&
+                  sugestoesEndereco.length > 0 && (
+                    <ul className="sugestoes-lista-edit">
+                      {sugestoesEndereco.map((item) => {
+                        const endereco = formatarEndereco(item.address);
+                        return (
+                          <li
+                            key={item.place_id}
+                            onClick={() => {
+                              setFormData((prev) => ({
+                                ...prev,
+                                localDesap: endereco,
+                              }));
+                              setInputEndereco(endereco);
+                              setCoordenadas([item.lat, item.lon]);
+                              bloquearBusca.current = true;
+                              setSugestoes([]);
+                            }}
+                            className="sugestao-item-edit"
+                          >
+                            {endereco}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+              </>
+            )}
           </>
         )}
 

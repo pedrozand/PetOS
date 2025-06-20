@@ -209,3 +209,89 @@
   color: black;
   font-weight: 600;
 }
+
+.botao-fechar-modal-edit {
+  position: relative;
+  top: 25px;
+  right: -680px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s ease;
+}
+
+.botao-fechar-modal-edit:hover {
+  color: #ff3333;
+}
+
+.upload-wrapper-edit {
+  margin-top: 10px;
+}
+
+.upload-input-edit {
+  display: none;
+}
+
+.upload-button-edit {
+  display: inline-block;
+  padding: 5px 20px 25px 20px;
+  background-color: #ffa500;
+  color: white !important;
+  font-weight: bold !important;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  width: 540px;
+  margin-left: 50px;
+  height: 25px;
+}
+
+.upload-button-edit:hover {
+  background-color: #ff8700;
+}
+
+.sugestoes-lista-edit {
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: white;
+  padding: 0;
+  list-style: none;
+}
+
+.sugestao-item-edit {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugestao-item-edit:hover {
+  background-color: #f0f0f0;
+}
+
+.endereco-exibido-edit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: #eee;
+  border-radius: 6px;
+  margin-top: 4px;
+  height: 40px;
+  border: 1px solid #ccc;
+}
+
+.icone-lixeira-edit {
+  cursor: pointer;
+  color: #ffa500;
+}
+
+.icone-lixeira-edit:hover {
+  cursor: pointer;
+  color: #ff8700;
+}
