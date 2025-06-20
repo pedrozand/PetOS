@@ -14,6 +14,26 @@
   margin-top: 50px;
 }
 
+.modal-content-modal-ppet-label {
+  background: linear-gradient(to right, #ff6969, #ffd65b);
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.modal-content-modal-ppet-p {
+  margin-bottom: 10px;
+  font-weight: bold;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-top: none;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin-top: -5px;
+}
+
 .modal-content-modal-ppet {
   background: #fff;
   padding: 30px;
@@ -28,7 +48,7 @@
   font-size: 1.5rem;
   color: white;
   background: linear-gradient(to right, #ff6969, #ffd65b);
-  padding: 20px;
+  padding: 20px 20px 20px 30px;
   margin-top: -30px;
   width: 700px;
   margin-left: -30px;
@@ -65,6 +85,7 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
+  justify-content: center;
 }
 
 .preview-item-ado {
@@ -155,4 +176,36 @@
 
 .autocomplete-container .select__menu {
   z-index: 9999;
+}
+
+.grupo-caracteristica {
+  margin-top: 20px;
+}
+
+.grupo-caracteristica h4 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #222;
+}
+
+.botoes-caracteristica {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.botao-caracteristica {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #ffe1e1;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.botao-caracteristica.ativo {
+  background: linear-gradient(to right, #ffa5a5, #ffe28d);
+  color: black;
+  font-weight: 600;
 }

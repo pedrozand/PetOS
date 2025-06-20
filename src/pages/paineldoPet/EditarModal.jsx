@@ -233,32 +233,14 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
   const selectList = (label, name, options) => (
     <>
-      <label>{label}</label>
-      <select name={name} value={formData[name]} onChange={handleInput}>
-        {options.map((opt, i) => (
-          <option key={i} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-    </>
-  );
-
-  const multiSelectList = (label, name, options) => (
-    <>
-      <label>{label}</label>
-      <select
-        name={name}
-        multiple
-        value={formData[name]}
-        onChange={(e) => {
-          const values = Array.from(
-            e.target.selectedOptions,
-            (opt) => opt.value
-          );
-          setFormData({ ...formData, [name]: values });
+      <label
+        style={{
+          fontWeight: "bold",
         }}
       >
+        {label}
+      </label>
+      <select name={name} value={formData[name]} onChange={handleInput}>
         {options.map((opt, i) => (
           <option key={i} value={opt}>
             {opt}
@@ -341,6 +323,73 @@ const EditarModal = ({ post, onClose, onSave }) => {
     ],
   };
 
+  const CARACTERISTICAS = {
+    cuidados: [
+      "Vacinado",
+      "Castrado",
+      "Vermifugado",
+      "Microchipado",
+      "Necessidades especiais",
+    ],
+    temperamento: [
+      "Dócil",
+      "Agressivo",
+      "Brincalhão",
+      "Calmo",
+      "Sociável",
+      "Tímido",
+      "Independente",
+      "Carente",
+      "Energia alta",
+      "Medroso",
+    ],
+    adaptabilidade: [
+      "Vive bem em apartamento",
+      "Vive bem em casa com quintal",
+      "Necessita de espaço amplo",
+      "Se adapta a mudanças frequentes",
+    ],
+    socializacao: [
+      "Sociável com crianças",
+      "Sociável com gatos",
+      "Sociável com cães",
+      "Sociável com estranhos",
+      "Tolerante a visitas",
+    ],
+  };
+
+  const toggleCaracteristica = (categoria, item) => {
+    setFormData((prev) => {
+      const jaSelecionado = prev[categoria]?.includes(item);
+      return {
+        ...prev,
+        [categoria]: jaSelecionado
+          ? prev[categoria].filter((i) => i !== item)
+          : [...prev[categoria], item],
+      };
+    });
+  };
+
+  const renderGrupoCaracteristicas = (titulo, categoria) => (
+    <div className="grupo-caracteristica">
+      <h4>{titulo}</h4>
+      <div className="botoes-caracteristica">
+        {CARACTERISTICAS[categoria].map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={`botao-caracteristica ${
+              formData[categoria]?.includes(item) ? "ativo" : ""
+            }`}
+            onClick={() => toggleCaracteristica(categoria, item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
   const isCampoVisivel = (nomeCampo) =>
     camposPermitidos[post.situacao]?.includes(nomeCampo);
 
@@ -349,14 +398,28 @@ const EditarModal = ({ post, onClose, onSave }) => {
       <div className="modal-content-modal-ppet">
         <h3>Editar Informações do Pet</h3>
 
-        <label>Situação:</label>
-        <p style={{ marginBottom: "10px", fontWeight: "bold" }}>
+        <label
+          className="modal-content-modal-ppet-label"
+          style={{
+            color: "white",
+            fontWeight: "bold",
+          }}
+        >
+          Situação
+        </label>
+        <p className="modal-content-modal-ppet-p">
           {formData.situacao === "Adocao" ? "Para Adoção" : formData.situacao}
         </p>
 
         {isCampoVisivel("nomeAnimal") && (
           <>
-            <label>Nome do Animal:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Nome do Animal
+            </label>
             <input
               type="text"
               name="nomeAnimal"
@@ -367,19 +430,20 @@ const EditarModal = ({ post, onClose, onSave }) => {
         )}
 
         {isCampoVisivel("especie") &&
-          selectList("Espécie:", "especie", [
-            "",
-            "Cachorro",
-            "Gato",
-            "Pássaro",
-          ])}
+          selectList("Espécie", "especie", ["", "Cachorro", "Gato", "Pássaro"])}
 
         {isCampoVisivel("raca") &&
-          selectList("Raça:", "raca", racas[formData.especie] || [])}
+          selectList("Raça", "raca", racas[formData.especie] || [])}
 
         {isCampoVisivel("descricao") && (
           <>
-            <label>Descrição:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Descrição
+            </label>
             <textarea
               name="descricao"
               value={formData.descricao}
@@ -390,7 +454,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("imgPet") && (
           <>
-            <label>Imagens:</label>
+            <h4 className="preview-imagens-modal-ppet">Imagens</h4>
             <div className="preview-imagens-modal-ppet">
               {formData.imagens.map((img, index) => (
                 <div key={index} className="preview-item-ado">
@@ -421,13 +485,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
         )}
 
         {isCampoVisivel("idade") &&
-          selectList("Idade:", "idade", ["", "Filhote", "Adulto", "Idoso"])}
+          selectList("Idade", "idade", ["", "Filhote", "Adulto", "Idoso"])}
 
         {isCampoVisivel("porte") &&
-          selectList("Porte:", "porte", ["", "Pequeno", "Médio", "Grande"])}
+          selectList("Porte", "porte", ["", "Pequeno", "Médio", "Grande"])}
 
         {isCampoVisivel("corPredominante") &&
-          selectList("Cor Predominante:", "corPredominante", [
+          selectList("Cor Predominante", "corPredominante", [
             "",
             "Preto",
             "Branco",
@@ -444,7 +508,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
           ])}
 
         {isCampoVisivel("corOlhos") &&
-          selectList("Cor dos Olhos:", "corOlhos", [
+          selectList("Cor dos Olhos", "corOlhos", [
             "",
             "Castanho",
             "Azul",
@@ -454,11 +518,17 @@ const EditarModal = ({ post, onClose, onSave }) => {
           ])}
 
         {isCampoVisivel("sexo") &&
-          selectList("Sexo:", "sexo", ["", "Macho", "Fêmea"])}
+          selectList("Sexo", "sexo", ["", "Macho", "Fêmea"])}
 
         {isCampoVisivel("localDesap") && (
           <>
-            <label>Local do Desaparecimento:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Local do Desaparecimento
+            </label>
             <AsyncSelect
               cacheOptions
               loadOptions={loadAddressOptions}
@@ -477,7 +547,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("referencia") && (
           <>
-            <label>Ponto de Referência:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Ponto de Referência
+            </label>
             <input
               type="text"
               name="referencia"
@@ -489,7 +565,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("dataDesap") && (
           <>
-            <label>Data do Desaparecimento:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Data do Desaparecimento
+            </label>
             <input
               type="date"
               name="dataDesap"
@@ -501,7 +583,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
         )}
 
         {isCampoVisivel("periodo") &&
-          selectList("Período do Dia:", "periodo", [
+          selectList("Período do Dia", "periodo", [
             "",
             "Manhã",
             "Tarde",
@@ -510,7 +592,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("recompensa") && (
           <>
-            <label>Recompensa:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Recompensa
+            </label>
             <input
               type="text"
               name="recompensa"
@@ -522,7 +610,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("descricaoLocal") && (
           <>
-            <label>Descrição do Local:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Descrição do Local
+            </label>
             <input
               type="text"
               name="descricaoLocal"
@@ -533,7 +627,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
         )}
 
         {isCampoVisivel("localPet") &&
-          selectList("Local do Pet:", "localPet", [
+          selectList("Local do Pet", "localPet", [
             "",
             "Lar Temporário",
             "Petshop",
@@ -545,7 +639,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("telefone") && (
           <>
-            <label>Telefone para Contato:</label>
+            <label
+              style={{
+                fontWeight: "bold",
+              }}
+            >
+              Telefone para Contato
+            </label>
             <input
               type="text"
               name="telefone"
@@ -555,45 +655,14 @@ const EditarModal = ({ post, onClose, onSave }) => {
           </>
         )}
 
-        {isCampoVisivel("cuidados") &&
-          multiSelectList("Cuidados:", "cuidados", [
-            "Vacinado",
-            "Castrado",
-            "Vermifugado",
-            "Microchipado",
-            "Necessidades especiais",
-          ])}
-
-        {isCampoVisivel("temperamento") &&
-          multiSelectList("Temperamento:", "temperamento", [
-            "Dócil",
-            "Agressivo",
-            "Brincalhão",
-            "Calmo",
-            "Sociável",
-            "Tímido",
-            "Independente",
-            "Carente",
-            "Energia alta",
-            "Medroso",
-          ])}
-
-        {isCampoVisivel("adaptabilidade") &&
-          multiSelectList("Adaptabilidade:", "adaptabilidade", [
-            "Vive bem em apartamento",
-            "Vive bem em casa com quintal",
-            "Necessita de espaço amplo",
-            "Se adapta a mudanças frequentes",
-          ])}
-
-        {isCampoVisivel("socializacao") &&
-          multiSelectList("Socialização:", "socializacao", [
-            "Sociável com crianças",
-            "Sociável com gatos",
-            "Sociável com cães",
-            "Sociável com estranhos",
-            "Tolerante a visitas",
-          ])}
+        {formData.situacao === "Adocao" && (
+          <>
+            {renderGrupoCaracteristicas("Cuidados Veterinários", "cuidados")}
+            {renderGrupoCaracteristicas("Temperamento", "temperamento")}
+            {renderGrupoCaracteristicas("Adaptabilidade", "adaptabilidade")}
+            {renderGrupoCaracteristicas("Socialização", "socializacao")}
+          </>
+        )}
 
         <div className="modal-actions-modal-ppet">
           <button onClick={salvarEdicao}>Salvar</button>
