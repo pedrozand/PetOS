@@ -496,86 +496,76 @@ app.get("/api/postagens/usuario/:id", async (req, res) => {
 });
 
 // Atualizar uma postagem existente (inclui atualização do animal relacionado)
-app.put("/api/posts/:idPost", async (req, res) => {
-  const { idPost } = req.params;
-  const {
-    situacao,
-    endereco,
-    telefonePost,
-    pontoReferencia,
-    dataPost,
-    horarioPost,
-    periodoPost,
-    recompensa,
-    descricaoLocal,
-    localPet,
-    nome,
-    especie,
-    raca,
-    sexo,
-    porte,
-    corPredominante,
-    corOlhos,
-    idade,
-    descricao,
-    imagensAnimal,
-    cuidados,
-    temperamento,
-    adaptabilidade,
-    socializacao,
-  } = req.body;
+app.put(
+  "/api/posts/:idPost",
+  upload.array("novasImagens", 5),
+  async (req, res) => {
+    const { idPost } = req.params;
 
-  try {
-    // Primeiro, busca a postagem para saber o id do animal
-    const postagem = await prisma.postagem.findUnique({
-      where: { idPost: Number(idPost) },
-    });
+    try {
+      // Extrai os dados JSON enviados no campo 'json'
+      const dados = JSON.parse(req.body.json);
 
-    if (!postagem) {
-      return res.status(404).json({ erro: "Postagem não encontrada" });
+      const postagem = await prisma.postagem.findUnique({
+        where: { idPost: Number(idPost) },
+      });
+
+      if (!postagem) {
+        return res.status(404).json({ erro: "Postagem não encontrada" });
+      }
+
+      // Obtém imagens novas (nomes dos arquivos)
+      const novasImagens = req.files.map((file) => file.filename);
+
+      // Recupera as imagens antigas (se existirem) e adiciona as novas
+      const imagensAntigas = Array.isArray(dados.imagensAnimal)
+        ? dados.imagensAnimal
+        : [];
+
+      const todasImagens = [...imagensAntigas, ...novasImagens];
+
+      // Atualiza o animal
+      await prisma.animal.update({
+        where: { idAnimal: postagem.idAnimal },
+        data: {
+          nome: dados.nome,
+          especie: dados.especie,
+          raca: dados.raca,
+          sexo: dados.sexo,
+          porte: dados.porte,
+          corPredominante: dados.corPredominante,
+          corOlhos: dados.corOlhos,
+          idade: dados.idade,
+          descricao: dados.descricao,
+          imagensAnimal: JSON.stringify(todasImagens),
+          cuidados: JSON.stringify(dados.cuidados || []),
+          temperamento: JSON.stringify(dados.temperamento || []),
+          adaptabilidade: JSON.stringify(dados.adaptabilidade || []),
+          socializacao: JSON.stringify(dados.socializacao || []),
+        },
+      });
+
+      // Atualiza a postagem
+      const postagemAtualizada = await prisma.postagem.update({
+        where: { idPost: Number(idPost) },
+        data: {
+          situacao: dados.situacao,
+          endereco: dados.endereco,
+          telefonePost: dados.telefonePost,
+          pontoReferencia: dados.pontoReferencia,
+          dataPost: new Date(dados.dataPost),
+          horarioPost: dados.horarioPost || "12:00",
+          periodoPost: dados.periodoPost,
+          recompensa: dados.recompensa,
+          descricaoLocal: dados.descricaoLocal,
+          localPet: dados.localPet,
+        },
+      });
+
+      res.json(postagemAtualizada);
+    } catch (error) {
+      console.error("Erro ao atualizar postagem com imagens:", error);
+      res.status(500).json({ erro: "Erro ao atualizar postagem." });
     }
-
-    // Atualiza o animal
-    await prisma.animal.update({
-      where: { idAnimal: postagem.idAnimal },
-      data: {
-        nome,
-        especie,
-        raca,
-        sexo,
-        porte,
-        corPredominante,
-        corOlhos,
-        idade,
-        descricao,
-        imagensAnimal: JSON.stringify(imagensAnimal),
-        cuidados: JSON.stringify(cuidados),
-        temperamento: JSON.stringify(temperamento),
-        adaptabilidade: JSON.stringify(adaptabilidade),
-        socializacao: JSON.stringify(socializacao),
-      },
-    });
-
-    // Atualiza a postagem
-    const postagemAtualizada = await prisma.postagem.update({
-      where: { idPost: Number(idPost) },
-      data: {
-        situacao,
-        endereco,
-        telefonePost,
-        pontoReferencia,
-        dataPost: new Date(dataPost),
-        horarioPost,
-        periodoPost,
-        recompensa,
-        descricaoLocal,
-        localPet,
-      },
-    });
-
-    res.json(postagemAtualizada);
-  } catch (error) {
-    console.error("Erro ao atualizar postagem:", error);
-    res.status(500).json({ erro: "Erro ao atualizar postagem." });
   }
-});
+);

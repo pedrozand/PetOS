@@ -59,43 +59,43 @@ const PainelDoPet = () => {
               <div key={p.idPost} className="post-wrapper-ppet">
                 <Post
                   fotoPerfil={
-                    p.usuario.fotoPerfil
+                    p.usuario?.fotoPerfil
                       ? `http://localhost:3001/uploads/${p.usuario.fotoPerfil}`
-                      : []
+                      : ""
                   }
-                  nome={p.usuario.nome}
-                  sobrenome={p.usuario.sobrenome}
-                  email={p.usuario.email}
-                  nomeAnimal={p.animal.nome}
-                  especie={p.animal.especie}
-                  descricao={p.animal.descricao}
+                  nome={p.usuario?.nome || ""}
+                  sobrenome={p.usuario?.sobrenome || ""}
+                  email={p.usuario?.email || ""}
+                  nomeAnimal={p.animal?.nome || ""}
+                  especie={p.animal?.especie || ""}
+                  descricao={p.animal?.descricao || ""}
                   imgPet={
-                    Array.isArray(p.animal.imagensAnimal)
+                    Array.isArray(p.animal?.imagensAnimal)
                       ? p.animal.imagensAnimal.map(
                           (img) => `http://localhost:3001/uploads/${img}`
                         )
                       : []
                   }
-                  raca={p.animal.raca}
-                  idade={p.animal.idade}
-                  porte={p.animal.porte}
-                  corPredominante={p.animal.corPredominante}
-                  corOlhos={p.animal.corOlhos}
-                  sexo={p.animal.sexo}
-                  localDesap={p.endereco}
-                  referencia={p.pontoReferencia}
-                  dataDesap={p.dataPost}
-                  periodo={p.periodoPost}
-                  recompensa={p.recompensa}
-                  descricaoLocal={p.descricaoLocal}
-                  localPet={p.localPet}
-                  telefone={p.telefonePost}
-                  situacao={p.situacao}
-                  cuidados={p.animal.cuidados}
-                  temperamento={p.animal.temperamento}
-                  adaptabilidade={p.animal.adaptabilidade}
-                  socializacao={p.animal.socializacao}
-                  dataHoraPost={p.dataHoraPost}
+                  raca={p.animal?.raca || ""}
+                  idade={p.animal?.idade || ""}
+                  porte={p.animal?.porte || ""}
+                  corPredominante={p.animal?.corPredominante || ""}
+                  corOlhos={p.animal?.corOlhos || ""}
+                  sexo={p.animal?.sexo || ""}
+                  localDesap={p.endereco || ""}
+                  referencia={p.pontoReferencia || ""}
+                  dataDesap={p.dataPost || ""}
+                  periodo={p.periodoPost || ""}
+                  recompensa={p.recompensa || ""}
+                  descricaoLocal={p.descricaoLocal || ""}
+                  localPet={p.localPet || ""}
+                  telefone={p.telefonePost || ""}
+                  situacao={p.situacao || ""}
+                  cuidados={p.animal?.cuidados || []}
+                  temperamento={p.animal?.temperamento || []}
+                  adaptabilidade={p.animal?.adaptabilidade || []}
+                  socializacao={p.animal?.socializacao || []}
+                  dataHoraPost={p.dataHoraPost || ""}
                 />
                 <div className="painel-lateral-ppet">
                   <p>Ações rápidas</p>

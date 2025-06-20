@@ -40,6 +40,19 @@ const EditarModal = ({ post, onClose, onSave }) => {
   );
   const bloquearBusca = useRef(false);
 
+  const handleTelefoneChange = (e) => {
+    let input = e.target.value.replace(/\D/g, "");
+    if (input.length > 11) input = input.slice(0, 11);
+    const formatado = input
+      .replace(/^(\d{2})(\d)/, "($1) $2")
+      .replace(/(\d{5})(\d)/, "$1-$2");
+
+    setFormData((prev) => ({
+      ...prev,
+      telefone: formatado,
+    }));
+  };
+
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
       if (bloquearBusca.current) {
@@ -93,32 +106,57 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
   const salvarEdicao = async () => {
     try {
-      const data = new FormData();
-      data.append(
-        "json",
-        JSON.stringify({
-          ...formData,
-          imagens: formData.imagens,
-        })
-      );
+      const form = new FormData();
 
-      // Adiciona as novas imagens
-      formData.novasImagens.forEach((item) => {
-        data.append("novasImagens", item.file);
+      // Dados em JSON (tudo menos as imagens novas)
+      const jsonBody = {
+        nome: formData.nomeAnimal,
+        especie: formData.especie,
+        raca: formData.raca,
+        sexo: formData.sexo,
+        porte: formData.porte,
+        corPredominante: formData.corPredominante,
+        corOlhos: formData.corOlhos,
+        idade: formData.idade,
+        descricao: formData.descricao,
+        imagensAnimal: formData.imagens, // antigas
+        cuidados: formData.cuidados,
+        temperamento: formData.temperamento,
+        adaptabilidade: formData.adaptabilidade,
+        socializacao: formData.socializacao,
+        situacao: formData.situacao,
+        endereco: formData.localDesap,
+        telefonePost: formData.telefone,
+        pontoReferencia: formData.referencia,
+        dataPost: formData.dataDesap,
+        periodoPost: formData.periodo,
+        recompensa: formData.recompensa,
+        descricaoLocal: formData.descricaoLocal,
+        localPet: formData.localPet,
+      };
+
+      form.append("json", JSON.stringify(jsonBody));
+
+      // Anexa novas imagens
+      formData.novasImagens.forEach((img) => {
+        form.append("novasImagens", img.file);
       });
 
       const response = await fetch(
-        `http://localhost:3001/api/postagens/${post.idPost}`,
+        `http://localhost:3001/api/posts/${post.idPost}`,
         {
           method: "PUT",
-          body: data,
+          body: form,
         }
       );
 
-      const atualizado = await response.json();
-      onSave(atualizado);
+      if (!response.ok) throw new Error("Erro ao atualizar post");
+
+      const result = await response.json();
+      onSave(result);
+      window.location.reload();
     } catch (err) {
-      console.error("Erro ao atualizar:", err);
+      console.error("Erro ao salvar edição:", err);
     }
   };
 
@@ -303,20 +341,6 @@ const EditarModal = ({ post, onClose, onSave }) => {
     </>
   );
 
-  const loadAddressOptions = async (inputValue) => {
-    if (!inputValue) return [];
-
-    const res = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${inputValue}`
-    );
-    const data = await res.json();
-
-    return data.map((item) => ({
-      label: item.display_name,
-      value: item.display_name,
-    }));
-  };
-
   const camposPermitidos = {
     Perdido: [
       "nomeAnimal",
@@ -487,6 +511,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
               name="nomeAnimal"
               value={formData.nomeAnimal}
               onChange={handleInput}
+              maxLength={30}
             />
           </>
         )}
@@ -510,6 +535,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
               name="descricao"
               value={formData.descricao}
               onChange={handleInput}
+              maxLength={200}
             />
           </>
         )}
@@ -699,6 +725,7 @@ const EditarModal = ({ post, onClose, onSave }) => {
               name="referencia"
               value={formData.referencia}
               onChange={handleInput}
+              maxLength={30}
             />
           </>
         )}
@@ -779,18 +806,13 @@ const EditarModal = ({ post, onClose, onSave }) => {
 
         {isCampoVisivel("telefone") && (
           <>
-            <label
-              style={{
-                fontWeight: "bold",
-              }}
-            >
-              Telefone para Contato
-            </label>
+            <label style={{ fontWeight: "bold" }}>Telefone para Contato</label>
             <input
               type="text"
               name="telefone"
               value={formData.telefone}
-              onChange={handleInput}
+              onChange={handleTelefoneChange}
+              maxLength={15}
             />
           </>
         )}
