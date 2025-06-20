@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import "./CSS/editarModal.css";
 import { FiX } from "react-icons/fi";
+import AsyncSelect from "react-select/async";
+import "./CSS/editarModal.css";
 
 const EditarModal = ({ post, onClose, onSave }) => {
   const [formData, setFormData] = useState({
@@ -230,73 +231,369 @@ const EditarModal = ({ post, onClose, onSave }) => {
     ],
   };
 
+  const selectList = (label, name, options) => (
+    <>
+      <label>{label}</label>
+      <select name={name} value={formData[name]} onChange={handleInput}>
+        {options.map((opt, i) => (
+          <option key={i} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+
+  const multiSelectList = (label, name, options) => (
+    <>
+      <label>{label}</label>
+      <select
+        name={name}
+        multiple
+        value={formData[name]}
+        onChange={(e) => {
+          const values = Array.from(
+            e.target.selectedOptions,
+            (opt) => opt.value
+          );
+          setFormData({ ...formData, [name]: values });
+        }}
+      >
+        {options.map((opt, i) => (
+          <option key={i} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+
+  const loadAddressOptions = async (inputValue) => {
+    if (!inputValue) return [];
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${inputValue}`
+    );
+    const data = await res.json();
+    return data.map((item) => ({
+      label: item.display_name,
+      value: item.display_name,
+    }));
+  };
+
+  const camposPermitidos = {
+    Perdido: [
+      "nomeAnimal",
+      "especie",
+      "descricao",
+      "imgPet",
+      "raca",
+      "idade",
+      "porte",
+      "corPredominante",
+      "corOlhos",
+      "sexo",
+      "localDesap",
+      "referencia",
+      "dataDesap",
+      "periodo",
+      "recompensa",
+      "telefone",
+    ],
+    Adocao: [
+      "nomeAnimal",
+      "especie",
+      "descricao",
+      "imgPet",
+      "raca",
+      "idade",
+      "porte",
+      "corPredominante",
+      "corOlhos",
+      "sexo",
+      "localDesap",
+      "referencia",
+      "dataDesap",
+      "periodo",
+      "telefone",
+      "cuidados",
+      "temperamento",
+      "adaptabilidade",
+      "socializacao",
+    ],
+    "Procurando Tutor": [
+      "nomeAnimal",
+      "especie",
+      "descricao",
+      "imgPet",
+      "raca",
+      "idade",
+      "porte",
+      "corPredominante",
+      "corOlhos",
+      "sexo",
+      "localDesap",
+      "referencia",
+      "dataDesap",
+      "periodo",
+      "telefone",
+      "descricaoLocal",
+      "localPet",
+    ],
+  };
+
+  const isCampoVisivel = (nomeCampo) =>
+    camposPermitidos[post.situacao]?.includes(nomeCampo);
+
   return (
     <div className="modal-overlay-modal-ppet">
       <div className="modal-content-modal-ppet">
         <h3>Editar Informações do Pet</h3>
 
-        <label>Nome do Animal:</label>
-        <input
-          type="text"
-          name="nomeAnimal"
-          value={formData.nomeAnimal}
-          onChange={handleInput}
-        />
+        <label>Situação:</label>
+        <p style={{ marginBottom: "10px", fontWeight: "bold" }}>
+          {formData.situacao === "Adocao" ? "Para Adoção" : formData.situacao}
+        </p>
 
-        <label>Espécie:</label>
-        <select name="especie" value={formData.especie} onChange={handleInput}>
-          <option value="">Selecione</option>
-          <option value="Cachorro">Cachorro</option>
-          <option value="Gato">Gato</option>
-          <option value="Pássaro">Pássaro</option>
-        </select>
+        {isCampoVisivel("nomeAnimal") && (
+          <>
+            <label>Nome do Animal:</label>
+            <input
+              type="text"
+              name="nomeAnimal"
+              value={formData.nomeAnimal}
+              onChange={handleInput}
+            />
+          </>
+        )}
 
-        <label>Raça:</label>
-        <select name="raca" value={formData.raca} onChange={handleInput}>
-          {racas[formData.especie]?.map((r, i) => (
-            <option key={i} value={r}>
-              {r}
-            </option>
-          ))}
-        </select>
+        {isCampoVisivel("especie") &&
+          selectList("Espécie:", "especie", [
+            "",
+            "Cachorro",
+            "Gato",
+            "Pássaro",
+          ])}
 
-        <label>Descrição:</label>
-        <textarea
-          name="descricao"
-          value={formData.descricao}
-          onChange={handleInput}
-        />
+        {isCampoVisivel("raca") &&
+          selectList("Raça:", "raca", racas[formData.especie] || [])}
 
-        <label>Imagens:</label>
-        <div className="preview-imagens-modal-ppet">
-          {formData.imagens.map((img, index) => (
-            <div key={index} className="preview-item-ado">
-              <img
-                src={`http://localhost:3001/uploads/${img}`}
-                alt={`Preview ${index}`}
-              />
-              <button
-                className="btn-remover-ado"
-                onClick={() => removerImagem(index)}
-                type="button"
-                aria-label="Remover imagem"
-              >
-                <FiX />
-              </button>
+        {isCampoVisivel("descricao") && (
+          <>
+            <label>Descrição:</label>
+            <textarea
+              name="descricao"
+              value={formData.descricao}
+              onChange={handleInput}
+            />
+          </>
+        )}
+
+        {isCampoVisivel("imgPet") && (
+          <>
+            <label>Imagens:</label>
+            <div className="preview-imagens-modal-ppet">
+              {formData.imagens.map((img, index) => (
+                <div key={index} className="preview-item-ado">
+                  <img
+                    src={`http://localhost:3001/uploads/${img}`}
+                    alt={`Preview ${index}`}
+                  />
+                  <button
+                    className="btn-remover-ado"
+                    onClick={() => removerImagem(index)}
+                  >
+                    <FiX />
+                  </button>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const nova = e.target.files[0];
+                if (nova && formData.imagens.length < 5) {
+                  setFormData({ ...formData, novaImagem: nova });
+                }
+              }}
+            />
+          </>
+        )}
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const nova = e.target.files[0];
-            if (nova && formData.imagens.length < 5) {
-              setFormData({ ...formData, novaImagem: nova });
-            }
-          }}
-        />
+        {isCampoVisivel("idade") &&
+          selectList("Idade:", "idade", ["", "Filhote", "Adulto", "Idoso"])}
+
+        {isCampoVisivel("porte") &&
+          selectList("Porte:", "porte", ["", "Pequeno", "Médio", "Grande"])}
+
+        {isCampoVisivel("corPredominante") &&
+          selectList("Cor Predominante:", "corPredominante", [
+            "",
+            "Preto",
+            "Branco",
+            "Marrom",
+            "Caramelo",
+            "Cinza",
+            "Amarelo",
+            "Bege",
+            "Rajado",
+            "Listrado",
+            "Manchado",
+            "Mesclado",
+            "Outra",
+          ])}
+
+        {isCampoVisivel("corOlhos") &&
+          selectList("Cor dos Olhos:", "corOlhos", [
+            "",
+            "Castanho",
+            "Azul",
+            "Verde",
+            "Amarelo",
+            "Outra",
+          ])}
+
+        {isCampoVisivel("sexo") &&
+          selectList("Sexo:", "sexo", ["", "Macho", "Fêmea"])}
+
+        {isCampoVisivel("localDesap") && (
+          <>
+            <label>Local do Desaparecimento:</label>
+            <AsyncSelect
+              cacheOptions
+              loadOptions={loadAddressOptions}
+              defaultOptions
+              onChange={(selected) =>
+                setFormData({ ...formData, localDesap: selected.value })
+              }
+              value={
+                formData.localDesap
+                  ? { label: formData.localDesap, value: formData.localDesap }
+                  : null
+              }
+            />
+          </>
+        )}
+
+        {isCampoVisivel("referencia") && (
+          <>
+            <label>Ponto de Referência:</label>
+            <input
+              type="text"
+              name="referencia"
+              value={formData.referencia}
+              onChange={handleInput}
+            />
+          </>
+        )}
+
+        {isCampoVisivel("dataDesap") && (
+          <>
+            <label>Data do Desaparecimento:</label>
+            <input
+              type="date"
+              name="dataDesap"
+              max={new Date().toISOString().split("T")[0]}
+              value={formData.dataDesap}
+              onChange={handleInput}
+            />
+          </>
+        )}
+
+        {isCampoVisivel("periodo") &&
+          selectList("Período do Dia:", "periodo", [
+            "",
+            "Manhã",
+            "Tarde",
+            "Noite",
+          ])}
+
+        {isCampoVisivel("recompensa") && (
+          <>
+            <label>Recompensa:</label>
+            <input
+              type="text"
+              name="recompensa"
+              value={formData.recompensa}
+              onChange={handleInput}
+            />
+          </>
+        )}
+
+        {isCampoVisivel("descricaoLocal") && (
+          <>
+            <label>Descrição do Local:</label>
+            <input
+              type="text"
+              name="descricaoLocal"
+              value={formData.descricaoLocal}
+              onChange={handleInput}
+            />
+          </>
+        )}
+
+        {isCampoVisivel("localPet") &&
+          selectList("Local do Pet:", "localPet", [
+            "",
+            "Lar Temporário",
+            "Petshop",
+            "Abrigo",
+            "Canil",
+            "ONG",
+            "Outro",
+          ])}
+
+        {isCampoVisivel("telefone") && (
+          <>
+            <label>Telefone para Contato:</label>
+            <input
+              type="text"
+              name="telefone"
+              value={formData.telefone}
+              onChange={handleInput}
+            />
+          </>
+        )}
+
+        {isCampoVisivel("cuidados") &&
+          multiSelectList("Cuidados:", "cuidados", [
+            "Vacinado",
+            "Castrado",
+            "Vermifugado",
+            "Microchipado",
+            "Necessidades especiais",
+          ])}
+
+        {isCampoVisivel("temperamento") &&
+          multiSelectList("Temperamento:", "temperamento", [
+            "Dócil",
+            "Agressivo",
+            "Brincalhão",
+            "Calmo",
+            "Sociável",
+            "Tímido",
+            "Independente",
+            "Carente",
+            "Energia alta",
+            "Medroso",
+          ])}
+
+        {isCampoVisivel("adaptabilidade") &&
+          multiSelectList("Adaptabilidade:", "adaptabilidade", [
+            "Vive bem em apartamento",
+            "Vive bem em casa com quintal",
+            "Necessita de espaço amplo",
+            "Se adapta a mudanças frequentes",
+          ])}
+
+        {isCampoVisivel("socializacao") &&
+          multiSelectList("Socialização:", "socializacao", [
+            "Sociável com crianças",
+            "Sociável com gatos",
+            "Sociável com cães",
+            "Sociável com estranhos",
+            "Tolerante a visitas",
+          ])}
 
         <div className="modal-actions-modal-ppet">
           <button onClick={salvarEdicao}>Salvar</button>
