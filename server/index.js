@@ -2,8 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const { PrismaClient } = require("@prisma/client");
 
+const postInteractionsRouter = require("./routes/postInteractions");
+
 const app = express();
 const prisma = new PrismaClient();
+
+app.use(cors());
+app.use(express.json());
+app.use("/api", postInteractionsRouter);
 
 app.use(
   cors({

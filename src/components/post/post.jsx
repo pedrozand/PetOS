@@ -22,11 +22,13 @@ import { createPortal } from "react-dom";
 
 export default function Post({
   // Usuário
+  usuario,
   fotoPerfil,
   nome,
   sobrenome,
   email,
   // Post
+  idPost,
   situacao,
   nomeAnimal,
   especie,
@@ -51,6 +53,9 @@ export default function Post({
   adaptabilidade, // ADOÇÃO
   socializacao, // ADOÇÃO
   dataHoraPost,
+  curtidas = [],
+  comentarios = [],
+  compartilhamentos = [],
 }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
@@ -59,6 +64,97 @@ export default function Post({
   const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
 
   const [tempoPostagem, setTempoPostagem] = useState("");
+
+  const [curtido, setCurtido] = useState(false);
+  const [numCurtidas, setNumCurtidas] = useState(curtidas.length);
+  const [comentariosState, setComentarios] = useState(comentarios || []);
+  const [mostrarComentario, setMostrarComentario] = useState(false);
+  const [textoComentario, setTextoComentario] = useState("");
+  const [numCompartilhamentos, setNumCompartilhamentos] = useState(
+    compartilhamentos.length
+  );
+
+  useEffect(() => {
+    if (usuario) {
+      const jaCurtiu = curtidas.some((c) => c.idUser === usuario.idUser);
+      setCurtido(jaCurtiu);
+    }
+  }, [curtidas, usuario]);
+
+  const toggleCurtida = async () => {
+    if (!usuario) return alert("Você precisa estar logado para curtir.");
+
+    try {
+      if (curtido) {
+        // Descurtir (DELETE)
+        await fetch(`http://localhost:3001/api/curtidas/${idPost}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idUser: usuario.idUser }),
+        });
+        setNumCurtidas(numCurtidas - 1);
+      } else {
+        // Curtir (POST)
+        await fetch(`http://localhost:3001/api/curtidas`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idPost, idUser: usuario.idUser }),
+        });
+        setNumCurtidas(numCurtidas + 1);
+      }
+      setCurtido(!curtido);
+    } catch (error) {
+      console.error("Erro ao curtir/descurtir", error);
+    }
+  };
+
+  const enviarComentario = async () => {
+    if (!usuario) return alert("Você precisa estar logado para comentar.");
+    if (!textoComentario.trim()) return;
+
+    try {
+      const response = await fetch(`http://localhost:3001/api/comentarios`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idPost,
+          idAutor: usuario.idUser,
+          texto: textoComentario.trim(),
+          dataComentario: new Date(),
+          horaComentario: new Date().toLocaleTimeString(),
+        }),
+      });
+      const novoComentario = await response.json();
+      setComentarios([...comentarios, novoComentario]);
+      setTextoComentario("");
+      setMostrarComentario(false);
+    } catch (error) {
+      console.error("Erro ao enviar comentário", error);
+    }
+  };
+
+  const compartilharPost = async () => {
+    if (!usuario) return alert("Você precisa estar logado para compartilhar.");
+    try {
+      await fetch(`http://localhost:3001/api/compartilhamentos`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          idPost,
+          idUser: usuario.idUser,
+          dataCompartilhamento: new Date(),
+          horaCompartilhamento: new Date().toLocaleTimeString(),
+        }),
+      });
+      setNumCompartilhamentos(numCompartilhamentos + 1);
+
+      // Copiar link do post para a área de transferência
+      navigator.clipboard.writeText(`${window.location.origin}/post/${idPost}`);
+      alert("Link do post copiado para a área de transferência!");
+    } catch (error) {
+      console.error("Erro ao compartilhar post", error);
+    }
+  };
 
   function calcularTempoRelativo(dataISO) {
     const agora = new Date();
@@ -523,15 +619,38 @@ export default function Post({
           </div>
         </div>
         <div className="post-actions">
-          <button className="btn-action">
-            <FaThumbsUp className="icon" /> Curtir
+          <button onClick={toggleCurtida} className="btn-action">
+            <FaThumbsUp className="icon" /> Curtir ({numCurtidas})
           </button>
-          <button className="btn-action">
-            <FaCommentAlt className="icon" /> Comentar
+
+          <button
+            onClick={() => setMostrarComentario(!mostrarComentario)}
+            className="btn-action"
+          >
+            <FaCommentAlt className="icon" /> Comentar ({comentarios.length})
           </button>
-          <button className="btn-action">
-            <FaShare className="icon" /> Compartilhar
+
+          <button onClick={compartilharPost} className="btn-action">
+            <FaShare className="icon" /> Compartilhar ({numCompartilhamentos})
           </button>
+        </div>
+
+        {mostrarComentario && (
+          <div>
+            <textarea
+              value={textoComentario}
+              onChange={(e) => setTextoComentario(e.target.value)}
+              placeholder="Escreva seu comentário..."
+            />
+            <button onClick={enviarComentario}>Enviar</button>
+          </div>
+        )}
+
+        {/* Lista de comentários */}
+        <div className="comentarios-lista">
+          {comentariosState.map((c) => (
+            <div key={c.idComentario}> ... </div>
+          ))}
         </div>
       </div>
 

@@ -40,6 +40,11 @@ function Main() {
             <Cabecalho />
             {posts.map((p) => (
               <Post
+                usuario={usuario}
+                idPost={p.idPost}
+                curtidas={p.curtidas || []}
+                comentarios={p.comentarios || []}
+                compartilhamentos={p.compartilhamentos || []}
                 key={p.idPost}
                 fotoPerfil={
                   p.usuario.fotoPerfil
