@@ -55,7 +55,6 @@
   font-size: 15px;
 }
 
-.compartilhamentos-contador,
 .curtidas-contador {
   display: flex;
   align-items: center;
@@ -84,6 +83,17 @@
 }
 
 .comentarios-contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: #555;
+}
+
+.compartilhamentos-contador {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -127,5 +137,36 @@
 }
 
 .comentarios-contador:hover::after {
+  transform: scaleX(1);
+}
+
+.compartilhamentos-contador:hover .cor-strong-icon {
+  color: #ffb13a !important;
+}
+
+.compartilhamentos-contador:hover {
+  color: #ffb13a;
+}
+
+.compartilhamentos-contador:hover .icone-compartilhamento {
+  color: #ffb13a;
+  transform: rotate(-10deg);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.compartilhamentos-contador::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 2%;
+  width: 97%;
+  height: 2px;
+  background-color: #ffb13a;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.compartilhamentos-contador:hover::after {
   transform: scaleX(1);
 }

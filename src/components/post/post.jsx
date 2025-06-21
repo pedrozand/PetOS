@@ -643,7 +643,10 @@ export default function Post({
             {comentariosState.length === 1 ? "comentário" : "comentários"}
           </div>
 
-          <div className="compartilhamentos-contador">
+          <div
+            className="compartilhamentos-contador"
+            style={{ cursor: "pointer" }}
+          >
             <FaShare className="icone-compartilhamento" />
             <strong className="cor-strong-icon">
               {numCompartilhamentos}
