@@ -22,11 +22,21 @@ function Main() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/posts")
-      .then((r) => r.json())
-      .then(setPosts)
-      .catch(console.error);
+    async function fetchPosts() {
+      const response = await fetch("http://localhost:3001/api/posts");
+      const data = await response.json();
+      console.log("Posts recebidos:", data);
+      setPosts(data);
+    }
+
+    fetchPosts();
   }, []);
+
+  const atualizarPosts = async () => {
+    const response = await fetch("http://localhost:3001/api/posts");
+    const data = await response.json();
+    setPosts(data);
+  };
 
   return (
     <>
@@ -84,6 +94,7 @@ function Main() {
                 adaptabilidade={p.animal.adaptabilidade}
                 socializacao={p.animal.socializacao}
                 dataHoraPost={p.dataHoraPost}
+                onAtualizarPost={atualizarPosts}
               />
             ))}
           </div>

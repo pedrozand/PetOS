@@ -387,6 +387,9 @@ app.get("/api/posts", async (req, res) => {
       include: {
         usuario: true,
         animal: true,
+        curtidas: true,
+        comentarios: true,
+        compartilhamentos: true,
       },
       orderBy: {
         dataHoraPost: "desc",
@@ -456,6 +459,7 @@ app.get("/api/postagens/usuario/:id", async (req, res) => {
       include: {
         animal: true,
         usuario: true,
+        curtidas: true,
       },
     });
 

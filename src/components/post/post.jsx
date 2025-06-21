@@ -66,13 +66,17 @@ export default function Post({
   const [tempoPostagem, setTempoPostagem] = useState("");
 
   const [curtido, setCurtido] = useState(false);
-  const [numCurtidas, setNumCurtidas] = useState(curtidas.length);
   const [comentariosState, setComentarios] = useState(comentarios || []);
   const [mostrarComentario, setMostrarComentario] = useState(false);
   const [textoComentario, setTextoComentario] = useState("");
   const [numCompartilhamentos, setNumCompartilhamentos] = useState(
     compartilhamentos.length
   );
+  const [numCurtidas, setNumCurtidas] = useState(0);
+
+  useEffect(() => {
+    setNumCurtidas(curtidas?.length || 0);
+  }, [curtidas]);
 
   useEffect(() => {
     if (usuario) {
@@ -103,6 +107,7 @@ export default function Post({
         setNumCurtidas(numCurtidas + 1);
       }
       setCurtido(!curtido);
+      onAtualizarPost();
     } catch (error) {
       console.error("Erro ao curtir/descurtir", error);
     }
@@ -618,20 +623,57 @@ export default function Post({
               )}
           </div>
         </div>
+
+        <div className="interacoes-contador">
+          <div className="curtidas-contador">
+            <FaThumbsUp className="icone-curtida" />
+            <strong>{numCurtidas}</strong>{" "}
+            {numCurtidas === 1 ? "curtida" : "curtidas"}
+          </div>
+
+          <div
+            className="comentarios-contador"
+            onClick={() => setMostrarComentario((prev) => !prev)}
+            style={{ cursor: "pointer" }}
+          >
+            <FaCommentAlt className="icone-comentario" />
+            <strong className="cor-strong-icon">
+              {comentariosState.length}
+            </strong>{" "}
+            {comentariosState.length === 1 ? "comentário" : "comentários"}
+          </div>
+
+          <div className="compartilhamentos-contador">
+            <FaShare className="icone-compartilhamento" />
+            <strong className="cor-strong-icon">
+              {numCompartilhamentos}
+            </strong>{" "}
+            {numCompartilhamentos === 1
+              ? "compartilhamento"
+              : "compartilhamentos"}
+          </div>
+        </div>
+
         <div className="post-actions">
-          <button onClick={toggleCurtida} className="btn-action">
-            <FaThumbsUp className="icon" /> Curtir ({numCurtidas})
+          <button
+            onClick={toggleCurtida}
+            className={`btn-action ${curtido ? "ativo" : ""}`}
+          >
+            <FaThumbsUp className="icon" />
+            Curtir
           </button>
 
           <button
             onClick={() => setMostrarComentario(!mostrarComentario)}
             className="btn-action"
           >
-            <FaCommentAlt className="icon" /> Comentar ({comentarios.length})
+            <FaCommentAlt className="icon" />
+            Comentar
           </button>
 
           <button onClick={compartilharPost} className="btn-action">
-            <FaShare className="icon" /> Compartilhar ({numCompartilhamentos})
+            <FaShare className="icon" />
+            Compartilhar
           </button>
         </div>
 
@@ -646,7 +688,6 @@ export default function Post({
           </div>
         )}
 
-        {/* Lista de comentários */}
         <div className="comentarios-lista">
           {comentariosState.map((c) => (
             <div key={c.idComentario}> ... </div>

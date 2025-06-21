@@ -35,3 +35,97 @@
 .post-actions button:hover {
   color: #ffb13a;
 }
+
+.btn-action.ativo {
+  color: #ffb13a;
+  transform: scale(1.05);
+}
+
+.btn-action.ativo .icon {
+  color: #ffb13a;
+  transform: rotate(-10deg);
+}
+
+.interacoes-contador {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+  color: #555;
+  font-size: 15px;
+}
+
+.compartilhamentos-contador,
+.curtidas-contador {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icone-curtida {
+  color: #ff3131;
+  margin-bottom: 3px;
+}
+
+.icone-comentario {
+  color: #555;
+  margin-left: 170px;
+  font-size: 14px;
+  margin-bottom: -1px;
+}
+
+.icone-compartilhamento {
+  color: #555;
+}
+
+.cor-strong-icon {
+  color: #555 !important;
+  font-weight: normal !important;
+}
+
+.comentarios-contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: #555;
+}
+
+.comentarios-contador:hover {
+  color: #ffb13a;
+}
+
+.cor-strong-icon:hover {
+  color: #ffb13a !important;
+  font-weight: normal !important;
+}
+
+.comentarios-contador:hover .cor-strong-icon {
+  color: #ffb13a !important;
+}
+
+.comentarios-contador:hover .icone-comentario {
+  color: #ffb13a;
+  transform: rotate(-10deg);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.comentarios-contador::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 55%;
+  width: 45%;
+  height: 2px;
+  background-color: #ffb13a;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.comentarios-contador:hover::after {
+  transform: scaleX(1);
+}
