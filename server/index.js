@@ -388,8 +388,12 @@ app.get("/api/posts", async (req, res) => {
         usuario: true,
         animal: true,
         curtidas: true,
-        comentarios: true,
         compartilhamentos: true,
+        comentarios: {
+          include: {
+            autor: true,
+          },
+        },
       },
       orderBy: {
         dataHoraPost: "desc",

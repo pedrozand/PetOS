@@ -4,7 +4,8 @@ import "./CSS/botoes-intera.css";
 import "./CSS/alert-tel.css";
 import "./CSS/img-modal.css";
 import "./CSS/animal-info.css";
-import { useState, useEffect } from "react";
+import "./CSS/comentarios.css";
+import { useState, useEffect, useRef } from "react";
 import {
   FaWhatsapp,
   FaRegCopy,
@@ -68,11 +69,25 @@ export default function Post({
   const [curtido, setCurtido] = useState(false);
   const [comentariosState, setComentarios] = useState(comentarios || []);
   const [mostrarComentario, setMostrarComentario] = useState(false);
+  const [mostrarTodosComentarios, setMostrarTodosComentarios] = useState(false);
   const [textoComentario, setTextoComentario] = useState("");
   const [numCompartilhamentos, setNumCompartilhamentos] = useState(
     compartilhamentos.length
   );
   const [numCurtidas, setNumCurtidas] = useState(0);
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    console.log("comentariosState:", comentariosState);
+  }, [comentariosState]);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + "px";
+    }
+  }, [textoComentario]);
 
   useEffect(() => {
     setNumCurtidas(curtidas?.length || 0);
@@ -681,20 +696,69 @@ export default function Post({
         </div>
 
         {mostrarComentario && (
-          <div>
-            <textarea
-              value={textoComentario}
-              onChange={(e) => setTextoComentario(e.target.value)}
-              placeholder="Escreva seu comentário..."
+          <div className="comentario-input-container">
+            <img
+              src={fotoPerfil}
+              alt="Perfil"
+              className="foto-perfil-comentario"
             />
-            <button onClick={enviarComentario}>Enviar</button>
+            <div className="comentario-input-wrapper">
+              <textarea
+                ref={textareaRef}
+                className="comentario-textarea"
+                value={textoComentario}
+                onChange={(e) => setTextoComentario(e.target.value)}
+                placeholder="Adicionar comentário"
+                rows={1}
+              />
+              {textoComentario.trim() !== "" && (
+                <button
+                  className="comentario-enviar-btn"
+                  onClick={enviarComentario}
+                >
+                  Comentar
+                </button>
+              )}
+            </div>
           </div>
         )}
 
         <div className="comentarios-lista">
-          {comentariosState.map((c) => (
-            <div key={c.idComentario}> ... </div>
-          ))}
+          {comentariosState
+            .slice(0, mostrarTodosComentarios ? comentariosState.length : 3)
+            .map((comentario) => (
+              <div key={comentario.idComentario} className="comentario-item">
+                <img
+                  className="foto-perfil-comentario-exp"
+                  src={
+                    comentario.autor?.fotoPerfil
+                      ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
+                      : "https://via.placeholder.com/40"
+                  }
+                  alt="Foto de perfil"
+                />
+                <div className="comentario-conteudo">
+                  <div className="comentario-cabecalho">
+                    <strong>
+                      {comentario.autor?.nome} {comentario.autor?.sobrenome}
+                    </strong>{" "}
+                    <span className="tempo-comentario">
+                      · {calcularTempoRelativo(comentario.dataComentario)}
+                    </span>
+                  </div>
+                  <div className="comentario-texto">{comentario.texto}</div>
+                </div>
+              </div>
+            ))}
+
+          {comentariosState.length > 3 && !mostrarTodosComentarios && (
+            <button
+              className="btn-carregar-mais"
+              onClick={() => setMostrarTodosComentarios(true)}
+            >
+              Carregar mais comentários
+            </button>
+          )}
         </div>
       </div>
 
