@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
+import Swal from "sweetalert2";
+
 import NavBar from "../../components/navbar/navbar.jsx";
+import Footer from "../../components/footer/footer.jsx";
 import Post from "../../components/post/post.jsx";
 import EditarModal from "./EditarModal.jsx";
 import ImagemDefault from "../../assets/img/perfil/img-default.png";
@@ -46,6 +49,67 @@ const PainelDoPet = () => {
     );
     setPosts(novosPosts);
     fecharModal();
+  };
+
+  const alterarAtivoDoPost = async (idPost, novoStatus) => {
+    const resultado = await Swal.fire({
+      title: novoStatus ? "Ativar post?" : "Inativar post?",
+      text: `Você tem certeza que deseja ${
+        novoStatus ? "ativar" : "inativar"
+      } este post? Ele será ${
+        novoStatus ? "repostado na" : "retirado da"
+      } área de "Achados e Perdidos".`,
+      icon: "warning",
+      iconColor: "#ff3131",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (resultado.isConfirmed) {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/postagem/${idPost}/ativar`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ ativo: novoStatus }),
+          }
+        );
+
+        if (response.ok) {
+          const atualizado = await response.json();
+
+          setPosts((prev) =>
+            prev.map((p) => (p.idPost === atualizado.idPost ? atualizado : p))
+          );
+
+          Swal.fire({
+            title: "Sucesso!",
+            text: `Post ${novoStatus ? "ativado" : "inativado"} com sucesso.`,
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false,
+          });
+
+          // Recarrega a tela
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
+      } catch (err) {
+        console.error("Erro ao alterar status do post:", err);
+        Swal.fire(
+          "Erro!",
+          "Não foi possível alterar o status do post.",
+          "error"
+        );
+      }
+    }
   };
 
   const abrirModalEdicao = (post) => {
@@ -111,12 +175,23 @@ const PainelDoPet = () => {
 
                 <div className="painel-lateral-ppet">
                   <p>Ações rápidas</p>
-                  <button onClick={() => abrirModalEdicao(p)}>
-                    Editar Anúncio
-                  </button>
-                  <button>Inativar Anúncio</button>
+                  <div className="botoes-anuncio-container-ppet">
+                    <div className="botoes-superiores-ppet">
+                      <button onClick={() => abrirModalEdicao(p)}>
+                        Editar Anúncio
+                      </button>
+                      <button
+                        onClick={() => alterarAtivoDoPost(p.idPost, !p.ativo)}
+                      >
+                        {p.ativo ? "Inativar Anúncio" : "Ativar Anúncio"}
+                      </button>
+                    </div>
 
-                  {/* Exibir contadores aqui, abaixo do botão */}
+                    <button className="botao-atualizar-status-ppet botom-status-ppet">
+                      Atualizar Status
+                    </button>
+                  </div>
+
                   <div className="interacoes-resumo-ppet">
                     <span
                       onClick={() =>
@@ -219,6 +294,9 @@ const PainelDoPet = () => {
             />
           )}
         </div>
+      </div>
+      <div className="footer-container-painel-user-ppet">
+        <Footer />
       </div>
     </>
   );

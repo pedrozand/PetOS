@@ -325,3 +325,60 @@
   font-size: 18px;
   color: #ff3131;
 }
+
+.footer-container-painel-user-ppet {
+  width: 100%;
+  background-color: #f5f5f5;
+  text-align: center;
+  margin-top: -4000px;
+}
+
+.botoes-anuncio-container-ppet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.botoes-superiores-ppet {
+  display: flex;
+  gap: 10px;
+}
+
+.botoes-superiores-ppet button {
+  background: linear-gradient(to right, #ff3131, #ff5252);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 280px;
+}
+
+.botao-atualizar-status-ppet {
+  background-color: #ff3131;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 570px;
+}
+
+.botoes-superiores-ppet button:hover,
+.botao-atualizar-status-ppet:hover {
+  background: linear-gradient(to right, #ff4949, #ff5252);
+}
+
+.botom-status-ppet {
+  background: linear-gradient(to right, #ff6969, #ffd65b);
+}
+
+.botom-status-ppet:hover {
+  background: linear-gradient(to right, #ff8686, #ffdd79);
+}

@@ -389,6 +389,7 @@ app.post("/api/posts", async (req, res) => {
 app.get("/api/posts", async (req, res) => {
   try {
     const posts = await prisma.postagem.findMany({
+      where: { ativo: true },
       include: {
         usuario: true,
         animal: true,
@@ -659,3 +660,23 @@ app.put(
     }
   }
 );
+
+// ----------------------------------------------------------------------
+
+// Ativar ou inativar um post (toggle)
+app.put("/api/postagem/:idPost/ativar", async (req, res) => {
+  const { idPost } = req.params;
+  const { ativo } = req.body;
+
+  try {
+    const postagemAtualizada = await prisma.postagem.update({
+      where: { idPost: Number(idPost) },
+      data: { ativo: Boolean(ativo) },
+    });
+
+    res.json(postagemAtualizada);
+  } catch (error) {
+    console.error("Erro ao atualizar status do post:", error);
+    res.status(500).json({ erro: "Erro ao atualizar status do post." });
+  }
+});

@@ -63,6 +63,8 @@ model Postagem {
   recompensa           String
   descricaoLocal       String?
   localPet             String?
+  ativo                Boolean @default(true)
+  status               Boolean @default(true)
 
   animal               Animal               @relation(fields: [idAnimal], references: [idAnimal])
   usuario              Usuario              @relation(fields: [idUser], references: [idUser])
