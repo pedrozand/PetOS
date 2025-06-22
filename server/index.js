@@ -456,6 +456,69 @@ app.get("/api/posts", async (req, res) => {
   }
 });
 
+// Rota para buscar posts do usuário, incluindo tudo necessário
+app.get("/api/postagens/usuario/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const postagens = await prisma.postagem.findMany({
+      where: { idUser: Number(id) },
+      include: {
+        animal: true,
+        usuario: true,
+        curtidas: {
+          include: { usuario: true },
+        },
+        compartilhamentos: {
+          include: { usuario: true },
+        },
+        comentarios: {
+          include: { autor: true },
+        },
+      },
+    });
+
+    const postagensTratadas = postagens.map((post) => {
+      let imagens = [];
+      let cuidados = [];
+      let temperamento = [];
+      let adaptabilidade = [];
+      let socializacao = [];
+
+      try {
+        imagens = JSON.parse(post.animal.imagensAnimal || "[]");
+      } catch (e) {
+        console.error("Erro ao converter imagensAnimal:", e.message);
+      }
+
+      try {
+        cuidados = JSON.parse(post.animal.cuidados || "[]");
+        temperamento = JSON.parse(post.animal.temperamento || "[]");
+        adaptabilidade = JSON.parse(post.animal.adaptabilidade || "[]");
+        socializacao = JSON.parse(post.animal.socializacao || "[]");
+      } catch (e) {
+        console.error("Erro ao converter características:", e.message);
+      }
+
+      return {
+        ...post,
+        animal: {
+          ...post.animal,
+          imagensAnimal: imagens,
+          cuidados,
+          temperamento,
+          adaptabilidade,
+          socializacao,
+        },
+      };
+    });
+
+    res.json(postagensTratadas);
+  } catch (error) {
+    console.error("Erro ao buscar postagens por usuário:", error);
+    res.status(500).json({ erro: "Erro ao buscar postagens" });
+  }
+});
+
 // Rota para uplaodo das fotos dos animais
 app.post("/api/upload/fotos", upload.array("fotos", 5), async (req, res) => {
   try {
