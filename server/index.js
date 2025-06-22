@@ -78,7 +78,12 @@ app.post("/api/login", async (req, res) => {
     res.json({
       idUser: usuario.idUser,
       nome: usuario.nome,
+      sobrenome: usuario.sobrenome,
       email: usuario.email,
+      telefone: usuario.telefone,
+      fotoPerfil: usuario.fotoPerfil,
+      cep: usuario.cep,
+      numeroCasa: usuario.numeroCasa,
     });
   } catch (error) {
     res
