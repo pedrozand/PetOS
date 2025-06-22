@@ -392,8 +392,16 @@ app.get("/api/posts", async (req, res) => {
       include: {
         usuario: true,
         animal: true,
-        curtidas: true,
-        compartilhamentos: true,
+        curtidas: {
+          include: {
+            usuario: true,
+          },
+        },
+        compartilhamentos: {
+          include: {
+            usuario: true,
+          },
+        },
         comentarios: {
           include: {
             autor: true,

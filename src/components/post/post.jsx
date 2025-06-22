@@ -87,6 +87,48 @@ export default function Post({
   );
   const [numCurtidas, setNumCurtidas] = useState(0);
   const textareaRef = useRef(null);
+  const [mostrarModalCurtidas, setMostrarModalCurtidas] = useState(false);
+  const [mostrarModalCompartilhamentos, setMostrarModalCompartilhamentos] =
+    useState(false);
+  const [usuariosModal, setUsuariosModal] = useState([]);
+
+  const abrirModalCurtidas = () => {
+    if (!usuario)
+      return Swal.fire({
+        title: "Atenção!",
+        text: "Você precisa estar logado para realizar essa ação!",
+        icon: "warning",
+        confirmButtonText: "Ir para Login",
+        iconColor: "#ff3131",
+        confirmButtonColor: "#ff3131",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    const usuariosCurtiram = curtidas.map((c) => c.usuario);
+    setUsuariosModal(usuariosCurtiram);
+    setMostrarModalCurtidas(true);
+  };
+
+  const abrirModalCompartilhamentos = () => {
+    if (!usuario)
+      return Swal.fire({
+        title: "Atenção!",
+        text: "Você precisa estar logado para realizar essa ação!",
+        icon: "warning",
+        confirmButtonText: "Ir para Login",
+        iconColor: "#ff3131",
+        confirmButtonColor: "#ff3131",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    const usuariosCompartilharam = compartilhamentos.map((c) => c.usuario);
+    setUsuariosModal(usuariosCompartilharam);
+    setMostrarModalCompartilhamentos(true);
+  };
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -692,7 +734,11 @@ export default function Post({
         </div>
 
         <div className="interacoes-contador">
-          <div className="curtidas-contador" style={{ cursor: "pointer" }}>
+          <div
+            className="curtidas-contador"
+            style={{ cursor: "pointer" }}
+            onClick={abrirModalCurtidas}
+          >
             <FaThumbsUp className="icone-curtida" />
             <strong className="cor-strong-icon-curt">{numCurtidas}</strong>{" "}
             {numCurtidas === 1 ? "curtida" : "curtidas"}
@@ -712,6 +758,7 @@ export default function Post({
 
           <div
             className="compartilhamentos-contador"
+            onClick={abrirModalCompartilhamentos}
             style={{ cursor: "pointer" }}
           >
             <FaShare className="icone-compartilhamento" />
@@ -887,6 +934,56 @@ export default function Post({
           </div>,
           document.getElementById("modal-root")
         )}
+
+      {(mostrarModalCurtidas || mostrarModalCompartilhamentos) && (
+        <div className="modal-overlay-curt-comp">
+          <div className="modal-curtidas-curt-comp">
+            <h3>
+              {mostrarModalCurtidas
+                ? "Usuários que curtiram"
+                : "Usuários que compartilharam"}
+            </h3>
+            <div className="lista-usuarios-curt-comp">
+              {(mostrarModalCurtidas ? curtidas : compartilhamentos).map(
+                (item, index) => (
+                  <div key={index} className="usuario-item-curt-comp">
+                    <img
+                      className="foto-perfil-curt-comp"
+                      src={
+                        item.usuario?.fotoPerfil
+                          ? `http://localhost:3001/uploads/${item.usuario.fotoPerfil}`
+                          : ImagemDefault
+                      }
+                      alt="Foto de perfil"
+                    />
+                    <div className="usuario-info-curt-comp">
+                      <strong>
+                        {item.usuario?.nome} {item.usuario?.sobrenome}
+                      </strong>
+                      <span className="tempo-comentario">
+                        {mostrarModalCurtidas
+                          ? `· ${calcularTempoRelativo(item.dataCurtida)}`
+                          : `· ${calcularTempoRelativo(
+                              item.dataCompartilhamento
+                            )}`}
+                      </span>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+            <button
+              className="btn-fechar-modal-curt-comp"
+              onClick={() => {
+                setMostrarModalCurtidas(false);
+                setMostrarModalCompartilhamentos(false);
+              }}
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
