@@ -93,6 +93,7 @@ function Main() {
                 temperamento={p.animal.temperamento}
                 adaptabilidade={p.animal.adaptabilidade}
                 socializacao={p.animal.socializacao}
+                status={p.status}
                 dataHoraPost={p.dataHoraPost}
                 onAtualizarPost={atualizarPosts}
               />

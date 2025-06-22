@@ -5,8 +5,12 @@ import Swal from "sweetalert2";
 import NavBar from "../../components/navbar/navbar.jsx";
 import Footer from "../../components/footer/footer.jsx";
 import Post from "../../components/post/post.jsx";
+
 import EditarModal from "./EditarModal.jsx";
+import AtualizarStatusModal from "./AtualizarStatusModal.jsx";
+
 import ImagemDefault from "../../assets/img/perfil/img-default.png";
+
 import "./CSS/paineldoPet.css";
 
 import { FaThumbsUp, FaCommentAlt, FaShare } from "react-icons/fa";
@@ -21,6 +25,14 @@ const PainelDoPet = () => {
   const [usuariosModal, setUsuariosModal] = useState([]);
   const [mostrarModalInteracoes, setMostrarModalInteracoes] = useState(false);
   const [tituloModal, setTituloModal] = useState("");
+
+  const [mostrarModalStatus, setMostrarModalStatus] = useState(false);
+  const [postParaAtualizarStatus, setPostParaAtualizarStatus] = useState(null);
+
+  const abrirModalStatus = (post) => {
+    setPostParaAtualizarStatus(post);
+    setMostrarModalStatus(true);
+  };
 
   useEffect(() => {
     if (loading) return;
@@ -187,7 +199,10 @@ const PainelDoPet = () => {
                       </button>
                     </div>
 
-                    <button className="botao-atualizar-status-ppet botom-status-ppet">
+                    <button
+                      className="botao-atualizar-status-ppet botom-status-ppet"
+                      onClick={() => abrirModalStatus(p)}
+                    >
                       Atualizar Status
                     </button>
                   </div>
@@ -276,6 +291,14 @@ const PainelDoPet = () => {
                 </div>
               </div>
             ))
+          )}
+
+          {mostrarModalStatus && postParaAtualizarStatus && (
+            <AtualizarStatusModal
+              post={postParaAtualizarStatus}
+              onClose={() => setMostrarModalStatus(false)}
+              onUpdate={atualizarPost}
+            />
           )}
 
           {mostrarModalInteracoes && (

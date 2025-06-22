@@ -105,6 +105,51 @@
   z-index: 2;
 }
 
+.tag-encontrado {
+  position: absolute;
+  margin-top: 15px;
+  top: 10px;
+  right: 140px;
+  background: linear-gradient(to top, #13e600, #10bb00); /* Verde */
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.tag-adotado {
+  position: absolute;
+  margin-top: 15px;
+  top: 10px;
+  right: 185px;
+  background: linear-gradient(to top, #13e600, #10bb00); /* Verde */
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.tag-tutorEncontrado {
+  position: absolute;
+  margin-top: 15px;
+  top: 10px;
+  right: 230px;
+  background: linear-gradient(to top, #13e600, #10bb00); /* Verde */
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
 .post-actions {
   display: flex;
   justify-content: space-around;

@@ -65,6 +65,8 @@ model Postagem {
   localPet             String?
   ativo                Boolean @default(true)
   status               Boolean @default(true)
+  statusTexto          String?              
+  statusAtualizadoEm   DateTime?            
 
   animal               Animal               @relation(fields: [idAnimal], references: [idAnimal])
   usuario              Usuario              @relation(fields: [idUser], references: [idUser])

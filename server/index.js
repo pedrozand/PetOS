@@ -679,3 +679,40 @@ app.put("/api/postagem/:idPost/ativar", async (req, res) => {
     res.status(500).json({ erro: "Erro ao atualizar status do post." });
   }
 });
+
+app.put("/api/postagem/:idPost/status", async (req, res) => {
+  const { idPost } = req.params;
+  const { statusTexto } = req.body;
+
+  try {
+    const postagem = await prisma.postagem.findUnique({
+      where: { idPost: Number(idPost) },
+    });
+
+    if (!postagem) {
+      return res.status(404).json({ erro: "Postagem não encontrada" });
+    }
+
+    // Define o texto final de status com base na situação
+    let textoPadrao = "Pet localizado";
+    if (postagem.situacao === "Perdido") textoPadrao = "Pet foi encontrado";
+    else if (postagem.situacao === "Procurando Tutor")
+      textoPadrao = "Tutor encontrou o pet";
+    else if (postagem.situacao === "Adocao") textoPadrao = "Pet foi adotado";
+
+    const atualizada = await prisma.postagem.update({
+      where: { idPost: Number(idPost) },
+      data: {
+        status: true,
+        ativo: false, // tira da Main
+        statusTexto: statusTexto || textoPadrao,
+        statusAtualizadoEm: new Date(),
+      },
+    });
+
+    res.json(atualizada);
+  } catch (err) {
+    console.error("Erro ao atualizar status:", err);
+    res.status(500).json({ erro: "Erro ao atualizar status do post." });
+  }
+});

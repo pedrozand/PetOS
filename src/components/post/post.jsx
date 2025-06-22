@@ -63,6 +63,7 @@ export default function Post({
   adaptabilidade, // ADOÇÃO
   socializacao, // ADOÇÃO
   dataHoraPost,
+  status,
   curtidas = [],
   comentarios = [],
   compartilhamentos = [],
@@ -335,6 +336,19 @@ export default function Post({
     }
   }
 
+  function getStatusResolvidoTag(situacao) {
+    switch (situacao) {
+      case "Perdido":
+        return { className: "tag-encontrado", label: "Encontrado" };
+      case "Procurando Tutor":
+        return { className: "tag-tutorEncontrado", label: "Tutor Encontrado" };
+      case "Adocao":
+        return { className: "tag-adotado", label: "Adotado" };
+      default:
+        return null;
+    }
+  }
+
   useEffect(() => {
     if (dataDesap) {
       const calcularTempoDecorrido = () => {
@@ -592,9 +606,20 @@ export default function Post({
         )}
 
         <div className="post-image-container">
+          {/* Tag principal de situação */}
           <span className={getTagClass(situacao)}>
             {getSituacaoLabel(situacao)}
           </span>
+
+          {/* Tag adicional de status resolvido (se status === false) */}
+          {status === false &&
+            (() => {
+              const statusTag = getStatusResolvidoTag(situacao);
+              return statusTag ? (
+                <span className={statusTag.className}>{statusTag.label}</span>
+              ) : null;
+            })()}
+
           <button className="nav-button left" onClick={imagemAnterior}>
             <FaChevronLeft />
           </button>
@@ -604,7 +629,7 @@ export default function Post({
               className="post-image"
               src={imgPet[imagemAtual]}
               alt="Imagem do animal"
-              onClick={() => setImagemExpandida(true)} // Abre o modal ao clicar
+              onClick={() => setImagemExpandida(true)}
             />
           )}
 
