@@ -7,9 +7,7 @@ const postInteractionsRouter = require("./routes/postInteractions");
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());
 app.use(express.json());
-app.use("/api", postInteractionsRouter);
 
 app.use(
   cors({
@@ -18,6 +16,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use("/api", postInteractionsRouter);
 
 // Rota de teste
 app.get("/", (req, res) => {

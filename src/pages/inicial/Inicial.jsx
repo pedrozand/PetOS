@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Carrosel from "../../components/carrosel/carrosel.jsx";
 import Perdidos from "../../components/cards/perdidos/perdid.jsx";
 import NavBar from "../../components/navbar/navbar.jsx";
@@ -40,6 +40,41 @@ import meuVideo3 from "../../assets/video/divulga-2-op.mp4";
 import meuVideo4 from "../../assets/video/divulga-3-op.mp4";
 
 function Inicial() {
+  const [postsPerdidos, setPostsPerdidos] = useState([]);
+
+  useEffect(() => {
+    const fetchPostsPerdidos = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/posts");
+        const data = await response.json();
+
+        const perdidosFiltrados = data
+          .filter((post) => post.situacao === "Perdido" && post.ativo)
+          .sort((a, b) => new Date(b.dataHoraPost) - new Date(a.dataHoraPost));
+
+        setPostsPerdidos(perdidosFiltrados);
+      } catch (err) {
+        console.error("Erro ao buscar posts perdidos:", err);
+      }
+    };
+
+    fetchPostsPerdidos();
+  }, []);
+
+  const calcularTempoRelativo = (data) => {
+    const agora = new Date();
+    const dataPost = new Date(data);
+    const diffMs = agora - dataPost;
+    const minutos = Math.floor(diffMs / (1000 * 60));
+    const horas = Math.floor(minutos / 60);
+    const dias = Math.floor(horas / 24);
+
+    if (dias > 0) return `${dias} dia${dias > 1 ? "s" : ""} atrás`;
+    if (horas > 0) return `${horas} hora${horas > 1 ? "s" : ""} atrás`;
+    if (minutos > 0) return `${minutos} minuto${minutos > 1 ? "s" : ""} atrás`;
+    return "Agora mesmo";
+  };
+
   const dadosFAQ = [
     {
       pergunta: (
@@ -191,7 +226,13 @@ function Inicial() {
         <div className="perdid-container">
           <div className="perdid-header">
             <div>
-              <h2>Achados e Perdidos</h2>
+              <h2>
+                Achados e Perdidos{" "}
+                <span className="contador-perdidos">
+                  Total de <b>{postsPerdidos.length}</b> Anúncios de Pets
+                  perdidos!
+                </span>
+              </h2>
               <p>Pets anunciados em Bragança Paulista - SP.</p>
             </div>
             <Link to="/main">
@@ -202,30 +243,20 @@ function Inicial() {
           </div>
 
           <div className="cartoes-perdid-container">
-            <Perdidos
-              imgPet={imgPet1}
-              nome={"Antônia Tomtom"}
-              local={"Penha, São Paulo"}
-              hora={"9 horas atrás"}
-            />
-            <Perdidos
-              imgPet={imgPet1}
-              nome={"Dante"}
-              local={"City Bussocaba, Osasco"}
-              hora={"1 dia atrás"}
-            />
-            <Perdidos
-              imgPet={imgPet1}
-              nome={"Fiona"}
-              local={"Praça Londres/ Pão de Açúcar"}
-              hora={"2 dias atrás"}
-            />
-            <Perdidos
-              imgPet={imgPet1}
-              nome={"Sí"}
-              local={"Visto perto da Praça XYZ"}
-              hora={"3 dias atrás"}
-            />
+            {postsPerdidos.slice(0, 4).map((p) => (
+              <Perdidos
+                key={p.idPost}
+                imgPet={
+                  Array.isArray(p.animal?.imagensAnimal) &&
+                  p.animal.imagensAnimal.length > 0
+                    ? `http://localhost:3001/uploads/${p.animal.imagensAnimal[0]}`
+                    : "https://via.placeholder.com/150"
+                }
+                nome={p.nomeAnimal}
+                local={p.localDesap || p.endereco || "Local não informado"}
+                hora={calcularTempoRelativo(p.dataHoraPost)}
+              />
+            ))}
           </div>
         </div>
 

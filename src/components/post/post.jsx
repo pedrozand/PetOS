@@ -92,6 +92,7 @@ export default function Post({
   const [mostrarModalCompartilhamentos, setMostrarModalCompartilhamentos] =
     useState(false);
   const [usuariosModal, setUsuariosModal] = useState([]);
+  const [curtidasState, setCurtidasState] = useState(curtidas || []);
 
   const abrirModalCurtidas = () => {
     if (!usuario)
@@ -140,15 +141,16 @@ export default function Post({
   }, [textoComentario]);
 
   useEffect(() => {
-    setNumCurtidas(curtidas?.length || 0);
-  }, [curtidas]);
-
-  useEffect(() => {
-    if (usuario) {
+    if (usuario && curtidas) {
       const jaCurtiu = curtidas.some((c) => c.idUser === usuario.idUser);
       setCurtido(jaCurtiu);
+      setNumCurtidas(curtidas.length);
     }
   }, [curtidas, usuario]);
+
+  useEffect(() => {
+    setCurtidasState(curtidas || []);
+  }, [curtidas]);
 
   const toggleCurtida = async () => {
     if (!usuario)
@@ -173,7 +175,13 @@ export default function Post({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idUser: usuario.idUser }),
         });
-        setNumCurtidas(numCurtidas - 1);
+
+        // Atualiza estado local
+        setCurtidasState((prev) =>
+          prev.filter((c) => c.idUser !== usuario.idUser)
+        );
+        setNumCurtidas((prev) => prev - 1);
+        setCurtido(false);
       } else {
         // Curtir (POST)
         await fetch(`http://localhost:3001/api/curtidas`, {
@@ -181,10 +189,13 @@ export default function Post({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idPost, idUser: usuario.idUser }),
         });
-        setNumCurtidas(numCurtidas + 1);
+
+        // Atualiza estado local
+        setCurtidasState((prev) => [...prev, { idUser: usuario.idUser }]);
+        setNumCurtidas((prev) => prev + 1);
+        setCurtido(true);
       }
-      setCurtido(!curtido);
-      onAtualizarPost();
+      // Opcional: onAtualizarPost() se quiser forçar atualização do pai
     } catch (error) {
       console.error("Erro ao curtir/descurtir", error);
     }

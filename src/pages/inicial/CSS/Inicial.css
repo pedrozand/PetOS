@@ -179,3 +179,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.contador-perdidos {
+  font-size: 20px;
+  font-weight: normal;
+  color: #555;
+  margin-left: 10px;
+}
+
+.contador-perdidos b {
+  color: #ff3131;
+  border: 2px solid;
+  padding: 0px 5px 0px 5px;
+  border-radius: 10px;
+}
