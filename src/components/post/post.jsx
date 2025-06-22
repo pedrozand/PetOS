@@ -92,7 +92,6 @@ export default function Post({
   const [mostrarModalCompartilhamentos, setMostrarModalCompartilhamentos] =
     useState(false);
   const [usuariosModal, setUsuariosModal] = useState([]);
-  const [curtidasState, setCurtidasState] = useState(curtidas || []);
 
   const abrirModalCurtidas = () => {
     if (!usuario)
@@ -141,16 +140,15 @@ export default function Post({
   }, [textoComentario]);
 
   useEffect(() => {
-    if (usuario && curtidas) {
-      const jaCurtiu = curtidas.some((c) => c.idUser === usuario.idUser);
-      setCurtido(jaCurtiu);
-      setNumCurtidas(curtidas.length);
-    }
-  }, [curtidas, usuario]);
+    setNumCurtidas(curtidas?.length || 0);
+  }, [curtidas]);
 
   useEffect(() => {
-    setCurtidasState(curtidas || []);
-  }, [curtidas]);
+    if (usuario) {
+      const jaCurtiu = curtidas.some((c) => c.idUser === usuario.idUser);
+      setCurtido(jaCurtiu);
+    }
+  }, [curtidas, usuario]);
 
   const toggleCurtida = async () => {
     if (!usuario)
@@ -175,13 +173,7 @@ export default function Post({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idUser: usuario.idUser }),
         });
-
-        // Atualiza estado local
-        setCurtidasState((prev) =>
-          prev.filter((c) => c.idUser !== usuario.idUser)
-        );
-        setNumCurtidas((prev) => prev - 1);
-        setCurtido(false);
+        setNumCurtidas(numCurtidas - 1);
       } else {
         // Curtir (POST)
         await fetch(`http://localhost:3001/api/curtidas`, {
@@ -189,13 +181,10 @@ export default function Post({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idPost, idUser: usuario.idUser }),
         });
-
-        // Atualiza estado local
-        setCurtidasState((prev) => [...prev, { idUser: usuario.idUser }]);
-        setNumCurtidas((prev) => prev + 1);
-        setCurtido(true);
+        setNumCurtidas(numCurtidas + 1);
       }
-      // Opcional: onAtualizarPost() se quiser forçar atualização do pai
+      setCurtido(!curtido);
+      onAtualizarPost();
     } catch (error) {
       console.error("Erro ao curtir/descurtir", error);
     }
