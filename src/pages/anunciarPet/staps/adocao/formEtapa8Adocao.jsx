@@ -183,6 +183,7 @@ export default function FormEtapa8Adocao({ onProximo, onVoltar, totalEtapas }) {
               adaptabilidade={formData.caracteristicas?.adaptabilidade || []}
               socializacao={formData.caracteristicas?.socializacao || []}
               onMostrarContato={() => setMostrarModal(true)}
+              mostrarInteracoes={false}
             />
           </div>
         </div>

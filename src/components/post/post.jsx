@@ -66,6 +66,7 @@ export default function Post({
   curtidas = [],
   comentarios = [],
   compartilhamentos = [],
+  mostrarInteracoes = true,
 }) {
   const [mostrarModal, setMostrarModal] = useState(false);
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
@@ -733,146 +734,156 @@ export default function Post({
           </div>
         </div>
 
-        <div className="interacoes-contador">
-          <div
-            className="curtidas-contador"
-            style={{ cursor: "pointer" }}
-            onClick={abrirModalCurtidas}
-          >
-            <FaThumbsUp className="icone-curtida" />
-            <strong className="cor-strong-icon-curt">{numCurtidas}</strong>{" "}
-            {numCurtidas === 1 ? "curtida" : "curtidas"}
-          </div>
-
-          <div
-            className="comentarios-contador"
-            onClick={() => setMostrarComentario((prev) => !prev)}
-            style={{ cursor: "pointer" }}
-          >
-            <FaCommentAlt className="icone-comentario" />
-            <strong className="cor-strong-icon">
-              {comentariosState.length}
-            </strong>{" "}
-            {comentariosState.length === 1 ? "comentário" : "comentários"}
-          </div>
-
-          <div
-            className="compartilhamentos-contador"
-            onClick={abrirModalCompartilhamentos}
-            style={{ cursor: "pointer" }}
-          >
-            <FaShare className="icone-compartilhamento" />
-            <strong className="cor-strong-icon">
-              {numCompartilhamentos}
-            </strong>{" "}
-            {numCompartilhamentos === 1
-              ? "compartilhamento"
-              : "compartilhamentos"}
-          </div>
-        </div>
-
-        <div className="post-actions">
-          <button
-            onClick={toggleCurtida}
-            className={`btn-action ${curtido ? "ativo" : ""}`}
-          >
-            <FaThumbsUp className="icon" />
-            Curtir
-          </button>
-
-          <button
-            onClick={() => setMostrarComentario(!mostrarComentario)}
-            className="btn-action"
-          >
-            <FaCommentAlt className="icon" />
-            Comentar
-          </button>
-
-          <button onClick={compartilharPost} className="btn-action">
-            <FaShare className="icon" />
-            Compartilhar
-          </button>
-        </div>
-
-        {mostrarComentario && (
+        {mostrarInteracoes && (
           <>
-            <div className="comentario-input-container">
-              <img
-                src={
-                  usuario?.fotoPerfil
-                    ? `http://localhost:3001/uploads/${usuario.fotoPerfil}`
-                    : ImagemDefault
-                }
-                alt="Perfil"
-                className="foto-perfil-comentario"
-              />
-              <div className="comentario-input-wrapper">
-                <textarea
-                  ref={textareaRef}
-                  className="comentario-textarea"
-                  value={textoComentario}
-                  onChange={(e) => setTextoComentario(e.target.value)}
-                  placeholder="Adicionar comentário"
-                  rows={1}
-                />
-                {textoComentario.trim() !== "" && (
-                  <button
-                    className="comentario-enviar-btn"
-                    onClick={enviarComentario}
-                  >
-                    Comentar
-                  </button>
-                )}
+            <div className="interacoes-contador">
+              <div
+                className="curtidas-contador"
+                style={{ cursor: "pointer" }}
+                onClick={abrirModalCurtidas}
+              >
+                <FaThumbsUp className="icone-curtida" />
+                <strong className="cor-strong-icon-curt">
+                  {numCurtidas}
+                </strong>{" "}
+                {numCurtidas === 1 ? "curtida" : "curtidas"}
+              </div>
+
+              <div
+                className="comentarios-contador"
+                onClick={() => setMostrarComentario((prev) => !prev)}
+                style={{ cursor: "pointer" }}
+              >
+                <FaCommentAlt className="icone-comentario" />
+                <strong className="cor-strong-icon">
+                  {comentariosState.length}
+                </strong>{" "}
+                {comentariosState.length === 1 ? "comentário" : "comentários"}
+              </div>
+
+              <div
+                className="compartilhamentos-contador"
+                onClick={abrirModalCompartilhamentos}
+                style={{ cursor: "pointer" }}
+              >
+                <FaShare className="icone-compartilhamento" />
+                <strong className="cor-strong-icon">
+                  {numCompartilhamentos}
+                </strong>{" "}
+                {numCompartilhamentos === 1
+                  ? "compartilhamento"
+                  : "compartilhamentos"}
               </div>
             </div>
-            {usuario && (
-              <div className="comentarios-lista">
-                {comentariosState
-                  .slice(
-                    0,
-                    mostrarTodosComentarios ? comentariosState.length : 3
-                  )
-                  .map((comentario) => (
-                    <div
-                      key={comentario.idComentario}
-                      className="comentario-item"
-                    >
-                      <img
-                        className="foto-perfil-comentario-exp"
-                        src={
-                          comentario.autor?.fotoPerfil
-                            ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
-                            : ImagemDefault
-                        }
-                        alt="Foto de perfil"
-                      />
-                      <div className="comentario-conteudo">
-                        <div className="comentario-cabecalho">
-                          <strong>
-                            {comentario.autor?.nome}{" "}
-                            {comentario.autor?.sobrenome}
-                          </strong>{" "}
-                          <span className="tempo-comentario">
-                            · {calcularTempoRelativo(comentario.dataComentario)}
-                          </span>
-                        </div>
-                        <div className="comentario-texto">
-                          {comentario.texto}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
 
-                {comentariosState.length > 3 && !mostrarTodosComentarios && (
-                  <button
-                    className="btn-carregar-mais"
-                    onClick={() => setMostrarTodosComentarios(true)}
-                  >
-                    <RiExpandDiagonal2Line className="icone-carregar-mais" />{" "}
-                    Carregar mais comentários
-                  </button>
+            <div className="post-actions">
+              <button
+                onClick={toggleCurtida}
+                className={`btn-action ${curtido ? "ativo" : ""}`}
+              >
+                <FaThumbsUp className="icon" />
+                Curtir
+              </button>
+
+              <button
+                onClick={() => setMostrarComentario(!mostrarComentario)}
+                className="btn-action"
+              >
+                <FaCommentAlt className="icon" />
+                Comentar
+              </button>
+
+              <button onClick={compartilharPost} className="btn-action">
+                <FaShare className="icon" />
+                Compartilhar
+              </button>
+            </div>
+
+            {mostrarComentario && (
+              <>
+                <div className="comentario-input-container">
+                  <img
+                    src={
+                      usuario?.fotoPerfil
+                        ? `http://localhost:3001/uploads/${usuario.fotoPerfil}`
+                        : ImagemDefault
+                    }
+                    alt="Perfil"
+                    className="foto-perfil-comentario"
+                  />
+                  <div className="comentario-input-wrapper">
+                    <textarea
+                      ref={textareaRef}
+                      className="comentario-textarea"
+                      value={textoComentario}
+                      onChange={(e) => setTextoComentario(e.target.value)}
+                      placeholder="Adicionar comentário"
+                      rows={1}
+                    />
+                    {textoComentario.trim() !== "" && (
+                      <button
+                        className="comentario-enviar-btn"
+                        onClick={enviarComentario}
+                      >
+                        Comentar
+                      </button>
+                    )}
+                  </div>
+                </div>
+                {usuario && (
+                  <div className="comentarios-lista">
+                    {comentariosState
+                      .slice(
+                        0,
+                        mostrarTodosComentarios ? comentariosState.length : 3
+                      )
+                      .map((comentario) => (
+                        <div
+                          key={comentario.idComentario}
+                          className="comentario-item"
+                        >
+                          <img
+                            className="foto-perfil-comentario-exp"
+                            src={
+                              comentario.autor?.fotoPerfil
+                                ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
+                                : ImagemDefault
+                            }
+                            alt="Foto de perfil"
+                          />
+                          <div className="comentario-conteudo">
+                            <div className="comentario-cabecalho">
+                              <strong>
+                                {comentario.autor?.nome}{" "}
+                                {comentario.autor?.sobrenome}
+                              </strong>{" "}
+                              <span className="tempo-comentario">
+                                ·{" "}
+                                {calcularTempoRelativo(
+                                  comentario.dataComentario
+                                )}
+                              </span>
+                            </div>
+                            <div className="comentario-texto">
+                              {comentario.texto}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+
+                    {comentariosState.length > 3 &&
+                      !mostrarTodosComentarios && (
+                        <button
+                          className="btn-carregar-mais"
+                          onClick={() => setMostrarTodosComentarios(true)}
+                        >
+                          <RiExpandDiagonal2Line className="icone-carregar-mais" />{" "}
+                          Carregar mais comentários
+                        </button>
+                      )}
+                  </div>
                 )}
-              </div>
+              </>
             )}
           </>
         )}

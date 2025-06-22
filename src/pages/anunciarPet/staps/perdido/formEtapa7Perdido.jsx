@@ -162,6 +162,7 @@ export default function FormEtapa7Perdido({ onProximo, onVoltar }) {
               telefone={formData.telefone || ""}
               periodo={formData.periodo || ""}
               situacao={formData.situacao || ""}
+              mostrarInteracoes={false}
             />
           </div>
         </div>

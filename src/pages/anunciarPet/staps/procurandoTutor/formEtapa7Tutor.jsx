@@ -166,6 +166,7 @@ export default function FormEtapa7Tutor({ onProximo, onVoltar }) {
               situacao={formData.situacao || ""}
               descricaoLocal={formData.descricaoLocal || ""}
               localPet={formData.localPet || ""}
+              mostrarInteracoes={false}
             />
           </div>
         </div>
