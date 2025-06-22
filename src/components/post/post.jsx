@@ -7,6 +7,7 @@ import "./CSS/animal-info.css";
 import "./CSS/comentarios.css";
 import "./CSS/compartilhar.css";
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   FaWhatsapp,
@@ -72,7 +73,7 @@ export default function Post({
   const [imagemExpandida, setImagemExpandida] = useState(false);
   const [imagemAtual, setImagemAtual] = useState(0);
   const [tempoPostagem, setTempoPostagem] = useState("");
-
+  const navigate = useNavigate();
   const [curtido, setCurtido] = useState(false);
   const [comentariosState, setComentarios] = useState(comentarios || []);
   const [mostrarComentario, setMostrarComentario] = useState(false);
@@ -115,6 +116,10 @@ export default function Post({
         confirmButtonText: "Ir para Login",
         iconColor: "#ff3131",
         confirmButtonColor: "#ff3131",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
       });
 
     try {
@@ -151,6 +156,10 @@ export default function Post({
         confirmButtonText: "Ir para Login",
         iconColor: "#ff3131",
         confirmButtonColor: "#ff3131",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
       });
     if (!textoComentario.trim()) return;
 
@@ -184,6 +193,10 @@ export default function Post({
         confirmButtonText: "Ir para Login",
         iconColor: "#ff3131",
         confirmButtonColor: "#ff3131",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
       });
     }
 
@@ -679,9 +692,9 @@ export default function Post({
         </div>
 
         <div className="interacoes-contador">
-          <div className="curtidas-contador">
+          <div className="curtidas-contador" style={{ cursor: "pointer" }}>
             <FaThumbsUp className="icone-curtida" />
-            <strong>{numCurtidas}</strong>{" "}
+            <strong className="cor-strong-icon-curt">{numCurtidas}</strong>{" "}
             {numCurtidas === 1 ? "curtida" : "curtidas"}
           </div>
 

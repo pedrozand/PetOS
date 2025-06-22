@@ -56,9 +56,40 @@
 }
 
 .curtidas-contador {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: #555;
+}
+
+.curtidas-contador:hover {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  color: #ff3131;
+}
+
+.curtidas-contador::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  width: 100%;
+  height: 2px;
+  background-color: #ff3131;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.curtidas-contador:hover::after {
+  transform: scaleX(1);
 }
 
 .icone-curtida {
