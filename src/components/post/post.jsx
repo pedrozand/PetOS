@@ -5,7 +5,9 @@ import "./CSS/alert-tel.css";
 import "./CSS/img-modal.css";
 import "./CSS/animal-info.css";
 import "./CSS/comentarios.css";
+import "./CSS/compartilhar.css";
 import { useState, useEffect, useRef } from "react";
+import Swal from "sweetalert2";
 import {
   FaWhatsapp,
   FaRegCopy,
@@ -14,6 +16,9 @@ import {
   FaShare,
   FaChevronLeft,
   FaChevronRight,
+  FaInstagram,
+  FaFacebook,
+  FaTelegram,
 } from "react-icons/fa";
 import { AiFillDollarCircle } from "react-icons/ai";
 import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
@@ -21,6 +26,8 @@ import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
 import { createPortal } from "react-dom";
 import { RiExpandDiagonal2Line } from "react-icons/ri";
+
+import ImagemDefault from "../../assets/img/perfil/img-default.png";
 
 export default function Post({
   // Usuário
@@ -69,6 +76,9 @@ export default function Post({
   const [curtido, setCurtido] = useState(false);
   const [comentariosState, setComentarios] = useState(comentarios || []);
   const [mostrarComentario, setMostrarComentario] = useState(false);
+  const [mostrarModalCompartilhar, setMostrarModalCompartilhar] =
+    useState(false);
+  const linkPost = `${window.location.origin}/post/${idPost}`;
   const [mostrarTodosComentarios, setMostrarTodosComentarios] = useState(false);
   const [textoComentario, setTextoComentario] = useState("");
   const [numCompartilhamentos, setNumCompartilhamentos] = useState(
@@ -97,7 +107,15 @@ export default function Post({
   }, [curtidas, usuario]);
 
   const toggleCurtida = async () => {
-    if (!usuario) return alert("Você precisa estar logado para curtir.");
+    if (!usuario)
+      return Swal.fire({
+        title: "Atenção!",
+        text: "Você precisa estar logado para realizar essa ação!",
+        icon: "warning",
+        confirmButtonText: "Ir para Login",
+        iconColor: "#ff3131",
+        confirmButtonColor: "#ff3131",
+      });
 
     try {
       if (curtido) {
@@ -125,7 +143,15 @@ export default function Post({
   };
 
   const enviarComentario = async () => {
-    if (!usuario) return alert("Você precisa estar logado para comentar.");
+    if (!usuario)
+      return Swal.fire({
+        title: "Atenção!",
+        text: "Você precisa estar logado para realizar essa ação!",
+        icon: "warning",
+        confirmButtonText: "Ir para Login",
+        iconColor: "#ff3131",
+        confirmButtonColor: "#ff3131",
+      });
     if (!textoComentario.trim()) return;
 
     try {
@@ -150,7 +176,26 @@ export default function Post({
   };
 
   const compartilharPost = async () => {
-    if (!usuario) return alert("Você precisa estar logado para compartilhar.");
+    if (!usuario) {
+      return Swal.fire({
+        title: "Atenção!",
+        text: "Você precisa estar logado para realizar essa ação!",
+        icon: "warning",
+        confirmButtonText: "Ir para Login",
+        iconColor: "#ff3131",
+        confirmButtonColor: "#ff3131",
+      });
+    }
+
+    const jaCompartilhou = compartilhamentos.some(
+      (comp) => comp.idUser === usuario.idUser
+    );
+
+    if (jaCompartilhou) {
+      // Apenas abre a modal, mas não envia nova requisição nem incrementa contador
+      return setMostrarModalCompartilhar(true);
+    }
+
     try {
       await fetch(`http://localhost:3001/api/compartilhamentos`, {
         method: "POST",
@@ -163,13 +208,11 @@ export default function Post({
         }),
       });
       setNumCompartilhamentos(numCompartilhamentos + 1);
-
-      // Copiar link do post para a área de transferência
-      navigator.clipboard.writeText(`${window.location.origin}/post/${idPost}`);
-      alert("Link do post copiado para a área de transferência!");
     } catch (error) {
-      console.error("Erro ao compartilhar post", error);
+      console.error("Erro ao registrar compartilhamento", error);
     }
+
+    setMostrarModalCompartilhar(true);
   };
 
   function calcularTempoRelativo(dataISO) {
@@ -698,7 +741,7 @@ export default function Post({
                 src={
                   usuario?.fotoPerfil
                     ? `http://localhost:3001/uploads/${usuario.fotoPerfil}`
-                    : "https://via.placeholder.com/40"
+                    : ImagemDefault
                 }
                 alt="Perfil"
                 className="foto-perfil-comentario"
@@ -722,51 +765,65 @@ export default function Post({
                 )}
               </div>
             </div>
-
-            <div className="comentarios-lista">
-              {comentariosState
-                .slice(0, mostrarTodosComentarios ? comentariosState.length : 3)
-                .map((comentario) => (
-                  <div
-                    key={comentario.idComentario}
-                    className="comentario-item"
-                  >
-                    <img
-                      className="foto-perfil-comentario-exp"
-                      src={
-                        comentario.autor?.fotoPerfil
-                          ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
-                          : "https://via.placeholder.com/40"
-                      }
-                      alt="Foto de perfil"
-                    />
-                    <div className="comentario-conteudo">
-                      <div className="comentario-cabecalho">
-                        <strong>
-                          {comentario.autor?.nome} {comentario.autor?.sobrenome}
-                        </strong>{" "}
-                        <span className="tempo-comentario">
-                          · {calcularTempoRelativo(comentario.dataComentario)}
-                        </span>
+            {usuario && (
+              <div className="comentarios-lista">
+                {comentariosState
+                  .slice(
+                    0,
+                    mostrarTodosComentarios ? comentariosState.length : 3
+                  )
+                  .map((comentario) => (
+                    <div
+                      key={comentario.idComentario}
+                      className="comentario-item"
+                    >
+                      <img
+                        className="foto-perfil-comentario-exp"
+                        src={
+                          comentario.autor?.fotoPerfil
+                            ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
+                            : ImagemDefault
+                        }
+                        alt="Foto de perfil"
+                      />
+                      <div className="comentario-conteudo">
+                        <div className="comentario-cabecalho">
+                          <strong>
+                            {comentario.autor?.nome}{" "}
+                            {comentario.autor?.sobrenome}
+                          </strong>{" "}
+                          <span className="tempo-comentario">
+                            · {calcularTempoRelativo(comentario.dataComentario)}
+                          </span>
+                        </div>
+                        <div className="comentario-texto">
+                          {comentario.texto}
+                        </div>
                       </div>
-                      <div className="comentario-texto">{comentario.texto}</div>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
-              {comentariosState.length > 3 && !mostrarTodosComentarios && (
-                <button
-                  className="btn-carregar-mais"
-                  onClick={() => setMostrarTodosComentarios(true)}
-                >
-                  <RiExpandDiagonal2Line className="icone-carregar-mais" />{" "}
-                  Carregar mais comentários
-                </button>
-              )}
-            </div>
+                {comentariosState.length > 3 && !mostrarTodosComentarios && (
+                  <button
+                    className="btn-carregar-mais"
+                    onClick={() => setMostrarTodosComentarios(true)}
+                  >
+                    <RiExpandDiagonal2Line className="icone-carregar-mais" />{" "}
+                    Carregar mais comentários
+                  </button>
+                )}
+              </div>
+            )}
           </>
         )}
       </div>
+
+      {mostrarModalCompartilhar && (
+        <ModalCompartilhar
+          link={linkPost}
+          onClose={() => setMostrarModalCompartilhar(false)}
+        />
+      )}
 
       {/* Modal de imagem expandida */}
       {imagemExpandida &&
@@ -817,6 +874,70 @@ export default function Post({
           </div>,
           document.getElementById("modal-root")
         )}
+    </div>
+  );
+}
+
+function ModalCompartilhar({ link, onClose }) {
+  const copiarLink = () => {
+    navigator.clipboard.writeText(link);
+    alert("Link copiado!");
+  };
+
+  return (
+    <div className="modal-compartilhar-backdrop" onClick={onClose}>
+      <div className="modal-compartilhar" onClick={(e) => e.stopPropagation()}>
+        <h2>Compartilhar post</h2>
+        <div className="link-post">
+          <input type="text" readOnly value={link} />
+          <button onClick={copiarLink} title="Copiar link">
+            <FaRegCopy />
+          </button>
+        </div>
+        <div className="redes-sociais">
+          <a
+            href={`https://www.instagram.com`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Instagram"
+            className="icone-instagram-bg"
+          >
+            <FaInstagram className="icone-instagram" />
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+              link
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Facebook"
+            className="icone-face-bg"
+          >
+            <FaFacebook className="icone-face" />
+          </a>
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(link)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp"
+            className="icone-whats-bg"
+          >
+            <FaWhatsapp className="icone-whats" />
+          </a>
+          <a
+            href={`https://t.me/share/url?url=${encodeURIComponent(link)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Telegram"
+            className="icone-tele-bg"
+          >
+            <FaTelegram className="icone-tele" />
+          </a>
+        </div>
+        <button className="fechar-btn" onClick={onClose}>
+          Fechar
+        </button>
+      </div>
     </div>
   );
 }

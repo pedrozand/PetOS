@@ -1,0 +1,155 @@
+.modal-compartilhar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-compartilhar {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 320px;
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-compartilhar h2 {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.link-post {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.link-post input {
+  flex-grow: 1;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  user-select: all;
+}
+
+.link-post button {
+  background: #4caf50;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.redes-sociais {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.icone-instagram-bg {
+  border: 2px solid #ccc;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.icone-instagram {
+  margin-bottom: -4px;
+  color: #f56040;
+  font-size: 40px;
+}
+
+.icone-instagram:hover {
+  margin-bottom: -4px;
+  color: #a7a7a7;
+}
+
+.icone-face-bg {
+  border: 2px solid #ccc;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.icone-face {
+  margin-bottom: -4px;
+  color: #007ad9;
+  font-size: 40px;
+}
+
+.icone-face:hover {
+  margin-bottom: -4px;
+  color: #a7a7a7;
+}
+
+.icone-whats-bg {
+  border: 2px solid #ccc;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.icone-whats {
+  margin-bottom: -4px;
+  color: #40c351;
+  font-size: 40px;
+}
+
+.icone-whats:hover {
+  margin-bottom: -4px;
+  color: #a7a7a7;
+}
+
+.icone-tele-bg {
+  border: 2px solid #ccc;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.icone-tele {
+  margin-bottom: -4px;
+  color: #0088cc;
+  font-size: 40px;
+}
+
+.icone-tele:hover {
+  margin-bottom: -4px;
+  color: #a7a7a7;
+}
+
+.fechar-btn {
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 10px;
+}
+
+.fechar-btn:hover {
+  background: #ff7777;
+  border: none;
+  color: white;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 10px;
+}
