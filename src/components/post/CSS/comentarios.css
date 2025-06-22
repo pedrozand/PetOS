@@ -95,7 +95,7 @@
 .comentario-input-wrapper {
   flex: 1;
   background-color: #ffffff;
-  border: 1px solid #ffc773;
+  border: 2px solid #ffc773;
   border-radius: 20px;
   padding: 12px 14px 12px;
   display: flex;

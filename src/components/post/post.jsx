@@ -63,8 +63,7 @@ export default function Post({
   const [mostrarCaracteristicas, setMostrarCaracteristicas] = useState(false);
   const [tempoDecorrido, setTempoDecorrido] = useState("");
   const [imagemExpandida, setImagemExpandida] = useState(false);
-  const [imagemAtual, setImagemAtual] = useState(0); // Controla qual imagem está sendo exibida
-
+  const [imagemAtual, setImagemAtual] = useState(0);
   const [tempoPostagem, setTempoPostagem] = useState("");
 
   const [curtido, setCurtido] = useState(false);
@@ -77,10 +76,6 @@ export default function Post({
   );
   const [numCurtidas, setNumCurtidas] = useState(0);
   const textareaRef = useRef(null);
-
-  useEffect(() => {
-    console.log("comentariosState:", comentariosState);
-  }, [comentariosState]);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -700,7 +695,11 @@ export default function Post({
           <>
             <div className="comentario-input-container">
               <img
-                src={fotoPerfil}
+                src={
+                  usuario?.fotoPerfil
+                    ? `http://localhost:3001/uploads/${usuario.fotoPerfil}`
+                    : "https://via.placeholder.com/40"
+                }
                 alt="Perfil"
                 className="foto-perfil-comentario"
               />
