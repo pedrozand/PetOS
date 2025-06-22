@@ -20,6 +20,7 @@ import { FaMars, FaVenus, FaDog, FaCat } from "react-icons/fa6";
 import { RxEyeOpen, RxEyeClosed } from "react-icons/rx";
 import { PiBirdFill } from "react-icons/pi";
 import { createPortal } from "react-dom";
+import { RiExpandDiagonal2Line } from "react-icons/ri";
 
 export default function Post({
   // Usuário
@@ -696,70 +697,76 @@ export default function Post({
         </div>
 
         {mostrarComentario && (
-          <div className="comentario-input-container">
-            <img
-              src={fotoPerfil}
-              alt="Perfil"
-              className="foto-perfil-comentario"
-            />
-            <div className="comentario-input-wrapper">
-              <textarea
-                ref={textareaRef}
-                className="comentario-textarea"
-                value={textoComentario}
-                onChange={(e) => setTextoComentario(e.target.value)}
-                placeholder="Adicionar comentário"
-                rows={1}
+          <>
+            <div className="comentario-input-container">
+              <img
+                src={fotoPerfil}
+                alt="Perfil"
+                className="foto-perfil-comentario"
               />
-              {textoComentario.trim() !== "" && (
+              <div className="comentario-input-wrapper">
+                <textarea
+                  ref={textareaRef}
+                  className="comentario-textarea"
+                  value={textoComentario}
+                  onChange={(e) => setTextoComentario(e.target.value)}
+                  placeholder="Adicionar comentário"
+                  rows={1}
+                />
+                {textoComentario.trim() !== "" && (
+                  <button
+                    className="comentario-enviar-btn"
+                    onClick={enviarComentario}
+                  >
+                    Comentar
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="comentarios-lista">
+              {comentariosState
+                .slice(0, mostrarTodosComentarios ? comentariosState.length : 3)
+                .map((comentario) => (
+                  <div
+                    key={comentario.idComentario}
+                    className="comentario-item"
+                  >
+                    <img
+                      className="foto-perfil-comentario-exp"
+                      src={
+                        comentario.autor?.fotoPerfil
+                          ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
+                          : "https://via.placeholder.com/40"
+                      }
+                      alt="Foto de perfil"
+                    />
+                    <div className="comentario-conteudo">
+                      <div className="comentario-cabecalho">
+                        <strong>
+                          {comentario.autor?.nome} {comentario.autor?.sobrenome}
+                        </strong>{" "}
+                        <span className="tempo-comentario">
+                          · {calcularTempoRelativo(comentario.dataComentario)}
+                        </span>
+                      </div>
+                      <div className="comentario-texto">{comentario.texto}</div>
+                    </div>
+                  </div>
+                ))}
+
+              {comentariosState.length > 3 && !mostrarTodosComentarios && (
                 <button
-                  className="comentario-enviar-btn"
-                  onClick={enviarComentario}
+                  className="btn-carregar-mais"
+                  onClick={() => setMostrarTodosComentarios(true)}
                 >
-                  Comentar
+                  <RiExpandDiagonal2Line className="icone-carregar-mais" />{" "}
+                  Carregar mais comentários
                 </button>
               )}
             </div>
-          </div>
+          </>
         )}
-
-        <div className="comentarios-lista">
-          {comentariosState
-            .slice(0, mostrarTodosComentarios ? comentariosState.length : 3)
-            .map((comentario) => (
-              <div key={comentario.idComentario} className="comentario-item">
-                <img
-                  className="foto-perfil-comentario-exp"
-                  src={
-                    comentario.autor?.fotoPerfil
-                      ? `http://localhost:3001/uploads/${comentario.autor.fotoPerfil}`
-                      : "https://via.placeholder.com/40"
-                  }
-                  alt="Foto de perfil"
-                />
-                <div className="comentario-conteudo">
-                  <div className="comentario-cabecalho">
-                    <strong>
-                      {comentario.autor?.nome} {comentario.autor?.sobrenome}
-                    </strong>{" "}
-                    <span className="tempo-comentario">
-                      · {calcularTempoRelativo(comentario.dataComentario)}
-                    </span>
-                  </div>
-                  <div className="comentario-texto">{comentario.texto}</div>
-                </div>
-              </div>
-            ))}
-
-          {comentariosState.length > 3 && !mostrarTodosComentarios && (
-            <button
-              className="btn-carregar-mais"
-              onClick={() => setMostrarTodosComentarios(true)}
-            >
-              Carregar mais comentários
-            </button>
-          )}
-        </div>
       </div>
 
       {/* Modal de imagem expandida */}

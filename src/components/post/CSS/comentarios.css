@@ -55,11 +55,27 @@
 .btn-carregar-mais {
   background: none;
   border: none;
-  color: #0073b1;
+  color: #ff3131;
   font-size: 14px;
   cursor: pointer;
   padding-left: 50px;
   margin-top: -8px;
+}
+
+.btn-carregar-mais:hover {
+  background: none;
+  border: none;
+  color: #ff8888;
+  font-size: 14px;
+  cursor: pointer;
+  padding-left: 50px;
+  margin-top: -8px;
+}
+
+.icone-carregar-mais {
+  font-size: 16px;
+  margin-right: 2px;
+  margin-bottom: -3px;
 }
 
 .comentario-input-container {
@@ -110,7 +126,7 @@
   align-self: flex-end;
   margin-top: 4px;
   padding: 6px 16px;
-  background-color: #0a66c2;
+  background-color: #ff3131;
   color: white;
   font-weight: bold;
   font-size: 14px;
