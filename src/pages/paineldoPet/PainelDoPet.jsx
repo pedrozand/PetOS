@@ -182,6 +182,7 @@ const PainelDoPet = () => {
                   adaptabilidade={p.animal?.adaptabilidade || []}
                   socializacao={p.animal?.socializacao || []}
                   dataHoraPost={p.dataHoraPost || ""}
+                  status={p.status}
                   mostrarInteracoes={false} // desativa interações dentro do Post
                 />
 

@@ -703,7 +703,7 @@ app.put("/api/postagem/:idPost/status", async (req, res) => {
     const atualizada = await prisma.postagem.update({
       where: { idPost: Number(idPost) },
       data: {
-        status: true,
+        status: false,
         ativo: false, // tira da Main
         statusTexto: statusTexto || textoPadrao,
         statusAtualizadoEm: new Date(),
