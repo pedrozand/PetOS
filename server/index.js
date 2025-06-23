@@ -384,78 +384,6 @@ app.post("/api/posts", async (req, res) => {
   }
 });
 
-// Busca todas as postagens com include do usuário e animal
-app.get("/api/posts", async (req, res) => {
-  try {
-    const posts = await prisma.postagem.findMany({
-      where: { ativo: true },
-      include: {
-        usuario: true,
-        animal: true,
-        curtidas: {
-          include: {
-            usuario: true,
-          },
-        },
-        compartilhamentos: {
-          include: {
-            usuario: true,
-          },
-        },
-        comentarios: {
-          include: {
-            autor: true,
-          },
-        },
-      },
-      orderBy: {
-        dataHoraPost: "desc",
-      },
-    });
-
-    // Parse manual das imagensAnimal
-    const postsComImagens = posts.map((post) => {
-      let imagens = [];
-      let cuidados = [];
-      let temperamento = [];
-      let adaptabilidade = [];
-      let socializacao = [];
-
-      try {
-        imagens = JSON.parse(post.animal.imagensAnimal || "[]");
-      } catch (e) {
-        console.error("Erro ao converter imagensAnimal:", e.message);
-      }
-
-      try {
-        cuidados = JSON.parse(post.animal.cuidados || "[]");
-        temperamento = JSON.parse(post.animal.temperamento || "[]");
-        adaptabilidade = JSON.parse(post.animal.adaptabilidade || "[]");
-        socializacao = JSON.parse(post.animal.socializacao || "[]");
-      } catch (e) {
-        console.error("Erro ao converter características:", e.message);
-      }
-
-      return {
-        ...post,
-        animal: {
-          ...post.animal,
-          imagensAnimal: imagens,
-          cuidados,
-          temperamento,
-          adaptabilidade,
-          socializacao,
-        },
-      };
-    });
-
-    res.json(postsComImagens);
-  } catch (error) {
-    console.error("Erro ao buscar postagens:", error);
-    res.status(500).json({ erro: "Erro ao buscar postagens." });
-  }
-});
-
 // Rota para buscar posts do usuário, incluindo tudo necessário
 app.get("/api/postagens/usuario/:id", async (req, res) => {
   const { id } = req.params;
@@ -755,5 +683,109 @@ app.get("/api/postagens/encontrados", async (req, res) => {
   } catch (error) {
     console.error("Erro ao buscar posts encontrados:", error);
     res.status(500).json({ erro: "Erro ao buscar encontrados." });
+  }
+});
+
+// Rotas para o filtro
+app.get("/api/posts", async (req, res) => {
+  console.log("Filtros recebidos:", req.query);
+
+  const {
+    nomeAnimal,
+    situacao,
+    idade,
+    porte,
+    corPredominante,
+    corOlhos,
+    especies,
+    sexo,
+    raca,
+  } = req.query;
+
+  // Função para extrair seleções (quando vier objeto tipo {Gato:true, Cachorro:false})
+  function extrairSelecionados(filtro) {
+    if (!filtro) return [];
+    if (typeof filtro === "string") return [filtro];
+    if (typeof filtro === "object") {
+      return Object.entries(filtro)
+        .filter(([_, ativo]) => ativo === "true" || ativo === true)
+        .map(([key]) => key);
+    }
+    return [];
+  }
+
+  const especiesSelecionadas = extrairSelecionados(especies);
+  const sexoSelecionado = extrairSelecionados(sexo);
+  const racasSelecionadas = extrairSelecionados(raca);
+
+  // Construção do filtro para animal
+  const animalWhere = {
+    ...(nomeAnimal && { nome: { contains: nomeAnimal } }),
+    ...(idade && { idade }),
+    ...(porte && { porte }),
+    ...(corPredominante && { corPredominante }),
+    ...(corOlhos && { corOlhos }),
+    ...(especiesSelecionadas.length > 0 && {
+      especie: { in: especiesSelecionadas },
+    }),
+    ...(sexoSelecionado.length > 0 && { sexo: { in: sexoSelecionado } }),
+    ...(racasSelecionadas.length > 0 && { raca: { in: racasSelecionadas } }),
+  };
+
+  const where = {
+    ativo: true,
+    ...(situacao && { situacao }),
+    ...(Object.keys(animalWhere).length > 0 && { animal: animalWhere }),
+  };
+
+  try {
+    const posts = await prisma.postagem.findMany({
+      where,
+      include: {
+        usuario: true,
+        animal: true,
+        curtidas: { include: { usuario: true } },
+        compartilhamentos: { include: { usuario: true } },
+        comentarios: { include: { autor: true } },
+      },
+      orderBy: {
+        dataHoraPost: "desc",
+      },
+    });
+
+    const postsComImagens = posts.map((post) => {
+      let imagens = [];
+      let cuidados = [];
+      let temperamento = [];
+      let adaptabilidade = [];
+      let socializacao = [];
+
+      try {
+        imagens = JSON.parse(post.animal.imagensAnimal || "[]");
+        cuidados = JSON.parse(post.animal.cuidados || "[]");
+        temperamento = JSON.parse(post.animal.temperamento || "[]");
+        adaptabilidade = JSON.parse(post.animal.adaptabilidade || "[]");
+        socializacao = JSON.parse(post.animal.socializacao || "[]");
+      } catch (e) {
+        console.error("Erro ao converter JSON:", e.message);
+      }
+
+      return {
+        ...post,
+        animal: {
+          ...post.animal,
+          imagensAnimal: imagens,
+          cuidados,
+          temperamento,
+          adaptabilidade,
+          socializacao,
+        },
+      };
+    });
+
+    res.json(postsComImagens);
+  } catch (error) {
+    console.error("Erro ao buscar postagens:", error);
+    res.status(500).json({ erro: "Erro ao buscar postagens." });
   }
 });

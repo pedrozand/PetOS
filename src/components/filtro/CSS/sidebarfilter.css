@@ -235,3 +235,20 @@
 .sugestao-item:hover {
   background-color: #f0f0f0;
 }
+
+.btn-aplicar-filtros {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(to right, #ff3131, #ffd040);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  width: 320px;
+}
+
+.btn-aplicar-filtros:hover {
+  background: linear-gradient(to right, #ff8282, #ffe28b);
+}

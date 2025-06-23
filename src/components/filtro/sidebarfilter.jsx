@@ -349,7 +349,7 @@ const SidebarFilter = ({ onFilterChange }) => {
       <label>Situação</label>
       {renderSelectComIcone(
         "situacao",
-        ["", "Perdido", "Para Adoção", "Procurando Tutor"],
+        ["", "Perdido", "Adocao", "Procurando Tutor"],
         filtros.situacao,
         handleChange
       )}
@@ -444,6 +444,15 @@ const SidebarFilter = ({ onFilterChange }) => {
         filtros.corOlhos,
         handleChange
       )}
+      <button
+        className="btn-aplicar-filtros"
+        onClick={() => {
+          console.log("Filtros aplicados:", { ...filtros, endereco: location });
+          onFilterChange({ ...filtros, endereco: location });
+        }}
+      >
+        Aplicar Filtros
+      </button>
     </aside>
   );
 };

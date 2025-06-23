@@ -17,6 +17,29 @@ function Main() {
   const { usuario } = useAuth();
   const [posts, setPosts] = useState([]);
   const [encontrados, setEncontrados] = useState([]);
+  const [filtrosAtivos, setFiltrosAtivos] = useState({
+    nomeAnimal: "",
+    situacao: "",
+    especies: {
+      Cachorro: false,
+      Gato: false,
+      Pássaro: false,
+    },
+    racasSelecionadas: {},
+    idade: "",
+    porte: "",
+    corPredominante: "",
+    corOlhos: "",
+    sexo: {
+      Macho: false,
+      Fêmea: false,
+    },
+  });
+
+  const handleFilterChange = (filtros) => {
+    console.log("Filtros recebidos:", filtros);
+    setFiltrosAtivos(filtros);
+  };
 
   const calcularTempoRelativo = (data) => {
     const agora = new Date();
@@ -56,18 +79,64 @@ function Main() {
   };
 
   useEffect(() => {
-    async function fetchPosts() {
-      const response = await fetch("http://localhost:3001/api/posts");
-      const data = await response.json();
-      setPosts(data);
-      console.log(
-        "Posts recebidos:",
-        data.map((p) => ({ id: p.idPost, status: p.status }))
-      );
+    async function fetchPostsFiltrados() {
+      try {
+        const queryParams = new URLSearchParams();
+
+        if (filtrosAtivos) {
+          if (filtrosAtivos.nomeAnimal)
+            queryParams.append("nomeAnimal", filtrosAtivos.nomeAnimal);
+          if (filtrosAtivos.situacao)
+            queryParams.append("situacao", filtrosAtivos.situacao);
+
+          // Espécies selecionadas
+          const especiesSelecionadas = Object.entries(filtrosAtivos.especies)
+            .filter(([_, ativo]) => ativo)
+            .map(([esp]) => esp);
+          if (especiesSelecionadas.length > 0)
+            especiesSelecionadas.forEach((esp) =>
+              queryParams.append("especies", esp)
+            );
+
+          // Raças selecionadas
+          const racasSelecionadas = Object.values(
+            filtrosAtivos.racasSelecionadas
+          ).filter(Boolean);
+          if (racasSelecionadas.length > 0)
+            racasSelecionadas.forEach((r) => queryParams.append("raca", r));
+
+          if (filtrosAtivos.idade)
+            queryParams.append("idade", filtrosAtivos.idade);
+          if (filtrosAtivos.porte)
+            queryParams.append("porte", filtrosAtivos.porte);
+          if (filtrosAtivos.corPredominante)
+            queryParams.append(
+              "corPredominante",
+              filtrosAtivos.corPredominante
+            );
+          if (filtrosAtivos.corOlhos)
+            queryParams.append("corOlhos", filtrosAtivos.corOlhos);
+
+          const sexoSelecionado = Object.entries(filtrosAtivos.sexo)
+            .filter(([_, ativo]) => ativo)
+            .map(([sx]) => sx);
+          if (sexoSelecionado.length > 0)
+            sexoSelecionado.forEach((sx) => queryParams.append("sexo", sx));
+        }
+
+        const response = await fetch(
+          `http://localhost:3001/api/posts?${queryParams.toString() || ""}`
+        );
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error("Erro ao buscar posts filtrados:", error);
+      }
     }
 
-    fetchPosts();
-  }, []);
+    fetchPostsFiltrados();
+    window.scrollTo(0, 0);
+  }, [filtrosAtivos]);
 
   useEffect(() => {
     async function fetchEncontrados() {
@@ -97,7 +166,8 @@ function Main() {
         <NavBar />
         <LocationProvider>
           <div>
-            {usuario && <PerfilCard />} <SideBarFilter />
+            {usuario && <PerfilCard />}{" "}
+            <SideBarFilter onFilterChange={handleFilterChange} />
           </div>
           <div>
             <Cabecalho />
