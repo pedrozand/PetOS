@@ -142,14 +142,9 @@ export default function Navbar() {
                 )}
               </a>
               {dropdownAberto === "conheca" && (
-                <ul className={`dropdown-menu ${usuario ? "logged-in" : ""}`}>
-                  <li>
-                    <a href="achados-perdidos.html">
-                      ONG Faros D'Ajuda
-                      <span>ONG em prol dos animais de rua.</span>
-                    </a>
-                  </li>
-                </ul>
+                <ul
+                  className={`dropdown-menu ${usuario ? "logged-in" : ""}`}
+                ></ul>
               )}
             </li>
 
@@ -177,15 +172,9 @@ export default function Navbar() {
               {dropdownAberto === "adocao" && (
                 <ul className={`dropdown-menu ${usuario ? "logged-in" : ""}`}>
                   <li>
-                    <a href="/View/adocao.html">
+                    <a href="/main?situacao=Adocao">
                       Pets para Adoção
                       <span>Veja pets disponíveis em sua localidade.</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="como-funciona-adocao.html">
-                      Como funciona a adoção?
-                      <span>Entenda como adotar com o PetOS!</span>
                     </a>
                   </li>
                 </ul>

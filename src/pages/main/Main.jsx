@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../server/context/AuthContext.jsx";
+import { useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import NavBar from "../../components/navbar/navbar.jsx";
@@ -17,9 +18,14 @@ function Main() {
   const { usuario } = useAuth();
   const [posts, setPosts] = useState([]);
   const [encontrados, setEncontrados] = useState([]);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const situacaoInicial = queryParams.get("situacao");
+
   const [filtrosAtivos, setFiltrosAtivos] = useState({
     nomeAnimal: "",
-    situacao: "",
+    situacao: situacaoInicial || "",
     especies: {
       Cachorro: false,
       Gato: false,
