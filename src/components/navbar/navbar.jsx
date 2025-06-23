@@ -116,12 +116,12 @@ export default function Navbar() {
                     </a>
                   </li>
                   <li>
-                    <a href="como-funciona-busca.html">
+                    <Link to="/comoFunc">
                       Como funciona?
                       <span>
                         Entenda como o PetOS ajuda na busca do seu pet!
                       </span>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               )}

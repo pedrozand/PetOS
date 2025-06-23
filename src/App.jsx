@@ -7,6 +7,7 @@ import FormContainer from "./pages/anunciarPet/formContainer.jsx";
 import PaineldoUsuario from "./pages/paineldoUser/paineldoUser.jsx";
 import RotaPrivada from "./components/rotaPrivada/RotaPrivada.jsx";
 import PainelDoPet from "./pages/paineldoPet/PainelDoPet.jsx";
+import ComoFunciona from "./pages/wiki-comofunc/comoFunciona.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/anunciarPet" element={<FormContainer />} />
         <Route path="/painelUser" element={<PaineldoUsuario />} />
         <Route path="/painelPet" element={<PainelDoPet />} />
+        <Route path="/comoFunc" element={<ComoFunciona />} />
       </Routes>
     </Router>
   );
