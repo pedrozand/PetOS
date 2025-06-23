@@ -109,10 +109,10 @@ function Inicial() {
 
   return (
     <>
-      <div className="container-inicial">
+      <div className="container-inicial-comofunc">
         <NavBar />
-        <div className="templates-container">
-          <div className="templates-texto">
+        <div className="templates-container-comofunc">
+          <div className="templates-texto-comofunc">
             <h2>
               Crie posts personalizados e acelere o reencontro com seu melhor
               amigo!
@@ -124,7 +124,7 @@ function Inicial() {
               seu pet de volta para casa rapidamente!
             </p>
             <Link to="/main">
-              <button className="templates-botao">Saiba Mais</button>
+              <button className="templates-botao-comofunc">Saiba Mais</button>
             </Link>
           </div>
 
@@ -140,8 +140,8 @@ function Inicial() {
           </div>
         </div>
 
-        <div className="templates-segundo-container">
-          <div className="templates-segundo-texto">
+        <div className="templates-segundo-container-comofunc">
+          <div className="templates-segundo-texto-comofunc">
             <h2>
               Colabore com toda uma comunidade e faça com que a divulgação
               chegue a todas as pessoas!
@@ -152,7 +152,9 @@ function Inicial() {
               tutores encontrarem seus pets.
             </p>
             <Link to="/main">
-              <button className="templates-segundo-botao">Saiba Mais</button>
+              <button className="templates-segundo-botao-comofunc">
+                Saiba Mais
+              </button>
             </Link>
           </div>
           <div>
@@ -162,13 +164,13 @@ function Inicial() {
               loop
               muted
               playsInline
-              className="templates-video"
+              className="templates-video-comofunc"
             />
           </div>
         </div>
 
-        <div className="templates-terceiro-container">
-          <div className="templates-terceiro-texto">
+        <div className="templates-terceiro-container-comofunc">
+          <div className="templates-terceiro-texto-comofunc">
             <h2>
               Adote um amigo, mude o mundo dele e o seu. Muito mais que um pet,
               um companheiro para a vida!
@@ -181,29 +183,29 @@ function Inicial() {
               duas vidas com um só ato. 🧡
             </p>
             <button
-              className="templates-botao"
+              className="templates-botao-comofunc"
               onClick={() => alert("Abrir página completa!")}
             >
               Ir para Adoção
             </button>
           </div>
 
-          <div className="templates-terceiro-imagem">
+          <div className="templates-terceiro-imagem-comofunc">
             <video
               src={meuVideo4}
               autoPlay
               loop
               muted
               playsInline
-              className="templates-video"
+              className="templates-video-comofunc"
             />
           </div>
         </div>
 
-        <div className="petos-beneficios-container">
-          <div className="beneficio-card">
+        <div className="petos-beneficios-container-comofunc">
+          <div className="beneficio-card-comofunc">
             <h3>Rede Colaborativa</h3>
-            <div className="beneficio-icon">
+            <div className="beneficio-icon-comofunc">
               <TbHeartHandshake />
             </div>
             <p>
@@ -212,9 +214,9 @@ function Inicial() {
             </p>
           </div>
 
-          <div className="beneficio-card">
+          <div className="beneficio-card-comofunc">
             <h3>Localização Inteligente</h3>
-            <div className="beneficio-icon">
+            <div className="beneficio-icon-comofunc">
               <FaLocationCrosshairs />
             </div>
             <p>
@@ -223,9 +225,9 @@ function Inicial() {
             </p>
           </div>
 
-          <div className="beneficio-card">
+          <div className="beneficio-card-comofunc">
             <h3>Divulgação Instantânea</h3>
-            <div className="beneficio-icon">
+            <div className="beneficio-icon-comofunc">
               <HiBellAlert />
             </div>
             <p>
@@ -234,9 +236,9 @@ function Inicial() {
             </p>
           </div>
 
-          <div className="beneficio-card">
+          <div className="beneficio-card-comofunc">
             <h3>Adote com Facilidade</h3>
-            <div className="beneficio-icon">
+            <div className="beneficio-icon-comofunc">
               <GiDogHouse />
             </div>
             <p>
@@ -246,31 +248,36 @@ function Inicial() {
           </div>
         </div>
 
-        <div className="faq-container">
+        <div className="faq-container-comofunc">
           {dadosFAQ.map((item, index) => (
             <div
               key={index}
-              className={`faq-item ${faqAtivo === index ? "ativo" : ""}`}
+              className={`faq-item-comofunc ${
+                faqAtivo === index ? "ativo" : ""
+              }`}
               onClick={() => toggleFAQ(index)}
             >
-              <div className="faq-pergunta">
+              <div className="faq-pergunta-comofunc">
                 <span>{item.pergunta}</span>
                 <FaChevronDown
-                  className={`icone-seta ${faqAtivo === index ? "girar" : ""}`}
+                  className={`icone-seta-comofunc ${
+                    faqAtivo === index ? "girar" : ""
+                  }`}
                 />
               </div>
               {faqAtivo === index && (
-                <div className="faq-resposta">{item.resposta}</div>
+                <div className="faq-resposta-comofunc">{item.resposta}</div>
               )}
             </div>
           ))}
-          <div className="faq-imagem">
+          <div className="faq-imagem-comofunc">
             <img src={faqImage} />
           </div>
         </div>
       </div>
-
-      <Footer />
+      <div className="footer-container-painel-comofunc">
+        <Footer />
+      </div>
     </>
   );
 }

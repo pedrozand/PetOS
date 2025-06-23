@@ -1,4 +1,4 @@
-.container-inicial {
+.container-inicial-comofunc {
   position: relative;
   display: flex;
   justify-content: center;
@@ -10,12 +10,12 @@
   margin-left: -10px;
 }
 
-.templates-container {
+.templates-container-comofunc {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 60px;
-  margin: 2200px 600px auto 10px;
+  margin: 300px 600px auto 10px;
   gap: 60px;
   flex-wrap: wrap;
   position: absolute;
@@ -23,26 +23,26 @@
   z-index: 10;
 }
 
-.templates-texto {
+.templates-texto-comofunc {
   max-width: 600px;
   z-index: 10;
 }
 
-.templates-texto h2 {
+.templates-texto-comofunc h2 {
   font-size: 24px;
   font-weight: 700;
   color: #2f2f2f;
   margin-bottom: 20px;
 }
 
-.templates-texto p {
+.templates-texto-comofunc p {
   font-size: 16px;
   color: #555;
   margin-bottom: 25px;
   width: 580px;
 }
 
-.templates-botao {
+.templates-botao-comofunc {
   background: #ff9689;
   color: white;
   padding: 10px 25px;
@@ -52,36 +52,36 @@
   cursor: pointer;
 }
 
-.templates-terceiro-imagem video {
+.templates-terceiro-imagem-comofunc video {
   max-width: 1000px;
   margin: -1000px 600px auto 400px;
 }
 
-.templates-video {
+.templates-video-comofunc {
   max-width: 700px;
   border-radius: 1rem;
   margin-top: -630px;
 }
 
-.templates-segundo-container {
+.templates-segundo-container-comofunc {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 60px;
-  margin: 2700px 600px auto 10px;
+  margin: 800px 600px auto 10px;
   gap: 60px;
   flex-wrap: wrap;
   position: absolute;
   width: 800px;
 }
 
-.templates-segundo-texto {
+.templates-segundo-texto-comofunc {
   margin-left: 200px;
   z-index: 10;
   margin-top: 100px;
 }
 
-.templates-segundo-texto h2 {
+.templates-segundo-texto-comofunc h2 {
   font-size: 24px;
   font-weight: 700;
   color: #2f2f2f;
@@ -90,14 +90,14 @@
   width: 600px;
 }
 
-.templates-segundo-texto p {
+.templates-segundo-texto-comofunc p {
   font-size: 16px;
   color: #555;
   margin-bottom: 25px;
   margin-left: 500px;
 }
 
-.templates-segundo-botao {
+.templates-segundo-botao-comofunc {
   background: #ff9689;
   color: white;
   padding: 10px 25px;
@@ -108,12 +108,12 @@
   margin-left: 500px;
 }
 
-.templates-terceiro-container {
+.templates-terceiro-container-comofunc {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 50px 60px;
-  margin: 3700px 600px auto 10px;
+  margin: 1750px 600px auto 10px;
   gap: 60px;
   flex-wrap: wrap;
   position: absolute;
@@ -121,41 +121,41 @@
   z-index: -20;
 }
 
-.templates-terceiro-imagem video {
+.templates-terceiro-imagem-comofunc video {
   max-width: 1000px;
   margin: -1000px 600px auto 400px;
 }
 
-.templates-terceiro-texto {
+.templates-terceiro-texto-comofunc {
   max-width: 490px;
   z-index: 10;
 }
 
-.templates-terceiro-texto h2 {
+.templates-terceiro-texto-comofunc h2 {
   font-size: 24px;
   font-weight: 700;
   color: #2f2f2f;
   margin-bottom: 20px;
 }
 
-.templates-terceiro-texto p {
+.templates-terceiro-texto-comofunc p {
   font-size: 16px;
   color: #555;
   margin-bottom: 25px;
   width: 560px;
 }
 
-.petos-beneficios-container {
+.petos-beneficios-container-comofunc {
   display: flex;
   justify-content: center;
-  margin: 4200px auto auto auto;
+  margin: 2200px auto auto auto;
   position: absolute;
   gap: 2rem;
   padding: 3rem 2rem;
   flex-wrap: wrap;
 }
 
-.beneficio-card {
+.beneficio-card-comofunc {
   background-color: #ff3131;
   color: white;
   padding: 40px 10px 10px 10px;
@@ -167,19 +167,19 @@
   transition: transform 0.3s ease;
 }
 
-.beneficio-card:hover {
+.beneficio-card-comofunc:hover {
   transform: translateY(-5px);
 }
 
-.beneficio-icon {
+.beneficio-icon-comofunc {
   font-size: 3rem;
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
 
-.faq-container {
+.faq-container-comofunc {
   max-width: 800px;
-  margin: 4560px 560px auto auto;
+  margin: 2600px 560px auto auto;
   padding: 3rem 2rem;
   border-radius: 20px;
   display: flex;
@@ -189,18 +189,18 @@
   flex-wrap: wrap;
 }
 
-.faq-item {
+.faq-item-comofunc {
   padding: 15px;
   cursor: pointer;
   transition: background 0.3s ease;
   margin-top: -10px;
 }
 
-.faq-item:hover .faq-pergunta {
+.faq-item-comofunc:hover .faq-pergunta-comofunc {
   color: #da2a2a;
 }
 
-.faq-pergunta {
+.faq-pergunta-comofunc {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -208,7 +208,7 @@
   color: #ff6969;
 }
 
-.faq-resposta {
+.faq-resposta-comofunc {
   margin-top: 30px;
   margin-bottom: -15px;
   font-size: 1rem;
@@ -216,20 +216,27 @@
   line-height: 1.6;
 }
 
-.icone-seta {
+.icone-seta-comofunc {
   position: absolute; /* novo */
   transition: transform 0.3s ease;
   left: 750px;
 }
 
-.icone-seta.girar {
+.icone-seta.girar-comofunc {
   transform: rotate(180deg);
 }
 
-.faq-imagem img {
+.faq-imagem-comofunc img {
   max-width: 600px; /* ou como preferir */
   height: auto;
   border-radius: 12px; /* opcional para estilo */
   margin-left: 750px;
   margin-top: -520px;
+}
+
+.footer-container-painel-comofunc {
+  width: 100%;
+  background-color: #f5f5f5;
+  text-align: center;
+  margin-top: -900px;
 }
