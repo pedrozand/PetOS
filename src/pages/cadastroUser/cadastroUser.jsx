@@ -24,6 +24,7 @@ function CadastroUser() {
   const [erroConfirmarSenha, setErroConfirmarSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+  const navigate = useNavigate();
 
   const formatarTelefone = (valor) => {
     let telefone = valor.replace(/\D/g, "");
@@ -83,6 +84,9 @@ function CadastroUser() {
       if (response.ok) {
         const resultado = await response.json();
         setMensagem("Usuário cadastrado com sucesso!");
+        setTimeout(() => {
+          navigate("/login"); // ✅ Redireciona para o login
+        }, 1000);
         console.log("Usuário criado:", resultado);
         setFormData({
           nome: "",

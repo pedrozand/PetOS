@@ -8,6 +8,7 @@ import PaineldoUsuario from "./pages/paineldoUser/paineldoUser.jsx";
 import RotaPrivada from "./components/rotaPrivada/RotaPrivada.jsx";
 import PainelDoPet from "./pages/paineldoPet/PainelDoPet.jsx";
 import ComoFunciona from "./pages/wiki-comofunc/comoFunciona.jsx";
+import PetEncontrado from "./pages/petEncontrados/petEncontrado.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/painelUser" element={<PaineldoUsuario />} />
         <Route path="/painelPet" element={<PainelDoPet />} />
         <Route path="/comoFunc" element={<ComoFunciona />} />
+        <Route path="/petEncontr" element={<PetEncontrado />} />
       </Routes>
     </Router>
   );

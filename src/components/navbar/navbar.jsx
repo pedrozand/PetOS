@@ -110,10 +110,10 @@ export default function Navbar() {
                     </Link>
                   </li>
                   <li>
-                    <a href="me-acharam.html">
+                    <Link to="/petEncontr">
                       Meu humano voltou
                       <span>Veja os reencontros mais recentes!</span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link to="/comoFunc">

@@ -172,13 +172,14 @@ function Main() {
               )}
             />
           ))}
-
-          <button
-            className="btn-ver-mais"
-            onClick={() => navigate("/pagina-destino")}
-          >
-            Ver Mais
-          </button>
+          <Link to="/petEncontr">
+            <button
+              className="btn-ver-mais"
+              onClick={() => navigate("/pagina-destino")}
+            >
+              Ver Mais
+            </button>
+          </Link>
         </div>
       </div>
     </>
