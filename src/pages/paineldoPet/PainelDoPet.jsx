@@ -190,11 +190,15 @@ const PainelDoPet = () => {
                   <p>Ações rápidas</p>
                   <div className="botoes-anuncio-container-ppet">
                     <div className="botoes-superiores-ppet">
-                      <button onClick={() => abrirModalEdicao(p)}>
+                      <button
+                        onClick={() => abrirModalEdicao(p)}
+                        disabled={p.status === false}
+                      >
                         Editar Anúncio
                       </button>
                       <button
                         onClick={() => alterarAtivoDoPost(p.idPost, !p.ativo)}
+                        disabled={p.status === false}
                       >
                         {p.ativo ? "Inativar Anúncio" : "Ativar Anúncio"}
                       </button>
@@ -203,6 +207,7 @@ const PainelDoPet = () => {
                     <button
                       className="botao-atualizar-status-ppet botom-status-ppet"
                       onClick={() => abrirModalStatus(p)}
+                      disabled={p.status === false}
                     >
                       Atualizar Status
                     </button>

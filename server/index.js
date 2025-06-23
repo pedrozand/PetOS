@@ -716,3 +716,44 @@ app.put("/api/postagem/:idPost/status", async (req, res) => {
     res.status(500).json({ erro: "Erro ao atualizar status do post." });
   }
 });
+
+// Rota para buscar até 3 posts com status = false
+app.get("/api/postagens/encontrados", async (req, res) => {
+  try {
+    const encontrados = await prisma.postagem.findMany({
+      where: {
+        status: false,
+      },
+      include: {
+        usuario: true,
+        animal: true,
+      },
+      orderBy: {
+        dataHoraPost: "desc",
+      },
+      take: 3, // limita a 3 posts
+    });
+
+    const encontradosTratados = encontrados.map((post) => {
+      let imagens = [];
+      try {
+        imagens = JSON.parse(post.animal.imagensAnimal || "[]");
+      } catch (e) {
+        console.error("Erro ao converter imagensAnimal:", e.message);
+      }
+
+      return {
+        ...post,
+        animal: {
+          ...post.animal,
+          imagensAnimal: imagens,
+        },
+      };
+    });
+
+    res.json(encontradosTratados);
+  } catch (error) {
+    console.error("Erro ao buscar posts encontrados:", error);
+    res.status(500).json({ erro: "Erro ao buscar encontrados." });
+  }
+});

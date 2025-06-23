@@ -6,30 +6,83 @@ import NavBar from "../../components/navbar/navbar.jsx";
 import Post from "../../components/post/post.jsx";
 import Encontrados from "../../components/cards/encontrados/encontr.jsx";
 import SideBarFilter from "../../components/filtro/sidebarfilter.jsx";
-import imgPerfilTeste from "../../assets/img/perfil/Pedrozand.jpg";
+
 import { LocationProvider } from "../../../server/location/LocationContext.jsx";
 import Cabecalho from "../../components/cabecalho/cabecalho.jsx";
 import PerfilCard from "../../components/perfilPost/PerfilCard.jsx";
-
-import imgCardPet1 from "../../assets/img/card/card-encontrado-1.jpg";
-import imgCardPet2 from "../../assets/img/card/card-encontrado-2.jpg";
-import imgCardPet3 from "../../assets/img/card/card-encontrado-3.jpg";
 
 import "./CSS/main.css";
 
 function Main() {
   const { usuario } = useAuth();
   const [posts, setPosts] = useState([]);
+  const [encontrados, setEncontrados] = useState([]);
+
+  const calcularTempoRelativo = (data) => {
+    const agora = new Date();
+    const dataHora = new Date(data);
+    const diffMs = agora - dataHora;
+    const segundos = Math.floor(diffMs / 1000);
+    const minutos = Math.floor(segundos / 60);
+    const horas = Math.floor(minutos / 60);
+    const dias = Math.floor(horas / 24);
+
+    if (dias > 0) return `${dias} dia${dias > 1 ? "s" : ""} atrás`;
+    if (horas > 0) return `${horas} hora${horas > 1 ? "s" : ""} atrás`;
+    if (minutos > 0) return `${minutos} minuto${minutos > 1 ? "s" : ""} atrás`;
+    return "Agora mesmo";
+  };
+
+  const calcularIntervaloStatus = (dataPost, statusAtualizadoEm) => {
+    const inicio = new Date(dataPost);
+    const fim = new Date(statusAtualizadoEm);
+    const diffMs = fim - inicio;
+
+    const dias = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diffMs / (1000 * 60)) % 60);
+
+    if (dias > 0)
+      return `Encontrado ${dias} dia${dias > 1 ? "s" : ""} depois do anúncio!`;
+    if (horas > 0)
+      return `Encontrado ${horas} hora${
+        horas > 1 ? "s" : ""
+      } depois do anúncio!`;
+    if (minutos > 0)
+      return `Encontrado ${minutos} minuto${
+        minutos > 1 ? "s" : ""
+      } depois do anúncio!`;
+    return "Encontrado imediatamente após o anúncio!";
+  };
 
   useEffect(() => {
     async function fetchPosts() {
       const response = await fetch("http://localhost:3001/api/posts");
       const data = await response.json();
-      console.log("Posts recebidos:", data);
       setPosts(data);
+      console.log(
+        "Posts recebidos:",
+        data.map((p) => ({ id: p.idPost, status: p.status }))
+      );
     }
 
     fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    async function fetchEncontrados() {
+      try {
+        const response = await fetch(
+          "http://localhost:3001/api/postagens/encontrados"
+        );
+        const data = await response.json();
+        setEncontrados(data);
+      } catch (error) {
+        console.error("Erro ao buscar cards encontrados:", error);
+      }
+    }
+
+    fetchEncontrados();
   }, []);
 
   const atualizarPosts = async () => {
@@ -102,28 +155,24 @@ function Main() {
         </LocationProvider>
 
         <div>
-          <Encontrados
-            imgPet={imgCardPet1}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
-          />
-          <Encontrados
-            imgPet={imgCardPet2}
-            nome={"Bulma"}
-            local={"Rua Felicio Helito, 220 - Penha"}
-            hora={"12 horas atrás"}
-            intervalo={"Encontrado 8 horas depois do anúncio!"}
-          />
-          <Encontrados
-            imgPet={imgCardPet3}
-            nome={"Bills"}
-            local={"Avenida Lindóia, 204 - Jardim Recreio"}
-            hora={"5 horas atrás"}
-            intervalo={"Encontrado 2 dias depois do anúncio!"}
-          />
-          {/* Botão Ver Mais */}
+          {encontrados.map((p) => (
+            <Encontrados
+              key={p.idPost}
+              imgPet={
+                p.animal.imagensAnimal?.[0]
+                  ? `http://localhost:3001/uploads/${p.animal.imagensAnimal[0]}`
+                  : "https://via.placeholder.com/150"
+              }
+              nome={p.animal.nome}
+              local={p.endereco}
+              hora={calcularTempoRelativo(p.dataHoraPost)}
+              intervalo={calcularIntervaloStatus(
+                p.dataPost,
+                p.statusAtualizadoEm
+              )}
+            />
+          ))}
+
           <button
             className="btn-ver-mais"
             onClick={() => navigate("/pagina-destino")}
