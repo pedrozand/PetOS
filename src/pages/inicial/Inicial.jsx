@@ -193,20 +193,18 @@ function Inicial() {
               </div>
             </Link>
           </div>
-          {/* Novo botão abaixo */}
-          <button
-            className="botao botao-extra"
-            onClick={() => alert("Abrir página completa!")}
-          >
-            <div className="icon-container">
-              <FaPaw className="icone-paw" />
-              <MdOutlineQuestionMark className="icone-question" />
-            </div>
-            <div>
-              <strong className="strong-extra">Como o PetOS funciona?</strong>
-              <span>Sistema de busca e exibição</span>
-            </div>
-          </button>
+          <Link to="/comoFunc" style={{ textDecoration: "none" }}>
+            <button className="botao botao-extra">
+              <div className="icon-container">
+                <FaPaw className="icone-paw" />
+                <MdOutlineQuestionMark className="icone-question" />
+              </div>
+              <div>
+                <strong className="strong-extra">Como o PetOS funciona?</strong>
+                <span>Sistema de busca e exibição</span>
+              </div>
+            </button>
+          </Link>
         </div>
 
         {/* Vídeo posicionado ao lado */}
