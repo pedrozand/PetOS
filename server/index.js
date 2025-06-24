@@ -289,7 +289,7 @@ app.get("/api/postagens", async (req, res) => {
         status: true,
       },
       orderBy: {
-        dataPost: "desc",
+        dataHoraPost: "desc",
       },
     });
 
@@ -402,6 +402,9 @@ app.get("/api/postagens/usuario/:id", async (req, res) => {
         comentarios: {
           include: { autor: true },
         },
+      },
+      orderBy: {
+        dataHoraPost: "desc",
       },
     });
 

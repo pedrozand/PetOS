@@ -435,8 +435,10 @@ export default function Post({
             <div className="name">
               {nome} {sobrenome}
             </div>
-            {tempoPostagem && (
-              <div className="tempo-postagem">{tempoPostagem}</div>
+            {dataHoraPost && (
+              <div className="tempo-postagem">
+                {calcularTempoRelativo(dataHoraPost)}
+              </div>
             )}
           </div>
           <div className="animal-post-icon">

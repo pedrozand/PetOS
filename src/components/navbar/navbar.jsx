@@ -142,9 +142,14 @@ export default function Navbar() {
                 )}
               </a>
               {dropdownAberto === "conheca" && (
-                <ul
-                  className={`dropdown-menu ${usuario ? "logged-in" : ""}`}
-                ></ul>
+                <ul className={`dropdown-menu ${usuario ? "logged-in" : ""}`}>
+                  <li>
+                    <a href="achados-perdidos.html">
+                      ONG Faros D'Ajuda
+                      <span>ONG em prol dos animais de rua.</span>
+                    </a>
+                  </li>
+                </ul>
               )}
             </li>
 
